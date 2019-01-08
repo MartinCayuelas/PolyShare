@@ -15,9 +15,10 @@ public abstract class StudentDAO {
 
 
     /**
+     * Log in the user on the app, if it's true.
      * @param id 
      * @param password 
-     * @return
+     * @return boolean
      */
     public boolean login(String id, String password) {
         // TODO implement here
@@ -25,9 +26,10 @@ public abstract class StudentDAO {
     }
 
     /**
+     * Verify the login and the password during the Log in opération
      * @param login 
      * @param password 
-     * @return
+     * @return boolean
      */
     public boolean verifyCredentials(String login, String password) {
         // TODO implement here
@@ -35,17 +37,19 @@ public abstract class StudentDAO {
     }
 
     /**
+     * Find a Student by his id.
      * @param id 
-     * @return
+     * @return Student
      */
     public Student findById(int id) {
         // TODO implement here
         return null;
     }
 
-    /**
+    /** 
+     * Find a Student by his name.
      * @param name 
-     * @return
+     * @return Student
      */
     public Student findByName(String name) {
         // TODO implement here
@@ -53,24 +57,27 @@ public abstract class StudentDAO {
     }
 
     /**
+     * Creates a new Student
      * @param s 
-     * @return
+     * 
      */
     public void createStudent(Student s) {
         // TODO implement here
     }
 
     /**
+     * Recommand a Student
      * @param s 
-     * @return
+     * 
      */
-    public void recommendStudent(Student s) {
+    public void recommandStudent(Student s) {
         // TODO implement here
     }
 
     /**
+     * Signalize a Student
      * @param s 
-     * @return
+     * 
      */
     public void signalizeStudent(Student s) {
         // TODO implement here

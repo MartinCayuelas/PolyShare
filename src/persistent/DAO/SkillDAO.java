@@ -16,8 +16,9 @@ public abstract class SkillDAO {
 
 
     /**
+     * Search a Skill with a Student Id
      * @param idStudent 
-     * @return
+     * @return Skill
      */
     public Skill findById(int idStudent) {
         // TODO implement here
@@ -25,26 +26,30 @@ public abstract class SkillDAO {
     }
 
     /**
+     * Add a new Skill to a Student
      * @param idStudent 
      * @param skill 
-     * @return
+     * 
      */
-    public void addById(int idStudent, Skill skill) {
+    public void addSkillById(int idStudent, Skill skill) {
         // TODO implement here
     }
 
     /**
-     * @return
-     */
-    public void deleteSkillByIdSkill() {
-        // TODO implement here
-    }
-
-    /**
+     * Remove a Skill to the Student
+     * @param idStudent 
      * @param skill 
-     * @return
      */
-    public void updateSkill(Skill skill) {
+    public void deleteSkillByIdSkill(int idStudent, Skill skill) {
+        // TODO implement here
+    }
+
+    /**
+     * @param idStudent 
+     * @param skill 
+     * Update the skill in the Student Profil
+     */
+    public void updateSkill(int idStudent, Skill skill) {
         // TODO implement here
     }
 

@@ -15,17 +15,19 @@ public class AnswerDAO {
 
 
     /**
-     * @param a 
-     * @return
+     * @param a Answer
+     * 
+     * Creates a new Answer
      */
     public void createAnswer(Answer a) {
         // TODO implement here
     }
 
     /**
-     * @return
+     * @param a
+     * Add a like to the Answer
      */
-    public void addLike() {
+    public void addLike(Answer a) {
         // TODO implement here
     }
 

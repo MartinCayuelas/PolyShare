@@ -1,6 +1,7 @@
 package persistent.DAO;
 
 import application.classesApp.Question;
+import application.classesApp.Topic;
 
 /**
  * 
@@ -16,6 +17,7 @@ public class TopicDAO {
 
 
     /**
+     * Creates a new Topic
      * @param topicname 
      * @return
      */
@@ -24,17 +26,20 @@ public class TopicDAO {
     }
 
     /**
+     * Add a Question to the Topic
+     * @param t
      * @param q 
      * @return
      */
-    public void addQuestion(Question q) {
+    public void addQuestion(Topic t, Question q) {
         // TODO implement here
     }
 
     /**
-     * @return
+     * Close a topic
+     * @param t
      */
-    public void close() {
+    public void close(Topic t) {
         // TODO implement here
     }
 

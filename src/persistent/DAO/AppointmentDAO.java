@@ -1,7 +1,9 @@
 package persistent.DAO;
 
+import application.classesApp.Appointment;
 import application.classesApp.RevisionSession;
 import application.classesApp.SingleSession;
+import application.classesApp.Student;
 
 /**
  * 
@@ -17,7 +19,7 @@ public abstract class AppointmentDAO {
 
     /**
      * @param s 
-     * @return
+     * Creates a new SingleSession
      */
     public void createSingleSession(SingleSession s) {
         // TODO implement here
@@ -25,25 +27,28 @@ public abstract class AppointmentDAO {
 
     /**
      * @param id 
-     * @return
+     * @return Appointment
+     * Return an Appointment
      */
-    public AppointmentDAO getAppointmentDAOById(int id) {
+    public Appointment getAppointmentById(int id) {
         // TODO implement here
         return null;
     }
 
     /**
+     * Return a Student corresponding to the Id
      * @param id 
-     * @return
+     * @return Student
      */
-    public StudentDAO getTeacherStudentDAOById(int id) {
+    public Student getTeacherStudentById(int id) {
         // TODO implement here
         return null;
     }
 
     /**
      * @param subject 
-     * @return
+     * @return SingleSession
+     * Return an SingleSession corresponding to the subject in param
      */
     public SingleSession getSingleSessionBySubject(String subject) {
         // TODO implement here
@@ -52,7 +57,7 @@ public abstract class AppointmentDAO {
 
     /**
      * @param r 
-     * @return
+     * Creates a RevisionSession
      */
     public void createRevisionSession(RevisionSession r) {
         // TODO implement here

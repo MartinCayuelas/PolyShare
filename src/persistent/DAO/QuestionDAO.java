@@ -17,7 +17,7 @@ public class QuestionDAO {
 
     /**
      * @param q 
-     * @return
+     * Creates a new Question
      */
     public void createQuestion(Question q) {
         // TODO implement here
@@ -25,7 +25,8 @@ public class QuestionDAO {
 
     /**
      * @param id 
-     * @return
+     * @return Question
+     * Return a Question that correspond to the id in param
      */
     public Question findById(int id) {
         // TODO implement here
@@ -33,9 +34,10 @@ public class QuestionDAO {
     }
 
     /**
-     * @return
+     * @param q
+     * Close a question (including all the answers corresponding to the Question)
      */
-    public void close() {
+    public void close(Question q) {
         // TODO implement here
     }
 

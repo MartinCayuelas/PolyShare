@@ -1,6 +1,7 @@
 package facades;
 
 import application.classesApp.SchoolClass;
+import application.classesApp.Subject;
 
 /**
  * 
@@ -14,32 +15,35 @@ public class SchoolClassFacade {
     }
 
 
-
-
     /**
-     * @return
+     * @param className 
+     * Create a new SchoolClass and save it
+     * 
      */
-    public void CreateSchoolClass() {
+    public void CreateSchoolClass(String className) {
         // TODO implement here
     }
 
     /**
-     * @return
+     * @param subjectName 
+     * Create a new subject and save it
      */
-    public void CreateSubject() {
+    public void CreateSubject(String subjectName) {
         // TODO implement here
     }
 
     /**
-     * @return
+     * @param topicName
+     * @param subject
+     * Create a topic linked to a subject and save it
      */
-    public void CreateTopic() {
+    public void CreateTopic(String topicName, Subject subject) {
         // TODO implement here
     }
 
     /**
-     * @param s 
-     * @return
+     * @param s the name of the researched schoolClass
+     * @return SchollClass return the matched schoolClass 
      */
     public SchoolClass findSchoolClass(String s) {
         // TODO implement here
@@ -47,9 +51,11 @@ public class SchoolClassFacade {
     }
 
     /**
-     * @return
+     * @param SchoolClass
+     * Make a demand to the admin of the class. The admin can accept the demand.
+     * 
      */
-    public void joinSchoolClass() {
+    public void joinSchoolClass(SchoolClass schoolClass) {
         // TODO implement here
     }
 

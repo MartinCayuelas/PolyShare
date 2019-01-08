@@ -14,11 +14,9 @@ public class SkillFacade {
     public SkillFacade() {
     }
 
-
-
     /**
      * @param student Student 
-     * @return
+     * @return student's skills
      */
     public Skill getSkills(Student student) {
         // TODO implement here
@@ -26,28 +24,28 @@ public class SkillFacade {
     }
 
     /**
+     * delete the skill in param for the connected user
      * @param skill 
-     * @return
+     * 
      */
     public void deleteSkill(Skill skill) {
         // TODO implement here
     }
 
     /**
-     * @param student 
+     * add the skill in param for the connected user
      * @param skill 
-     * @return
+     * 
      */
-    public void addSkill(Student student, Skill skill) {
+    public void addSkill(Skill skill) {
         // TODO implement here
     }
 
     /**
      * @param student 
-     * @param skill 
-     * @return
+     * 
      */
-    public void updateSkill(Student student, Skill skill) {
+    public void updateSkill(Skill skill) {
         // TODO implement here
     }
 

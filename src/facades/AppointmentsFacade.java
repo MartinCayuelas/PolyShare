@@ -15,7 +15,7 @@ public class AppointmentsFacade {
 
 
     /**
-     * @return
+     * @param 
      */
     public void addSingleSession() {
         // TODO implement here

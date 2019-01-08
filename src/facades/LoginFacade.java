@@ -17,7 +17,7 @@ public class LoginFacade {
     /**
      * @param id 
      * @param password 
-     * @return
+     * @return boolean true if the student is logged false if wrong login or password
      */
     public boolean login(String id, String password) {
         // TODO implement here

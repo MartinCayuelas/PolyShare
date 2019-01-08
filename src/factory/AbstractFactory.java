@@ -11,7 +11,7 @@ import persistent.DAO.TopicDAO;
 
 
 /**
- * 
+ * <b>AbstractFactory</b> is used to create all the DAO objects
  */
 public abstract class AbstractFactory {
 
@@ -22,7 +22,8 @@ public abstract class AbstractFactory {
     }
 
     /**
-     * @return
+     * Get the MySQL Factory
+     * @return factory MySQL
      */
     public AbstractFactory getFactoryMySql() {
         // TODO implement here
@@ -30,7 +31,8 @@ public abstract class AbstractFactory {
     }
 
     /**
-     * @return
+     * Create a Student DAO
+     * @return student DAO
      */
     public StudentDAO createStudentDAO() {
         // TODO implement here
@@ -38,7 +40,8 @@ public abstract class AbstractFactory {
     }
 
     /**
-     * @return
+     * Create a Question DAO
+     * @return question DAO
      */
     public QuestionDAO createQuestionDAO() {
         // TODO implement here
@@ -46,7 +49,8 @@ public abstract class AbstractFactory {
     }
 
     /**
-     * @return
+     * Create an Answer DAO
+     * @return answer DAO
      */
     public AnswerDAO createAnswerDAO() {
         // TODO implement here
@@ -54,7 +58,8 @@ public abstract class AbstractFactory {
     }
 
     /**
-     * @return
+     * Create an Appointment DAO
+     * @return appointment DAO
      */
     public AppointmentDAO createAppointmentDAO() {
         // TODO implement here
@@ -62,25 +67,28 @@ public abstract class AbstractFactory {
     }
 
     /**
-     * @return
+     * Create a SchoolClass DAO
+     * @return schoolClass DAO
      */
-    public SchoolClassDAO createSchoolClass() {
+    public SchoolClassDAO createSchoolClassDAO() {
         // TODO implement here
         return null;
     }
 
     /**
-     * @return
+     * Create a Subject DAO
+     * @return subject DAO
      */
-    public SubjectDAO createSubject() {
+    public SubjectDAO createSubjectDAO() {
         // TODO implement here
         return null;
     }
 
     /**
-     * @return
+     * Create a Topic DAO
+     * @return topic DAO
      */
-    public TopicDAO createTopic() {
+    public TopicDAO createTopicDAO() {
         // TODO implement here
         return null;
     }

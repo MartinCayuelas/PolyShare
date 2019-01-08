@@ -3,7 +3,7 @@ package application.classesApp;
 import java.util.*;
 
 /**
- * 
+ * <b>Skill</b> corresponds to level of comprehension of a topic
  */
 public class Skill {
 
@@ -30,7 +30,8 @@ public class Skill {
 
 
     /**
-     * @return
+     * Get the name of a skill
+     * @return name of the skill
      */
     public String getNameSkill() {
         // TODO implement here
@@ -38,14 +39,16 @@ public class Skill {
     }
 
     /**
-     * @param value
+     * Change the name of the skill
+     * @param value new name of the skill
      */
     public void setNameSkill(String value) {
         // TODO implement here
     }
 
     /**
-     * @return
+     * Get the mark, the level of comprehension of the skill, the topic
+     * @return mark of the skill
      */
     public int getMarkSkill() {
         // TODO implement here
@@ -53,7 +56,8 @@ public class Skill {
     }
 
     /**
-     * @param value
+     * Change the mark of a skill
+     * @param value new mark for a skill
      */
     public void setMarkSkill(int value) {
         // TODO implement here

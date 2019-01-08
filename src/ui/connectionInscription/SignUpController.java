@@ -1,4 +1,4 @@
-package application.classesApp;
+package ui.connectionInscription;
 
 import java.util.*;
 

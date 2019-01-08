@@ -5,7 +5,7 @@ import java.util.Set;
 import persistent.DAO.StudentDAO;
 
 /**
- * 
+ * <b>Student</b> is a user who is register
  */
 public class Student {
 
@@ -55,7 +55,8 @@ public class Student {
 
 
     /**
-     * @return
+     * Get all the school classes of a student
+     * @return list of school classes for a student
      */
     public Set<SchoolClass> getSchoolClasses() {
         // TODO implement here
@@ -63,7 +64,8 @@ public class Student {
     }
 
     /**
-     * @return
+     * Get all the skills for a student
+     * @return list of the skills for a student
      */
     public Set<Skill> getSkills() {
         // TODO implement here
@@ -71,7 +73,8 @@ public class Student {
     }
 
     /**
-     * @return
+     * Get all the school classes of a student when the student is administrator of classes
+     * @return list of the managed school classes
      */
     public Set<SchoolClass> getManagedSchoolClasses() {
         // TODO implement here
@@ -79,43 +82,49 @@ public class Student {
     }
 
     /**
-     * @param s
+     * Add a skill for a student
+     * @param s skill added
      */
     public void addSkill(Skill s) {
         // TODO implement here
     }
 
     /**
-     * @param s
+     * Delete a skill for a student
+     * @param s skill deleted
      */
     public void deleteSkill(Skill s) {
         // TODO implement here
     }
 
     /**
-     * @param s 
-     * @param l
+     * Update a skill for a student
+     * @param s  skill updated
+     * @param l new mark for the skill
      */
     public void updateSkill(Skill s, int l) {
         // TODO implement here
     }
 
     /**
-     * @param c
+     * Demand for join a school
+     * @param c school class to join
      */
     public void joinSchoolClass(SchoolClass c) {
         // TODO implement here
     }
 
     /**
-     * @param c
+     * Add a school class
+     * @param c school class added
      */
     public void addSchoolClass(SchoolClass c) {
         // TODO implement here
     }
 
     /**
-     * @return
+     * Get the name of the student
+     * @return name of the student
      */
     public String getNameStudent() {
         // TODO implement here
@@ -123,14 +132,16 @@ public class Student {
     }
 
     /**
-     * @param value
+     * Change the name of the student
+     * @param value new name of the student
      */
     public void setNameStudent(String value) {
         // TODO implement here
     }
 
     /**
-     * @return
+     * Get the first name of the student
+     * @return first name of the student
      */
     public String getFirstNameStudent() {
         // TODO implement here
@@ -138,14 +149,16 @@ public class Student {
     }
 
     /**
-     * @param value
+     * Change the first name of the student
+     * @param value new first name of the student
      */
     public void setFirstNameStudent(String value) {
         // TODO implement here
     }
 
     /**
-     * @return
+     * Get the email address of the student
+     * @return email address of the student
      */
     public String getEmailStudent() {
         // TODO implement here
@@ -153,14 +166,16 @@ public class Student {
     }
 
     /**
-     * @param value
+     * Change the email address of the student
+     * @param value new email address of the student
      */
     public void setEmailStudent(String value) {
         // TODO implement here
     }
 
     /**
-     * @return
+     * get the password of the student
+     * @return password of the student
      */
     public String getPasswordStudent() {
         // TODO implement here
@@ -168,37 +183,42 @@ public class Student {
     }
 
     /**
-     * @param value
+     * change the password of the student
+     * @param value new password of the student
      */
     public void setPasswordStudent(String value) {
         // TODO implement here
     }
 
     /**
-     * @param s
+     * Recommend a student
+     * @param s student recommended
      */
-    public void recommandStudent(Student s) {
+    public void recommendStudent(Student s) {
         // TODO implement here
     }
 
     /**
-     * @param s
+     * signal a student
+     * @param s student signaled
      */
     public void signalStudent(Student s) {
         // TODO implement here
     }
 
     /**
+     * Get the total number of recommendations for a student
      * @return
      */
-    public int getNbRecommandations() {
+    public int getNbRecommendations() {
         // TODO implement here
         return 0;
     }
 
     /**
-     * @param email 
-     * @return
+     * Get a student from the database with the email address
+     * @param email email address of the student
+     * @return student into the database
      */
     public StudentDAO getStudentFromDb(String email) {
         // TODO implement here

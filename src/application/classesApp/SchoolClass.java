@@ -3,7 +3,7 @@ package application.classesApp;
 import java.util.Set;
 
 /**
- * 
+ * <b>SchoolClass</b> is a class, with an administrator who is a student and other students
  */
 public class SchoolClass {
 
@@ -27,21 +27,24 @@ public class SchoolClass {
 
 
     /**
-     * @param sub
+     * Add a subject for a school class
+     * @param sub subject added
      */
     public void addSubject(Subject sub) {
         // TODO implement here
     }
 
     /**
-     * @param sub
+     * Delete a subject for a school class
+     * @param sub subject deleted
      */
     public void deleteSubject(Subject sub) {
         // TODO implement here
     }
 
     /**
-     * @return
+     * get all the subjects for a school class
+     * @return list of subjects for a school class
      */
     public Set<Subject> getSubjects() {
         // TODO implement here
@@ -49,7 +52,8 @@ public class SchoolClass {
     }
 
     /**
-     * @return
+     * Get the name of a school class
+     * @return name of the scool class
      */
     public String getNameSchoolClass() {
         // TODO implement here
@@ -57,7 +61,8 @@ public class SchoolClass {
     }
 
     /**
-     * @param value
+     * Change the name of a school class
+     * @param value new name of the school class
      */
     public void setNameSchoolClass(String value) {
         // TODO implement here

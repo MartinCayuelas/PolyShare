@@ -5,7 +5,7 @@ import java.util.*;
 import persistent.DAO.StudentDAO;
 
 /**
- * 
+ * <b>Student</b> is a user who is register
  */
 public class StudentDAOMySQL extends StudentDAO {
 

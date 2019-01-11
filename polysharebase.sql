@@ -162,7 +162,8 @@ CREATE TABLE `Skill` (
   `idSkill` int(11) NOT NULL,
   `nomSkill` varchar(50) NOT NULL,
   `markSkill` varchar(50) NOT NULL,
-  `idStudent` int(11) NOT NULL
+  `idStudent` int(11) NOT NULL,
+  `idClass` int(11) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

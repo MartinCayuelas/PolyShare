@@ -1,5 +1,0 @@
-{
-"url" : "jdbc:mysql://localhost/polyshare?useSSL=false"
-"user" : "root"
-"password" : "root"
-}

@@ -2,6 +2,7 @@ package factory;
 
 import persistent.DAO.AnswerDAO;
 import persistent.DAO.AppointmentDAO;
+import persistent.DAO.MediaFileDAO;
 import persistent.DAO.SchoolClassDAO;
 import persistent.DAO.QuestionDAO;
 import persistent.DAO.StudentDAO;

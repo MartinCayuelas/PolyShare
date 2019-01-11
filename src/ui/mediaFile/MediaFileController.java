@@ -1,3 +1,5 @@
+package ui.mediaFile;
+
 
 import java.util.*;
 
@@ -18,7 +20,6 @@ public class MediaFileController {
      */
     public void upload() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -26,7 +27,6 @@ public class MediaFileController {
      */
     public void delete() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -34,7 +34,6 @@ public class MediaFileController {
      */
     public void save() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -42,7 +41,6 @@ public class MediaFileController {
      */
     public void like() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -50,7 +48,6 @@ public class MediaFileController {
      */
     public void unlike() {
         // TODO implement here
-        return null;
     }
 
 }

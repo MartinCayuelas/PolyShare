@@ -1,3 +1,5 @@
+package facades;
+
 
 import java.util.*;
 
@@ -19,7 +21,6 @@ public class RessourceFacade {
      */
     public void addAnswer(String text) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -28,7 +29,6 @@ public class RessourceFacade {
      */
     public void addQuestion(String text) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -37,7 +37,6 @@ public class RessourceFacade {
      */
     public void updateAnswer(String text) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -45,7 +44,6 @@ public class RessourceFacade {
      */
     public void updateQuestion() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -53,7 +51,6 @@ public class RessourceFacade {
      */
     public void closePost() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -61,7 +58,6 @@ public class RessourceFacade {
      */
     public void likeQ() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -69,7 +65,6 @@ public class RessourceFacade {
      */
     public void likeA() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -77,7 +72,6 @@ public class RessourceFacade {
      */
     public void unlikeQ() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -85,7 +79,6 @@ public class RessourceFacade {
      */
     public void unlikeA() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -94,7 +87,6 @@ public class RessourceFacade {
      */
     public void saveMediaFile(String text) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -102,7 +94,6 @@ public class RessourceFacade {
      */
     public void deleteMediaFile() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -110,7 +101,6 @@ public class RessourceFacade {
      */
     public void likeMediaFile() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -118,7 +108,6 @@ public class RessourceFacade {
      */
     public void unlikeMediaFile() {
         // TODO implement here
-        return null;
     }
 
 }

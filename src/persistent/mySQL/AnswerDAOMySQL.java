@@ -2,6 +2,7 @@ package persistent.mySQL;
 
 import java.util.*;
 
+import application.classesApp.Answer;
 import persistent.DAO.AnswerDAO;
 
 /**
@@ -12,7 +13,7 @@ public class AnswerDAOMySQL extends AnswerDAO {
     /**
      * Default constructor
      */
-    public AnswerDAOMySQL(answer String) {
+    public AnswerDAOMySQL(Answer String) {
     }
 
 }

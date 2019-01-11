@@ -1,5 +1,9 @@
+package persistent.DAO;
+
 
 import java.util.*;
+
+import application.classesApp.MediaFile;
 
 /**
  * 
@@ -19,7 +23,6 @@ public class MediaFileDAO {
      */
     public void createMediaFile(MediaFile d) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -37,7 +40,6 @@ public class MediaFileDAO {
      */
     public void delete(MediaFile d) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -46,7 +48,6 @@ public class MediaFileDAO {
      */
     public void update(MediaFile d) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -55,7 +56,6 @@ public class MediaFileDAO {
      */
     public void like(MediaFile m) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -64,7 +64,6 @@ public class MediaFileDAO {
      */
     public void unlike(MediaFile m) {
         // TODO implement here
-        return null;
     }
 
 }

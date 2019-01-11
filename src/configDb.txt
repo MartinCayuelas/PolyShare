@@ -1,7 +1,0 @@
-{
-
-"url" : "sfdghbjn"
-"user" : ""
-"password" : ""
-
-}

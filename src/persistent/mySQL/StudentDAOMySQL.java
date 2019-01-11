@@ -66,7 +66,6 @@ public class StudentDAOMySQL extends StudentDAO {
   	}
     
     public boolean update(Student obj) {
-		// TODO Auto-generated method stub
 		try {
 			this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -78,6 +77,48 @@ public class StudentDAOMySQL extends StudentDAO {
 		}
 	}
     
-    
+    public Student findByName(String name) {
+		Student student = new Student(0, null, null, null, null, null, null);
+		
+	    try {
+		    ResultSet result = this.connect.createStatement(
+		    ResultSet.TYPE_SCROLL_INSENSITIVE,
+		    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE nameStudent = " + name);
+		    if(result.first())
+		      student = new Student(
+		    		result.getInt("id"),
+		        name,
+		        result.getString("firstNameStudent"),
+		        result.getString("emailStudent"),
+		        result.getString("password"),
+		        result.getString("loginID"),
+		        null);         
+		  } catch (SQLException e) {
+		    e.printStackTrace();
+		  }
+		  return student;
+	}
+	
+	public void createStudent(Student obj) {
+		try {
+			this.connect.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO Student VALUES (NULL,'" + obj.getNameStudent() + "','" + obj.getFirstNameStudent() + "','" + obj.getEmailStudent() + "','" + obj.getPasswordStudent() + "','" + obj.getLoginID() + "')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean delete(Student obj) {
+		try {
+			this.connect.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM Student WHERE idStudent = '" + obj.getId() + "'");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 }

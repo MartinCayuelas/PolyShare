@@ -3,7 +3,6 @@ package persistent.mySQL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
 
 import application.classesApp.Student;
 import persistent.DAO.StudentDAO;
@@ -65,5 +64,20 @@ public class StudentDAOMySQL extends StudentDAO {
   	  }
   	  return student;
   	}
+    
+    public boolean update(Student obj) {
+		// TODO Auto-generated method stub
+		try {
+			this.connect.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE Student SET nameStudent = '" + obj.getNameStudent() + "', firstNameStudent = '" + obj.getFirstNameStudent() + "', emailStudent = '" + obj.getEmailStudent() + "', password = '" + obj.getPasswordStudent() + "', loginID = '" + obj.getLoginID() + "' WHERE idStudent = '" + obj.getId() + "'");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+    
+    
 
 }

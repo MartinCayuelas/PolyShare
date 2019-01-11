@@ -1,30 +1,18 @@
 package application.classesApp;
 
-import java.util.List;
 import java.util.Set;
-
-
-import persistent.DAO.StudentDAO;
 
 /**
  * <b>Student</b> is a user who is register
  */
 public class Student {
 
-    private int id;
-
-
-
-
-
-
-
 	/**
      * Default constructor
      */
 	public Student(int id, String nameStudent, String firstNameStudent, String emailStudent, String passwordStudent,
 			String loginID, Set<SchoolClass> listClassManaged) {
-		this.id = id;
+		this.idStudent = id;
 		this.nameStudent = nameStudent;
 		this.firstNameStudent = firstNameStudent;
 		this.emailStudent = emailStudent;
@@ -32,6 +20,11 @@ public class Student {
 		this.loginID = loginID;
 		this.listClassManaged = listClassManaged;
 	}
+	
+	/**
+     * 
+     */
+	private int idStudent;
 
     /**
      * 
@@ -82,14 +75,17 @@ public class Student {
      * 
      */
     public Set<Skill> listSkill;
-    
-    
 
 
+    public String getLoginID() {
+		return loginID;
+	}
 
+	public void setLoginID(String loginID) {
+		this.loginID = loginID;
+	}
 
-
-    /**
+	/**
      * Get all the school classes of a student
      * @return list of school classes for a student
      */
@@ -113,7 +109,7 @@ public class Student {
      */
     public Set<SchoolClass> getManagedSchoolClasses() {
         // TODO implement here
-        return null;
+        return listClassManaged;
     }
 
     /**
@@ -156,7 +152,25 @@ public class Student {
     public void addSchoolClass(SchoolClass c) {
         // TODO implement here
     }
+    
+    /**
+     * Get the name of the student
+     * @return name of the student
+     */
+    public int getId() {
+        // TODO implement here
+        return idStudent;
+    }
 
+    /**
+     * Change the name of the student
+     * @param value new name of the student
+     */
+    public void setId(int value) {
+        // TODO implement here
+    	this.idStudent = value;
+    }
+    
     /**
      * Get the name of the student
      * @return name of the student
@@ -253,5 +267,6 @@ public class Student {
         // TODO implement here
         return 0;
     }
+
 
 }

@@ -93,4 +93,12 @@ public abstract class AbstractFactory {
         return null;
     }
 
+    /**
+     * Create a MediaFileDAO 
+     * @return MediaFileDAO
+     */
+    public MediaFileDAO createMediaFileDAO() {
+        // TODO implement here
+        return null;
+    }
 }

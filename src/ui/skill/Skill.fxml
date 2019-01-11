@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="308.0" prefWidth="474.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.skill.SkillControlleur">
+<AnchorPane id="AnchorPane" prefHeight="362.0" prefWidth="564.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.skill.SkillControlleur">
     <children>
-        <Button fx:id="button" layoutX="178.0" layoutY="250.0" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="100.0" text="Click Me!" />
-      <ListView fx:id="myListView" layoutX="79.0" layoutY="57.0" prefHeight="179.0" prefWidth="298.0" />
-      <Text layoutX="204.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #357AB7;" text="Skills">
+      <ListView fx:id="myListView" layoutX="129.0" layoutY="70.0" prefHeight="179.0" prefWidth="298.0" />
+      <Text layoutX="245.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #357AB7;" text="Skills">
          <font>
             <Font size="30.0" />
          </font>
       </Text>
+      <ButtonBar layoutX="130.0" layoutY="249.0" prefHeight="40.0" prefWidth="298.0">
+        <buttons>
+              <Button fx:id="button" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="100.0" text="Click Me!" />
+            <Button mnemonicParsing="false" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Add New Skill" />
+        </buttons>
+      </ButtonBar>
     </children>
 </AnchorPane>

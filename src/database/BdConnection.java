@@ -1,7 +1,6 @@
 package database;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -26,22 +25,20 @@ public class BdConnection {
 	    	try {
 	    		
 	    		JSONObject jsonObject;
-	    		
-	    			
-	    			FileReader fr = new FileReader("configDb.txt");
-	    			BufferedReader br = new BufferedReader(fr);
-	    			String sCurrentLine;
-	    			String txt = "";
-	    			while ((sCurrentLine = br.readLine()) != null) {
-	    				txt += sCurrentLine;
-	    			}
-	    			br.close();
-	    			jsonObject = new JSONObject(txt);
-	    			String url = (String) jsonObject.get("url");
-	    			String user = (String) jsonObject.get("user");
-	    			String password = (String) jsonObject.get("password");
-	    		
-	    		
+	    			    			
+	    		FileReader fr = new FileReader("configDb.txt");
+	    		BufferedReader br = new BufferedReader(fr);
+	    		String sCurrentLine;
+	    		String txt = "";
+	    		while ((sCurrentLine = br.readLine()) != null) {
+	    			txt += sCurrentLine;
+	   			}
+	  			br.close();
+	   			jsonObject = new JSONObject(txt);
+    			String url = (String) jsonObject.get("url");
+	   			String user = (String) jsonObject.get("user");
+	   			String password = (String) jsonObject.get("password");
+	    		    		
 	    		
 		    	Properties props = new Properties();
 				props.setProperty("ssl","true");

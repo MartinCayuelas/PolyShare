@@ -49,6 +49,23 @@ public class Student {
      * 
      */
     public Set<Appointment> myAppointments;
+    
+    /**
+     * 
+     */
+    public Set<SchoolClass> listClass;
+    
+    /**
+     * 
+     */
+    public Set<SchoolClass> listClassManaged;
+    
+    /**
+     * 
+     */
+    public Set<Skill> listSkill;
+    
+    
 
 
 
@@ -128,7 +145,7 @@ public class Student {
      */
     public String getNameStudent() {
         // TODO implement here
-        return "";
+        return nameStudent;
     }
 
     /**
@@ -137,6 +154,7 @@ public class Student {
      */
     public void setNameStudent(String value) {
         // TODO implement here
+    	this.nameStudent = value;
     }
 
     /**
@@ -145,7 +163,7 @@ public class Student {
      */
     public String getFirstNameStudent() {
         // TODO implement here
-        return "";
+    	return firstNameStudent;
     }
 
     /**
@@ -154,6 +172,7 @@ public class Student {
      */
     public void setFirstNameStudent(String value) {
         // TODO implement here
+    	this.firstNameStudent = value;
     }
 
     /**
@@ -162,7 +181,7 @@ public class Student {
      */
     public String getEmailStudent() {
         // TODO implement here
-        return "";
+    	return emailStudent;
     }
 
     /**
@@ -171,6 +190,7 @@ public class Student {
      */
     public void setEmailStudent(String value) {
         // TODO implement here
+    	this.emailStudent = value;
     }
 
     /**
@@ -179,7 +199,7 @@ public class Student {
      */
     public String getPasswordStudent() {
         // TODO implement here
-        return "";
+        return passwordStudent;
     }
 
     /**
@@ -188,6 +208,7 @@ public class Student {
      */
     public void setPasswordStudent(String value) {
         // TODO implement here
+    	this.passwordStudent = value;
     }
 
     /**
@@ -213,16 +234,6 @@ public class Student {
     public int getNbRecommendations() {
         // TODO implement here
         return 0;
-    }
-
-    /**
-     * Get a student from the database with the email address
-     * @param email email address of the student
-     * @return student into the database
-     */
-    public StudentDAO getStudentFromDb(String email) {
-        // TODO implement here
-        return null;
     }
 
 }

@@ -10,10 +10,18 @@ public class SchoolClass {
     /**
      * Default constructor
      */
-    public SchoolClass() {
+    public SchoolClass(int id, String nameSchoolClass) {
+		this.idSchoolClass = id;
+		this.nameSchoolClass = nameSchoolClass;
+
     }
 
-    /**
+	/**
+	  * 
+	  */
+	 private int idSchoolClass;
+	    
+	 /**
      * 
      */
     public String nameSchoolClass;
@@ -57,7 +65,7 @@ public class SchoolClass {
      */
     public String getNameSchoolClass() {
         // TODO implement here
-        return "";
+        return nameSchoolClass;
     }
 
     /**
@@ -66,6 +74,7 @@ public class SchoolClass {
      */
     public void setNameSchoolClass(String value) {
         // TODO implement here
+    	this.nameSchoolClass = value;
     }
 
 }

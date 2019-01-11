@@ -1,17 +1,20 @@
 package persistent.DAO;
 
 
+import java.sql.Connection;
+
 import application.classesApp.Skill;
 
 /**
  * AO
  */
 public abstract class SkillDAO {
-
+	protected Connection connect = null;
     /**
      * Default constructor
      */
-    public SkillDAO() {
+    public SkillDAO(Connection conn) {
+    	this.connect = conn;
     }
 
 

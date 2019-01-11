@@ -1,7 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import application.classesApp.SchoolClass;
 import application.classesApp.Student;
 import factory.AbstractFactory;
+import persistent.DAO.SchoolClassDAO;
 import persistent.DAO.StudentDAO;
 
 public class TestDAO {
@@ -45,6 +48,12 @@ public class TestDAO {
 	      System.out.println("\tELEVE N°" + i + " - NOM : " + student.getNameStudent() + " - PRENOM : " + student.getFirstNameStudent());
 	    } 
 	    
+	    //Test de l'affichage de toutes les classes
+	    SchoolClassDAO schoolClassDao = adf.getSchoolClassDAO();
+	    ArrayList<SchoolClass> names = schoolClassDao.getAllSchoolClassesNames();
+	    for(SchoolClass sc : names) {
+	    	System.out.println(sc.getNameSchoolClass());
+	    }
 	    
 	    
 	}

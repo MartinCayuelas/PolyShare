@@ -1,7 +1,7 @@
 package factory;
 
 import persistent.DAO.*;
-import persistent.Factories.DAOFactoryMySql;
+import persistent.factories.DAOFactoryMySql;
 
 /**
  * <b>AbstractFactory</b> is used to create all the DAO objects
@@ -94,4 +94,9 @@ public abstract class AbstractFactory {
         // TODO implement here
         return null;
     }
+
+	public SchoolClassDAO getSchoolClassDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

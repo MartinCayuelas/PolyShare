@@ -1,5 +1,8 @@
 package persistent.DAO;
 
+import java.sql.Connection;
+import java.util.ArrayList;
+
 import application.classesApp.SchoolClass;
 import application.classesApp.Student;
 import application.classesApp.Subject;
@@ -8,20 +11,23 @@ import application.classesApp.Subject;
  * 
  */
 public class SchoolClassDAO {
+	
+	protected Connection connect = null;
 
     /**
      * Default constructor
      */
-    public SchoolClassDAO() {
+    public SchoolClassDAO(Connection conn) {
+    	this.connect = conn;
     }
 
 
 
     /**
-     * @param name 
-     * Creates a new SchoolClass named with the param
+     * @param sc the created schoolClass 
+     * Save a school with a Student in admin
      */
-    public void createSchoolClass(String name) {
+    public void createSchoolClass(SchoolClass sc, Student admin) {
         // TODO implement here
     }
 
@@ -68,5 +74,12 @@ public class SchoolClassDAO {
         // TODO implement here
         return null;
     }
+
+
+
+	public ArrayList<SchoolClass> getAllSchoolClassesNames() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

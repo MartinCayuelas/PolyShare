@@ -1,20 +1,20 @@
 package application;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+import ui.Router;
 
 
 public class Main extends Application {
+	
+	public static Stage primaryStage = null;
+	
 	@Override
 	public void start(Stage primaryStage) {
+		Main.primaryStage = primaryStage;
+		
 		try {
 			BorderPane root = new BorderPane();
 			Scene scene = new Scene(root,400,400);
@@ -26,7 +26,11 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		
 		launch(args);
+	}
+	
+	public void init() {
+		Router r = Router.getInstance();
+		r.add("HomePage", "");
 	}
 }

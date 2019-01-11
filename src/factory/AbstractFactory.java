@@ -1,15 +1,7 @@
 package factory;
 
-import persistent.DAO.AnswerDAO;
-import persistent.DAO.AppointmentDAO;
-import persistent.DAO.MediaFileDAO;
-import persistent.DAO.SchoolClassDAO;
-import persistent.DAO.QuestionDAO;
-import persistent.DAO.StudentDAO;
-import persistent.DAO.SubjectDAO;
-import persistent.DAO.TopicDAO;
-
-
+import persistent.DAO.*;
+import persistent.Factories.DAOFactoryMySql;
 
 /**
  * <b>AbstractFactory</b> is used to create all the DAO objects
@@ -26,16 +18,16 @@ public abstract class AbstractFactory {
      * Get the MySQL Factory
      * @return factory MySQL
      */
-    public AbstractFactory getFactoryMySql() {
+    public static AbstractFactory getFactoryMySql() {
         // TODO implement here
-        return null;
+    	return new DAOFactoryMySql();
     }
 
     /**
      * Create a Student DAO
      * @return student DAO
      */
-    public StudentDAO createStudentDAO() {
+    public StudentDAO getStudentDAO() {
         // TODO implement here
         return null;
     }

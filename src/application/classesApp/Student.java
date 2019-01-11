@@ -1,6 +1,8 @@
 package application.classesApp;
 
+import java.util.List;
 import java.util.Set;
+
 
 import persistent.DAO.StudentDAO;
 
@@ -9,11 +11,27 @@ import persistent.DAO.StudentDAO;
  */
 public class Student {
 
-    /**
+    private int id;
+
+
+
+
+
+
+
+	/**
      * Default constructor
      */
-    public Student() {
-    }
+	public Student(int id, String nameStudent, String firstNameStudent, String emailStudent, String passwordStudent,
+			String loginID, Set<SchoolClass> listClassManaged) {
+		this.id = id;
+		this.nameStudent = nameStudent;
+		this.firstNameStudent = firstNameStudent;
+		this.emailStudent = emailStudent;
+		this.passwordStudent = passwordStudent;
+		this.loginID = loginID;
+		this.listClassManaged = listClassManaged;
+	}
 
     /**
      * 
@@ -43,7 +61,7 @@ public class Student {
     /**
      * 
      */
-    public int loginID;
+    public String loginID;
 
     /**
      * 

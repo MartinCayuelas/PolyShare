@@ -1,17 +1,22 @@
 package persistent.DAO;
 
+import java.sql.Connection;
+
 import application.classesApp.Student;
 
 /**
  * AO
  */
 public abstract class StudentDAO {
+	
+	protected Connection connect = null;
 
     /**
      * Default constructor
      */
-    public StudentDAO() {
-    }
+	public StudentDAO(Connection conn) {
+		  this.connect = conn;
+		}
 
 
     /**
@@ -20,13 +25,13 @@ public abstract class StudentDAO {
      * @param password 
      * @return boolean
      */
-    public boolean login(String id, String password) {
+    public Student login(String id, String password) {
         // TODO implement here
-        return false;
+        return null;
     }
 
     /**
-     * Verify the login and the password during the Log in opération
+     * Verify the login and the password during the Log in opï¿½ration
      * @param login 
      * @param password 
      * @return boolean

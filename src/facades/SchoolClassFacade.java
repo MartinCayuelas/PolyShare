@@ -2,16 +2,20 @@ package facades;
 
 import application.classesApp.SchoolClass;
 import application.classesApp.Subject;
+import factory.AbstractFactory;
+import persistent.DAO.SchoolClassDAO;
 
 /**
  * 
  */
 public class SchoolClassFacade {
-
+	AbstractFactory factory = null;
+	
     /**
      * Default constructor
      */
-    public SchoolClassFacade() {
+    public SchoolClassFacade(AbstractFactory factory) {
+    	this.factory = factory;
     }
 
 
@@ -21,7 +25,11 @@ public class SchoolClassFacade {
      * 
      */
     public void CreateSchoolClass(String className) {
-        // TODO implement here
+        SchoolClass sc = new SchoolClass(className);
+        SchoolClassDAO scDAO = factory.createSchoolClassDAO();
+        
+        
+        
     }
 
     /**

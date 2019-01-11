@@ -10,7 +10,8 @@ public class SchoolClass {
     /**
      * Default constructor
      */
-    public SchoolClass() {
+    public SchoolClass(String nameSchoolClass) {
+    	this.nameSchoolClass = nameSchoolClass;
     }
 
     /**

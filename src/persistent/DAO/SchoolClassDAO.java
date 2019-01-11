@@ -18,10 +18,10 @@ public class SchoolClassDAO {
 
 
     /**
-     * @param name 
-     * Creates a new SchoolClass named with the param
+     * @param sc the created schoolClass 
+     * Save a school with a Student in admin
      */
-    public void createSchoolClass(String name) {
+    public void createSchoolClass(SchoolClass sc, Student admin) {
         // TODO implement here
     }
 

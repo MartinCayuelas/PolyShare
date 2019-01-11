@@ -25,7 +25,7 @@ public class SchoolClassFacade {
      * 
      */
     public void CreateSchoolClass(String className) {
-        SchoolClass sc = new SchoolClass(className);
+        SchoolClass sc = new SchoolClass(0, className);
         SchoolClassDAO scDAO = factory.createSchoolClassDAO();
         
         

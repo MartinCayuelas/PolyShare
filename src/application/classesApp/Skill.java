@@ -6,27 +6,22 @@ import java.util.*;
  * <b>Skill</b> corresponds to level of comprehension of a topic
  */
 public class Skill {
-
+	private int idSkill;
+    private String nameSkill;
+    private int markSkill;
+    
+    private int idStudent;
+    private int idClass;
+	
+    
     /**
      * Default constructor
      */
-    public Skill() {
+    public Skill(int idSkill, String nameS, int markS, int idStudent, int idClass) {
+    	
+    	
     }
 
-    /**
-     * 
-     */
-    public String nameSkill;
-
-    /**
-     * 
-     */
-    public int markSkill;
-
-    /**
-     * 
-     */
-    public int idSkill;
 
 
     /**

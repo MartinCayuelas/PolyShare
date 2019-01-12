@@ -49,7 +49,7 @@ public class SkillControlleur implements Initializable {
 	 * @return
 	 */
 	public void addSkill() {
-		Skill s = new Skill(0, "DAO", 4, 2, 1);
+		Skill s = new Skill(0, "ASupprimer", 4, 2, 1);
 		skillFacade.addSkill(s);
 	}
 
@@ -57,14 +57,16 @@ public class SkillControlleur implements Initializable {
 	 * @return
 	 */
 	public void deleteSkill() {
-		// TODO implement here
+		Skill s = new Skill(12, "ASupprimer", 4, 2, 1);
+		skillFacade.deleteSkill(s);
 	}
 
 	/**
 	 * @return
 	 */
 	public void updateSkill() {
-		// TODO implement here
+		Skill s = new Skill(14, "Modifié", 1, 2, 1);
+		skillFacade.updateSkill(s);
 	}
 
 	@FXML
@@ -88,6 +90,21 @@ public class SkillControlleur implements Initializable {
 	//	Router r = Router.getInstance();
 	//	r.activate("addNewSkill");
 		this.addSkill();
+	}
+	
+	
+	@FXML
+	private void handleDeleteSkill(ActionEvent event) {
+	//	Router r = Router.getInstance();
+	//	r.activate("addNewSkill");
+		this.deleteSkill();
+	}
+	
+	@FXML
+	private void handleUpdateSkill(ActionEvent event) {
+	//	Router r = Router.getInstance();
+	//	r.activate("addNewSkill");
+		this.updateSkill();
 	}
 	
 	

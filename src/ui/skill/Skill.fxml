@@ -28,7 +28,7 @@
                         <TextField prefHeight="25.0" prefWidth="83.0" />
                         <Spinner prefHeight="25.0" prefWidth="57.0" />
                         <ChoiceBox prefHeight="25.0" prefWidth="110.0" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="43.0" onAction="#handleAddNewSkill" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Add" />
+                        <Button mnemonicParsing="false" onAction="#handleAddNewSkill" prefHeight="25.0" prefWidth="43.0" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Add" />
                      </buttons>
                   </ButtonBar>
                   <Text layoutX="249.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #357AB7;" text="Skills">
@@ -37,6 +37,8 @@
                      </font>
                   </Text>
                     <Button fx:id="button" layoutX="241.0" layoutY="313.0" minWidth="73.0" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="100.0" text="Save" />
+                  <Button layoutX="353.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleDeleteSkill" style="-fx-background-color: red; -fx-text-fill: white;" text="Delete" />
+                  <Button layoutX="404.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleUpdateSkill" style="-fx-background-color: orange; -fx-text-fill: white;" text="Update" />
                </children>
             </Pane>
          </center>

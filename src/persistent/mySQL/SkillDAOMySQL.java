@@ -60,7 +60,7 @@ public class SkillDAOMySQL extends SkillDAO {
 		try {
 			this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM Skill WHERE idStudent = '" + idStudent + "'"+ "'AND idSkill = '"+skill.getIdSkill()+ "'");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM Skill WHERE idStudent = '" + idStudent + "'AND idSkill = '"+skill.getIdSkill()+ "'");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,7 +71,15 @@ public class SkillDAOMySQL extends SkillDAO {
 
 	@Override
 	public void updateSkill(int idStudent, Skill skill) {
-		// TODO Auto-generated method stub
+		try {
+			this.connect.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE Skill SET nomSkill = '" + skill.getNameSkill() + "', markSkill = '" + skill.getMarkSkill() + "', idClass = '" + skill.getIdClass() + "' WHERE idStudent = '" + skill.getIdStudent()+"'AND idSkill = '"+skill.getIdSkill()+ "'");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
 		
 	}
 }

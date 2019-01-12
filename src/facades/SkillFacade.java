@@ -48,7 +48,7 @@ public class SkillFacade {
      * 
      */
     public void addSkill(Skill skill) {
-        // TODO implement here
+        skillDAO.addSkillById(skill.getIdStudent(), skill);
     }
 
     /**

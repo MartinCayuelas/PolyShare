@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import ui.Router;
 
 /**
  * 
@@ -34,6 +35,7 @@ public class SkillControlleur implements Initializable {
 	private LoginFacade loginFacade = new LoginFacade();
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	private Student student;
+	private Router r = Router.getInstance();
 	
 	/**
 	 * Default constructor
@@ -77,6 +79,13 @@ public class SkillControlleur implements Initializable {
 		listProperty.set(FXCollections.observableArrayList(skillsList));
 		//listProperty.set(FXCollections.observableArrayList(europeanCurrencyList));
 	}
+	
+	@FXML
+	private void handleAddNewSkill(ActionEvent event) {
+	//	r.activate("addNewSkill");
+	}
+	
+	
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {

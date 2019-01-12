@@ -4,6 +4,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import application.classesApp.SchoolClass;
+import application.classesApp.Skill;
+import application.classesApp.Student;
+import facades.LoginFacade;
+import facades.SchoolClassFacade;
+import facades.SkillFacade;
+import facades.exceptions.DisconnectedStudentException;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -19,6 +27,14 @@ import javafx.scene.control.ListView;
  */
 public class SkillControlleur implements Initializable {
 
+	protected List<String> skillsList = new ArrayList<>();
+
+	protected ListProperty<String> listProperty = new SimpleListProperty<>();
+	private SkillFacade skillFacade = new SkillFacade();
+	private LoginFacade loginFacade = new LoginFacade();
+	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
+	private Student student;
+	
 	/**
 	 * Default constructor
 	 */
@@ -55,10 +71,7 @@ public class SkillControlleur implements Initializable {
 	@FXML
 	private ListView myListSkills;
 
-	protected List<String> skillsList = new ArrayList<>();
-
-	protected ListProperty<String> listProperty = new SimpleListProperty<>();
-
+	
 	@FXML
 	private void handleButtonAction(ActionEvent event) {
 		listProperty.set(FXCollections.observableArrayList(skillsList));
@@ -67,14 +80,22 @@ public class SkillControlleur implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		skillsList.add("BDRO - IG4 - /5");
-		skillsList.add("CSI - IG4 - /5");
-		skillsList.add("Algo - IG4 - /5");
-		skillsList.add("DM - IG4 - /5");
-		skillsList.add("Stats - IG4 - /5");
-		skillsList.add("SMA - IG4 - /5");
-		skillsList.add("DataScience - IG4 - /5");
-		skillsList.add("Genie logiciel - IG4 - /5");
+		/*try {
+			student = loginFacade.getConnectedStudent();
+		} catch (DisconnectedStudentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			student.setId(2);
+		}*/
+		ArrayList<Skill> sk = new ArrayList<>();
+		student = new Student(2, "Test");
+		sk = skillFacade.getSkills(student);
+		 for(Skill sc : sk) {
+			 SchoolClass clas = schoolClassFacade.findSchoolClassId(sc.getIdClass());
+			 skillsList.add(sc.getNameSkill()+" - "+clas.getNameSchoolClass()+" - "+sc.getMarkSkill());
+		    }
+		
+		
 
 		/*europeanCurrencyList.add("EUR");
 		europeanCurrencyList.add("GBP");

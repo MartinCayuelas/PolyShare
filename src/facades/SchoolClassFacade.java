@@ -21,6 +21,10 @@ public class SchoolClassFacade {
 		this.factory = factory;
 	}
 
+	public SchoolClassFacade() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @param className Create a new SchoolClass and save it
 	 * 
@@ -60,6 +64,18 @@ public class SchoolClassFacade {
 	public SchoolClass findSchoolClass(String s) {
 		// TODO implement here
 		return null;
+	}
+	
+	/**
+	 * @param id the id of the researched schoolClass
+	 * @return SchollClass return the matched schoolClass
+	 */
+	public SchoolClass findSchoolClassId(int id) {
+		// TODO implement here
+		
+		SchoolClassDAO scDAO = factory.createSchoolClassDAO();
+		SchoolClass sc = scDAO.findById(id);
+		return sc;
 	}
 
 	/**

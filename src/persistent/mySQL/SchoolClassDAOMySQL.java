@@ -39,4 +39,21 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
     	return schoolClasses;
     }
 
+    
+    public SchoolClass findById(int id) {
+    	  SchoolClass classS = new SchoolClass(0, null);      
+    	    
+    	  try {
+    	    ResultSet result = this.con.createStatement(
+    	    ResultSet.TYPE_SCROLL_INSENSITIVE,
+    	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Class WHERE idClass = " + id);
+    	    if(result.first())
+    	      classS = new SchoolClass(
+    	    		id,
+    	        result.getString("nameClass"));         
+    	  } catch (SQLException e) {
+    	    e.printStackTrace();
+    	  }
+    	  return classS;
+    	}
 }

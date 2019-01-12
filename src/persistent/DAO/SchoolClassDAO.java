@@ -111,6 +111,16 @@ public class SchoolClassDAO {
         // TODO implement here
         return null;
     }
+    
+    /**
+     * @param s 
+     * @return SchoolClass
+     *  Return a SchoolClass
+     */
+    public SchoolClass findById(int id) {
+        // TODO implement here
+        return null;
+    }
 
 
 

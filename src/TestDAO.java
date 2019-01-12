@@ -50,12 +50,7 @@ public class TestDAO {
 	      System.out.println("\tELEVE N°" + i + " - NOM : " + student.getNameStudent() + " - PRENOM : " + student.getFirstNameStudent());
 	    } 
 	    
-	    //Test de l'affichage de toutes les classes
-	    SchoolClassDAO schoolClassDao = adf.getSchoolClassDAO();
-	    ArrayList<SchoolClass> names = schoolClassDao.getAllSchoolClassesNames();
-	    for(SchoolClass sc : names) {
-	    	System.out.println("Classes : " + sc.getNameSchoolClass());
-	    }
+	   
 	    
 	    SkillDAO skillDAO = adf.createSkillDAO();
 	    System.out.println("IdStudent: "+login.getId());

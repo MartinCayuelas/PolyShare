@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  mar. 08 jan. 2019 à 15:40
+-- Généré le :  sam. 12 jan. 2019 à 03:48
 -- Version du serveur :  5.7.24-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.10-0ubuntu0.18.04.1
 
@@ -66,6 +66,17 @@ CREATE TABLE `Class` (
 CREATE TABLE `Liked` (
   `idStudent` int(11) NOT NULL,
   `idMediaFiles` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Manage`
+--
+
+CREATE TABLE `Manage` (
+  `idStudent` int(11) NOT NULL,
+  `idClass` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -162,8 +173,7 @@ CREATE TABLE `Skill` (
   `idSkill` int(11) NOT NULL,
   `nomSkill` varchar(50) NOT NULL,
   `markSkill` varchar(50) NOT NULL,
-  `idStudent` int(11) NOT NULL,
-  `idClass` int(11) NOT NULL,
+  `idStudent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

@@ -1,6 +1,5 @@
 package persistent.mySQL;
 
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,39 +14,32 @@ import persistent.DAO.SkillDAO;
  */
 public class SkillDAOMySQL extends SkillDAO {
 
-    /**
-     * Default constructor
-     */
-    public SkillDAOMySQL(Connection conn) {
-    	super(conn);
-    }
+	/**
+	 * Default constructor
+	 */
+	public SkillDAOMySQL(Connection conn) {
+		super(conn);
+	}
 
-    
-    public ArrayList<Skill> findSkillsByIdStudent(int id) {
-    	ArrayList<Skill> skills = new ArrayList<Skill>();    
-    	
-    	    
-    	  try {
-    	    ResultSet result = this.connect.createStatement(
-    	    ResultSet.TYPE_SCROLL_INSENSITIVE,
-    	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Skill WHERE idStudent = " + id);
-    	    
-    	    
-    	   
-    	    while (result.next()) {
-    	    	System.out.println("idSkill: "+result.getInt("idSkill") );
-    	        Skill s = new Skill(result.getInt("idSkill"), result.getString("nomSkill"), result.getInt("markSkill"),id, result.getInt("idClass"));
-    	       
-    	        skills.add(s);
-    	    }
-    	    
-    	    
-    	    
-    	  } catch (SQLException e) {
-    	    e.printStackTrace();
-    	  }
-    	  return skills;
-  	    
-  	    
-    	}
+	public ArrayList<Skill> findSkillsByIdStudent(int id) {
+		ArrayList<Skill> skills = new ArrayList<Skill>();
+
+		try {
+			ResultSet result = this.connect
+					.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+					.executeQuery("SELECT * FROM Skill WHERE idStudent = " + id);
+
+			while (result.next()) {
+				Skill s = new Skill(result.getInt("idSkill"), result.getString("nomSkill"), result.getInt("markSkill"),
+						id, result.getInt("idClass"));
+
+				skills.add(s);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return skills;
+
+	}
 }

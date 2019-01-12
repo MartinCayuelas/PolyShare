@@ -66,6 +66,13 @@ public abstract class AbstractFactory {
 
     public abstract TopicDAO createTopicDAO();
 
+    /**
+     * Create a SkillDAO
+     * @return SkillDAO
+     */
+
+    public abstract SkillDAO createSkillDAO();
+
 
     /**
      * Create a MediaFileDAO 

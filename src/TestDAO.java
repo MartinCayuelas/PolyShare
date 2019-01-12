@@ -2,9 +2,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import application.classesApp.SchoolClass;
+import application.classesApp.Skill;
 import application.classesApp.Student;
 import factory.AbstractFactory;
 import persistent.DAO.SchoolClassDAO;
+import persistent.DAO.SkillDAO;
 import persistent.DAO.StudentDAO;
 
 public class TestDAO {
@@ -52,8 +54,16 @@ public class TestDAO {
 	    SchoolClassDAO schoolClassDao = adf.getSchoolClassDAO();
 	    ArrayList<SchoolClass> names = schoolClassDao.getAllSchoolClassesNames();
 	    for(SchoolClass sc : names) {
-	    	System.out.println(sc.getNameSchoolClass());
+	    	System.out.println("Classes : " + sc.getNameSchoolClass());
 	    }
+	    
+	    SkillDAO skillDAO = adf.createSkillDAO();
+	    System.out.println("IdStudent: "+login.getId());
+	    ArrayList<Skill> skills = skillDAO.findSkillsByIdStudent(login.getId());
+	    for(Skill sc : skills) {
+	    	System.out.println("Skills : "+ sc.toString());
+	    }
+	    
 	    
 	    
 	}

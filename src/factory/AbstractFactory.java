@@ -85,6 +85,16 @@ public abstract class AbstractFactory {
         // TODO implement here
         return null;
     }
+    
+
+    /**
+     * Create a Skill DAO
+     * @return Skill DAO
+     */
+    public SkillDAO createSkillDAO() {
+        // TODO implement here
+        return null;
+    }
 
     /**
      * Create a MediaFileDAO 

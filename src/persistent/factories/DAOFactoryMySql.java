@@ -5,8 +5,10 @@ import java.sql.Connection;
 import database.BdConnection;
 import factory.AbstractFactory;
 import persistent.DAO.SchoolClassDAO;
+import persistent.DAO.SkillDAO;
 import persistent.DAO.StudentDAO;
 import persistent.mySQL.SchoolClassDAOMySQL;
+import persistent.mySQL.SkillDAOMySQL;
 import persistent.mySQL.StudentDAOMySQL;
 
 /**
@@ -28,6 +30,9 @@ public class DAOFactoryMySql extends AbstractFactory {
 		    return new SchoolClassDAOMySQL(conn);
 		  }
 
+	  public SkillDAO createSkillDAO(){
+		    return new SkillDAOMySQL(conn);
+		  }
 
 
 }

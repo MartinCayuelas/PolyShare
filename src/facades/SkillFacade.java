@@ -1,13 +1,22 @@
 package facades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import application.classesApp.Skill;
 import application.classesApp.Student;
+import factory.AbstractFactory;
+import persistent.DAO.SkillDAO;
+import persistent.DAO.StudentDAO;
 
 /**
  * 
  */
 public class SkillFacade {
-
+	private AbstractFactory abstractFactory = AbstractFactory.getFactoryMySql();
+	private SkillDAO skillDAO = abstractFactory.createSkillDAO();
+	
+	
     /**
      * Default constructor
      */
@@ -18,9 +27,10 @@ public class SkillFacade {
      * @param student Student 
      * @return student's skills
      */
-    public Skill getSkills(Student student) {
-        // TODO implement here
-        return null;
+    public ArrayList<Skill> getSkills(Student student) {
+    	List<Skill> skills = new ArrayList<Skill>();
+    	skills = skillDAO.findSkillsByIdStudent(student.getId());
+        return (ArrayList<Skill>) skills;
     }
 
     /**

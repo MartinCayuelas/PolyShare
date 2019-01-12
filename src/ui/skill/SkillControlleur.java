@@ -53,38 +53,41 @@ public class SkillControlleur implements Initializable {
 	private Label label;
 
 	@FXML
-	private ListView myListView;
+	private ListView myListSkills;
 
-	protected List<String> asianCurrencyList = new ArrayList<>();
-	protected List<String> europeanCurrencyList = new ArrayList<>();
+	protected List<String> skillsList = new ArrayList<>();
 
 	protected ListProperty<String> listProperty = new SimpleListProperty<>();
 
 	@FXML
 	private void handleButtonAction(ActionEvent event) {
-		listProperty.set(FXCollections.observableArrayList(europeanCurrencyList));
+		listProperty.set(FXCollections.observableArrayList(skillsList));
+		//listProperty.set(FXCollections.observableArrayList(europeanCurrencyList));
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		asianCurrencyList.add("BDRO - IG4");
-		asianCurrencyList.add("CSI - IG4");
-		asianCurrencyList.add("Algo - IG4");
-		asianCurrencyList.add("DM - IG4");
-		asianCurrencyList.add("Stats - IG4");
+		skillsList.add("BDRO - IG4 - /5");
+		skillsList.add("CSI - IG4 - /5");
+		skillsList.add("Algo - IG4 - /5");
+		skillsList.add("DM - IG4 - /5");
+		skillsList.add("Stats - IG4 - /5");
+		skillsList.add("SMA - IG4 - /5");
+		skillsList.add("DataScience - IG4 - /5");
+		skillsList.add("Genie logiciel - IG4 - /5");
 
-		europeanCurrencyList.add("EUR");
+		/*europeanCurrencyList.add("EUR");
 		europeanCurrencyList.add("GBP");
 		europeanCurrencyList.add("NOK");
 		europeanCurrencyList.add("SEK");
 		europeanCurrencyList.add("CHF");
-		europeanCurrencyList.add("HUF");
+		europeanCurrencyList.add("HUF");*/
 
-		myListView.itemsProperty().bind(listProperty);
+		myListSkills.itemsProperty().bind(listProperty);
 
 		// This does not work, you can not directly add to a ListProperty
 		// listProperty.addAll( asianCurrencyList );
-		listProperty.set(FXCollections.observableArrayList(asianCurrencyList));
+		listProperty.set(FXCollections.observableArrayList(skillsList));
 	}
 
 }

@@ -1,6 +1,10 @@
 package application.classesApp;
 
-import java.util.Set;
+import java.sql.Date;
+
+/**
+ * @author lucadebeir
+ */
 
 /**
  * <b>Appointment</b> is a<b>Single Session</b>or a <b>Revision Session</b>
@@ -10,10 +14,16 @@ public class Appointment {
     /**
      * Default constructor
      */
-	public Appointment(int idAppointment, Student teacher, Set<Student> student) {
+	public Appointment(int idAppointment, Student teacher) {
     	this.idAppointment = idAppointment;
     	this.teacher = teacher;
-    	this.student = student;
+    }
+	
+	public Appointment(int idAppointment, Student teacher, int idSubject, Date dateAppointment) {
+    	this.idAppointment = idAppointment;
+    	this.teacher = teacher;
+    	this.idSubject = idSubject;
+    	this.dateAppointment = dateAppointment;
     }
 
 	/**
@@ -25,15 +35,67 @@ public class Appointment {
      * 
      */
     public Student teacher;
-
+    
     /**
      * 
      */
-    public Set<Student> student;
-
+    public int idSubject;
+    
+    /**
+     * 
+     */
+    public Date dateAppointment;
 
 
     /**
+     * Get the id of the appointment
+     * @return the id of the appointment
+     */
+    public int getIdAppointment() {
+		return idAppointment;
+	}
+
+    /**
+     * Modify the id of the appointment
+     * @param idAppointment the id added to the appointment
+     */
+	public void setIdAppointment(int idAppointment) {
+		this.idAppointment = idAppointment;
+	}
+
+	/**
+     * Get the id of the subject of the appointment
+     * @return the id of the subject who is teached for the appointment
+     */
+	public int getIdSubject() {
+		return idSubject;
+	}
+
+	/**
+     * Modify the id of the subject of the appointment
+     * @param idSubject the id added to the subject of the appointment
+     */
+	public void setIdSubject(int idSubject) {
+		this.idSubject = idSubject;
+	}
+
+	/**
+     * Get the date of the appointment
+     * @return the date of the appointment
+     */
+	public Date getDateAppointment() {
+		return dateAppointment;
+	}
+
+	/**
+     * Modify the date of the appointment
+     * @param dateAppointment the date added of the appointment
+     */
+	public void setDateAppointment(Date dateAppointment) {
+		this.dateAppointment = dateAppointment;
+	}
+
+	/**
      * Add the subject of the appointment
      * @param s the subject added to the appointment
      */
@@ -57,24 +119,6 @@ public class Appointment {
     public Student getTeacher() {
         // TODO implement here
         return teacher;
-    }
-
-    /**
-     * Get the student who is teached for the appointment
-     * @return student who is teached for the appointment
-     */
-    public Set<Student> getStudent() {
-        // TODO implement here
-        return student;
-    }
-
-    /**
-     * Modify the student who is teached for the appointment
-     * @param s new student teached
-     */
-    public void setStudent(Set<Student> s) {
-        // TODO implement here
-    	this.student = s;
     }
 
 }

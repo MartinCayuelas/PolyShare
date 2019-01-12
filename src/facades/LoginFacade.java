@@ -6,8 +6,9 @@ import factory.AbstractFactory;
 import persistent.DAO.StudentDAO;
 
 /**
- * 
+ * @author lucadebeir
  */
+
 public class LoginFacade {
 	
 	private AbstractFactory abstractFactory = AbstractFactory.getFactoryMySql();

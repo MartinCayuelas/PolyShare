@@ -1,6 +1,5 @@
 package application.classesApp;
 
-import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -12,8 +11,9 @@ public class Subject {
     /**
      * Default constructor
      */
-    public Subject() {
-    	
+    public Subject(int idSubject, String nameSubject) {
+    	this.idSubject = idSubject;
+    	this.nameSubject = nameSubject;
     }
 
     public Subject(String nameSubject, Set<Topic> listofTopics) {
@@ -27,7 +27,7 @@ public class Subject {
 	/**
      * 
      */
-    private String nameSubject;
+	private String nameSubject;
 
 
 

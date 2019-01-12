@@ -30,6 +30,13 @@ public abstract class AppointmentDAO {
      * Return an Appointment
      */
     public abstract Appointment getAppointmentById(int id);
+    
+    /**
+     * @param id 
+     * @return Appointment
+     * Return an SingleSession
+     */
+    public abstract Appointment getSingleSessionById(int id);
 
     /**
      * Return a Student corresponding to the Id

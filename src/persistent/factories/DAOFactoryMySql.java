@@ -1,4 +1,4 @@
-package persistent.Factories;
+package persistent.factories;
 
 import java.sql.Connection;
 
@@ -32,19 +32,20 @@ public class DAOFactoryMySql extends AbstractFactory {
 
 	protected static final Connection conn = BdConnection.getInstance();
 
-
 	/**
 	 * Retourne un objet Classe interagissant avec la BDD
 	 * 
 	 * @return DAO
 	 */
-	public StudentDAO getStudentDAO() {
+	public StudentDAO createStudentDAO() {
 		return new StudentDAOMySQL(conn);
 	}
+
 
 	  public SkillDAO createSkillDAO(){
 		    return new SkillDAOMySQL(conn);
 		  }
+
 
 
 	public SchoolClassDAO getSchoolClassDAO() {
@@ -84,6 +85,8 @@ public class DAOFactoryMySql extends AbstractFactory {
 	@Override
 	public MediaFileDAO createMediaFileDAO() {
 		return new MediaFileDAOMySQL(conn);
+
 	}
+	
 
 }

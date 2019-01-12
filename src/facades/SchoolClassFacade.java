@@ -6,7 +6,7 @@ import application.classesApp.Subject;
 import facades.exceptions.DisconnectedStudentException;
 import factory.AbstractFactory;
 import persistent.DAO.SchoolClassDAO;
-import persistent.Factories.DAOFactoryMySql;
+import persistent.factories.DAOFactoryMySql;
 
 /**
  * 

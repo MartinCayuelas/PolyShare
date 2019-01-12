@@ -16,6 +16,22 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		super(con);
     }
 	
-
+	public Appointment find(int id) {
+		  Appointment appointment;      
+		    
+		  try {
+			  ResultSet result = this.con.createStatement(
+					  ResultSet.TYPE_SCROLL_INSENSITIVE,
+					  ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + id);
+			  if(result.first())
+				  appointment = new Appointment(
+						  id,
+						  result.getString("nameStudent"),
+						  result.getString("firstNameStudent"));         
+		  } catch (SQLException e) {
+			  e.printStackTrace();
+		  }
+		  return appointment;
+	}
 
 }

@@ -1,8 +1,7 @@
 package factory;
 
-import database.BdConnection;
 import persistent.DAO.*;
-import persistent.Factories.DAOFactoryMySql;
+import persistent.factories.DAOFactoryMySql;
 
 /**
  * <b>AbstractFactory</b> is used to create all the DAO objects
@@ -28,7 +27,7 @@ public abstract class AbstractFactory {
      * Create a Student DAO
      * @return student DAO
      */
-    public abstract StudentDAO getStudentDAO();
+    public abstract StudentDAO createStudentDAO();
 
     /**
      * Create a Question DAO
@@ -79,11 +78,5 @@ public abstract class AbstractFactory {
      * @return MediaFileDAO
      */
     public abstract MediaFileDAO createMediaFileDAO();
-
-    /**
-     * Create a SchoolClassDAO
-     * @return SchoolClassDAO
-     */
-    
-	public abstract SchoolClassDAO getSchoolClassDAO();
+	
 }

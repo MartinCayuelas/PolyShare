@@ -63,7 +63,9 @@ public abstract class AbstractFactory {
      * Create a Topic DAO
      * @return topic DAO
      */
+
     public abstract TopicDAO createTopicDAO();
+
 
     /**
      * Create a MediaFileDAO 

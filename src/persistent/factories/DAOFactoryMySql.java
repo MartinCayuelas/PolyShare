@@ -9,6 +9,7 @@ import persistent.DAO.AppointmentDAO;
 import persistent.DAO.MediaFileDAO;
 import persistent.DAO.QuestionDAO;
 import persistent.DAO.SchoolClassDAO;
+import persistent.DAO.SkillDAO;
 import persistent.DAO.StudentDAO;
 import persistent.DAO.SubjectDAO;
 import persistent.DAO.TopicDAO;
@@ -17,6 +18,7 @@ import persistent.mySQL.AppointmentDAOMySQL;
 import persistent.mySQL.MediaFileDAOMySQL;
 import persistent.mySQL.QuestionDAOMySQL;
 import persistent.mySQL.SchoolClassDAOMySQL;
+import persistent.mySQL.SkillDAOMySQL;
 import persistent.mySQL.StudentDAOMySQL;
 import persistent.mySQL.SubjectDAOMySQL;
 import persistent.mySQL.TopicDAOMySQL;
@@ -30,6 +32,7 @@ public class DAOFactoryMySql extends AbstractFactory {
 
 	protected static final Connection conn = BdConnection.getInstance();
 
+<<<<<<< HEAD
 	/**
 	 * Retourne un objet Classe interagissant avec la BDD
 	 * 
@@ -38,6 +41,11 @@ public class DAOFactoryMySql extends AbstractFactory {
 	public StudentDAO getStudentDAO() {
 		return new StudentDAOMySQL(conn);
 	}
+=======
+	  public SkillDAO createSkillDAO(){
+		    return new SkillDAOMySQL(conn);
+		  }
+>>>>>>> fd6752a2112f01620fe5b6ae2c5ce96a7845541e
 
 	public SchoolClassDAO getSchoolClassDAO() {
 		return new SchoolClassDAOMySQL(conn);

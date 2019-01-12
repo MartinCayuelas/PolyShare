@@ -37,7 +37,7 @@ public class MainSkill extends Application {
 		try {
 			FXMLLoader root = new FXMLLoader(getClass().getResource("Skill.fxml"));
 		    Parent skillLayout = root.load();
-	        Scene scene = new Scene(skillLayout, 500, 400);
+	        Scene scene = new Scene(skillLayout, 700, 600);
 	        
 	        stage.setTitle("FXML Welcome");
 	        stage.setScene(scene);

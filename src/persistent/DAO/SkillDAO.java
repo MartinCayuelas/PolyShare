@@ -2,6 +2,7 @@ package persistent.DAO;
 
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import application.classesApp.Skill;
 
@@ -23,7 +24,7 @@ public abstract class SkillDAO {
      * @param idStudent 
      * @return Skill
      */
-    public Skill findById(int idStudent) {
+    public ArrayList<Skill> findSkillsByIdStudent(int idStudent) {
         // TODO implement here
         return null;
     }

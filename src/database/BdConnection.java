@@ -24,7 +24,7 @@ public class BdConnection {
 	private static Connection connect;
 
 	// Méthode qui va nous retourner notre instance et la créer si elle n'existe pas
-	public static Connection getInstance(){
+	public static synchronized Connection getInstance(){
 	    if(connect == null){
 	    	try {
 	    		

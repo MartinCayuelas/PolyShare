@@ -10,9 +10,17 @@ public class Appointment {
     /**
      * Default constructor
      */
-    public Appointment() {
+	public Appointment(int idAppointment, Student teacher, Set<Student> student) {
+    	this.idAppointment = idAppointment;
+    	this.teacher = teacher;
+    	this.student = student;
     }
 
+	/**
+     * 
+     */
+	public int idAppointment;
+	
     /**
      * 
      */
@@ -39,6 +47,7 @@ public class Appointment {
      */
     public void setTeacher(Student s) {
         // TODO implement here
+    	this.teacher = s;
     }
 
     /**
@@ -47,24 +56,25 @@ public class Appointment {
      */
     public Student getTeacher() {
         // TODO implement here
-        return null;
+        return teacher;
     }
 
     /**
      * Get the student who is teached for the appointment
      * @return student who is teached for the appointment
      */
-    public Student getStudent() {
+    public Set<Student> getStudent() {
         // TODO implement here
-        return null;
+        return student;
     }
 
     /**
      * Modify the student who is teached for the appointment
      * @param s new student teached
      */
-    public void setStudent(Student s) {
+    public void setStudent(Set<Student> s) {
         // TODO implement here
+    	this.student = s;
     }
 
 }

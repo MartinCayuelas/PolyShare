@@ -24,10 +24,7 @@ public abstract class SkillDAO {
      * @param idStudent 
      * @return Skill
      */
-    public ArrayList<Skill> findSkillsByIdStudent(int idStudent) {
-        // TODO implement here
-        return null;
-    }
+    public abstract ArrayList<Skill> findSkillsByIdStudent(int idStudent);
 
     /**
      * Add a new Skill to a Student
@@ -35,26 +32,21 @@ public abstract class SkillDAO {
      * @param skill 
      * 
      */
-    public void addSkillById(int idStudent, Skill skill) {
-        // TODO implement here
-    }
+    public abstract void addSkillById(int idStudent, Skill skill);
 
     /**
      * Remove a Skill to the Student
      * @param idStudent 
      * @param skill 
      */
-    public void deleteSkillByIdSkill(int idStudent, Skill skill) {
-        // TODO implement here
-    }
+    public abstract void deleteSkillByIdSkill(int idStudent, Skill skill);
+    
 
     /**
      * @param idStudent 
      * @param skill 
      * Update the skill in the Student Profil
      */
-    public void updateSkill(int idStudent, Skill skill) {
-        // TODO implement here
-    }
+    public abstract void updateSkill(int idStudent, Skill skill);
 
 }

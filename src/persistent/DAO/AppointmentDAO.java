@@ -1,7 +1,6 @@
 package persistent.DAO;
 
 import java.sql.Connection;
-
 import application.classesApp.Appointment;
 import application.classesApp.RevisionSession;
 import application.classesApp.SingleSession;
@@ -12,7 +11,7 @@ import application.classesApp.Student;
  */
 public abstract class AppointmentDAO {
 
-	 private Connection con;
+	protected Connection con;
     
     public AppointmentDAO(Connection con) {
     	this.con = con;

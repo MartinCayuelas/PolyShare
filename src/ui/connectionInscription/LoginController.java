@@ -65,7 +65,6 @@ public class LoginController {
 	    	 display("Enter email or password");
 	     } else {
 	    	 loginFacade.login(emailStudent, passWord);
-<<<<<<< HEAD
 	    	 if (loginFacade.isConnected()) {
              	Node  source = (Node)  e.getSource(); 
                 Stage stage  = (Stage) source.getScene().getWindow();
@@ -83,7 +82,6 @@ public class LoginController {
 	    	 } else {
 	    		display("Wrong email/password");
 	    	 }
-=======
 	    	 try {
 				if (loginFacade.getConnectedStudent() != null) {
 				 	Node  source = (Node)  e.getSource(); 
@@ -106,7 +104,6 @@ public class LoginController {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
->>>>>>> a11f688562cf21674011cd15d5ca0ab4e187d71c
 	     }
 	 }
 	 

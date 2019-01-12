@@ -1,5 +1,6 @@
 package ui.skill;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import ui.Router;
 
 /**
@@ -47,7 +49,8 @@ public class SkillControlleur implements Initializable {
 	 * @return
 	 */
 	public void addSkill() {
-		// TODO implement here
+		Skill s = new Skill(0, "DAO", 4, 2, 1);
+		skillFacade.addSkill(s);
 	}
 
 	/**
@@ -82,7 +85,9 @@ public class SkillControlleur implements Initializable {
 	
 	@FXML
 	private void handleAddNewSkill(ActionEvent event) {
+	//	Router r = Router.getInstance();
 	//	r.activate("addNewSkill");
+		this.addSkill();
 	}
 	
 	
@@ -106,12 +111,7 @@ public class SkillControlleur implements Initializable {
 		
 		
 
-		/*europeanCurrencyList.add("EUR");
-		europeanCurrencyList.add("GBP");
-		europeanCurrencyList.add("NOK");
-		europeanCurrencyList.add("SEK");
-		europeanCurrencyList.add("CHF");
-		europeanCurrencyList.add("HUF");*/
+		
 
 		myListSkills.itemsProperty().bind(listProperty);
 

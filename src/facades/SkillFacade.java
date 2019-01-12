@@ -39,7 +39,7 @@ public class SkillFacade {
      * 
      */
     public void deleteSkill(Skill skill) {
-        // TODO implement here
+        skillDAO.deleteSkillByIdSkill(skill.getIdStudent(), skill);
     }
 
     /**
@@ -56,7 +56,7 @@ public class SkillFacade {
      * 
      */
     public void updateSkill(Skill skill) {
-        // TODO implement here
+        skillDAO.updateSkill(skill.getIdStudent(), skill);
     }
 
 }

@@ -32,10 +32,6 @@ public class DAOFactoryMySql extends AbstractFactory {
 
 	protected static final Connection conn = BdConnection.getInstance();
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 	/**
 	 * Retourne un objet Classe interagissant avec la BDD
 	 * 
@@ -44,18 +40,11 @@ public class DAOFactoryMySql extends AbstractFactory {
 	public StudentDAO getStudentDAO() {
 		return new StudentDAOMySQL(conn);
 	}
-<<<<<<< Updated upstream
 
-	  public SkillDAO createSkillDAO(){
-		    return new SkillDAOMySQL(conn);
-		  }
-
-=======
 	
 	public SkillDAO createSkillDAO(){
 		return new SkillDAOMySQL(conn);
 	}
->>>>>>> Stashed changes
 
 	public SchoolClassDAO getSchoolClassDAO() {
 		return new SchoolClassDAOMySQL(conn);

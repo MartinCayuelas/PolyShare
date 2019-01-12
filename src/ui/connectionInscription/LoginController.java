@@ -64,7 +64,7 @@ public class LoginController {
 	    	 display("Enter email or password");
 	     } else {
 	    	 loginFacade.login(emailStudent, passWord);
-	    	 if (loginFacade.getConnected()) {
+	    	 if (loginFacade.isConnected()) {
              	Node  source = (Node)  e.getSource(); 
                 Stage stage  = (Stage) source.getScene().getWindow();
                 stage.close();

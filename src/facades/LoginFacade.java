@@ -11,7 +11,7 @@ import persistent.DAO.StudentDAO;
 public class LoginFacade {
 	
 	private AbstractFactory abstractFactory = AbstractFactory.getFactoryMySql();
-	private StudentDAO studentDAO = abstractFactory.getStudentDAO();
+	private StudentDAO studentDAO = abstractFactory.createStudentDAO();
 	private Student student;
     
     /** Holder */
@@ -45,4 +45,7 @@ public class LoginFacade {
     public Student getConnectedStudent() throws DisconnectedStudentException {
 		return this.student;
 	}
+    public boolean isConnected () {
+    	return this.student != null;
+    }
 }

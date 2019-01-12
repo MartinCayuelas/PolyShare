@@ -45,4 +45,5 @@ public class LoginFacade {
     public Student getConnectedStudent() throws DisconnectedStudentException {
 		return this.student;
 	}
+    
 }

@@ -17,7 +17,7 @@ public class TestDAO {
 	    System.out.println("");
 	    AbstractFactory adf = AbstractFactory.getFactoryMySql();
 	    //On récupère un objet faisant le lien entre la base et nos objets 
-	    StudentDAO studentDao = adf.getStudentDAO();
+	    StudentDAO studentDao = adf.createStudentDAO();
 	    
 	    /*System.out.println("IdStudent : ");
 		int idStudent = scan.nextInt();

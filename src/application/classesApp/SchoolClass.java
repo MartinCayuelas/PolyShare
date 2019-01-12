@@ -8,7 +8,23 @@ import java.util.Set;
 public class SchoolClass {
 
     
-    public SchoolClass(String nameSchoolClass) {
+    public int getIdSchoolClass() {
+		return idSchoolClass;
+	}
+
+	public void setIdSchoolClass(int idSchoolClass) {
+		this.idSchoolClass = idSchoolClass;
+	}
+
+	public Set<Subject> getListOfSubjects() {
+		return listOfSubjects;
+	}
+
+	public void setListOfSubjects(Set<Subject> listOfSubjects) {
+		this.listOfSubjects = listOfSubjects;
+	}
+
+	public SchoolClass(String nameSchoolClass) {
 		this.nameSchoolClass = nameSchoolClass;
     }
     

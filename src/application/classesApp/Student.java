@@ -10,6 +10,10 @@ public class Student {
 	/**
      * Default constructor
      */
+	public Student (int id, String name) {
+		this.idStudent = id;
+		this.nameStudent= name;
+	}
 	public Student(int id, String nameStudent, String firstNameStudent, String emailStudent, String passwordStudent,
 			String loginID, Set<SchoolClass> listClassManaged) {
 		this.idStudent = id;

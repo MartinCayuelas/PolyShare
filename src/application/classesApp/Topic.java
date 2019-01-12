@@ -3,6 +3,7 @@ package application.classesApp;
 import java.util.*;
 
 /**
+ * @author ponthieu
  * <b>Topic</b> corresponds to a subject
  */
 public class Topic {
@@ -12,17 +13,35 @@ public class Topic {
      */
     public Topic() {
     }
+    
+    
+    
+    
+    public Topic(String nameTopic) {
+		super();
+		this.nameTopic = nameTopic;
+	}
+    
+	public Topic(int idTopic, String nameTopic, Set<Question> listOfQuestions) {
+		super();
+		this.idTopic = idTopic;
+		this.nameTopic = nameTopic;
+		this.listOfQuestions = listOfQuestions;
+	}
+
+	private int idTopic;
+    /**
+     * 
+     */
+    private String nameTopic;
+
 
     /**
      * 
      */
-    public String nameTopic;
-
-
-    /**
-     * 
-     */
-    public Set<Question> listOfQuestions;
+    private Set<Question> listOfQuestions;
+    
+    private Set<MediaFile> listOfMediaFiles;
 
 
 
@@ -31,8 +50,7 @@ public class Topic {
      * @return list of media files for a topic
      */
     public Set<MediaFile> getMediaFiles() {
-        // TODO implement here
-        return null;
+        return this.listOfMediaFiles;
     }
 
     /**
@@ -40,7 +58,7 @@ public class Topic {
      * @param media media file added
      */
     public void addMediaFile(MediaFile media) {
-        // TODO implement here
+        this.listOfMediaFiles.add(media);
     }
 
     /**
@@ -48,7 +66,7 @@ public class Topic {
      * @param quest question added
      */
     public void addQuestion(Question quest) {
-        // TODO implement here
+        this.listOfQuestions.add(quest);
     }
 
     /**
@@ -56,7 +74,7 @@ public class Topic {
      * @param quest question deleted
      */
     public void deleteQuestion(Question quest) {
-        // TODO implement here
+        this.listOfQuestions.remove(quest);
     }
 
     /**
@@ -64,8 +82,7 @@ public class Topic {
      * @return list of questions for a topic
      */
     public Set<Question> getQuestions() {
-        // TODO implement here
-        return null;
+        return this.listOfQuestions;
     }
 
     /**
@@ -73,7 +90,7 @@ public class Topic {
      * @param media media file deleted
      */
     public void deleteMediaFile(MediaFile media) {
-        // TODO implement here
+        this.listOfMediaFiles.remove(media);
     }
 
     /**
@@ -81,16 +98,32 @@ public class Topic {
      * @return name of the topic
      */
     public String getNameTopic() {
-        // TODO implement here
-        return "";
+        return this.nameTopic;
     }
 
     /**
      * Change the name of the topic
      * @param value new name of the topic
      */
-    public void setNameTopic(String value) {
-        // TODO implement here
+    public void setNameTopic(String nameTopic) {
+        this.nameTopic = nameTopic;
     }
+
+    /**
+     * getter id Topic
+     * @return
+     */
+
+	public int getId() {
+		return idTopic;
+	}
+	
+	/**
+	 * setter id topic
+	 * @param idTopic
+	 */
+	public void setId(int idTopic) {
+		this.idTopic = idTopic;
+	}
 
 }

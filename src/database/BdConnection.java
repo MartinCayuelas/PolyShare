@@ -5,13 +5,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
+ * @author ponthieu
+ * 
  * <b>BdConnection</b> is used to connect into the database
  */
 public class BdConnection {
@@ -61,6 +65,46 @@ public class BdConnection {
 	 */
 	public void createStatement() {
 		// TODO implement here
+	}
+	
+	/**
+	 * make a request with no response like update, delete or delete
+	 * @param request
+	 */
+	public static void request(String request) {
+		Statement st;
+		Connection co = BdConnection.getInstance();
+
+		try {
+			st = co.createStatement();
+			// insert the class
+			st.executeUpdate(request);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 
+	 * @param request
+	 * @return a resulset of the result from de db
+	 */
+	public static ResultSet selectRequest(String request) {
+		Statement st;
+		ResultSet rs = null;
+		Connection co = BdConnection.getInstance();
+		
+		try {
+			st = co.createStatement();
+			// insert the class
+			rs = st.executeQuery(request);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return rs;
 	}
 
 }

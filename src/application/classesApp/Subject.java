@@ -1,8 +1,10 @@
 package application.classesApp;
 
+import java.util.Iterator;
 import java.util.Set;
 
 /**
+ * @author ponthieu
  * <b>Subject</b> is in a school class and contains topics
  */
 public class Subject {
@@ -11,20 +13,29 @@ public class Subject {
      * Default constructor
      */
     public Subject() {
+    	
     }
 
+    public Subject(String nameSubject, Set<Topic> listofTopics) {
+		super();
+		this.nameSubject = nameSubject;
+		this.listofTopics = listofTopics;
+	}
+    
+    private int idSubject;
+
+	/**
+     * 
+     */
+    private String nameSubject;
+
+
+
+
     /**
      * 
      */
-    public String nameSubject;
-
-
-
-
-    /**
-     * 
-     */
-    public Set<Topic> listofTopics;
+    private Set<Topic> listofTopics;
 
 
     /**
@@ -32,8 +43,7 @@ public class Subject {
      * @return list of topics for a subject
      */
     public Set<Topic> getTopics() {
-        // TODO implement here
-        return null;
+        return this.listofTopics;
     }
 
     /**
@@ -41,7 +51,7 @@ public class Subject {
      * @param top topic added
      */
     public void addTopic(Topic top) {
-        // TODO implement here
+       this.listofTopics.add(top);
     }
 
     /**
@@ -49,10 +59,41 @@ public class Subject {
      * @param top topic deleted
      */
     public void deleteTopic(Topic top) {
-        // TODO implement here
+        this.listofTopics.remove(top);
     }
-
+    
     /**
+     * Delete a topic for a subject
+     * @param top topic deleted
+     */
+    public void deleteTopicById(int id) {
+    	for (Topic topic : listofTopics) {
+			if (topic.getId() == id) {
+				 this.listofTopics.remove(topic);
+			}
+		}
+       
+    }
+    
+    /**
+     * getter id
+     * @return the subject's id
+     */
+    public int getId() {
+		return idSubject;
+	}
+    
+    /**
+     * setter id
+     * @param idSubject
+     */
+    
+
+	public void setId(int idSubject) {
+		this.idSubject = idSubject;
+	}
+
+	/**
      * Get the name of the subject
      * @return name of the subject
      */
@@ -65,8 +106,8 @@ public class Subject {
      * Change the name of the subject
      * @param value new name of the subject
      */
-    public void setNameSubject(String value) {
-        // TODO implement here
+    public void setNameSubject(String nameSubject) {
+       this.nameSubject = nameSubject;
     }
 
 }

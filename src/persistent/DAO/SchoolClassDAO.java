@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import application.classesApp.SchoolClass;
 import application.classesApp.Student;
 import application.classesApp.Subject;
+import database.BdConnection;
 
 /**
  * 
@@ -36,7 +37,16 @@ public class SchoolClassDAO {
     	
 		try {
 			st = this.con.createStatement();
-			ResultSet rs = st.executeQuery("");
+			// insert the class
+			st.executeUpdate("INSERT INTO Class VALUES (null , \'" + sc.getNameSchoolClass() + "\')");
+			
+			// get the id in this class
+			ResultSet rs = st.executeQuery("SELECT MAX(idClass) as maxIdClass from Class");
+			rs.next();
+			int idDerClass = rs.getInt("maxIdClass");
+			
+			// Create the link between admin and class
+			st.executeUpdate("INSERT INTO Study VALUES (" + admin.getId() + ", " + idDerClass + "," + "\'admin\'" + ")");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,23 +60,37 @@ public class SchoolClassDAO {
      * Remove the student from the class corresponding to the Student
      */
     public void quitSchoolClass(SchoolClass c, Student s) {
-        // TODO implement here
+    	BdConnection.request(
+    			"DELETE FROM Study where idClass =" +
+    	c.getIdSchoolClass() +
+    	" and idStudent=" +
+    	s.getId());
     }
-
     /**
+     * 
      * @param c
-     * @param s 
-     * Add a Student to the corresponding SchoolClass
+     * @param s
+     * add a student's demand to the class
      */
-    public void addStudent(SchoolClass c, Student s) {
-        // TODO implement here
+    
+    public void addDemandStudent(SchoolClass c, Student s) {
+		BdConnection.request("INSERT INTO Study VALUES (" + s.getId() + ", " + c.getIdSchoolClass() + "," + "\'waiting\'" + ")");
     }
 
+	/**
+	 * @param c
+	 * @param s Add a Student to the corresponding SchoolClass
+	 */
+	public void addStudent(SchoolClass c, Student s) {
+		BdConnection.request("UPDATE Study set nameStatus= \'member\' where idClass =" + c.getIdSchoolClass() + " and idStudent=" + s.getId());
+	}
+
     /**
-     * @param s 
+     * @param s
+     * @param class
      *  Add a Subject to the corresponding SchoolClass
      */
-    public void addSubject(Subject s) {
+    public void addSubject(Subject s, SchoolClass sc) {
         // TODO implement here
     }
 

@@ -24,7 +24,7 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
     	SchoolClass schoolClass = new SchoolClass(null);
     	ArrayList<SchoolClass> schoolClasses = new ArrayList<SchoolClass>();
 		try {
-			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM class");
+			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM class");
 			while(result.next()){ 
 				schoolClass = new SchoolClass(
 					result.getInt("idClass"),

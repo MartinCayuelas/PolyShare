@@ -33,9 +33,11 @@ public class SchoolClassDAO {
     public void createSchoolClass(SchoolClass sc, Student admin) {
     	Statement st;
 		boolean res = false;
-    	try {
+    	
+		try {
 			st = this.con.createStatement();
 			ResultSet rs = st.executeQuery("");
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -8,7 +8,7 @@ import application.classesApp.Question;
 /**
  * 
  */
-public class QuestionDAO {
+public abstract class QuestionDAO {
 
 	protected Connection connect = null;
 
@@ -24,26 +24,19 @@ public class QuestionDAO {
      * @param q 
      * Creates a new Question
      */
-    public void createQuestion(Question q) {
-        // TODO implement here
-    }
+    public abstract void createQuestion(Question q);
 
     /**
      * @param id 
      * @return Question
      * Return a Question that correspond to the id in param
      */
-    public Question findById(int id) {
-        // TODO implement here
-        return null;
-    }
+    public abstract Question findById(int id);
 
     /**
      * @param q
      * Close a question (including all the answers corresponding to the Question)
      */
-    public void close(Question q) {
-        // TODO implement here
-    }
+    public abstract void close(Question q);
 
 }

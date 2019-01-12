@@ -121,4 +121,22 @@ public class StudentDAOMySQL extends StudentDAO {
 		}
 	}
 
+	@Override
+	public boolean verifyCredentials(String login, String password) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void recommandStudent(Student s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void signalizeStudent(Student s) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

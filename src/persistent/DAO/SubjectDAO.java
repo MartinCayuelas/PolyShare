@@ -7,9 +7,9 @@ import application.classesApp.Subject;
 import application.classesApp.Topic;
 
 /**
- * 
+ * @author ponthieu
  */
-public class SubjectDAO {
+public abstract class SubjectDAO {
 
 	private Connection con = null;
     
@@ -24,9 +24,7 @@ public class SubjectDAO {
      * @param namesubject 
      * @param classsub
      */
-    public void createSubject(String namesubject, SchoolClass classsub) {
-        // TODO implement here
-    }
+    public abstract void createSubject(String namesubject, SchoolClass classsub);
 
     /**
      * Add a new Topic to a Subject
@@ -34,17 +32,13 @@ public class SubjectDAO {
      * @param t 
      * @return
      */
-    public void addTopic(Subject s, Topic t) {
-        // TODO implement here
-    }
+    public abstract void addTopic(Subject s, Topic t);
 
     /**
      * Close a subject
      * @param s
      *
      */
-    public void close(Subject s) {
-        // TODO implement here
-    }
+    public abstract void close(Subject s);
 
 }

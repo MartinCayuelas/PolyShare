@@ -8,7 +8,7 @@ import application.classesApp.MediaFile;
 /**
  * 
  */
-public class MediaFileDAO {
+public abstract class MediaFileDAO {
 
     private Connection con;
     
@@ -21,49 +21,36 @@ public class MediaFileDAO {
      * @param d 
      * @return
      */
-    public void createMediaFile(MediaFile d) {
-        // TODO implement here
-    }
+    public abstract void createMediaFile(MediaFile d);
 
     /**
      * @param s 
      * @return
      */
-    public MediaFile findByName(String s) {
-        // TODO implement here
-        return null;
-    }
+    public abstract MediaFile findByName(String s);
 
     /**
      * @param d 
      * @return
      */
-    public void delete(MediaFile d) {
-        // TODO implement here
-    }
+    public abstract void delete(MediaFile d);
 
     /**
      * @param d 
      * @return
      */
-    public void update(MediaFile d) {
-        // TODO implement here
-    }
+    public abstract void update(MediaFile d);
 
     /**
      * @param m 
      * @return
      */
-    public void like(MediaFile m) {
-        // TODO implement here
-    }
+    public abstract void like(MediaFile m);
 
     /**
      * @param m 
      * @return
      */
-    public void unlike(MediaFile m) {
-        // TODO implement here
-    }
+    public abstract void unlike(MediaFile m);
 
 }

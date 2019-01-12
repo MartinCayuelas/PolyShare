@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import application.classesApp.Appointment;
+import application.classesApp.RevisionSession;
+import application.classesApp.SingleSession;
+import application.classesApp.Student;
 import persistent.DAO.AppointmentDAO;
 
 /**
@@ -32,6 +35,36 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			  e.printStackTrace();
 		  }
 		  return appointment;
+	}
+
+	@Override
+	public void createSingleSession(SingleSession s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Appointment getAppointmentById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Student getTeacherStudentById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SingleSession getSingleSessionBySubject(String subject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void createRevisionSession(RevisionSession r) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

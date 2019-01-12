@@ -5,7 +5,9 @@ import java.sql.Connection;
 import application.classesApp.Student;
 
 /**
- * AO
+ * 
+ * @author ponthieu
+ *
  */
 public abstract class StudentDAO {
 	
@@ -36,56 +38,41 @@ public abstract class StudentDAO {
      * @param password 
      * @return boolean
      */
-    public boolean verifyCredentials(String login, String password) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean verifyCredentials(String login, String password);
 
     /**
      * Find a Student by his id.
      * @param id 
      * @return Student
      */
-    public Student findById(int id) {
-        // TODO implement here
-        return null;
-    }
+    public abstract Student findById(int id);
 
     /** 
      * Find a Student by his name.
      * @param name 
      * @return Student
      */
-    public Student findByName(String name) {
-        // TODO implement here
-        return null;
-    }
+    public abstract Student findByName(String name);
 
     /**
      * Creates a new Student
      * @param s 
      * 
      */
-    public void createStudent(Student s) {
-        // TODO implement here
-    }
+    public abstract void createStudent(Student s);
 
     /**
      * Recommand a Student
      * @param s 
      * 
      */
-    public void recommandStudent(Student s) {
-        // TODO implement here
-    }
+    public abstract void recommandStudent(Student s);
 
     /**
      * Signalize a Student
      * @param s 
      * 
      */
-    public void signalizeStudent(Student s) {
-        // TODO implement here
-    }
+    public abstract void signalizeStudent(Student s);
 
 }

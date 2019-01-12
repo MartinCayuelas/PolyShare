@@ -42,4 +42,22 @@ public class SkillDAOMySQL extends SkillDAO {
 		return skills;
 
 	}
+
+	@Override
+	public void addSkillById(int idStudent, Skill skill) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteSkillByIdSkill(int idStudent, Skill skill) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateSkill(int idStudent, Skill skill) {
+		// TODO Auto-generated method stub
+		
+	}
 }

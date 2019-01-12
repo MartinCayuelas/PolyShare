@@ -5,9 +5,9 @@ import java.sql.Connection;
 import application.classesApp.Answer;
 
 /**
- * 
+ * @author ponthieu
  */
-public class AnswerDAO {
+public abstract class AnswerDAO {
 
     private Connection con;
     
@@ -21,16 +21,12 @@ public class AnswerDAO {
      * 
      * Creates a new Answer
      */
-    public void createAnswer(Answer a) {
-        // TODO implement here
-    }
+    public abstract void createAnswer(Answer a);
 
     /**
      * @param a
      * Add a like to the Answer
      */
-    public void addLike(Answer a) {
-        // TODO implement here
-    }
+    public abstract void addLike(Answer a);
 
 }

@@ -9,69 +9,79 @@ import javafx.fxml.FXMLLoader;
  * 
  * @author ponthieu
  * 
- * Cette class gère le routing de l'application
- * Elle est initialisée au lancement de lapplication.
+ *         Cette class gère le routing de l'application Elle est initialisée au
+ *         lancement de lapplication.
  * 
  *
  */
-public class Router
-{
-	
+public class Router {
+
 	private HashMap<String, String> screenMap = new HashMap<>();
-    
-     
-    // Instance unique (singleton)
-    private static Router INSTANCE = null;
-     
-    public static Router getInstance()
-    {   
-    	
-    	if (INSTANCE == null)
-        {   
-        	INSTANCE = new Router(); 
-        }
-        
-        return INSTANCE;
-    }
+	private String[] params;
+	// Instance unique (singleton)
+	private static Router INSTANCE = null;
 
-    private Router() {
-    }
-    /**
-     * 
-     * @param name
-     * @param pane
-     */
-    public void add(String name, String pane){
-         screenMap.put(name, pane);
-    }
+	public static Router getInstance() {
 
-    /**
-     * @param name Name of the scene that should be load
-     */
-    public void activate(String name){
-    	
-    	try {
-    		
+		if (INSTANCE == null) {
+			INSTANCE = new Router();
+		}
+
+		return INSTANCE;
+	}
+
+	private Router() {
+	}
+
+	/**
+	 * 
+	 * @param name
+	 * @param pane
+	 */
+	public void add(String name, String pane) {
+		screenMap.put(name, pane);
+	}
+
+	/**
+	 * @param name - Name of the scene that should be load
+	 */
+	public void activate(String name) {
+
+		try {
+
 			Main.primaryStage.getScene()
-			.setRoot(
-					FXMLLoader
-					.load(getClass()
-							.getResource(
-									INSTANCE
-									.getScreenMap()
-									.get(name)))
-							);
+					.setRoot(FXMLLoader.load(getClass().getResource(INSTANCE.getScreenMap().get(name))));
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
-    }
-    
-    public String toString(){
-    	return INSTANCE.screenMap.toString();
-    }
+		
+		this.params = new String[0];
+	}
+
+	/**
+	 * @param name   - Name of the scene that should be load
+	 * @param params - Given params for the new view displayed
+	 */
+	public void activate(String name, String[] params) {
+
+		try {
+			Main.primaryStage.getScene()
+					.setRoot(FXMLLoader.load(getClass().getResource(INSTANCE.getScreenMap().get(name))));
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		
+		this.params = params;
+	}
+
+	public String toString() {
+		return INSTANCE.screenMap.toString();
+	}
 
 	public HashMap<String, String> getScreenMap() {
 		return screenMap;
 	}
+
 }

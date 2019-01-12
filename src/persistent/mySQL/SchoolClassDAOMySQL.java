@@ -21,7 +21,7 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
     }
     
     public ArrayList<SchoolClass> getAllSchoolClassesNames(){
-    	SchoolClass schoolClass = new SchoolClass(0, null);
+    	SchoolClass schoolClass = new SchoolClass(null);
     	ArrayList<SchoolClass> schoolClasses = new ArrayList<SchoolClass>();
 		try {
 			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM class");

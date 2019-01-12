@@ -1,6 +1,9 @@
 package persistent.DAO;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import application.classesApp.SchoolClass;
@@ -12,13 +15,13 @@ import application.classesApp.Subject;
  */
 public class SchoolClassDAO {
 	
-	protected Connection connect = null;
+	protected Connection con = null;
 
     /**
      * Default constructor
      */
     public SchoolClassDAO(Connection conn) {
-    	this.connect = conn;
+    	this.con = conn;
     }
 
 
@@ -28,7 +31,15 @@ public class SchoolClassDAO {
      * Save a school with a Student in admin
      */
     public void createSchoolClass(SchoolClass sc, Student admin) {
-        // TODO implement here
+    	Statement st;
+		boolean res = false;
+    	try {
+			st = this.con.createStatement();
+			ResultSet rs = st.executeQuery("");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
     }
 
     /**

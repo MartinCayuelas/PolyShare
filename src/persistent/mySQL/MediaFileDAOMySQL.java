@@ -1,7 +1,7 @@
 package persistent.mySQL;
 
 
-import java.util.*;
+import java.sql.Connection;
 
 import persistent.DAO.MediaFileDAO;
 
@@ -10,10 +10,9 @@ import persistent.DAO.MediaFileDAO;
  */
 public class MediaFileDAOMySQL extends MediaFileDAO {
 
-    /**
-     * Default constructor
-     */
-    public MediaFileDAOMySQL() {
+   
+    public MediaFileDAOMySQL(Connection con) {
+    	super(con);
     }
 
 }

@@ -1,6 +1,6 @@
 package persistent.mySQL;
 
-import java.util.*;
+import java.sql.Connection;
 
 import persistent.DAO.SubjectDAO;
 /**
@@ -8,10 +8,9 @@ import persistent.DAO.SubjectDAO;
  */
 public class SubjectDAOMySQL extends SubjectDAO {
 
-    /**
-     * Default constructor
-     */
-    public SubjectDAOMySQL() {
+    
+    public SubjectDAOMySQL(Connection con) {
+    	super(con); 
     }
 
 }

@@ -1,6 +1,8 @@
 package persistent.DAO;
 
 
+import java.sql.Connection;
+
 import application.classesApp.Question;
 
 /**
@@ -8,10 +10,13 @@ import application.classesApp.Question;
  */
 public class QuestionDAO {
 
+	protected Connection connect = null;
+
     /**
      * Default constructor
      */
-    public QuestionDAO() {
+    public QuestionDAO(Connection conn) {
+    	this.connect = conn;
     }
 
 

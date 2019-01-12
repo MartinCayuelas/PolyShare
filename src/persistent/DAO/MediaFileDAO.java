@@ -1,7 +1,7 @@
 package persistent.DAO;
 
 
-import java.util.*;
+import java.sql.Connection;
 
 import application.classesApp.MediaFile;
 
@@ -10,10 +10,10 @@ import application.classesApp.MediaFile;
  */
 public class MediaFileDAO {
 
-    /**
-     * Default constructor
-     */
-    public MediaFileDAO() {
+    private Connection con;
+    
+    public MediaFileDAO(Connection con) {
+    	this.con = con;
     }
 
 

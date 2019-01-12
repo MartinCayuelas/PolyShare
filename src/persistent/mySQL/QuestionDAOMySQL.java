@@ -1,6 +1,6 @@
 package persistent.mySQL;
 
-import java.util.*;
+import java.sql.Connection;
 
 import persistent.DAO.QuestionDAO;
 
@@ -12,7 +12,8 @@ public class QuestionDAOMySQL extends QuestionDAO {
     /**
      * Default constructor
      */
-    public QuestionDAOMySQL() {
+    public QuestionDAOMySQL(Connection con) {
+    	super(con);
     }
 
 }

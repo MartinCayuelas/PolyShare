@@ -1,5 +1,7 @@
 package persistent.DAO;
 
+import java.sql.Connection;
+
 import application.classesApp.Question;
 import application.classesApp.Topic;
 
@@ -7,11 +9,10 @@ import application.classesApp.Topic;
  * 
  */
 public class TopicDAO {
+	private Connection con;
 
-    /**
-     * Default constructor
-     */
-    public TopicDAO() {
+    public TopicDAO(Connection con) {
+		this.con = con;
     }
 
 

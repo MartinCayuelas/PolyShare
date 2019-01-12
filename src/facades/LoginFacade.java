@@ -1,6 +1,7 @@
 package facades;
 
 import application.classesApp.Student;
+import facades.exceptions.DisconnectedStudentException;
 import factory.AbstractFactory;
 import persistent.DAO.StudentDAO;
 
@@ -11,13 +12,19 @@ public class LoginFacade {
 	
 	private AbstractFactory abstractFactory = AbstractFactory.getFactoryMySql();
 	private StudentDAO studentDAO = abstractFactory.getStudentDAO();
-	private Boolean connected=false; 
 	private Student student;
-
-    /**
-     * Default constructor
-     */
-    public LoginFacade() {
+    
+    /** Holder */
+    private static class SingletonHolder
+    {       
+        /** Instance unique non préinitialisée */
+        private final static LoginFacade instance = new LoginFacade();
+    }
+    
+    /** Point d'accès pour l'instance unique du singleton */
+    public static LoginFacade getInstance()
+    {
+        return SingletonHolder.instance;
     }
 
 
@@ -27,14 +34,7 @@ public class LoginFacade {
      * @return boolean true if the student is logged false if wrong login or password
      */
     public void login(String email, String password) {
-        // TODO implement here
     	student = studentDAO.login(email, password);
-		
-		if(student != null) {
-			setConnected(true);
-		} else {
-			setConnected(false);
-		}
     }
     
     public void signUp(String nameStudent, String firstNameStudent, String emailStudent, String password, String loginID) {
@@ -42,12 +42,7 @@ public class LoginFacade {
 		studentDAO.createStudent(student);
 	}
     
-    public Boolean getConnected() {
-		return connected;
+    public Student getConnectedStudent() throws DisconnectedStudentException {
+		return this.student;
 	}
-	
-	public void setConnected(Boolean connected) {
-		this.connected = connected;
-	}
-
 }

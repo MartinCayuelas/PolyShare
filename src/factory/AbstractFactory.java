@@ -1,5 +1,6 @@
 package factory;
 
+import database.BdConnection;
 import persistent.DAO.*;
 import persistent.factories.DAOFactoryMySql;
 
@@ -27,76 +28,53 @@ public abstract class AbstractFactory {
      * Create a Student DAO
      * @return student DAO
      */
-    public StudentDAO getStudentDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract StudentDAO getStudentDAO();
 
     /**
      * Create a Question DAO
      * @return question DAO
      */
-    public QuestionDAO createQuestionDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract QuestionDAO createQuestionDAO();
 
     /**
      * Create an Answer DAO
      * @return answer DAO
      */
-    public AnswerDAO createAnswerDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract AnswerDAO createAnswerDAO();
 
     /**
      * Create an Appointment DAO
      * @return appointment DAO
      */
-    public AppointmentDAO createAppointmentDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract AppointmentDAO createAppointmentDAO();
 
     /**
      * Create a SchoolClass DAO
      * @return schoolClass DAO
      */
-    public SchoolClassDAO createSchoolClassDAO() {
-        // TODO implement here
-        return null;
-    }
-
+    public abstract SchoolClassDAO createSchoolClassDAO();
     /**
      * Create a Subject DAO
      * @return subject DAO
      */
-    public SubjectDAO createSubjectDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract SubjectDAO createSubjectDAO();
 
     /**
      * Create a Topic DAO
      * @return topic DAO
      */
-    public TopicDAO createTopicDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract TopicDAO createTopicDAO();
 
     /**
      * Create a MediaFileDAO 
      * @return MediaFileDAO
      */
-    public MediaFileDAO createMediaFileDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract MediaFileDAO createMediaFileDAO();
 
-	public SchoolClassDAO getSchoolClassDAO() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /**
+     * Create a SchoolClassDAO
+     * @return SchoolClassDAO
+     */
+    
+	public abstract SchoolClassDAO getSchoolClassDAO();
 }

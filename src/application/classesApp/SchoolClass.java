@@ -7,13 +7,14 @@ import java.util.Set;
  */
 public class SchoolClass {
 
-    /**
-     * Default constructor
-     */
-    public SchoolClass(int id, String nameSchoolClass) {
-		this.idSchoolClass = id;
+    
+    public SchoolClass(String nameSchoolClass) {
 		this.nameSchoolClass = nameSchoolClass;
-
+    }
+    
+    public SchoolClass(int id, String nameSchoolClass) {
+		this.nameSchoolClass = nameSchoolClass;
+		this.idSchoolClass = id;
     }
 
 	/**

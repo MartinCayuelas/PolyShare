@@ -32,7 +32,6 @@ public class DAOFactoryMySql extends AbstractFactory {
 
 	protected static final Connection conn = BdConnection.getInstance();
 
-
 	/**
 	 * Retourne un objet Classe interagissant avec la BDD
 	 * 
@@ -42,9 +41,11 @@ public class DAOFactoryMySql extends AbstractFactory {
 		return new StudentDAOMySQL(conn);
 	}
 
+
 	  public SkillDAO createSkillDAO(){
 		    return new SkillDAOMySQL(conn);
 		  }
+
 
 
 	public SchoolClassDAO getSchoolClassDAO() {
@@ -83,7 +84,8 @@ public class DAOFactoryMySql extends AbstractFactory {
 
 	@Override
 	public MediaFileDAO createMediaFileDAO() {
-		return new MediaFileDAO(conn);
+		return new MediaFileDAOMySQL(conn);
+
 	}
 	
 

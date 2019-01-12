@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import facades.LoginFacade;
+import facades.exceptions.DisconnectedStudentException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,6 +65,7 @@ public class LoginController {
 	    	 display("Enter email or password");
 	     } else {
 	    	 loginFacade.login(emailStudent, passWord);
+<<<<<<< HEAD
 	    	 if (loginFacade.isConnected()) {
              	Node  source = (Node)  e.getSource(); 
                 Stage stage  = (Stage) source.getScene().getWindow();
@@ -81,6 +83,30 @@ public class LoginController {
 	    	 } else {
 	    		display("Wrong email/password");
 	    	 }
+=======
+	    	 try {
+				if (loginFacade.getConnectedStudent() != null) {
+				 	Node  source = (Node)  e.getSource(); 
+				    Stage stage  = (Stage) source.getScene().getWindow();
+				    stage.close();
+				                        
+				    Stage nextStage = new Stage();
+				    nextStage.setTitle("Student Account");
+				    Pane myPane = null;
+				    myPane = FXMLLoader.load(getClass().getResource("/ui/homePage/HomePage.fxml"));
+				            
+				            
+				    Scene scene = new Scene(myPane);
+				    nextStage.setScene(scene);
+				    nextStage.show(); 
+				 } else {
+					display("Wrong email/password");
+				 }
+			} catch (DisconnectedStudentException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+>>>>>>> a11f688562cf21674011cd15d5ca0ab4e187d71c
 	     }
 	 }
 	 

@@ -1,15 +1,11 @@
 package persistent.DAO;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.List;
 
 import application.classesApp.SchoolClass;
 import application.classesApp.Student;
 import application.classesApp.Subject;
-import database.BdConnection;
 
 /**
  * @author ponthieu
@@ -86,6 +82,19 @@ public abstract class SchoolClassDAO {
      * 
      * @return  all the school class in the bd
      */
-	public abstract ArrayList<SchoolClass> getAllSchoolClasses();
-
+	public abstract List<SchoolClass> getAllSchoolClasses();
+	
+	/**
+	 * 
+	 * @param idStudent
+	 * @return all his class
+	 */
+	public abstract List<SchoolClass> getAllSchoolClassByIdStudent(int idStudent);
+	
+	/**
+	 * 
+	 * @param idStudent
+	 * @return all the name of the classes where student has a link
+	 */
+	public abstract List<String> getAllSchoolClassNameByIdStudent(int idStudent);
 }

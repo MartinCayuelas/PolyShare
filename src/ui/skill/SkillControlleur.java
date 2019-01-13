@@ -103,7 +103,7 @@ public class SkillControlleur implements Initializable {
 		europeanCurrencyList.add("SEK");
 		europeanCurrencyList.add("CHF");
 		europeanCurrencyList.add("HUF");*/
-
+		
 		myListSkills.itemsProperty().bind(listProperty);
 
 		// This does not work, you can not directly add to a ListProperty

@@ -1,5 +1,7 @@
 package facades;
 
+import java.util.List;
+
 import application.classesApp.SchoolClass;
 import application.classesApp.Student;
 import application.classesApp.Subject;
@@ -13,13 +15,6 @@ import persistent.factories.DAOFactoryMySql;
  */
 public class SchoolClassFacade {
 	AbstractFactory factory = new DAOFactoryMySql(); 
-
-	/**
-	 * Default constructor
-	 */
-	public SchoolClassFacade(AbstractFactory factory) {
-		this.factory = factory;
-	}
 
 	public SchoolClassFacade() {
 		// TODO Auto-generated constructor stub
@@ -67,8 +62,8 @@ public class SchoolClassFacade {
 	}
 	
 	/**
-	 * @param id the id of the researched schoolClass
-	 * @return SchollClass return the matched schoolClass
+	 * @param id - the id of the researched schoolClass
+	 * @return SchoolClass return the matched schoolClass
 	 */
 	public SchoolClass findSchoolClassId(int id) {
 		// TODO implement here
@@ -85,6 +80,15 @@ public class SchoolClassFacade {
 	 */
 	public void joinSchoolClass(SchoolClass schoolClass) {
 		// TODO implement here
+	}
+	
+	/**
+	 * @return 
+	 */
+	public List<SchoolClass> getAllSchoolClassConnectedStudent() {
+		SchoolClassDAO scDAO = this.factory.createSchoolClassDAO();
+		//Student co = LoginFacade.getInstance().getConnectedStudent();
+		return scDAO.getAllSchoolClassByIdStudent(1);
 	}
 
 }

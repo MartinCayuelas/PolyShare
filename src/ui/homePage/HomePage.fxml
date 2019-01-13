@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -11,10 +12,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.homePage.HomePageController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" spacing="20.0" stylesheets="@homePage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.homePage.HomePageController">
    <children>
-      <Label text="Polytech Montpellier" />
+      <Label style="-fx-text-fill: #357AB7;" text="Polytech Montpellier">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
       <GridPane prefHeight="200.0" prefWidth="1000.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -26,71 +31,116 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../img/icone-fichier.jpg" />
+                        <Image url="@../../../img/user.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onMouseClicked="#goProfil" text="My profil" />
+                  <Button mnemonicParsing="false" onMouseClicked="#goProfil" style="-fx-background-color: #357AB7; -fx-text-fill: #FFFFFF;" stylesheets="@homePage.css" text="My profil" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../img/icone-fichier.jpg" />
+                        <Image url="@../../../img/appointment.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onMouseClicked="#goAppointement" text="My appointements" />
+                  <Button mnemonicParsing="false" onMouseClicked="#goAppointement" style="-fx-background-color: #357AB7; -fx-text-fill: #FFFFFF;" text="My appointements" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="2">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../img/icone-fichier.jpg" />
+                        <Image url="@../../../img/teacher-pointing-blackboard.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onMouseClicked="#goClass" text="Add a class" />
+                  <Button mnemonicParsing="false" onMouseClicked="#goClass" style="-fx-background-color: #357AB7; -fx-text-fill: #FFFFFF;" text="Add a class" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="3">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../img/icone-fichier.jpg" />
+                        <Image url="@../../../img/exit-to-app-button.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onMouseClicked="#exit" text="Exit" />
+                  <Button mnemonicParsing="false" onMouseClicked="#exit" style="-fx-background-color: #357AB7; -fx-text-fill: #FFFFFF;" text="Exit" />
                </children>
             </VBox>
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="30.0" />
+         </padding>
       </GridPane>
-      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="500.0">
+      <GridPane alignment="CENTER" prefWidth="1000.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="250.0" vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="500.0">
+            <Label alignment="CENTER" contentDisplay="TOP" text="My classes" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font></Label>
+            <Button mnemonicParsing="false" onMouseClicked="#goSubjectSearched" style="-fx-background-color: #357AB7; -fx-text-fill: #FFFFFF;" text="See subjects of this class" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets top="20.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#goSubject" style="-fx-background-color: #357AB7; -fx-text-fill: #FFFFFF;" text="See subject of this class" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets top="20.0" />
+               </GridPane.margin>
+            </Button>
+            <ListView fx:id="classSearchedList" maxWidth="350.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets top="20.0" />
+               </GridPane.margin>
+            </ListView>
+            <VBox alignment="CENTER" prefWidth="500.0" GridPane.columnIndex="1">
                <children>
-                  <Label text="My classes" />
-                  <ListView fx:id="myClassesLV" maxWidth="350.0" />
-                  <Button mnemonicParsing="false" onMouseClicked="#goSubject" text="See subject of this class" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="500.0">
-               <children>
-                  <Label text="Search a class" />
-                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <Label text="Search a class">
+                     <font>
+                        <Font size="26.0" />
+                     </font></Label>
+                  <HBox alignment="TOP_CENTER" prefWidth="200.0">
                      <children>
                         <TextField fx:id="inputClassName" />
-                        <Button mnemonicParsing="false" onMouseClicked="#searchClass" text="Search" />
+                        <Button mnemonicParsing="false" onMouseClicked="#searchClass" text="Search">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin></Button>
                      </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
                   </HBox>
-                  <ListView fx:id="classSearchedList" maxWidth="350.0" />
-                  <Button mnemonicParsing="false" onMouseClicked="#goSubjectSearched" text="See subjects of this class" />
                </children>
             </VBox>
+            <ListView fx:id="myClassesLV" maxWidth="350.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets top="20.0" />
+               </GridPane.margin>
+            </ListView>
          </children>
-      </HBox>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </GridPane>
    </children>
+   <padding>
+      <Insets top="30.0" />
+   </padding>
 </VBox>

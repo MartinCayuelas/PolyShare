@@ -17,7 +17,7 @@ import javafx.fxml.FXMLLoader;
 public class Router {
 
 	private HashMap<String, String> screenMap = new HashMap<>();
-	private String[] params;
+	private Object[] params;
 	
 	// Instance unique (singleton)
 	private static Router INSTANCE = null;
@@ -47,9 +47,9 @@ public class Router {
 	 * @param name - Name of the scene that should be load
 	 */
 	public void activate(String name) {
-
+		this.params = new String[0];
 		try {
-
+			
 			Main.primaryStage.getScene()
 					.setRoot(FXMLLoader.load(getClass().getResource(INSTANCE.getScreenMap().get(name))));
 		} catch (IOException e) {
@@ -57,15 +57,15 @@ public class Router {
 			e.printStackTrace();
 		}
 		
-		this.params = new String[0];
+		
 	}
 
 	/**
 	 * @param name   - Name of the scene that should be load
 	 * @param params - Given params for the new view displayed
 	 */
-	public void activate(String name, String[] params) {
-
+	public void activate(String name, Object[] params) {
+		this.params = params;
 		try {
 			Main.primaryStage.getScene()
 					.setRoot(FXMLLoader.load(getClass().getResource(INSTANCE.getScreenMap().get(name))));
@@ -74,7 +74,15 @@ public class Router {
 			e.printStackTrace();
 		}
 		
-		this.params = params;
+		
+	}
+	
+	/**
+	 * 
+	 * @return give the params to the new loaded view
+	 */
+	public Object[] getParams() {
+		return this.params;
 	}
 
 	public String toString() {

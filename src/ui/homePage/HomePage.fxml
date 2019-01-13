@@ -82,12 +82,12 @@
                   <Label text="Search a class" />
                   <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField />
+                        <TextField fx:id="inputClassName" />
                         <Button mnemonicParsing="false" onMouseClicked="#searchClass" text="Search" />
                      </children>
                   </HBox>
-                  <ListView maxWidth="350.0" />
-                  <Button mnemonicParsing="false" onMouseClicked="#goSubject" text="See subjects of this class" />
+                  <ListView fx:id="classSearchedList" maxWidth="350.0" />
+                  <Button mnemonicParsing="false" onMouseClicked="#goSubjectSearched" text="See subjects of this class" />
                </children>
             </VBox>
          </children>

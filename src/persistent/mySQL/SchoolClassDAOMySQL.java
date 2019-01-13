@@ -129,6 +129,14 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 		return null;
 	}
 	
+	@Override
+	public List<SchoolClass> getMatchedSchoolClasses(String pattern) {
+		ResultSet rs = BdConnection.selectRequest("Select * from Class where Class.nameClass like \'" + pattern + "\'");
+		
+		return bdToObjects(rs);
+	}
+
+	
 	/**
 	 * 
 	 * @param idStudent - the id of a student
@@ -137,16 +145,8 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 	public List<SchoolClass> getAllSchoolClassByIdStudent(int idStudent) {
 		ResultSet rs = BdConnection.selectRequest("Select Class.* from Study, Class where Class.idClass = Study.idClass and Study.idStudent = " + idStudent);
 		
-		List<SchoolClass> list = new ArrayList<SchoolClass>();
-		try {
-			while (rs.next()) {
-				list.add(bdToObject(rs));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		
-		return list;
+		return bdToObjects(rs);
 	}
 	
 	/**
@@ -164,6 +164,26 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 			e.printStackTrace();
 		}
 		return sc;
+	}
+	
+	/**
+	 * 
+	 * @param rs - the response of a query (with schoolClass inside)
+	 * @return a list of SchoolClass given in argement
+	 * Transform a set of data from de SchoolClass table in the db to 
+	 * list of SchoolClass object
+	 */
+	private List<SchoolClass> bdToObjects (ResultSet rs) {
+		List<SchoolClass> list = new ArrayList<SchoolClass>();
+		try {
+			while (rs.next()) {
+				list.add(bdToObject(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 	@Override

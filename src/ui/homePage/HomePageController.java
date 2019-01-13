@@ -7,10 +7,8 @@ import facades.SchoolClassFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
-import javafx.util.Callback;
+import javafx.scene.control.TextField;
 import ui.Router;
 
 /**
@@ -18,7 +16,9 @@ import ui.Router;
  */
 public class HomePageController {
 	
-	@FXML ListView<SchoolClass> myClassesLV;
+	@FXML private ListView<SchoolClass> myClassesLV;
+	@FXML private TextField inputClassName;
+	@FXML private ListView<SchoolClass> classSearchedList;
 	
 
     /**
@@ -29,36 +29,46 @@ public class HomePageController {
 
     @FXML 
     public void goProfil() {
-    	Router.getInstance().activate("profil");
+    	Router.getInstance().activate("Profil");
     }
     
     @FXML 
     public void goAppointement() {
-    	Router.getInstance().activate("appointement");
+    	Router.getInstance().activate("Appointement");
     }
     
     @FXML 
     public void goClass() {
-    	Router.getInstance().activate("class");
+    	Router.getInstance().activate("Class");
     }
     
     @FXML 
     public void exit() {
-    	Router.getInstance().activate("exit");
-    }
-    
-    /**
-     * Get all classes and display it in the listView 
-     */
-    @FXML 
-    public void searchClass() {
-    	
+    	Router.getInstance().activate("Exit");
     }
     
     @FXML 
     public void goSubject() {
-    	System.out.println(this.myClassesLV.getSelectionModel().getSelectedItem().getNameSchoolClass());
-    	//Router.getInstance().activate("subject", new String[0]);
+    	SchoolClass selected = this.myClassesLV.getSelectionModel().getSelectedItem();
+    	
+    	if (selected != null) {
+    		System.out.println(selected.getNameSchoolClass());
+    		SchoolClass[] params  = {selected};
+        	Router.getInstance().activate("Subject", params);
+    	}
+    	
+    }
+    
+    @FXML 
+    public void goSubjectSearched() {
+    	SchoolClass selected = this.classSearchedList.getSelectionModel().getSelectedItem();
+    	
+    	if (selected != null) {
+    		System.out.println(selected.getNameSchoolClass());
+    		SchoolClass[] params  = {selected};
+        	Router.getInstance().activate("Subject", params);
+    	}
+    	
     }
     
     @FXML
@@ -73,7 +83,23 @@ public class HomePageController {
     	
     	this.myClassesLV.setItems(schoolClassObservableList);
     	this.myClassesLV.setCellFactory(studentListView -> new SchoolClassListViewCell());
-        
+    	
+    }
+    /**
+     * Show in a listView all matched classes with a name in argument of a input text
+     */
+    @FXML
+    public void searchClass() {
+    	String schoolSearchedName = this.inputClassName.getText();
+    	this.inputClassName.setText("");
+    	
+    	SchoolClassFacade scFac = new SchoolClassFacade();
+    	List<SchoolClass> scList = scFac.findMatchedSchoolClass(schoolSearchedName);
+    	ObservableList<SchoolClass> schoolClassObservableList = FXCollections.observableArrayList();
+    	schoolClassObservableList.addAll(scList);
+    	
+    	this.classSearchedList.setItems(schoolClassObservableList);
+    	this.classSearchedList.setCellFactory(studentListView -> new SchoolClassListViewCell());
     	
     }
 

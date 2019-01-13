@@ -86,6 +86,12 @@ public abstract class SchoolClassDAO {
 	
 	/**
 	 * 
+	 * @return return matched schoolClass (all schoolClass begin with s, not case sensitive)
+	 */
+	public abstract List<SchoolClass> getMatchedSchoolClasses(String pattern);
+	
+	/**
+	 * 
 	 * @param idStudent
 	 * @return all his class
 	 */

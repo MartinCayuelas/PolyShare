@@ -59,8 +59,18 @@ public class SchoolClassFacade {
 	 * @return SchollClass return the matched schoolClass
 	 */
 	public SchoolClass findSchoolClass(String s) {
-		// TODO implement here
-		return null;
+		SchoolClassDAO scDAO = factory.createSchoolClassDAO();
+		SchoolClass sc = scDAO.getSchoolClassByName(s);
+		return sc;
+	}
+	
+	/**
+	 * @param s the name of the researched schoolClass
+	 * @return SchollClass return matched schoolClass (all schoolClass begin with s, not case sensitive)
+	 */
+	public List<SchoolClass> findMatchedSchoolClass(String pattern) {
+		SchoolClassDAO scDAO = factory.createSchoolClassDAO();
+		return scDAO.getMatchedSchoolClasses(pattern);
 	}
 	
 	/**

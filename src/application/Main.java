@@ -1,6 +1,10 @@
 package application;
 
+import java.io.IOException;
+
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -16,13 +20,16 @@ public class Main extends Application {
 		Main.primaryStage = primaryStage;
 		
 		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
+			FXMLLoader root = new FXMLLoader(getClass().getResource("/ui/homePage/HomePage.fxml"));
+		    Parent skillLayout = root.load();
+	        Scene scene = new Scene(skillLayout, 700, 600);
+	        
+	        primaryStage.setTitle("FXML Welcome");
+	        primaryStage.setScene(scene);
+	        primaryStage.show();
+		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 	
 	public static void main(String[] args) {
@@ -31,8 +38,15 @@ public class Main extends Application {
 	
 	public void init() {
 		Router r = Router.getInstance();
-		r.add("HomePage", "");
-		r.add("Skill", "SkillController");
-		r.add("addNewSkill", "");
+		r.add("HomePage", "/ui/homePage/HomePage.fxml");
+		r.add("Subject", "/ui/subject/Subject.fxml");
+		r.add("Skill", "/ui/skill/Skill.fxml");
+		r.add("Profil", "");
+		r.add("Appointment", "/ui/appointement/Appointement.fxml");
+		r.add("SchoolClass", "/ui/classes/SchoolClass.fxml");
+		r.add("ConnectionInscription", "/ui/connectionInscription/Login.fxml");
+		r.add("Forum", "");
+		r.add("MediaFiles", "/ui/mediaFile/MediaFile.fxmls");
+		r.add("MyAppointements", "/ui/myAppointements/MyAppointements.fxml");
 	}
 }

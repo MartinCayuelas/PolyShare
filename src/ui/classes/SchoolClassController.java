@@ -4,6 +4,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+import application.classesApp.SchoolClass;
+import application.classesApp.Skill;
+import application.classesApp.Student;
+import application.classesApp.Subject;
+import facades.LoginFacade;
+import facades.SchoolClassFacade;
+import facades.SkillFacade;
 import javafx.application.Application;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -21,11 +28,21 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import ui.Router;
 
 /**
  * @author guillaud
  */
 public class SchoolClassController extends Application implements Initializable {
+	
+	protected List<String> listSubjects = new ArrayList<>();
+	protected List<String> listTopics = new ArrayList<>();
+
+	protected ListProperty<String> listProperty = new SimpleListProperty<>();
+	
+	private LoginFacade loginFacade = new LoginFacade();
+	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
+	private Router r = Router.getInstance();
 	
 	//Partie du lancement de la fenêtre
 	private Stage primaryStage;
@@ -75,6 +92,30 @@ public class SchoolClassController extends Application implements Initializable 
      */
     public SchoolClassController() {
     }
+    
+    /**
+     * Add a subject to the current SchoolClass
+     * @param name Name of the new subject
+     */
+    public void addSubject(String name) {
+    	schoolClassFacade.CreateSubject(name);
+    }
+    
+    /**
+     * Delete a subject to the current SchoolClass
+     * @param name Name of the new subject
+     */
+    public void deleteSubject(int idSubject) {
+    	schoolClassFacade.deleteSubject(idSubject);
+    }
+    
+    /**
+     * Delete a subject to the current SchoolClass
+     * @param name Name of the new subject
+     */
+    public void updateSubject(int idSubject, String nameSubject) {
+    	schoolClassFacade.deleteSubject(idSubject);
+    }
 
 
     /**
@@ -105,18 +146,37 @@ public class SchoolClassController extends Application implements Initializable 
     @FXML
     private ListView topics;
 
-	protected List<String> listSubjects = new ArrayList<>();
-	protected List<String> listTopics = new ArrayList<>();
-
-	protected ListProperty<String> listProperty = new SimpleListProperty<>();
+	
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		listSubjects.add("MathsFi");
+		/*listSubjects.add("MathsFi");
 		listSubjects.add("Bilan et CR");
 		listSubjects.add("Marchés financiers");
 
 		subjects.itemsProperty().bind(listProperty);
+
+		// This does not work, you can not directly add to a ListProperty
+		// listProperty.addAll( asianCurrencyList );
+		listProperty.set(FXCollections.observableArrayList(listSubjects));
+		*/
+		
+		
+		
+		ArrayList<Subject> subs = new ArrayList<>();
+		SchoolClass schoolClass = new SchoolClass(2, "Test");
+		//Test avec la classe 2 (IG4)
+		subs = schoolClassFacade.getSubjects(2);
+		 for(Subject s : subs) {
+			 SchoolClass clas = schoolClassFacade.findSchoolClassId(2);
+			 listSubjects.add(s.getNameSubject());
+		    }
+		
+		
+
+		
+
+		 subjects.itemsProperty().bind(listProperty);
 
 		// This does not work, you can not directly add to a ListProperty
 		// listProperty.addAll( asianCurrencyList );

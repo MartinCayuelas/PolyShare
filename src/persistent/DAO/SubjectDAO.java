@@ -52,16 +52,17 @@ public abstract class SubjectDAO {
     
     /**
      * Remove a Subject to the SchoolClass
-     * @param subject 
+     * @param idSubject the ID of the future deleted subject
      */
-    public abstract void deleteSubject(Subject subject);
+    public abstract void deleteSubject(int idSubject);
     
 
     /**
      * Update a Subject
-     * @param subject 
+     * @param idSubject the ID of the updated subject
+     *  @param nameSubject the new name of the subject
      */
-    public abstract void updateSubject(Subject subject);
+    public abstract void updateSubject(int idSubject, String nameSubject);
     
     /**
      * Find a Subject

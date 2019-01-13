@@ -63,13 +63,13 @@ public class SubjectDAOMySQL extends SubjectDAO {
 	}
 
 	@Override
-	public void deleteSubject(Subject subject) {
+	public void deleteSubject(int idSubject) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateSubject(Subject subject) {
+	public void updateSubject(int idSubject, String nameSubject) {
 		// TODO Auto-generated method stub
 		
 	}

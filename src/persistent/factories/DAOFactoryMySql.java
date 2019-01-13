@@ -1,4 +1,4 @@
-package persistent.factories;
+package persistent.Factories;
 
 import java.sql.Connection;
 

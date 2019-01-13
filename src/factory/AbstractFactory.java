@@ -1,7 +1,7 @@
 package factory;
 
 import persistent.DAO.*;
-import persistent.factories.DAOFactoryMySql;
+import persistent.Factories.DAOFactoryMySql;
 
 /**
  * <b>AbstractFactory</b> is used to create all the DAO objects

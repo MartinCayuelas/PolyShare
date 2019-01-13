@@ -114,7 +114,7 @@ public class SchoolClassController extends Application implements Initializable 
      * @param name Name of the new subject
      */
     public void updateSubject(int idSubject, String nameSubject) {
-    	schoolClassFacade.deleteSubject(idSubject);
+    	schoolClassFacade.updateSubject(idSubject, nameSubject);
     }
 
 
@@ -150,19 +150,6 @@ public class SchoolClassController extends Application implements Initializable 
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		/*listSubjects.add("MathsFi");
-		listSubjects.add("Bilan et CR");
-		listSubjects.add("Marchés financiers");
-
-		subjects.itemsProperty().bind(listProperty);
-
-		// This does not work, you can not directly add to a ListProperty
-		// listProperty.addAll( asianCurrencyList );
-		listProperty.set(FXCollections.observableArrayList(listSubjects));
-		*/
-		
-		
-		
 		ArrayList<Subject> subs = new ArrayList<>();
 		SchoolClass schoolClass = new SchoolClass(2, "Test");
 		//Test avec la classe 2 (IG4)
@@ -171,10 +158,6 @@ public class SchoolClassController extends Application implements Initializable 
 			 SchoolClass clas = schoolClassFacade.findSchoolClassId(2);
 			 listSubjects.add(s.getNameSubject());
 		    }
-		
-		
-
-		
 
 		 subjects.itemsProperty().bind(listProperty);
 

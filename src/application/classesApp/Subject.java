@@ -99,7 +99,7 @@ public class Subject {
      */
     public String getNameSubject() {
         // TODO implement here
-        return "";
+        return nameSubject;
     }
 
     /**

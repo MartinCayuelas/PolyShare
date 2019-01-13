@@ -4,11 +4,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Statement;
+import java.util.*;
 
 import application.classesApp.SchoolClass;
 import application.classesApp.Subject;
 import application.classesApp.Topic;
 import persistent.DAO.SubjectDAO;
+import database.BdConnection;
+
 /**
  * <b>Subject</b> is in a school class and contains topics
  * @author guillaud
@@ -16,8 +20,8 @@ import persistent.DAO.SubjectDAO;
 public class SubjectDAOMySQL extends SubjectDAO {
 
     
-    public SubjectDAOMySQL(Connection con) {
-    	super(con); 
+    public SubjectDAOMySQL(Connection conn) {
+    	super(conn); 
     }
 
 	@Override
@@ -40,19 +44,52 @@ public class SubjectDAOMySQL extends SubjectDAO {
 
 	@Override
 	public ArrayList<Subject> findSubjectsByIdSchoolClass(int idSchoolClass) {
-		return null;
+		Subject subject = new Subject(null, null);
+    	ArrayList<Subject> subjects = new ArrayList<Subject>();
+		try {
+			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM subject WHERE idClass = " + idSchoolClass);
+			while(result.next()){ 
+				subject = new Subject(
+					result.getInt("idSubject"),
+		  	        result.getString("nameSubject")
+		  	    );
+				subjects.add(subject);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return subjects;
 	}
 
 	@Override
-	public void deleteSubject(int idSchoolClass, Subject subject) {
+	public void deleteSubject(Subject subject) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateSubject(int idSchoolClass, Subject subject) {
+	public void updateSubject(Subject subject) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Subject findSubjectById(int idSubject) {
+		Subject subject = new Subject(0, null);      
+	    
+  	  try {
+  	    ResultSet result = this.con.createStatement(
+  	    ResultSet.TYPE_SCROLL_INSENSITIVE,
+  	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM subject WHERE idSubject = " + idSubject);
+  	    if(result.first())
+  	    	subject = new Subject(
+  	    			idSubject,
+  	        result.getString("nameSubject"));         
+  	  } catch (SQLException e) {
+  	    e.printStackTrace();
+  	  }
+  	  return subject;
 	}
 
 }

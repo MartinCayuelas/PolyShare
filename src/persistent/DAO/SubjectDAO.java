@@ -13,7 +13,7 @@ import application.classesApp.Topic;
  */
 public abstract class SubjectDAO {
 
-	private Connection con = null;
+	protected Connection con = null;
     
 	public SubjectDAO(Connection con) {
 		this.con = con;
@@ -52,17 +52,22 @@ public abstract class SubjectDAO {
     
     /**
      * Remove a Subject to the SchoolClass
-     * @param idSchoolClass 
      * @param subject 
      */
-    public abstract void deleteSubject(int idSchoolClass, Subject subject);
+    public abstract void deleteSubject(Subject subject);
     
 
     /**
      * Update a Subject
-     * @param idSchoolClass 
      * @param subject 
      */
-    public abstract void updateSubject(int idSchoolClass, Subject subject);
+    public abstract void updateSubject(Subject subject);
+    
+    /**
+     * Find a Subject
+     * @param idSubject 
+     * @return subject found
+     */
+    public abstract Subject findSubjectById(int idSubject);
 
 }

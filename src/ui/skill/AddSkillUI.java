@@ -1,9 +1,6 @@
 package ui.skill;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,15 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-//import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-public class MainSkill extends Application {
+public class AddSkillUI extends Application {
 
 	private Stage stage;
 	private AnchorPane loginLayout;
@@ -35,11 +24,11 @@ public class MainSkill extends Application {
 	private void initLoginLayout() throws IOException {
 
 		try {
-			FXMLLoader root = new FXMLLoader(getClass().getResource("Skill.fxml"));
+			FXMLLoader root = new FXMLLoader(getClass().getResource("addNewSkill.fxml"));
 		    Parent skillLayout = root.load();
 	        Scene scene = new Scene(skillLayout, 700, 600);
 	        
-	        stage.setTitle("MySkills");
+	        stage.setTitle("FXML Welcome");
 	        stage.setScene(scene);
 	        stage.show();
 		} catch (IOException e) {

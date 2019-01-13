@@ -1,10 +1,12 @@
 package facades;
 
 import java.util.List;
-
+import java.util.ArrayList;
 import application.classesApp.SchoolClass;
+import application.classesApp.Skill;
 import application.classesApp.Student;
 import application.classesApp.Subject;
+import application.classesApp.Topic;
 import facades.exceptions.DisconnectedStudentException;
 import factory.AbstractFactory;
 import persistent.DAO.SchoolClassDAO;
@@ -83,12 +85,33 @@ public class SchoolClassFacade {
 	}
 	
 	/**
+
 	 * @return 
 	 */
 	public List<SchoolClass> getAllSchoolClassConnectedStudent() {
 		SchoolClassDAO scDAO = this.factory.createSchoolClassDAO();
 		//Student co = LoginFacade.getInstance().getConnectedStudent();
 		return scDAO.getAllSchoolClassByIdStudent(1);
+	}
+	
+	/* Get all the subjects for a SchoolClass
+	 * @param schoolClass SchoolClass to analize
+	 * @return list of subject's for the schoolclass
+	 */
+	public ArrayList<Subject> getSubjects(SchoolClass schoolClass) {
+		// TODO implement here
+		return null;
+	}
+	
+	/**
+	 * Get all the topics for a Subject in a SchoolClass
+	 * @param schoolClass SchoolClass to analize
+	 * @param subject Subject to analize
+	 * @return list of topic's for the subject in the schoolclass
+	 */
+	public ArrayList<Topic> getTopics(SchoolClass schoolClass, Subject subject) {
+		// TODO implement here
+		return null;
 	}
 
 }

@@ -3,6 +3,10 @@ package application.classesApp;
 import java.util.Set;
 
 /**
+ * @author lucadebeir
+ */
+
+/**
  * <b>Student</b> is a user who is register
  */
 public class Student {
@@ -14,6 +18,11 @@ public class Student {
 		this.idStudent = id;
 		this.nameStudent= name;
 	}
+	
+	public Student (int id) {
+		this.idStudent = id;
+	}
+	
 	public Student(int id, String nameStudent, String firstNameStudent, String emailStudent, String passwordStudent,
 			String loginID, Set<SchoolClass> listClassManaged) {
 		this.idStudent = id;

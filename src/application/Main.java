@@ -32,5 +32,7 @@ public class Main extends Application {
 	public void init() {
 		Router r = Router.getInstance();
 		r.add("HomePage", "");
+		r.add("Skill", "SkillController");
+		r.add("addNewSkill", "");
 	}
 }

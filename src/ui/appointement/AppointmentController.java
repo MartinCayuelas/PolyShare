@@ -2,10 +2,22 @@ package ui.appointement;
 
 import java.util.*;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+
 /**
  * 
  */
 public class AppointmentController {
+	
+	@FXML
+	private Button helpRequest;
+	
+	@FXML
+	private Button helProposal;
+	
+	@FXML
+	private Button addRevisionSession;
 
     /**
      * Default constructor

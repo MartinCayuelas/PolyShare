@@ -1,18 +1,35 @@
 package facades;
 
+import java.sql.Date;
+
 import application.classesApp.RevisionSession;
 import application.classesApp.SingleSession;
 import application.classesApp.Student;
+import application.classesApp.Subject;
+import facades.exceptions.DisconnectedStudentException;
+import factory.AbstractFactory;
+import persistent.DAO.AppointmentDAO;
 
 /**
- * 
+ * @author lucadebeir
  */
+
 public class AppointmentsFacade {
 
-    /**
-     * Default constructor
-     */
-    public AppointmentsFacade() {
+	private AbstractFactory abstractFactory = AbstractFactory.getFactoryMySql();
+	private AppointmentDAO appointmentDAO = abstractFactory.createAppointmentDAO();
+    
+    /** Holder */
+    private static class SingletonHolder
+    {       
+        /** Instance unique non préinitialisée */
+        private final static AppointmentsFacade instance = new AppointmentsFacade();
+    }
+    
+    /** Point d'accès pour l'instance unique du singleton */
+    public static AppointmentsFacade getInstance()
+    {
+        return SingletonHolder.instance;
     }
 
 
@@ -21,9 +38,13 @@ public class AppointmentsFacade {
      * 
      * Add a single session between the student in param
      * and the connected student
+     * @throws DisconnectedStudentException 
      */
-    public void addSingleSession(Student Student) {
+    public void addSingleSession(Date date, Subject subject, Student student) throws DisconnectedStudentException {
         // TODO implement here
+    	Student teacher = LoginFacade.getInstance().getConnectedStudent();
+    	SingleSession singleSession = new SingleSession(0, teacher, student, date, subject.getId());
+    	appointmentDAO.createSingleSession(singleSession);
     }
 
     /**
@@ -64,7 +85,7 @@ public class AppointmentsFacade {
      */
     public SingleSession searchSingleSession(String subject) {
         // TODO implement here
-    	return null;
+    	return appointmentDAO.getSingleSessionBySubject(subject);
     }
 
     /**
@@ -72,6 +93,7 @@ public class AppointmentsFacade {
      */
     public void addRevisionSession(RevisionSession revisionSession) {
         // TODO implement here
+    	appointmentDAO.createRevisionSession(revisionSession);
     }
 
     /**

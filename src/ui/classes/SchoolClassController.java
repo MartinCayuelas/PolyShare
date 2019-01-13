@@ -1,18 +1,31 @@
 package ui.classes;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
 import javafx.application.Application;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * 
+ * @author guillaud
  */
-public class SchoolClassController extends Application {
+public class SchoolClassController extends Application implements Initializable {
 	
 	//Partie du lancement de la fenêtre
 	private Stage primaryStage;
@@ -28,17 +41,20 @@ public class SchoolClassController extends Application {
 	
 	public void initClassLayout() {
         try {
-            // Load root layout from fxml file.
+        	// Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader(SchoolClassController.class.getResource("SchoolClass.fxml"));
             classLayout = (AnchorPane) loader.load();
             
             // Show the scene containing the class layout.
-            Scene scene = new Scene(classLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+    	    Scene scene = new Scene(classLayout);
+           	primaryStage.setScene(scene);
+           primaryStage.show();
+            
+        
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
 	
 	/**
@@ -82,5 +98,28 @@ public class SchoolClassController extends Application {
     public void join() {
         // TODO implement here
     }
+    
+    @FXML
+	private ListView subjects;
+    
+    @FXML
+    private ListView topics;
 
+	protected List<String> listSubjects = new ArrayList<>();
+	protected List<String> listTopics = new ArrayList<>();
+
+	protected ListProperty<String> listProperty = new SimpleListProperty<>();
+
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		listSubjects.add("MathsFi");
+		listSubjects.add("Bilan et CR");
+		listSubjects.add("Marchés financiers");
+
+		subjects.itemsProperty().bind(listProperty);
+
+		// This does not work, you can not directly add to a ListProperty
+		// listProperty.addAll( asianCurrencyList );
+		listProperty.set(FXCollections.observableArrayList(listSubjects));
+	}
 }

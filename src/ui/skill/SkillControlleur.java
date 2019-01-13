@@ -1,5 +1,6 @@
 package ui.skill;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+import ui.Router;
 
 /**
  * 
@@ -34,6 +37,7 @@ public class SkillControlleur implements Initializable {
 	private LoginFacade loginFacade = new LoginFacade();
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	private Student student;
+	private Router r = Router.getInstance();
 	
 	/**
 	 * Default constructor
@@ -45,21 +49,24 @@ public class SkillControlleur implements Initializable {
 	 * @return
 	 */
 	public void addSkill() {
-		// TODO implement here
+		Skill s = new Skill(0, "ASupprimer", 4, 2, 1);
+		skillFacade.addSkill(s);
 	}
 
 	/**
 	 * @return
 	 */
 	public void deleteSkill() {
-		// TODO implement here
+		Skill s = new Skill(12, "ASupprimer", 4, 2, 1);
+		skillFacade.deleteSkill(s);
 	}
 
 	/**
 	 * @return
 	 */
 	public void updateSkill() {
-		// TODO implement here
+		Skill s = new Skill(14, "Modifi�", 1, 2, 1);
+		skillFacade.updateSkill(s);
 	}
 
 	@FXML
@@ -77,6 +84,30 @@ public class SkillControlleur implements Initializable {
 		listProperty.set(FXCollections.observableArrayList(skillsList));
 		//listProperty.set(FXCollections.observableArrayList(europeanCurrencyList));
 	}
+	
+	@FXML
+	private void handleAddNewSkill(ActionEvent event) {
+	//	Router r = Router.getInstance();
+	//	r.activate("addNewSkill");
+		this.addSkill();
+	}
+	
+	
+	@FXML
+	private void handleDeleteSkill(ActionEvent event) {
+	//	Router r = Router.getInstance();
+	//	r.activate("addNewSkill");
+		this.deleteSkill();
+	}
+	
+	@FXML
+	private void handleUpdateSkill(ActionEvent event) {
+	//	Router r = Router.getInstance();
+	//	r.activate("addNewSkill");
+		this.updateSkill();
+	}
+	
+	
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -103,7 +134,7 @@ public class SkillControlleur implements Initializable {
 		europeanCurrencyList.add("SEK");
 		europeanCurrencyList.add("CHF");
 		europeanCurrencyList.add("HUF");*/
-		
+
 		myListSkills.itemsProperty().bind(listProperty);
 
 		// This does not work, you can not directly add to a ListProperty

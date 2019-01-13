@@ -18,6 +18,7 @@ public class Router {
 
 	private HashMap<String, String> screenMap = new HashMap<>();
 	private String[] params;
+	
 	// Instance unique (singleton)
 	private static Router INSTANCE = null;
 

@@ -68,25 +68,27 @@ public class BdConnection {
 	}
 	
 	/**
-	 * make a request with no response like update, delete or delete
+	 * make a request with no response like update, insert or delete
 	 * @param request
+	 * @return number row affected by the request
 	 */
-	public static void request(String request) {
+	public static int request(String request) {
 		Statement st;
 		Connection co = BdConnection.getInstance();
 
 		try {
 			st = co.createStatement();
 			// insert the class
-			st.executeUpdate(request);
+			return st.executeUpdate(request);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		return 0;
 	}
 
 	/**
-	 * 
 	 * @param request
 	 * @return a resulset of the result from de db
 	 */
@@ -105,6 +107,33 @@ public class BdConnection {
 		}
 
 		return rs;
+	}
+	
+	/**
+	 * @param request
+	 * @return the id of the last insered obj
+	 */
+	public static int insertRequest(String request) {
+		Statement st;
+		Connection co = BdConnection.getInstance();
+		int idMax = -1;
+		try {
+			st = co.createStatement();
+			// insert the class
+			int nbRow = st.executeUpdate(request);
+			if (nbRow > 0) {
+				
+				ResultSet rsId = st.getGeneratedKeys();
+				
+				if (rsId.next()) {
+					idMax = rsId.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return idMax;
 	}
 
 }

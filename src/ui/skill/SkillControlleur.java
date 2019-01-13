@@ -65,7 +65,7 @@ public class SkillControlleur implements Initializable {
 	 * @return
 	 */
 	public void updateSkill() {
-		Skill s = new Skill(14, "Modifié", 1, 2, 1);
+		Skill s = new Skill(14, "Modifiï¿½", 1, 2, 1);
 		skillFacade.updateSkill(s);
 	}
 
@@ -128,7 +128,12 @@ public class SkillControlleur implements Initializable {
 		
 		
 
-		
+		/*europeanCurrencyList.add("EUR");
+		europeanCurrencyList.add("GBP");
+		europeanCurrencyList.add("NOK");
+		europeanCurrencyList.add("SEK");
+		europeanCurrencyList.add("CHF");
+		europeanCurrencyList.add("HUF");*/
 
 		myListSkills.itemsProperty().bind(listProperty);
 

@@ -7,8 +7,8 @@ import java.util.Set;
  */
 public class SchoolClass {
 
-    
-    public int getIdSchoolClass() {
+
+	public int getIdSchoolClass() {
 		return idSchoolClass;
 	}
 
@@ -78,10 +78,9 @@ public class SchoolClass {
 
     /**
      * Get the name of a school class
-     * @return name of the scool class
+     * @return name of the school class
      */
     public String getNameSchoolClass() {
-        // TODO implement here
         return nameSchoolClass;
     }
 
@@ -90,7 +89,6 @@ public class SchoolClass {
      * @param value new name of the school class
      */
     public void setNameSchoolClass(String value) {
-        // TODO implement here
     	this.nameSchoolClass = value;
     }
 

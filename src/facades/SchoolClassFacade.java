@@ -1,7 +1,7 @@
 package facades;
 
+import java.util.List;
 import java.util.ArrayList;
-
 import application.classesApp.SchoolClass;
 import application.classesApp.Skill;
 import application.classesApp.Student;
@@ -11,20 +11,13 @@ import facades.exceptions.DisconnectedStudentException;
 import factory.AbstractFactory;
 import persistent.DAO.SchoolClassDAO;
 import persistent.DAO.SubjectDAO;
-import persistent.Factories.DAOFactoryMySql;
+import persistent.factories.DAOFactoryMySql;
 
 /**
  * @author guillaud, ponthieu
  */
 public class SchoolClassFacade {
 	AbstractFactory factory = new DAOFactoryMySql(); 
-
-	/**
-	 * Default constructor
-	 */
-	public SchoolClassFacade(AbstractFactory factory) {
-		this.factory = factory;
-	}
 
 	public SchoolClassFacade() {
 		// TODO Auto-generated constructor stub
@@ -70,8 +63,8 @@ public class SchoolClassFacade {
 	}
 	
 	/**
-	 * @param id the id of the researched schoolClass
-	 * @return SchollClass return the matched schoolClass
+	 * @param id - the id of the researched schoolClass
+	 * @return SchoolClass return the matched schoolClass
 	 */
 	public SchoolClass findSchoolClassId(int id) {
 		// TODO implement here
@@ -93,6 +86,16 @@ public class SchoolClassFacade {
 	/**
 	 * Get all the subjects for a SchoolClass
 	 * @param idSchoolClass SchoolClass to analize
+	 * @return 
+	 */
+	public List<SchoolClass> getAllSchoolClassConnectedStudent() {
+		SchoolClassDAO scDAO = this.factory.createSchoolClassDAO();
+		//Student co = LoginFacade.getInstance().getConnectedStudent();
+		return scDAO.getAllSchoolClassByIdStudent(1);
+	}
+	
+	/* Get all the subjects for a SchoolClass
+	 * @param schoolClass SchoolClass to analize
 	 * @return list of subject's for the schoolclass
 	 */
 	public ArrayList<Subject> getSubjects(int idSchoolClass) {
@@ -137,7 +140,7 @@ public class SchoolClassFacade {
 	 * @param id the id of the researched subject
 	 * @param name the new name for the subject
 	 */
-	public void deleteSubject(int id, String name) {
+	public void updateSubject(int id, String name) {
 		SubjectDAO sDAO = factory.createSubjectDAO();
 		sDAO.updateSubject(id, name);
 	}

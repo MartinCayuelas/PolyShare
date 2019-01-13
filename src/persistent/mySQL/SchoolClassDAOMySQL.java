@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import application.classesApp.SchoolClass;
 import application.classesApp.Student;
@@ -122,8 +124,55 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 	}
 
 	@Override
-	public ArrayList<SchoolClass> getAllSchoolClasses() {
+	public List<SchoolClass> getAllSchoolClasses() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/**
+	 * 
+	 * @param idStudent - the id of a student
+	 * @return the list of class where the student is member/admin/waiting or banned
+	 */
+	public List<SchoolClass> getAllSchoolClassByIdStudent(int idStudent) {
+		ResultSet rs = BdConnection.selectRequest("Select Class.* from Study, Class where Class.idClass = Study.idClass and Study.idStudent = " + idStudent);
+		
+		List<SchoolClass> list = new ArrayList<SchoolClass>();
+		try {
+			while (rs.next()) {
+				list.add(bdToObject(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	/**
+	 * @param rs - a resultSet of all column of Class from the db
+	 * @return a list of class
+	 * Transform a resultSet of class in List of SchoolClass
+	 */
+	private SchoolClass bdToObject (ResultSet rs ) {
+		
+		SchoolClass sc = null;
+		try {
+			sc = new SchoolClass(rs.getInt(1), rs.getString(2));
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return sc;
+	}
+
+	@Override
+	public List<String> getAllSchoolClassNameByIdStudent(int idStudent) {
+		List<SchoolClass> scList = this.getAllSchoolClassByIdStudent(idStudent);
+		ArrayList<String> nameClass = new ArrayList<String>();
+    	for (SchoolClass sc : scList) {
+    		nameClass.add(sc.getNameSchoolClass());
+    	}
+		return nameClass;
 	}
 }

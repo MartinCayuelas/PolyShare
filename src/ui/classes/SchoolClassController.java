@@ -23,7 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * 
+ * @author guillaud
  */
 public class SchoolClassController extends Application implements Initializable {
 	

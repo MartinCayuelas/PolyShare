@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import ui.classes.SchoolClassController;
 
 /**
- * 
+ * @author guillaud
  */
 public class TopicController extends Application implements Initializable {
 	

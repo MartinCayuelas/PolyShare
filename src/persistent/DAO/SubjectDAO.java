@@ -1,13 +1,15 @@
 package persistent.DAO;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import application.classesApp.SchoolClass;
+import application.classesApp.Skill;
 import application.classesApp.Subject;
 import application.classesApp.Topic;
 
 /**
- * @author ponthieu
+ * @author ponthieu, guillaud
  */
 public abstract class SubjectDAO {
 
@@ -40,5 +42,27 @@ public abstract class SubjectDAO {
      *
      */
     public abstract void close(Subject s);
+    
+    /**
+     * Search Subjects with a SchoolClass Id
+     * @param idSchoolClass 
+     * @return list of subjects
+     */
+    public abstract ArrayList<Subject> findSubjectsByIdSchoolClass(int idSchoolClass);
+    
+    /**
+     * Remove a Subject to the SchoolClass
+     * @param idSchoolClass 
+     * @param subject 
+     */
+    public abstract void deleteSubject(int idSchoolClass, Subject subject);
+    
+
+    /**
+     * Update a Subject
+     * @param idSchoolClass 
+     * @param subject 
+     */
+    public abstract void updateSubject(int idSchoolClass, Subject subject);
 
 }

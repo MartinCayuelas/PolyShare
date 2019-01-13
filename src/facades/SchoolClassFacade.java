@@ -10,10 +10,11 @@ import application.classesApp.Topic;
 import facades.exceptions.DisconnectedStudentException;
 import factory.AbstractFactory;
 import persistent.DAO.SchoolClassDAO;
+import persistent.DAO.SubjectDAO;
 import persistent.factories.DAOFactoryMySql;
 
 /**
- * 
+ * @author guillaud, ponthieu
  */
 public class SchoolClassFacade {
 	AbstractFactory factory = new DAOFactoryMySql(); 
@@ -35,8 +36,6 @@ public class SchoolClassFacade {
 		} catch (DisconnectedStudentException e) {
 			e.printStackTrace();
 		}
-
-
 	}
 
 	/**
@@ -95,7 +94,8 @@ public class SchoolClassFacade {
 	}
 	
 	/**
-
+	 * Get all the subjects for a SchoolClass
+	 * @param idSchoolClass SchoolClass to analize
 	 * @return 
 	 */
 	public List<SchoolClass> getAllSchoolClassConnectedStudent() {
@@ -108,9 +108,10 @@ public class SchoolClassFacade {
 	 * @param schoolClass SchoolClass to analize
 	 * @return list of subject's for the schoolclass
 	 */
-	public ArrayList<Subject> getSubjects(SchoolClass schoolClass) {
-		// TODO implement here
-		return null;
+	public ArrayList<Subject> getSubjects(int idSchoolClass) {
+		SubjectDAO sDAO = factory.createSubjectDAO();
+		ArrayList<Subject> listSubjects = sDAO.findSubjectsByIdSchoolClass(idSchoolClass);
+		return listSubjects;
 	}
 	
 	/**
@@ -122,6 +123,36 @@ public class SchoolClassFacade {
 	public ArrayList<Topic> getTopics(SchoolClass schoolClass, Subject subject) {
 		// TODO implement here
 		return null;
+	}
+	
+	/**
+	 * find a Subject with an ID
+	 * @param id the id of the researched subject
+	 * @return Subject return the matched schoolClass
+	 */
+	public Subject findSubjectById(int id) {
+		SubjectDAO sDAO = factory.createSubjectDAO();
+		Subject s = sDAO.findSubjectById(id);
+		return s;
+	}
+	
+	/**
+	 * Delete a Subject with an ID
+	 * @param id the id of the researched subject
+	 */
+	public void deleteSubject(int id) {
+		SubjectDAO sDAO = factory.createSubjectDAO();
+		sDAO.deleteSubject(id);
+	}
+	
+	/**
+	 * Update a Subject with an ID
+	 * @param id the id of the researched subject
+	 * @param name the new name for the subject
+	 */
+	public void updateSubject(int id, String name) {
+		SubjectDAO sDAO = factory.createSubjectDAO();
+		sDAO.updateSubject(id, name);
 	}
 
 }

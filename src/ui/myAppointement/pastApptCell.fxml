@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label text="Student:&quot;theo&quot;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets top="3.0" />
+         </padding>
+      </Label>
+   </top>
+   <bottom>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" style="-fx-background-color: #357AB7;" text="Note" textFill="#f2efef" GridPane.halignment="CENTER" />
+            <Button mnemonicParsing="false" style="-fx-background-color: #357AB7;" text="Comment" textFill="#f8f8f8" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+            <Label text="01/08/09 SC 002" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+         </children>
+      </GridPane>
+   </bottom>
+   <left>
+      <Label text="IG4" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets left="3.0" />
+         </padding>
+      </Label>
+   </left>
+   <center>
+      <Label text="Design patterns" BorderPane.alignment="CENTER" />
+   </center>
+   <right>
+      <Label text="OOSE" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets right="3.0" />
+         </padding>
+      </Label>
+   </right>
+</BorderPane>

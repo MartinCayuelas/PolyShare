@@ -5,12 +5,12 @@ import java.util.*;
 /**
  * 
  */
-public class QuestionController {
+public class TopicHomePage {
 
     /**
      * Default constructor
      */
-    public QuestionController() {
+    public TopicHomePage() {
     }
 
 

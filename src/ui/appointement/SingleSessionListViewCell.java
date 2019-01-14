@@ -15,6 +15,8 @@ import javafx.scene.layout.HBox;
 
 public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
 	
+	private AppointmentController controller;
+	
 	private AppointmentsFacade appointmentsFacade = new AppointmentsFacade();
 	
 	@FXML 
@@ -36,6 +38,11 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
 	private  HBox cellLayout;
 	
 	FXMLLoader mLLoader;
+	
+	public SingleSessionListViewCell(AppointmentController controller) {
+		super();
+		this.controller = controller;
+	}
 	
 	protected void updateItem(SingleSessionCell ssc, boolean empty) {
         super.updateItem(ssc, empty);
@@ -60,16 +67,16 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
             
             
             this.cellLabelnameTeacher.setText(String.valueOf(ssc.getTeacher().getNameStudent()));
-            this.cellLabelnameSubject.setText(String.valueOf(ssc.getIdSubject()));
+            //this.cellLabelnameSubject.setText(String.valueOf(ssc.getIdSubject()));
             this.cellLabelExplication.setText(String.valueOf(ssc.getTeacher().getNameStudent()));
             this.cellLabelDateAppointment.setText(String.valueOf(ssc.getDateRevisionSession()));
            
-            this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
+           /* this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
                @Override
                public void handle(ActionEvent event) {
                    
                }                            
-           });
+           });*/
            
            
            

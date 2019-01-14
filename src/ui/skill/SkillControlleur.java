@@ -118,7 +118,7 @@ public class SkillControlleur implements Initializable {
 			student.setId(2);
 		}*/
 		ArrayList<Skill> sk = new ArrayList<>();
-		student = new Student(2, "Test");
+		student = new Student(1, "Test");
 		sk = skillFacade.getSkills(student);
 		 skCells = new ArrayList<>();
 		

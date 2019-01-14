@@ -40,6 +40,8 @@ public class SkillControlleur implements Initializable {
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	private Student student;
 	private Router r = Router.getInstance();
+	ObservableList<SkillCell> skillObservableList;
+	List<SkillCell> skCells ;
 	
 	/**
 	 * Default constructor
@@ -58,9 +60,16 @@ public class SkillControlleur implements Initializable {
 	/**
 	 * @return
 	 */
-	public void deleteSkill() {
-		Skill s = new Skill(12, "ASupprimer", 4, 2, 1);
-		skillFacade.deleteSkill(s);
+	public void deleteSkill(SkillCell s) {
+		//Skill s = new Skill(12, "ASupprimer", 4, 2, 1);
+		skillFacade.deleteSkill(s.getSkill());
+		skCells.remove(s);
+		skillObservableList.clear();
+		skillObservableList.addAll(skCells);
+		System.out.println(skCells.size());
+		mySkillsLView.setItems(skillObservableList);
+		
+		
 	}
 
 	/**
@@ -89,25 +98,13 @@ public class SkillControlleur implements Initializable {
 	
 	@FXML
 	private void handleAddNewSkill(ActionEvent event) {
-	//	Router r = Router.getInstance();
-	//	r.activate("addNewSkill");
-		this.addSkill();
+		//Router r = Router.getInstance();
+		
+		
 	}
 	
 	
-	@FXML
-	private void handleDeleteSkill(ActionEvent event) {
-	//	Router r = Router.getInstance();
-	//	r.activate("addNewSkill");
-		this.deleteSkill();
-	}
 	
-	@FXML
-	private void handleUpdateSkill(ActionEvent event) {
-	//	Router r = Router.getInstance();
-	//	r.activate("addNewSkill");
-		this.updateSkill();
-	}
 	
 	
 
@@ -123,11 +120,11 @@ public class SkillControlleur implements Initializable {
 		ArrayList<Skill> sk = new ArrayList<>();
 		student = new Student(2, "Test");
 		sk = skillFacade.getSkills(student);
-		List<SkillCell> skCells = new ArrayList<>();
+		 skCells = new ArrayList<>();
 		
 		 for(Skill sc : sk) {
 			 SchoolClass clas = schoolClassFacade.findSchoolClassId(sc.getIdClass());
-			 SkillCell sCell = new SkillCell(sc.getIdSkill(),sc.getNameSkill(),clas.getNameSchoolClass(),sc.getMarkSkill());
+			 SkillCell sCell = new SkillCell(sc,clas.getNameSchoolClass());
 			//skillsList.add(sc.getNameSkill()+" - "+clas.getNameSchoolClass()+" - "+sc.getMarkSkill());
 			 System.out.println(sCell.getNomSkill()+" - "+sCell.getNomClasse()+" - "+sCell.getMarkSkill());
 			 
@@ -135,20 +132,12 @@ public class SkillControlleur implements Initializable {
 		    }
 		
 		
-
-		
-		ObservableList<SkillCell> skillObservableList = FXCollections.observableArrayList();
+		skillObservableList = FXCollections.observableArrayList();
 		skillObservableList.addAll(skCells);
     	
     	this.mySkillsLView.setItems(skillObservableList);
-    	this.mySkillsLView.setCellFactory(studentListView -> new SkillListViewCell());
-		
-		/*europeanCurrencyList.add("EUR");
-		europeanCurrencyList.add("GBP");
-		europeanCurrencyList.add("NOK");
-		europeanCurrencyList.add("SEK");
-		europeanCurrencyList.add("CHF");
-		europeanCurrencyList.add("HUF");*/
+    	this.mySkillsLView.setCellFactory(studentListView -> new SkillListViewCell(this));
+	
 
 	
 	}

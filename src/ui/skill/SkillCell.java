@@ -1,25 +1,25 @@
 package ui.skill;
 
+import application.classesApp.Skill;
+
 public class SkillCell {
-	private int idSkill;
-	private String nomSkill;
+	private Skill skill;
 	private String nomClasse;
-	private int markSkill;
+
 	
 	
 	
-	public SkillCell(int idSkill, String nomSkill, String nomClasse, int markSkill) {
+	public SkillCell(Skill s, String nomClasse) {
 		super();
-		this.idSkill = idSkill;
-		this.nomSkill = nomSkill;
+		this.skill = s;
 		this.nomClasse = nomClasse;
-		this.markSkill = markSkill;
+		
 	}
 	public String getNomSkill() {
-		return nomSkill;
+		return skill.getNameSkill();
 	}
 	public void setNomSkill(String nomSkill) {
-		this.nomSkill = nomSkill;
+		this.skill.setNameSkill(nomSkill);
 	}
 	public String getNomClasse() {
 		return nomClasse;
@@ -28,17 +28,22 @@ public class SkillCell {
 		this.nomClasse = nomClasse;
 	}
 	public int getMarkSkill() {
-		return markSkill;
+		return skill.getMarkSkill();
 	}
 	public void setMarkSkill(int markSkill) {
-		this.markSkill = markSkill;
+		skill.setMarkSkill(markSkill);
+		
 	}
 	public int getIdSkill() {
-		return idSkill;
+		return this.skill.getIdSkill();
 	}
-	public void setIdSkill(int idSkill) {
-		this.idSkill = idSkill;
+	public Skill getSkill() {
+		return skill;
 	}
+	public void setSkill(Skill skill) {
+		this.skill = skill;
+	}
+	
 	
 	
 

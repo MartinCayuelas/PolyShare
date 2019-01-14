@@ -15,6 +15,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 
 public class SkillListViewCell extends ListCell<SkillCell> {
+	
+	private SkillControlleur controller;
 	private SkillFacade skillFacade = new SkillFacade();
 	@FXML private Label cellLabelnomSkill;
 	@FXML private Label cellLabelSchoolClassSkill;
@@ -26,6 +28,15 @@ public class SkillListViewCell extends ListCell<SkillCell> {
 	@FXML private  HBox cellLayout;
 	FXMLLoader mLLoader;
 	
+	
+	
+	public SkillListViewCell(SkillControlleur controller) {
+		super();
+		this.controller = controller;
+	}
+
+
+
 	@Override
     protected void updateItem(SkillCell sc, boolean empty) {
         super.updateItem(sc, empty);
@@ -65,17 +76,14 @@ public class SkillListViewCell extends ListCell<SkillCell> {
                @Override
                public void handle(ActionEvent event) {
             	   Skill s = new Skill(sc.getIdSkill(), null, 0, 0, 0);
-                   skillFacade.deleteSkill(s);
-                   
+                   //skillFacade.deleteSkill(s);
+            	   
+                   controller.deleteSkill(sc);
                }                            
            });
            
            
-           
-           
-          // this.buttonUpdate.setOnAction();
-            //this.buttonUpdate.add
-            
+         
             setText(null);
             setGraphic(cellLayout);
         }

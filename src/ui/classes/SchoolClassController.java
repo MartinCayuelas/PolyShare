@@ -33,7 +33,7 @@ import ui.Router;
 /**
  * @author guillaud
  */
-public class SchoolClassController extends Application implements Initializable {
+public class SchoolClassController implements Initializable {
 	
 	protected List<String> listSubjects = new ArrayList<>();
 	protected List<String> listTopics = new ArrayList<>();
@@ -44,48 +44,6 @@ public class SchoolClassController extends Application implements Initializable 
 	private LoginFacade loginFacade = new LoginFacade();
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	private Router r = Router.getInstance();
-	
-	//Partie du lancement de la fenêtre
-	private Stage primaryStage;
-    private AnchorPane classLayout;
-
-	@Override
-	public void start(Stage primaryStage) {
-		this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("ClassApp");
-
-        initClassLayout();
-	}
-	
-	public void initClassLayout() {
-        try {
-        	// Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader(SchoolClassController.class.getResource("SchoolClass.fxml"));
-            classLayout = (AnchorPane) loader.load();
-            
-            // Show the scene containing the class layout.
-    	    Scene scene = new Scene(classLayout);
-           	primaryStage.setScene(scene);
-           primaryStage.show();
-            
-        
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-    }
-	
-	/**
-     * Returns the main stage.
-     * @return
-     */
-    public Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
-	public static void main(String[] args) {
-		launch(args);
-	}
 
 	//Partie du controller
     /**
@@ -152,7 +110,7 @@ public class SchoolClassController extends Application implements Initializable 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		ArrayList<Subject> subs = new ArrayList<>();
-		int idSchoolClass = ((SchoolClass)r.getParams()[0]).getIdSchoolClass();
+		//int idSchoolClass = ((SchoolClass)r.getParams()[0]).getIdSchoolClass();
 		//Test avec la classe 2 (IG4), il faudra ensuite mettre idSchoolClass
 		subs = schoolClassFacade.getSubjects(2);
 		 for(Subject s : subs) {

@@ -73,8 +73,21 @@ public class TopicDAOMySQL extends TopicDAO {
 
 	@Override
 	public Topic findTopicById(int idTopic) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		Topic topic = new Topic(0, null);      
+	    
+	  	  try {
+	  	    ResultSet result = this.con.createStatement(
+	  	    ResultSet.TYPE_SCROLL_INSENSITIVE,
+	  	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM topic WHERE idTopic = " + idTopic);
+	  	    if(result.first())
+	  	    	topic = new Topic(
+	  	    			idTopic,
+	  	        result.getString("nameTopic")
+	  	        );         
+	  	  } catch (SQLException e) {
+	  	    e.printStackTrace();
+	  	  }
+	  	  return topic;
+		}
 
 }

@@ -1,5 +1,6 @@
 package application.classesApp;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 /**
@@ -16,8 +17,9 @@ public class Subject {
     	this.nameSubject = nameSubject;
     }
 
-    public Subject(String nameSubject, Set<Topic> listofTopics) {
+    public Subject(int idSubject, String nameSubject, ArrayList<Topic> listofTopics) {
 		super();
+		this.idSubject = idSubject;
 		this.nameSubject = nameSubject;
 		this.listofTopics = listofTopics;
 	}
@@ -35,14 +37,14 @@ public class Subject {
     /**
      * 
      */
-    private Set<Topic> listofTopics;
+    private ArrayList<Topic> listofTopics;
 
 
     /**
      * Get all the topics for a subject
      * @return list of topics for a subject
      */
-    public Set<Topic> getTopics() {
+    public ArrayList<Topic> getTopics() {
         return this.listofTopics;
     }
 

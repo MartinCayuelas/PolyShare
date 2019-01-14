@@ -1,8 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
-
+<BorderPane prefHeight="800.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <bottom>
+      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #357AB7;" text="Exit" textFill="#f2eded" BorderPane.alignment="CENTER" />
+   </bottom>
+   <top>
+      <Label style="-fx-alignment: center;" text="My Appointments" textFill="#357ab7" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+   </top>
+   <right>
+      <BorderPane prefHeight="734.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <top>
+            <Label text="Appt Made" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Label layoutX="109.0" layoutY="7.0" text="Past" />
+                        <Separator layoutY="42.0" prefHeight="0.0" prefWidth="504.0" />
+                        
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Label layoutX="90.0" layoutY="7.0" text="Upcoming" />
+                        <Separator layoutX="-748.0" layoutY="40.0" prefHeight="1.0" prefWidth="1126.0" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </center>
+      </BorderPane>
+   </right>
+   <left>
+      <BorderPane prefHeight="734.0" prefWidth="503.0" BorderPane.alignment="CENTER">
+         <top>
+            <Label text="Appt Given" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <SplitPane dividerPositions="0.499001996007984" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Label layoutX="104.0" layoutY="7.0" text="Past" />
+                        <Separator layoutX="4.0" layoutY="43.0" prefHeight="2.0" prefWidth="498.0" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Label layoutX="91.0" layoutY="7.0" text="Upcoming" />
+                        <Separator layoutX="-254.0" layoutY="43.0" prefHeight="0.0" prefWidth="1003.0" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </center>
+      </BorderPane>
+   </left>
+</BorderPane>

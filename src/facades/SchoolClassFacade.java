@@ -11,6 +11,7 @@ import facades.exceptions.DisconnectedStudentException;
 import factory.AbstractFactory;
 import persistent.DAO.SchoolClassDAO;
 import persistent.DAO.SubjectDAO;
+import persistent.DAO.TopicDAO;
 import persistent.factories.DAOFactoryMySql;
 
 /**
@@ -104,6 +105,10 @@ public class SchoolClassFacade {
 		return scDAO.getAllSchoolClassByIdStudent(1);
 	}
 	
+	////////////
+	//SUBJECTS//
+	////////////
+	
 	/* Get all the subjects for a SchoolClass
 	 * @param schoolClass SchoolClass to analize
 	 * @return list of subject's for the schoolclass
@@ -112,17 +117,6 @@ public class SchoolClassFacade {
 		SubjectDAO sDAO = factory.createSubjectDAO();
 		ArrayList<Subject> listSubjects = sDAO.findSubjectsByIdSchoolClass(idSchoolClass);
 		return listSubjects;
-	}
-	
-	/**
-	 * Get all the topics for a Subject in a SchoolClass
-	 * @param schoolClass SchoolClass to analize
-	 * @param subject Subject to analize
-	 * @return list of topic's for the subject in the schoolclass
-	 */
-	public ArrayList<Topic> getTopics(SchoolClass schoolClass, Subject subject) {
-		// TODO implement here
-		return null;
 	}
 	
 	/**
@@ -153,6 +147,51 @@ public class SchoolClassFacade {
 	public void updateSubject(int id, String name) {
 		SubjectDAO sDAO = factory.createSubjectDAO();
 		sDAO.updateSubject(id, name);
+	}
+	
+	//////////
+	//TOPICS//
+	//////////
+	
+	/**
+	 * Get all the topics for a Subject in a SchoolClass
+	 * @param idSubject ID of the Subject to analize
+	 * @return list of topic's for the subject in the schoolclass
+	 */
+	public ArrayList<Topic> getTopics(int idSubject) {
+		TopicDAO tDAO = factory.createTopicDAO();
+		ArrayList<Topic> listTopics = tDAO.findTopicsByIdSubject(idSubject);
+		return listTopics;
+	}
+	
+	/**
+	 * find a Topic with an ID
+	 * @param id the id of the researched Topic
+	 * @return Subject return the matched schoolClass
+	 */
+	public Topic findTopicById(int id) {
+		TopicDAO tDAO = factory.createTopicDAO();
+		Topic s = tDAO.findTopicById(id);
+		return s;
+	}
+	
+	/**
+	 * Delete a Topic with an ID
+	 * @param id the id of the researched Topic
+	 */
+	public void deleteTopic(int id) {
+		TopicDAO tDAO = factory.createTopicDAO();
+		tDAO.deleteTopic(id);
+	}
+	
+	/**
+	 * Update a Topic with an ID
+	 * @param id the id of the researched Topic
+	 * @param name the new name for the Topic
+	 */
+	public void updateTopic(int id, String name) {
+		TopicDAO tDAO = factory.createTopicDAO();
+		tDAO.updateTopic(id, name);
 	}
 
 }

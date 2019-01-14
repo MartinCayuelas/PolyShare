@@ -11,6 +11,7 @@ import application.classesApp.SchoolClass;
 import application.classesApp.Subject;
 import application.classesApp.Topic;
 import persistent.DAO.SubjectDAO;
+import persistent.DAO.TopicDAO;
 import database.BdConnection;
 
 /**
@@ -44,14 +45,26 @@ public class SubjectDAOMySQL extends SubjectDAO {
 
 	@Override
 	public ArrayList<Subject> findSubjectsByIdSchoolClass(int idSchoolClass) {
-		Subject subject = new Subject(null, null);
+		Subject subject = new Subject(0, null, null);
     	ArrayList<Subject> subjects = new ArrayList<Subject>();
 		try {
 			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM subject WHERE idClass = " + idSchoolClass);
 			while(result.next()){ 
+				//Récupération des topics du subject
+				ResultSet resultTopics = this.con.createStatement().executeQuery("SELECT * FROM topic WHERE idSubject = " + result.getInt("idSubject"));
+				ArrayList<Topic> topics = new ArrayList<Topic>();
+				while(resultTopics.next()){
+					Topic t = new Topic(
+							resultTopics.getInt("idTopic"),
+							resultTopics.getString("nameTopic")
+				  	    );
+					topics.add(t);
+				}
+				
 				subject = new Subject(
 					result.getInt("idSubject"),
-		  	        result.getString("nameSubject")
+		  	        result.getString("nameSubject"),
+		  	        topics
 		  	    );
 				subjects.add(subject);
 			}
@@ -85,7 +98,8 @@ public class SubjectDAOMySQL extends SubjectDAO {
   	    if(result.first())
   	    	subject = new Subject(
   	    			idSubject,
-  	        result.getString("nameSubject"));         
+  	        result.getString("nameSubject")
+  	        );         
   	  } catch (SQLException e) {
   	    e.printStackTrace();
   	  }

@@ -33,58 +33,17 @@ import ui.Router;
 /**
  * @author guillaud
  */
-public class SchoolClassController extends Application implements Initializable {
+public class SchoolClassController implements Initializable {
 	
 	protected List<String> listSubjects = new ArrayList<>();
 	protected List<String> listTopics = new ArrayList<>();
 
-	protected ListProperty<String> listProperty = new SimpleListProperty<>();
+	protected ListProperty<String> listPropertySubjects = new SimpleListProperty<>();
+	protected ListProperty<String> listPropertyTopics = new SimpleListProperty<>();
 	
 	private LoginFacade loginFacade = new LoginFacade();
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	private Router r = Router.getInstance();
-	
-	//Partie du lancement de la fenêtre
-	private Stage primaryStage;
-    private AnchorPane classLayout;
-
-	@Override
-	public void start(Stage primaryStage) {
-		this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("ClassApp");
-
-        initClassLayout();
-	}
-	
-	public void initClassLayout() {
-        try {
-        	// Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader(SchoolClassController.class.getResource("SchoolClass.fxml"));
-            classLayout = (AnchorPane) loader.load();
-            
-            // Show the scene containing the class layout.
-    	    Scene scene = new Scene(classLayout);
-           	primaryStage.setScene(scene);
-           primaryStage.show();
-            
-        
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-    }
-	
-	/**
-     * Returns the main stage.
-     * @return
-     */
-    public Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
-	public static void main(String[] args) {
-		launch(args);
-	}
 
 	//Partie du controller
     /**
@@ -151,18 +110,18 @@ public class SchoolClassController extends Application implements Initializable 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		ArrayList<Subject> subs = new ArrayList<>();
-		SchoolClass schoolClass = new SchoolClass(2, "Test");
-		//Test avec la classe 2 (IG4)
+		//int idSchoolClass = ((SchoolClass)r.getParams()[0]).getIdSchoolClass();
+		//Test avec la classe 2 (IG4), il faudra ensuite mettre idSchoolClass
 		subs = schoolClassFacade.getSubjects(2);
 		 for(Subject s : subs) {
 			 SchoolClass clas = schoolClassFacade.findSchoolClassId(2);
 			 listSubjects.add(s.getNameSubject());
 		    }
 
-		 subjects.itemsProperty().bind(listProperty);
+		 subjects.itemsProperty().bind(listPropertySubjects);
 
 		// This does not work, you can not directly add to a ListProperty
 		// listProperty.addAll( asianCurrencyList );
-		listProperty.set(FXCollections.observableArrayList(listSubjects));
+		 listPropertySubjects.set(FXCollections.observableArrayList(listSubjects));
 	}
 }

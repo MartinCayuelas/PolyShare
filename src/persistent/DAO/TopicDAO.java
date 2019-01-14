@@ -11,7 +11,7 @@ import application.classesApp.Topic;
  * @author guillaud
  */
 public abstract class TopicDAO {
-	private Connection con;
+	protected Connection con;
 
     public TopicDAO(Connection con) {
 		this.con = con;

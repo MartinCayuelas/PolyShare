@@ -8,6 +8,7 @@ import application.classesApp.SchoolClass;
 import application.classesApp.Skill;
 import application.classesApp.Student;
 import application.classesApp.Subject;
+import application.classesApp.Topic;
 import facades.LoginFacade;
 import facades.SchoolClassFacade;
 import facades.SkillFacade;
@@ -100,10 +101,10 @@ public class SchoolClassController implements Initializable {
     }
     
     @FXML
-	private ListView subjects;
+	private ListView subjectsListView;
     
     @FXML
-    private ListView topics;
+    private ListView topicsListView;
 
 	
 
@@ -116,12 +117,20 @@ public class SchoolClassController implements Initializable {
 		 for(Subject s : subs) {
 			 SchoolClass clas = schoolClassFacade.findSchoolClassId(2);
 			 listSubjects.add(s.getNameSubject());
+			 for(Topic t : s.getTopics()) {
+				 listTopics.add(t.getNameTopic());
+			 }
+			 
 		    }
 
-		 subjects.itemsProperty().bind(listPropertySubjects);
-
-		// This does not work, you can not directly add to a ListProperty
-		// listProperty.addAll( asianCurrencyList );
+		 subjectsListView.itemsProperty().bind(listPropertySubjects);
 		 listPropertySubjects.set(FXCollections.observableArrayList(listSubjects));
+		 
+		 topicsListView.itemsProperty().bind(listPropertyTopics);
+		 listPropertyTopics.set(FXCollections.observableArrayList(listTopics));
+		 
+		 subjectsListView.getSelectionModel().selectedIndexProperty().addListener(
+				 observable -> System.out.println(listSubjects.get(subjectsListView.getSelectionModel().getSelectedIndex()))
+				 );
 	}
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" spacing="20.0" stylesheets="@homePage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.homePage.HomePageController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" spacing="20.0" stylesheets="@../css/button.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.homePage.HomePageController">
    <children>
       <Label style="-fx-text-fill: #357AB7;" text="Polytech Montpellier">
          <font>
@@ -38,7 +38,7 @@
                         <Image url="@../../../img/user.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onMouseClicked="#goProfil" style="-fx-background-color: #357AB7; -fx-text-fill: #FFFFFF;" stylesheets="@homePage.css" text="My profil" />
+                  <Button mnemonicParsing="false" onMouseClicked="#goProfil" stylesheets="@homePage.css" text="My profil" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1">
@@ -48,7 +48,7 @@
                         <Image url="@../../../img/appointment.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onMouseClicked="#goAppointement" style="-fx-background-color: #357AB7; -fx-text-fill: #FFFFFF;" text="My appointements" />
+                  <Button mnemonicParsing="false" onMouseClicked="#goAppointement" text="My appointements" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="2">
@@ -58,7 +58,7 @@
                         <Image url="@../../../img/teacher-pointing-blackboard.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onMouseClicked="#goClass" style="-fx-background-color: #357AB7; -fx-text-fill: #FFFFFF;" text="Add a class" />
+                  <Button mnemonicParsing="false" onMouseClicked="#goClass" text="Add a class" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="3">
@@ -68,7 +68,7 @@
                         <Image url="@../../../img/exit-to-app-button.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onMouseClicked="#exit" style="-fx-background-color: #357AB7; -fx-text-fill: #FFFFFF;" text="Exit" />
+                  <Button mnemonicParsing="false" onMouseClicked="#exit" text="Exit" />
                </children>
             </VBox>
          </children>
@@ -94,12 +94,12 @@
                <font>
                   <Font size="26.0" />
                </font></Label>
-            <Button mnemonicParsing="false" onMouseClicked="#goSubjectSearched" style="-fx-background-color: #357AB7; -fx-text-fill: #FFFFFF;" text="See subjects of this class" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onMouseClicked="#goSubjectSearched" text="See subjects of this class" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#goSubject" style="-fx-background-color: #357AB7; -fx-text-fill: #FFFFFF;" text="See subject of this class" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onMouseClicked="#goSubject" text="See subject of this class" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets top="20.0" />
                </GridPane.margin>

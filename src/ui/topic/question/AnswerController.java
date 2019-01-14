@@ -1,16 +1,16 @@
-package ui.forum;
+package ui.topic.question;
 
 import java.util.*;
 
 /**
  * 
  */
-public class QuestionController {
+public class AnswerController {
 
     /**
      * Default constructor
      */
-    public QuestionController() {
+    public AnswerController() {
     }
 
 
@@ -39,13 +39,6 @@ public class QuestionController {
      * @return
      */
     public void like() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public void close() {
         // TODO implement here
     }
 

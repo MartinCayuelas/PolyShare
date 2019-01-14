@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import application.classesApp.Skill;
 
 /**
- * @author ponthieu
+ * @author martinCayuelas
  */
+
 public abstract class SkillDAO {
 	protected Connection connect = null;
     /**

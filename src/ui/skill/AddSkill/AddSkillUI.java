@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class AddSkillUI extends Application {
 
 	private Stage stage;
-	private AnchorPane loginLayout;
+	//private AnchorPane loginLayout;
 	//private AnchorPane anchorPane;
 
 	@Override
@@ -28,7 +28,7 @@ public class AddSkillUI extends Application {
 		    Parent skillLayout = root.load();
 	        Scene scene = new Scene(skillLayout, 700, 600);
 	        
-	        stage.setTitle("FXML Welcome");
+	        stage.setTitle("FXML addNewSkill");
 	        stage.setScene(scene);
 	        stage.show();
 		} catch (IOException e) {

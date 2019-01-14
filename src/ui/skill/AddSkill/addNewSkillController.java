@@ -69,20 +69,15 @@ private void initSpinner() {
 @Override
 public void initialize(URL arg0, ResourceBundle arg1) {
 	// TODO Auto-generated method stub
-	System.out.println("1");
+	
 	initSpinner();
-	System.out.println("2");
 	List<SchoolClass> sc = new ArrayList<>();
-	System.out.println("3");
 	sc = schoolClassFacade.getAllSchoolClass();
-	System.out.println("4");
 	SchoolClassObservableList = FXCollections.observableArrayList();
 	for(SchoolClass c : sc) {
 		System.out.println("Class : " +c.getNameSchoolClass());
 		SchoolClassObservableList.add(c.getNameSchoolClass());
 	}
-	System.out.println("5");
-	
 	
 	this.choiceBoxClass.setItems(SchoolClassObservableList);
 	

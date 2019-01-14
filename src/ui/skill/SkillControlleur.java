@@ -49,13 +49,7 @@ public class SkillControlleur implements Initializable {
 	public SkillControlleur() {
 	}
 
-	/**
-	 * @return
-	 */
-	public void addSkill() {
-		Skill s = new Skill(0, "ASupprimer", 4, 2, 1);
-		skillFacade.addSkill(s);
-	}
+	
 
 	/**
 	 * @return

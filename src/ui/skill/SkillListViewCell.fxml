@@ -22,8 +22,8 @@
          <children>
             <ButtonBar layoutX="-19.0" layoutY="1.0" prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" style="-fx-background-color: #FFBB33;" text="Update" />
-                  <Button mnemonicParsing="false" style="-fx-background-color: #FF3F33; -fx-text-fill: white;" text="Delete" />
+                <Button fx:id="buttonUpdate" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" style="-fx-background-color: #FFBB33;" text="Update" />
+                  <Button fx:id="buttonDelete" mnemonicParsing="false" style="-fx-background-color: #FF3F33; -fx-text-fill: white;" text="Delete" />
               </buttons>
             </ButtonBar>
          </children>

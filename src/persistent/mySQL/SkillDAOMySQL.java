@@ -56,11 +56,11 @@ public class SkillDAOMySQL extends SkillDAO {
 	}
 
 	@Override
-	public void deleteSkillByIdSkill(int idStudent, Skill skill) {
+	public void deleteSkillByIdSkill(Skill skill) {
 		try {
 			this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM Skill WHERE idStudent = '" + idStudent + "'AND idSkill = '"+skill.getIdSkill()+ "'");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM Skill WHERE idSkill = '"+skill.getIdSkill()+ "'");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

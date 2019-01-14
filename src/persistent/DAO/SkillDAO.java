@@ -39,7 +39,7 @@ public abstract class SkillDAO {
      * @param idStudent 
      * @param skill 
      */
-    public abstract void deleteSkillByIdSkill(int idStudent, Skill skill);
+    public abstract void deleteSkillByIdSkill( Skill skill);
     
 
     /**

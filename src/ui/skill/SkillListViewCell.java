@@ -4,6 +4,9 @@ import java.io.IOException;
 
 import application.classesApp.SchoolClass;
 import application.classesApp.Skill;
+import facades.SkillFacade;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -12,6 +15,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 
 public class SkillListViewCell extends ListCell<SkillCell> {
+	private SkillFacade skillFacade = new SkillFacade();
 	@FXML private Label cellLabelnomSkill;
 	@FXML private Label cellLabelSchoolClassSkill;
 	@FXML private Label cellLabelmarkSkill;
@@ -43,10 +47,32 @@ public class SkillListViewCell extends ListCell<SkillCell> {
 
             }
             
+            
+            
             this.cellLabelnomSkill.setText(String.valueOf(sc.getNomSkill()));
             this.cellLabelSchoolClassSkill.setText(String.valueOf(sc.getNomClasse()));
            String mark = String.valueOf(sc.getMarkSkill());
            this.cellLabelmarkSkill.setText(mark);
+           
+           this.buttonUpdate.setOnAction(new EventHandler<ActionEvent>() {
+               @Override
+               public void handle(ActionEvent event) {
+                   
+               }                            
+           });
+           
+           this.buttonDelete.setOnAction(new EventHandler<ActionEvent>() {
+               @Override
+               public void handle(ActionEvent event) {
+            	   Skill s = new Skill(sc.getIdSkill(), null, 0, 0, 0);
+                   skillFacade.deleteSkill(s);
+               }                            
+           });
+           
+           
+           
+           
+          // this.buttonUpdate.setOnAction();
             //this.buttonUpdate.add
             
             setText(null);

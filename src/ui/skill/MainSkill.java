@@ -29,10 +29,10 @@ public class MainSkill extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		this.stage = primaryStage;
-		initLoginLayout();
+		initSkillLayout();
 	}
 
-	private void initLoginLayout() throws IOException {
+	private void initSkillLayout() throws IOException {
 
 		try {
 			FXMLLoader root = new FXMLLoader(getClass().getResource("Skill.fxml"));

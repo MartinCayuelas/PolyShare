@@ -39,7 +39,7 @@ public class SkillFacade {
      * 
      */
     public void deleteSkill(Skill skill) {
-        skillDAO.deleteSkillByIdSkill(skill.getIdStudent(), skill);
+        skillDAO.deleteSkillByIdSkill(skill);
     }
 
     /**

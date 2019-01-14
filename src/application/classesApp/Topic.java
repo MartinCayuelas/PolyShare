@@ -11,7 +11,9 @@ public class Topic {
     /**
      * Default constructor
      */
-    public Topic() {
+    public Topic(int idTopic, String nameTopic) {
+    	this.idTopic = idTopic;
+    	this.nameTopic = nameTopic;
     }
     
     

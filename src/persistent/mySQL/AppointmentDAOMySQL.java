@@ -53,7 +53,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 				  
 				ResultSet resultParticipate = this.con.createStatement(
 						ResultSet.TYPE_SCROLL_INSENSITIVE,
-						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Participate WHERE idSingleSession = " + id);
+						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Participate WHERE idRevisionSession = " + id);
 	  
 				while(resultParticipate.next()) {
 					
@@ -239,6 +239,124 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			e.printStackTrace();
 		}
 		return appointment;
+	}
+	
+	/**
+     * @param idClass
+     * @return list of SingleSession of the class who corresponds to idClass
+     */
+	public ArrayList<SingleSession> getSingleSessionByClass(int idClass) {
+		// TODO Auto-generated method stub
+		SingleSession appointment = null;
+		Student teacher;
+		Student student;
+		ArrayList<SingleSession> listSingleSession = new ArrayList<SingleSession>();
+		    
+		try {
+			ResultSet result = this.con.createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM SingleSession WHERE idClass = " + idClass);
+			  
+			if (result.first()) {
+				  
+				ResultSet resultStudent = this.con.createStatement(
+						ResultSet.TYPE_SCROLL_INSENSITIVE,
+						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + result.getInt("idStudent"));
+				  
+				student = new Student(
+						resultStudent.getInt("idStudent"),
+						resultStudent.getString("nameStudent"),
+						resultStudent.getString("firstNameStudent"),
+						resultStudent.getString("emailStudent"),
+						resultStudent.getString("password"),
+						resultStudent.getString("loginID"),
+				        null);
+								
+				ResultSet resultTeacher = this.con.createStatement(
+						ResultSet.TYPE_SCROLL_INSENSITIVE,
+						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + result.getInt("idTeacher"));
+				  
+				teacher = new Student(
+						resultTeacher.getInt("idStudent"),
+						resultTeacher.getString("nameStudent"),
+						resultTeacher.getString("firstNameStudent"),
+						resultTeacher.getString("emailStudent"),
+						resultTeacher.getString("password"),
+						resultTeacher.getString("loginID"),
+				        null);
+				  
+				appointment = new SingleSession(resultStudent.getInt("idSingleSession"), teacher, student, resultStudent.getDate("dateAppointment"), resultStudent.getInt("idSubject"));
+				listSingleSession.add(appointment);
+			}
+			  
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listSingleSession;
+	}
+	
+	/**
+     * @param idClass
+     * @return list of RevisionSession of the class who corresponds to idClass
+     */
+	public ArrayList<RevisionSession> getAppointmentByClass(int idClass) {
+		// TODO Auto-generated method stub
+		RevisionSession appointment = null;
+		Student teacher;
+		Student student;
+		ArrayList<Student> listStudent = new ArrayList<Student>();
+		ArrayList<RevisionSession> listRevisionSession = new ArrayList<RevisionSession>();
+		    
+		try {
+			ResultSet result = this.con.createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM RevisionSession WHERE idClass = " + idClass);
+			  
+			if (result.first()) {
+				  
+				ResultSet resultParticipate = this.con.createStatement(
+						ResultSet.TYPE_SCROLL_INSENSITIVE,
+						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Participate WHERE idRevisionSession = " + result.getInt("idRevisionSession"));
+	  
+				while(resultParticipate.next()) {
+					
+					ResultSet resultStudent = this.con.createStatement(
+							ResultSet.TYPE_SCROLL_INSENSITIVE,
+							ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + resultParticipate.getInt("idStudent"));
+					
+					student = new Student(
+							resultStudent.getInt("idStudent"),
+							resultStudent.getString("nameStudent"),
+							resultStudent.getString("firstNameStudent"),
+							resultStudent.getString("emailStudent"),
+							resultStudent.getString("password"),
+							resultStudent.getString("loginID"),
+					        null);
+					
+					listStudent.add(student);
+				}
+				
+				ResultSet resultTeacher = this.con.createStatement(
+						ResultSet.TYPE_SCROLL_INSENSITIVE,
+						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + result.getInt("idTeacher"));
+				  
+				teacher = new Student(
+						resultTeacher.getInt("idStudent"),
+						resultTeacher.getString("nameStudent"),
+						resultTeacher.getString("firstNameStudent"),
+						resultTeacher.getString("emailStudent"),
+						resultTeacher.getString("password"),
+						resultTeacher.getString("loginID"),
+				        null);
+				
+				appointment = new RevisionSession(result.getInt("idRevisionSession"), teacher, listStudent, result.getInt("idSubject"), result.getDate("dateAppointment"));
+				listRevisionSession.add(appointment);
+			}
+			  
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listRevisionSession;
 	}
 	
 	public void recommendStudent(Student student) {

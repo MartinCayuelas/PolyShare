@@ -1,6 +1,8 @@
 package persistent.DAO;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+
 import application.classesApp.Appointment;
 import application.classesApp.RevisionSession;
 import application.classesApp.SingleSession;
@@ -57,5 +59,17 @@ public abstract class AppointmentDAO {
      * Creates a RevisionSession
      */
     public abstract void createRevisionSession(RevisionSession r);
+    
+    /**
+     * @param idClass
+     * @return list of SingleSession of the class who corresponds to idClass
+     */
+    public abstract ArrayList<SingleSession> getSingleSessionByClass(int idClass);
+    
+    /**
+     * @param idClass
+     * @return list of RevisionSession of the class who corresponds to idClass
+     */
+    public abstract ArrayList<RevisionSession> getAppointmentByClass(int idClass);
 
 }

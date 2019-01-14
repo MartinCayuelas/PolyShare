@@ -1,4 +1,4 @@
-package ui.forum;
+package ui.topic.question;
 
 import java.util.*;
 

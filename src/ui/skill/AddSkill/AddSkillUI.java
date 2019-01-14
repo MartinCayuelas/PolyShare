@@ -1,4 +1,4 @@
-package ui.skill;
+package ui.skill.AddSkill;
 
 import java.io.IOException;
 

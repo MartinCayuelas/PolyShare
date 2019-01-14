@@ -66,6 +66,7 @@ public class SkillListViewCell extends ListCell<SkillCell> {
                public void handle(ActionEvent event) {
             	   Skill s = new Skill(sc.getIdSkill(), null, 0, 0, 0);
                    skillFacade.deleteSkill(s);
+                   
                }                            
            });
            

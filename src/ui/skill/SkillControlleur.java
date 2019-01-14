@@ -16,6 +16,7 @@ import facades.exceptions.DisconnectedStudentException;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,15 +25,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import ui.Router;
+import ui.homePage.SchoolClassListViewCell;
 
 /**
  * 
  */
 public class SkillControlleur implements Initializable {
 
-	protected List<String> skillsList = new ArrayList<>();
+	@FXML private ListView<SkillCell> mySkillsLView;
 
-	protected ListProperty<String> listProperty = new SimpleListProperty<>();
+	//protected ListProperty<String> listProperty = new SimpleListProperty<>();
 	private SkillFacade skillFacade = new SkillFacade();
 	private LoginFacade loginFacade = new LoginFacade();
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
@@ -81,7 +83,7 @@ public class SkillControlleur implements Initializable {
 	
 	@FXML
 	private void handleButtonAction(ActionEvent event) {
-		listProperty.set(FXCollections.observableArrayList(skillsList));
+		//listProperty.set(FXCollections.observableArrayList(skillsList));
 		//listProperty.set(FXCollections.observableArrayList(europeanCurrencyList));
 	}
 	
@@ -121,13 +123,26 @@ public class SkillControlleur implements Initializable {
 		ArrayList<Skill> sk = new ArrayList<>();
 		student = new Student(2, "Test");
 		sk = skillFacade.getSkills(student);
+		List<SkillCell> skCells = new ArrayList<>();
+		
 		 for(Skill sc : sk) {
 			 SchoolClass clas = schoolClassFacade.findSchoolClassId(sc.getIdClass());
-			 skillsList.add(sc.getNameSkill()+" - "+clas.getNameSchoolClass()+" - "+sc.getMarkSkill());
+			 SkillCell sCell = new SkillCell(sc.getIdSkill(),sc.getNameSkill(),clas.getNameSchoolClass(),sc.getMarkSkill());
+			//skillsList.add(sc.getNameSkill()+" - "+clas.getNameSchoolClass()+" - "+sc.getMarkSkill());
+			 System.out.println(sCell.getNomSkill()+" - "+sCell.getNomClasse()+" - "+sCell.getMarkSkill());
+			 
+			 skCells.add(sCell);
 		    }
 		
 		
 
+		
+		ObservableList<SkillCell> skillObservableList = FXCollections.observableArrayList();
+		skillObservableList.addAll(skCells);
+    	
+    	this.mySkillsLView.setItems(skillObservableList);
+    	this.mySkillsLView.setCellFactory(studentListView -> new SkillListViewCell());
+		
 		/*europeanCurrencyList.add("EUR");
 		europeanCurrencyList.add("GBP");
 		europeanCurrencyList.add("NOK");
@@ -135,11 +150,7 @@ public class SkillControlleur implements Initializable {
 		europeanCurrencyList.add("CHF");
 		europeanCurrencyList.add("HUF");*/
 
-		myListSkills.itemsProperty().bind(listProperty);
-
-		// This does not work, you can not directly add to a ListProperty
-		// listProperty.addAll( asianCurrencyList );
-		listProperty.set(FXCollections.observableArrayList(skillsList));
+	
 	}
 
 }

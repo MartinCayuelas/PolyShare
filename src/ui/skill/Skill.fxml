@@ -19,7 +19,7 @@
          <center>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <ListView fx:id="myListSkills" layoutX="133.0" layoutY="70.0" prefHeight="179.0" prefWidth="298.0" />
+                  <ListView fx:id="mySkillsLView" layoutX="63.0" layoutY="54.0" prefHeight="199.0" prefWidth="439.0" />
                   <ButtonBar layoutX="104.0" layoutY="258.0" prefHeight="40.0" prefWidth="244.0">
                      <padding>
                         <Insets right="2.0" top="2.0" />
@@ -36,9 +36,7 @@
                         <Font size="30.0" />
                      </font>
                   </Text>
-                    <Button fx:id="button" layoutX="241.0" layoutY="313.0" minWidth="73.0" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="100.0" text="Save" />
-                  <Button layoutX="353.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleDeleteSkill" style="-fx-background-color: red; -fx-text-fill: white;" text="Delete" />
-                  <Button layoutX="404.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleUpdateSkill" style="-fx-background-color: orange; -fx-text-fill: white;" text="Update" />
+                    <Button fx:id="button" layoutX="231.0" layoutY="313.0" minWidth="73.0" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="100.0" text="Save" />
                </children>
             </Pane>
          </center>

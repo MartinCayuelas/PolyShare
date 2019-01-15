@@ -117,4 +117,14 @@ public class Subject {
        this.nameSubject = nameSubject;
     }
 
+	public int getIdSchoolClass() {
+		return idSchoolClass;
+	}
+
+	public void setIdSchoolClass(int idSchoolClass) {
+		this.idSchoolClass = idSchoolClass;
+	}
+    
+    
+
 }

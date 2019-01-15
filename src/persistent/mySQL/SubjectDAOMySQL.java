@@ -113,7 +113,7 @@ public class SubjectDAOMySQL extends SubjectDAO {
 	  	  try {
 	  	    ResultSet result = this.con.createStatement(
 	  	    ResultSet.TYPE_SCROLL_INSENSITIVE,
-	  	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM subject WHERE nameSubject = " + nameSubject);
+	  	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM subject WHERE nameSubject = " + "'" + nameSubject + "'");
 	  	    if(result.first())
 	  	    	subject = new Subject(
 	  	    			result.getInt("idSubject"),
@@ -128,7 +128,13 @@ public class SubjectDAOMySQL extends SubjectDAO {
 	@Override
 	public void addSubject(Subject subject) {
 		// TODO Auto-generated method stub
-		
+		try {
+			this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO subject VALUES (0,'" + subject.getNameSubject() + "',"+subject.getIdSchoolClass()+")");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

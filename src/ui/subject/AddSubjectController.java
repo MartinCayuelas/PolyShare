@@ -1,6 +1,6 @@
 package ui.subject;
 
-import java.awt.TextField;
+import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -49,7 +49,7 @@ public class AddSubjectController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		Object[] params = Router.getInstance().getParams();
+		/*Object[] params = Router.getInstance().getParams();
     	
     	if (params[0] instanceof SchoolClass) {
     		SchoolClass selectSchoolClass = (SchoolClass)params[0];
@@ -60,10 +60,7 @@ public class AddSubjectController implements Initializable {
     	else {
     		//TODO do a custom message error
     		System.out.println("PASSER UN SUBJECT SVP");
-    	}
+    	}*/
 	}
-    
-
-   
 
 }

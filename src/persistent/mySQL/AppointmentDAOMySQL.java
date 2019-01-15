@@ -14,7 +14,7 @@ import application.classesApp.Subject;
 import persistent.DAO.AppointmentDAO;
 
 /**
- * @authors julienroumagnac lucadebeir
+ * @author julienroumagnac lucadebeir
  */
 
 /**

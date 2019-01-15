@@ -14,7 +14,8 @@ import factory.AbstractFactory;
 import persistent.DAO.AppointmentDAO;
 
 /**
- * @author lucadebeir
+ * @author lucadebeir julienroumagnac
+ * 
  */
 
 public class AppointmentsFacade {

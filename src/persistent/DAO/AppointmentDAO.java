@@ -9,7 +9,7 @@ import application.classesApp.SingleSession;
 import application.classesApp.Student;
 
 /**
- * @author ponthieu
+ * @author julienroumagnac ponthieu 
  */
 public abstract class AppointmentDAO {
 

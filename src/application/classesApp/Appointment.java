@@ -3,7 +3,7 @@ package application.classesApp;
 import java.time.LocalDate;
 
 /**
- * @author lucadebeir
+ * @author julienroumagnac lucadebeir  
  */
 
 /**

@@ -2,6 +2,7 @@ package application.classesApp;
 
 /**
  * <b>Answer</b> to a question on the forum
+ * @author ponthieu
  */
 public class Answer {
 
@@ -10,16 +11,56 @@ public class Answer {
      */
     public Answer() {
     }
+    
+    public Answer(int id, String content, int nbLikesAnswer) {
+		super();
+		this.id = id;
+		this.content = content;
+		this.nbLikesAnswer = nbLikesAnswer;
+	}
+    
 
-    /**
-     * 
-     */
-    public int nbLikesAnswer;
+	public Answer(int id, String content) {
+		super();
+		this.id = id;
+		this.content = content;
+	}
+	
+	
 
-    /**
-     * 
-     */
-    public Question listOfAnswer;
+
+	public Answer(String content) {
+		super();
+		this.content = content;
+	}
+
+
+
+
+	private int id;
+    
+    private String content;
+    
+    private int nbLikesAnswer;
+
+
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+    private Question listOfAnswer;
 
     /**
      * Like an answer
@@ -47,8 +88,7 @@ public class Answer {
      * @return Total number of like for an answer
      */
     public int getNbLikesAnswer() {
-        // TODO implement here
-        return 0;
+        return this.nbLikesAnswer;
     }
 
     /**
@@ -56,7 +96,7 @@ public class Answer {
      * @param value new number of like for an answer
      */
     public void setNbLikesAnswer(int value) {
-        // TODO implement here
+        this.nbLikesAnswer = value;
     }
 
 }

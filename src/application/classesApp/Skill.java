@@ -3,6 +3,10 @@ package application.classesApp;
 import java.util.*;
 
 /**
+ * @author martinCayuelas
+ */
+
+/**
  * <b>Skill</b> corresponds to level of comprehension of a topic
  */
 public class Skill {

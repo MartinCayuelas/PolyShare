@@ -2,4 +2,9 @@ src/configDb.txt
 bin/*
 src/persistent/DAO/MainTestDAO.java
 
+
 /bin/
+
+src/ui/classes/SchoolclassController
+src/ui/topic/testTopic.java
+

@@ -35,7 +35,7 @@
                                       <items>
                                         <AnchorPane fx:id="paneSubject" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                              <children>
-                                                <ListView fx:id="subjects" layoutX="131.0" layoutY="132.0" prefHeight="632.0" prefWidth="493.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0" />
+                                                <ListView fx:id="subjectsListView" layoutX="131.0" layoutY="132.0" prefHeight="632.0" prefWidth="493.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0" />
                                                 <Label alignment="CENTER" layoutX="140.0" prefHeight="60.0" prefWidth="213.0" text="Subjects" textFill="#357ab7">
                                                    <font>
                                                       <Font size="24.0" />
@@ -62,7 +62,7 @@
                                       <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                              <children>
-                                                <ListView fx:id="topics" layoutX="134.0" layoutY="187.0" prefHeight="633.0" prefWidth="493.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0" />
+                                                <ListView fx:id="topicsListView" layoutX="134.0" layoutY="187.0" prefHeight="633.0" prefWidth="493.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0" />
                                                 <Label alignment="CENTER" layoutX="140.0" prefHeight="60.0" prefWidth="213.0" text="Topics" textFill="#357ab7">
                                                    <font>
                                                       <Font size="24.0" />

@@ -1,6 +1,6 @@
 package application.classesApp;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * @author lucadebeir
@@ -25,8 +25,13 @@ public class SingleSession extends Appointment {
     	this.student = student;
     }
     
-    public SingleSession(int idAppointment, Student teacher, Student student, Date dateA, int idSubject) {
-    	super(idAppointment, teacher, idSubject, dateA);
+    public SingleSession(int idAppointment, Student teacher, Student student, LocalDate localDate, int idSubject) {
+    	super(idAppointment, teacher, idSubject, localDate);
+    	this.student = student;
+    }
+    
+    public SingleSession(int idAppointment, Student teacher, Student student, LocalDate dateA, Subject subject) {
+    	super(idAppointment, teacher, subject, dateA);
     	this.student = student;
     }
     

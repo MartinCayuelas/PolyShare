@@ -14,7 +14,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 
+
+/**
+ * @author martinCayuelas
+ */
+
 public class SkillListViewCell extends ListCell<SkillCell> {
+	
+	private SkillControlleur controller;
 	private SkillFacade skillFacade = new SkillFacade();
 	@FXML private Label cellLabelnomSkill;
 	@FXML private Label cellLabelSchoolClassSkill;
@@ -26,6 +33,15 @@ public class SkillListViewCell extends ListCell<SkillCell> {
 	@FXML private  HBox cellLayout;
 	FXMLLoader mLLoader;
 	
+	
+	
+	public SkillListViewCell(SkillControlleur controller) {
+		super();
+		this.controller = controller;
+	}
+
+
+
 	@Override
     protected void updateItem(SkillCell sc, boolean empty) {
         super.updateItem(sc, empty);
@@ -47,8 +63,6 @@ public class SkillListViewCell extends ListCell<SkillCell> {
 
             }
             
-            
-            
             this.cellLabelnomSkill.setText(String.valueOf(sc.getNomSkill()));
             this.cellLabelSchoolClassSkill.setText(String.valueOf(sc.getNomClasse()));
            String mark = String.valueOf(sc.getMarkSkill());
@@ -63,19 +77,11 @@ public class SkillListViewCell extends ListCell<SkillCell> {
            
            this.buttonDelete.setOnAction(new EventHandler<ActionEvent>() {
                @Override
-               public void handle(ActionEvent event) {
-            	   Skill s = new Skill(sc.getIdSkill(), null, 0, 0, 0);
-                   skillFacade.deleteSkill(s);
-                   
+               public void handle(ActionEvent event) { 
+                   controller.deleteSkill(sc);
                }                            
            });
            
-           
-           
-           
-          // this.buttonUpdate.setOnAction();
-            //this.buttonUpdate.add
-            
             setText(null);
             setGraphic(cellLayout);
         }

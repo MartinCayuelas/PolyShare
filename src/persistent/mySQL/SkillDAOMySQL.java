@@ -10,6 +10,11 @@ import application.classesApp.Student;
 import persistent.DAO.SkillDAO;
 
 /**
+ * @author martinCayuelas
+ */
+
+
+/**
  * <b>Answer</b> to a question on the forum
  */
 public class SkillDAOMySQL extends SkillDAO {

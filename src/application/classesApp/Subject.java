@@ -1,7 +1,6 @@
 package application.classesApp;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 /**
  * @author ponthieu
@@ -12,7 +11,7 @@ public class Subject {
     /**
      * Default constructor
      */
-    public Subject(int idSubject, String nameSubject) {
+	public Subject(int idSubject, String nameSubject) {
     	this.idSubject = idSubject;
     	this.nameSubject = nameSubject;
     }

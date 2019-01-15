@@ -30,6 +30,11 @@ public class SingleSession extends Appointment {
     	this.student = student;
     }
     
+    public SingleSession(int idAppointment, Student teacher, Student student, Date dateA, Subject subject) {
+    	super(idAppointment, teacher, subject, dateA);
+    	this.student = student;
+    }
+    
     /**
      *Get the student who is teached for the appointment
      * @return student who is teached for the appointment

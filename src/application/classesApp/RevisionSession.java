@@ -29,6 +29,11 @@ public class RevisionSession extends Appointment {
     	super(idAppointment, teacher, idSubject, dateA);
     	this.students = student;
     }
+    
+    public RevisionSession(int idAppointment, Student teacher, ArrayList<Student> student, Subject subject, Date dateA) {
+    	super(idAppointment, teacher, subject, dateA);
+    	this.students = student;
+    }
 
 
     /**
@@ -62,7 +67,7 @@ public class RevisionSession extends Appointment {
      */
     public ArrayList<Student> getStudent() {
         // TODO implement here
-        return students;
+        return this.students;
     }
 
     /**

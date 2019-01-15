@@ -1,6 +1,9 @@
 package ui.skill;
 
 import application.classesApp.Skill;
+/**
+ * @author martinCayuelas
+ */
 
 public class SkillCell {
 	private Skill skill;

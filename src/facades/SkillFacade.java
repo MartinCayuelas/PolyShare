@@ -10,8 +10,9 @@ import persistent.DAO.SkillDAO;
 import persistent.DAO.StudentDAO;
 
 /**
- * 
+ * @author martinCayuelas
  */
+
 public class SkillFacade {
 	private AbstractFactory abstractFactory = AbstractFactory.getFactoryMySql();
 	private SkillDAO skillDAO = abstractFactory.createSkillDAO();

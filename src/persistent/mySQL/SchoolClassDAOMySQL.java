@@ -120,13 +120,45 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 	@Override
 	public SchoolClass getSchoolClassByName(String s) {
 		// TODO Auto-generated method stub
-		return null;
+		SchoolClass schoolClass = new SchoolClass(null);
+    	
+		try {
+			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM class WHERE nameClass like \'"+ s + "\'");
+			  if(result.next()) {
+				schoolClass = new SchoolClass(
+					result.getInt("idClass"),
+		  	        result.getString("nameClass")
+		  	    );
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return schoolClass;
 	}
 
 	@Override
 	public List<SchoolClass> getAllSchoolClasses() {
 		// TODO Auto-generated method stub
-		return null;
+		SchoolClass schoolClass = new SchoolClass(null);
+    	ArrayList<SchoolClass> schoolClasses = new ArrayList<SchoolClass>();
+		try {
+			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM class");
+			while(result.next()){ 
+				schoolClass = new SchoolClass(
+					result.getInt("idClass"),
+		  	        result.getString("nameClass")
+		  	    );
+				schoolClasses.add(schoolClass);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return schoolClasses;
 	}
 	
 	@Override
@@ -148,6 +180,8 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 		
 		return bdToObjects(rs);
 	}
+	
+	
 	
 	/**
 	 * @param rs - a resultSet of all column of Class from the db

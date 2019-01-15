@@ -49,13 +49,7 @@ public class SkillControlleur implements Initializable {
 	public SkillControlleur() {
 	}
 
-	/**
-	 * @return
-	 */
-	public void addSkill() {
-		Skill s = new Skill(0, "ASupprimer", 4, 2, 1);
-		skillFacade.addSkill(s);
-	}
+	
 
 	/**
 	 * @return
@@ -105,8 +99,6 @@ public class SkillControlleur implements Initializable {
 	
 	
 	
-	
-	
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -118,7 +110,7 @@ public class SkillControlleur implements Initializable {
 			student.setId(2);
 		}*/
 		ArrayList<Skill> sk = new ArrayList<>();
-		student = new Student(2, "Test");
+		student = new Student(1, "Test");
 		sk = skillFacade.getSkills(student);
 		 skCells = new ArrayList<>();
 		

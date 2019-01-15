@@ -109,6 +109,12 @@ public class SchoolClassFacade {
 		return scDAO.getAllSchoolClassByIdStudent(1);
 	}
 	
+	public List<SchoolClass> getAllSchoolClass() {
+		SchoolClassDAO scDAO = this.factory.createSchoolClassDAO();
+		//Student co = LoginFacade.getInstance().getConnectedStudent();
+		return scDAO.getAllSchoolClasses();
+	}
+	
 	////////////
 	//SUBJECTS//
 	////////////

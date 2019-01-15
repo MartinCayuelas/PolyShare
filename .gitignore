@@ -2,3 +2,4 @@ src/configDb.txt
 bin/*
 src/persistent/DAO/MainTestDAO.java
 
+/bin/

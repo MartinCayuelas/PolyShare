@@ -16,7 +16,11 @@ public class Topic {
     	this.nameTopic = nameTopic;
     }
     
-    
+    public Topic(int idTopic, String nameTopic, int idSubject) {
+    	this.idTopic = idTopic;
+    	this.nameTopic = nameTopic;
+    	this.idSubject = idSubject;
+    }
     
     
     public Topic(String nameTopic) {
@@ -36,6 +40,8 @@ public class Topic {
      * 
      */
     private String nameTopic;
+    
+    private int idSubject;
 
 
     /**
@@ -127,5 +133,15 @@ public class Topic {
 	public void setId(int idTopic) {
 		this.idTopic = idTopic;
 	}
+
+	public int getIdSubject() {
+		return idSubject;
+	}
+
+	public void setIdSubject(int idSubject) {
+		this.idSubject = idSubject;
+	}
+	
+	
 
 }

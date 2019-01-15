@@ -65,5 +65,11 @@ public abstract class TopicDAO {
      * @return topic found
      */
     public abstract Topic findTopicById(int idTopic);
+    
+    /**
+     * Add a new Topic
+     * @param topic the new Topic add
+     */
+    public abstract void addTopic(Topic topic);
 
 }

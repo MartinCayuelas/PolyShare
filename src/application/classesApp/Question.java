@@ -7,20 +7,50 @@ import java.util.*;
  */
 public class Question {
 
-    /**
+   
+	/**
      * Default constructor
      */
     public Question() {
     }
 
-    /**
+    public Question(int idQuestion, String contentQuestion) {
+		super();
+		this.idQuestion = idQuestion;
+		this.contentQuestion = contentQuestion;
+	}
+
+	public Question(int idQuestion, int nbLikesQuestion, String contentQuestion) {
+		super();
+		this.idQuestion = idQuestion;
+		this.nbLikesQuestion = nbLikesQuestion;
+		this.contentQuestion = contentQuestion;
+	}
+	
+
+	public Question(String contentQuestion) {
+		super();
+		this.contentQuestion = contentQuestion;
+	}
+
+
+	/**
      * 
      */
-    public int nbLikesQuestion;
+    
+    private int idQuestion;
+    private int nbLikesQuestion;
+    private String contentQuestion;
 
+    public String getContentQuestion() {
+		return contentQuestion;
+	}
 
+	public void setContentQuestion(String contentQuestion) {
+		this.contentQuestion = contentQuestion;
+	}
 
-    /**
+	/**
      * Add a like for a Question
      */
     public void addLike() {
@@ -64,8 +94,7 @@ public class Question {
      * @return total number of like for a question
      */
     public int getNbLikesQuestion() {
-        // TODO implement here
-        return 0;
+      return this.nbLikesQuestion;
     }
 
     /**
@@ -73,7 +102,7 @@ public class Question {
      * @param value new number of like for a question
      */
     public void setNbLikesQuestion(int value) {
-        // TODO implement here
+        this.nbLikesQuestion = value;
     }
 
     /**
@@ -82,5 +111,23 @@ public class Question {
     public void closePost() {
         // TODO implement here
     }
+
+	public int getId() {
+		return idQuestion;
+	}
+
+	public void setId(int idQuestion) {
+		this.idQuestion = idQuestion;
+	}
+    
+	 public int getIdQuestion() {
+			return idQuestion;
+		}
+
+		public void setIdQuestion(int idQuestion) {
+			this.idQuestion = idQuestion;
+		}
+
+    
 
 }

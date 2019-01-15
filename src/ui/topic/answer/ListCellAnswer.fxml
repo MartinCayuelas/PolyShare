@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<BorderPane fx:id="cellLayout" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="23.0" fitWidth="22.0" onMouseClicked="#like" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/thumbs-up.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nbLike" text="Label" />
+         </children>
+      </HBox>
+   </right>
+   <left>
+      <TextArea fx:id="answerContent" editable="false" prefHeight="60.0" wrapText="true" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

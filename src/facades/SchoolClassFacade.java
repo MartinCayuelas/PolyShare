@@ -1,14 +1,18 @@
 package facades;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
+import application.classesApp.Answer;
+import application.classesApp.Question;
 import application.classesApp.SchoolClass;
-import application.classesApp.Skill;
 import application.classesApp.Student;
 import application.classesApp.Subject;
 import application.classesApp.Topic;
 import facades.exceptions.DisconnectedStudentException;
 import factory.AbstractFactory;
+import persistent.DAO.AnswerDAO;
+import persistent.DAO.QuestionDAO;
 import persistent.DAO.SchoolClassDAO;
 import persistent.DAO.SubjectDAO;
 import persistent.DAO.TopicDAO;
@@ -192,6 +196,68 @@ public class SchoolClassFacade {
 	public void updateTopic(int id, String name) {
 		TopicDAO tDAO = factory.createTopicDAO();
 		tDAO.updateTopic(id, name);
+	}
+	/**
+	 * 
+	 * @param topic 
+	 * @return all question of the topic
+	 */
+	public List<Question> getAllQuestionByTopic(Topic topic) {
+		QuestionDAO qDAO = factory.createQuestionDAO();
+		
+		return qDAO.getAllQuestionByIdTopic(topic.getId());
+	}
+	
+	/**
+	 * 
+	 * @param topic 
+	 * @return all question of the topic
+	 */
+	public List<Answer> getAllAnswerByQuestion(Question question) {
+		AnswerDAO aDAO = factory.createAnswerDAO();
+		
+		return aDAO.getAllAnswerByQuestion(question.getId());
+	}
+	
+	/**
+	 * 
+	 * @param ans
+	 * add a like or delete a like on this answer from connected student
+	 * return true if the answer were already liked by this student
+	 */
+	public boolean likeAnswer(Answer ans) {
+		AnswerDAO aDAO = factory.createAnswerDAO();
+		return aDAO.addLike(ans);
+	}
+	
+	/**
+	 * 
+	 * @param idQuestion - question attached to the answer
+	 * @param content - the content of the answer
+	 */
+	public void addAnswer(int idQuestion, String content) {
+		AnswerDAO aDAO = factory.createAnswerDAO();
+		aDAO.addAnswer(new Answer(content), idQuestion);
+	}
+	
+	/**
+	 * 
+	 * @param question
+	 * like the given question
+	 */
+	public void likeQuestion(Question question) {
+		QuestionDAO qDAO = factory.createQuestionDAO();
+		qDAO.addLike(question);
+	}
+
+	/**
+	 * Add a question
+	 * @param content - content of the question
+	 * @param id
+	 */
+	public void addQuestion(String content, int idTopic) {
+		QuestionDAO qDAO = factory.createQuestionDAO();
+		qDAO.addQuestion(new Question(content), idTopic);
 	}
 
 }

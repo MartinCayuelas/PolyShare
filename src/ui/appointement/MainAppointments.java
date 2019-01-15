@@ -27,7 +27,7 @@ public class MainAppointments extends Application {
 			FXMLLoader root = new FXMLLoader(getClass().getResource("Appointement.fxml"));
 			//root.setController(new AppointmentController());
 		    Parent skillLayout = root.load();
-	        Scene scene = new Scene(skillLayout, 700, 600);
+	        Scene scene = new Scene(skillLayout, 1000, 800);
 	        
 	        stage.setTitle("Appointments");
 	        stage.setScene(scene);

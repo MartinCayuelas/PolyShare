@@ -3,22 +3,22 @@ package ui.appointement;
 import java.sql.Date;
 
 import application.classesApp.Student;
+import application.classesApp.Subject;
 
 public class SingleSessionCell {
 	
 	private int idRevisionSession;
 	private Student teacher;
-	private int idSubject;
+	private Subject subject;
 	private Date dateRevisionSession;
 	//private String placeRevisionSession;
 	
 	
 	
-	public SingleSessionCell(int idRevisionSession, Student teacher, int idSubject, Date dateRevisionSession/*, String placeRevisionSession*/) {
-		super();
+	public SingleSessionCell(int idRevisionSession, Student teacher, Subject subject, Date dateRevisionSession/*, String placeRevisionSession*/) {
 		this.idRevisionSession = idRevisionSession;
 		this.teacher = teacher;
-		this.idSubject = idSubject;
+		this.subject = subject;
 		this.dateRevisionSession = dateRevisionSession;
 		//this.placeRevisionSession = placeRevisionSession;
 	}
@@ -49,14 +49,14 @@ public class SingleSessionCell {
 
 
 
-	public int getIdSubject() {
-		return idSubject;
+	public Subject getSubject() {
+		return subject;
 	}
 
 
 
-	public void setIdSubject(int idSubject) {
-		this.idSubject = idSubject;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
 

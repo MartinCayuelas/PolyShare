@@ -24,13 +24,20 @@ public class AppointmentController implements Initializable {
 	
 	ObservableList<SingleSessionCell> singleSessionObservableList;
 	
+	ObservableList<RevisionSessionCell> revisionSessionObservableList;
+	
 	List<SingleSessionCell> listSingleSession;
+	
+	List<RevisionSessionCell> listRevisionSession;
 	
 	
 	private AppointmentsFacade appointmentsFacade = new AppointmentsFacade();
 	
 	@FXML 
 	private ListView<SingleSessionCell> singleSessionLView;
+	
+	@FXML
+	private ListView<RevisionSessionCell> revisionSessionLView;
 	
 	@FXML
 	private Button helpRequest;
@@ -107,29 +114,24 @@ public class AppointmentController implements Initializable {
     	//ArrayList<Skill> request = new ArrayList<>();
     	ArrayList<SingleSession> proposal = new ArrayList<>();
     	ArrayList<RevisionSession> revisionSession = new ArrayList<>();
-    	
-    	//Student student = LoginFacade.getInstance().getConnectedStudent();
-    	
+    	    	
     	//SchoolClass sc = (SchoolClass)Router.getInstance().getParams()[0];
     	
     	SchoolClass sc = new SchoolClass(1, "IG3");
-    	System.out.println(sc.nameSchoolClass);
-    	System.out.println(sc.getIdSchoolClass());
     	
     	proposal = appointmentsFacade.getSingleSessionByClass(sc.getIdSchoolClass());
-    	System.out.println(proposal);
     	revisionSession = appointmentsFacade.getAppointmentByClass(sc.getIdSchoolClass());
-    	System.out.println(revisionSession);
-    	
     	listSingleSession = new ArrayList<>();
-    	System.out.println(listSingleSession);
+    	listRevisionSession = new ArrayList<>();
     	
     	for (SingleSession ss : proposal) {
-    		//Subject subject = SubjectDAO.findSubjectById(ss.getIdSubject());
-    		//String nameSubject = Subject.getNameSubject(ss.getIdSubject());
-    		SingleSessionCell singleSessionCell = new SingleSessionCell(ss.getIdAppointment(), ss.getTeacher(), ss.getIdSubject(), ss.getDateAppointment());
+    		SingleSessionCell singleSessionCell = new SingleSessionCell(ss.getIdAppointment(), ss.getTeacher(), ss.getSubject(), ss.getDateAppointment());
     		listSingleSession.add(singleSessionCell);
-    		System.out.println(listSingleSession);
+    	}
+    	
+    	for (RevisionSession rs : revisionSession) {
+    		RevisionSessionCell revisionSessionCell = new RevisionSessionCell(rs.getIdAppointment(), rs.getTeacher(), rs.getStudent(), rs.getSubject(), rs.getDateAppointment());
+    		listRevisionSession.add(revisionSessionCell);
     	}
     	
     	singleSessionObservableList = FXCollections.observableArrayList();
@@ -138,8 +140,11 @@ public class AppointmentController implements Initializable {
     	this.singleSessionLView.setItems(singleSessionObservableList);
     	this.singleSessionLView.setCellFactory(studentListView -> new SingleSessionListViewCell(this));
     	
+    	revisionSessionObservableList = FXCollections.observableArrayList();
+    	revisionSessionObservableList.addAll(listRevisionSession);
     	
-    	
+    	this.revisionSessionLView.setItems(revisionSessionObservableList);
+    	this.revisionSessionLView.setCellFactory(studentListView -> new RevisionSessionListViewCell(this));
     	
     }
 

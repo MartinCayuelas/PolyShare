@@ -3,17 +3,15 @@ package ui.appointement;
 import java.io.IOException;
 
 import facades.AppointmentsFacade;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 
-public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
+public class RevisionSessionListViewCell extends ListCell<RevisionSessionCell> {
 	
 	private AppointmentController controller;
 	
@@ -32,29 +30,32 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
 	private Label cellLabelDateAppointment;
 	
 	@FXML 
-	private Button buttonAccept;
+	private Button buttonJoin;
+	
+	@FXML
+	private ComboBox<String> students;
 	
 	@FXML 
 	private  HBox cellLayout;
 	
 	FXMLLoader mLLoader;
 	
-	public SingleSessionListViewCell(AppointmentController controller) {
+	public RevisionSessionListViewCell(AppointmentController controller) {
 		super();
 		this.controller = controller;
 	}
 	
-	protected void updateItem(SingleSessionCell ssc, boolean empty) {
-        super.updateItem(ssc, empty);
+	protected void updateItem(RevisionSessionCell rsc, boolean empty) {
+        super.updateItem(rsc, empty);
         
-        if(empty || ssc == null) {
+        if(empty || rsc == null) {
 
             setText(null);
             setGraphic(null);
 
         } else {
             if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("SingleSessionListViewCell.fxml"));
+                mLLoader = new FXMLLoader(getClass().getResource("RevisionSessionListViewCell.fxml"));
                 mLLoader.setController(this);
                 try {
                     mLLoader.load();
@@ -66,10 +67,11 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
             
             
             
-            this.cellLabelnameTeacher.setText(String.valueOf(ssc.getTeacher().getNameStudent()));
-            this.cellLabelnameSubject.setText(String.valueOf(ssc.getSubject().getNameSubject()));
-            this.cellLabelExplication.setText(String.valueOf(ssc.getTeacher().getNameStudent()));
-            this.cellLabelDateAppointment.setText(String.valueOf(ssc.getDateRevisionSession()));
+            this.cellLabelnameTeacher.setText(String.valueOf(rsc.getTeacher().getNameStudent()));
+            this.cellLabelnameSubject.setText(String.valueOf(rsc.getSubject().getNameSubject()));
+            this.cellLabelExplication.setText(String.valueOf(rsc.getTeacher().getNameStudent()));
+            this.cellLabelDateAppointment.setText(String.valueOf(rsc.getDateRevisionSession()));
+            this.students.setId(String.valueOf(rsc.getStudents()));
            
            /* this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
                @Override

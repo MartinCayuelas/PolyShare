@@ -4,26 +4,26 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import application.classesApp.Student;
+import application.classesApp.Subject;
 
 public class RevisionSessionCell {
 	
 	private int idRevisionSession;
 	private Student teacher;
 	private ArrayList<Student> students;
-	private int idSubject;
+	private Subject subject;
 	private Date dateRevisionSession;
 	private String placeRevisionSession;
 	
 	
 	
-	public RevisionSessionCell(int idRevisionSession, Student teacher, ArrayList<Student> students, int idSubject, Date dateRevisionSession, String placeRevisionSession) {
-		super();
+	public RevisionSessionCell(int idRevisionSession, Student teacher, ArrayList<Student> students, Subject subject, Date dateRevisionSession/*, String placeRevisionSession*/) {
 		this.idRevisionSession = idRevisionSession;
 		this.teacher = teacher;
 		this.students = students;
-		this.idSubject = idSubject;
+		this.subject = subject;
 		this.dateRevisionSession = dateRevisionSession;
-		this.placeRevisionSession = placeRevisionSession;
+		/*this.placeRevisionSession = placeRevisionSession;*/
 	}
 
 
@@ -64,14 +64,14 @@ public class RevisionSessionCell {
 
 
 
-	public int getIdSubject() {
-		return idSubject;
+	public Subject getSubject() {
+		return this.subject;
 	}
 
 
 
-	public void setIdSubject(int idSubject) {
-		this.idSubject = idSubject;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
 

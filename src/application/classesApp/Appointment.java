@@ -25,6 +25,13 @@ public class Appointment {
     	this.idSubject = idSubject;
     	this.dateAppointment = dateAppointment;
     }
+	
+	public Appointment(int idAppointment, Student teacher, Subject subject, Date dateAppointment) {
+    	this.idAppointment = idAppointment;
+    	this.teacher = teacher;
+    	this.subject = subject;
+    	this.dateAppointment = dateAppointment;
+    }
 
 	/**
      * 
@@ -35,6 +42,11 @@ public class Appointment {
      * 
      */
     public Student teacher;
+    
+    /**
+     * 
+     */
+    public Subject subject;
     
     /**
      * 
@@ -77,6 +89,22 @@ public class Appointment {
      */
 	public void setIdSubject(int idSubject) {
 		this.idSubject = idSubject;
+	}
+	
+	/**
+     * Get the subject of the appointment
+     * @return the subject who is teached for the appointment
+     */
+	public Subject getSubject() {
+		return subject;
+	}
+
+	/**
+     * Modify the subject of the appointment
+     * @param subject the subject added to the subject of the appointment
+     */
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
 	/**

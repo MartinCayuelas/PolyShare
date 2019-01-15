@@ -139,8 +139,8 @@ public class SchoolClassController implements Initializable {
 				@Override
 				public void changed(ObservableValue arg0, Object arg1, Object arg2) {
 					// TODO Auto-generated method stub
-					//Clear the Topics ListView
-					topicsListView.getItems().clear();
+					//Clear the Topics List
+					listTopics.clear();
 					
 					//Get the ID of the selected Subject in the ListView
 					int subjectSelectedId = listSubjectsId.get(subjectsListView.getSelectionModel().getSelectedIndex());
@@ -160,5 +160,6 @@ public class SchoolClassController implements Initializable {
 			subjectsListView.getSelectionModel().selectedIndexProperty().addListener(
 					 listener
 					 );
+			
 	}
 }

@@ -129,13 +129,8 @@ public class SchoolClassController implements Initializable {
 		 subjectsListView.itemsProperty().bind(listPropertySubjects);
 		 listPropertySubjects.set(FXCollections.observableArrayList(listSubjects));
 		 
-		
-		 
-		 
-		 
-		 ChangeListener listener = new ChangeListener() {  
-					
 
+		 ChangeListener listener = new ChangeListener() {  
 				@Override
 				public void changed(ObservableValue arg0, Object arg1, Object arg2) {
 					// TODO Auto-generated method stub

@@ -1,5 +1,7 @@
 package ui.classes;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -16,6 +18,8 @@ import javafx.application.Application;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -37,6 +41,7 @@ import ui.Router;
 public class SchoolClassController implements Initializable {
 	
 	protected List<String> listSubjects = new ArrayList<>();
+	protected List<Integer> listSubjectsId = new ArrayList<>();
 	protected List<String> listTopics = new ArrayList<>();
 
 	protected ListProperty<String> listPropertySubjects = new SimpleListProperty<>();
@@ -117,20 +122,39 @@ public class SchoolClassController implements Initializable {
 		 for(Subject s : subs) {
 			 SchoolClass clas = schoolClassFacade.findSchoolClassId(2);
 			 listSubjects.add(s.getNameSubject());
-			 for(Topic t : s.getTopics()) {
-				 listTopics.add(t.getNameTopic());
-			 }
+			 listSubjectsId.add(s.getId());
 			 
 		    }
 
 		 subjectsListView.itemsProperty().bind(listPropertySubjects);
 		 listPropertySubjects.set(FXCollections.observableArrayList(listSubjects));
 		 
-		 topicsListView.itemsProperty().bind(listPropertyTopics);
-		 listPropertyTopics.set(FXCollections.observableArrayList(listTopics));
-		 
-		 subjectsListView.getSelectionModel().selectedIndexProperty().addListener(
-				 observable -> System.out.println(listSubjects.get(subjectsListView.getSelectionModel().getSelectedIndex()))
-				 );
+
+		 ChangeListener listener = new ChangeListener() {  
+				@Override
+				public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+					// TODO Auto-generated method stub
+					//Clear the Topics List
+					listTopics.clear();
+					
+					//Get the ID of the selected Subject in the ListView
+					int subjectSelectedId = listSubjectsId.get(subjectsListView.getSelectionModel().getSelectedIndex());
+					
+					//Get the topics of the selected Subject in the ListView
+					for(Topic t : schoolClassFacade.getTopics(subjectSelectedId)) {
+						 listTopics.add(t.getNameTopic());
+					 }
+					
+					//Add topics to the Topics ListView
+					 topicsListView.itemsProperty().bind(listPropertyTopics);
+					 listPropertyTopics.set(FXCollections.observableArrayList(listTopics));
+				}  
+			}; 
+			
+			//Listener for selecting a Subject in the ListView
+			subjectsListView.getSelectionModel().selectedIndexProperty().addListener(
+					 listener
+					 );
+			
 	}
 }

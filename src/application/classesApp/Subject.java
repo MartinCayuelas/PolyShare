@@ -23,6 +23,12 @@ public class Subject {
 		this.listofTopics = listofTopics;
 	}
     
+    public Subject(int idSubject, String nameSubject, int idSchoolClass) {
+    	this.idSubject = idSubject;
+    	this.nameSubject = nameSubject;
+    	this.idSchoolClass = idSchoolClass;
+    }
+    
     private int idSubject;
 
 	/**
@@ -30,7 +36,7 @@ public class Subject {
      */
 	private String nameSubject;
 
-
+	private int idSchoolClass;
 
 
     /**
@@ -110,5 +116,15 @@ public class Subject {
     public void setNameSubject(String nameSubject) {
        this.nameSubject = nameSubject;
     }
+
+	public int getIdSchoolClass() {
+		return idSchoolClass;
+	}
+
+	public void setIdSchoolClass(int idSchoolClass) {
+		this.idSchoolClass = idSchoolClass;
+	}
+    
+    
 
 }

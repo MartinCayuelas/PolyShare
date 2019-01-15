@@ -1,4 +1,4 @@
-package ui.subject;
+package ui.subject.updateSubject;
 
 import javafx.scene.control.TextField;
 import java.net.URL;
@@ -18,7 +18,7 @@ import ui.Router;
 /**
  * @author guillaud
  */
-public class AddSubjectController implements Initializable {
+public class UpdateSubjectController implements Initializable {
 	
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	
@@ -27,18 +27,19 @@ public class AddSubjectController implements Initializable {
     /**
      * Default constructor
      */
-    public AddSubjectController() {
+    public UpdateSubjectController() {
     }
     
-    public void addSubject() throws DisconnectedStudentException {
-    	/////////////////////////////////////////////////////////////////////////////////////////////////////
-    	//Récupérer l'ID de la SchoolClass courante grâce à la fonction getParams() de l'instance du router//
-    	/////////////////////////////////////////////////////////////////////////////////////////////////////
-    	//Pour l'instant, test avec la SchoolClass 2 (IG4)
-		Subject newSubject = new Subject(0, nameSubject.getText(), 2);
-		schoolClassFacade.addSubject(newSubject);
+    public void updateSubject() throws DisconnectedStudentException {
+    	/////////////////////////////////////////////////////////////////////////////////////////
+    	//Récupérer le Subject courant grâce à la fonction getParams() de l'instance du router//
+    	////////////////////////////////////////////////////////////////////////////////////////
+    	//Pour l'instant, test avec le subject 5 (Panorama)
+    	
+		Subject currentSubject = schoolClassFacade.findSubjectById(5);
+		schoolClassFacade.updateSubject(5, nameSubject.getText());
 		
-		//Quand on appuie sur Add ça doit renvoyer vers la page SchoolClass.fxml (avec la liste des subject et topics
+		//Quand on appuie sur Save ça doit renvoyer vers la page SchoolClass.fxml (avec la liste des subject et topics)
 
 	}
     
@@ -61,6 +62,9 @@ public class AddSubjectController implements Initializable {
     		//TODO do a custom message error
     		System.out.println("PASSER UN SUBJECT SVP");
     	}*/
+		
+		//Remplissage du TextField avec le nom du topic à modifier
+		nameSubject.setText(schoolClassFacade.findSubjectById(5).getNameSubject());
 	}
 
 }

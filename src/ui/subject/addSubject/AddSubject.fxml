@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="175.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.subject.AddSubjectController">
+<BorderPane prefHeight="175.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.subject.addSubject.AddSubjectController">
    <left>
       <Pane prefHeight="171.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>

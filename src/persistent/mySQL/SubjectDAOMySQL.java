@@ -84,7 +84,13 @@ public class SubjectDAOMySQL extends SubjectDAO {
 	@Override
 	public void updateSubject(int idSubject, String nameSubject) {
 		// TODO Auto-generated method stub
-		
+		try {
+			this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE subject SET nameSubject = '" + nameSubject + "' WHERE idSubject = " + idSubject);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

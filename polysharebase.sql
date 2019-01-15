@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  sam. 12 jan. 2019 à 03:48
+-- Généré le :  mar. 15 jan. 2019 à 10:37
 -- Version du serveur :  5.7.24-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.10-0ubuntu0.18.04.1
 
@@ -31,9 +31,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `Answer` (
   `idAnswer` int(11) NOT NULL,
   `contentAnswer` text NOT NULL,
-  `dateAnswer` date NOT NULL,
   `idQuestion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `Answer`
+--
+
+INSERT INTO `Answer` (`idAnswer`, `contentAnswer`, `idQuestion`) VALUES
+(1, 'C\'est moi ! JE suis toujours en train de répondre au qustions vraiment c\'est une grande passion j\'adore ça quoi', 1),
+(2, 'C\'est tt.', 1),
+(3, 'OUIO', 1),
+(6, 'zefz', 1),
+(7, 'Salut je suis la nouvelle question', 1),
+(8, 'Bnjours moi aussi', 1),
+(9, '3', 2);
 
 -- --------------------------------------------------------
 
@@ -46,6 +58,15 @@ CREATE TABLE `Approve` (
   `idStudent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `Approve`
+--
+
+INSERT INTO `Approve` (`idAnswer`, `idStudent`) VALUES
+(4, 0),
+(5, 0),
+(6, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +78,16 @@ CREATE TABLE `Class` (
   `nameClass` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `Class`
+--
+
+INSERT INTO `Class` (`idClass`, `nameClass`) VALUES
+(1, 'classtats'),
+(5, 'Ma nouvelle class'),
+(6, 'ig3'),
+(7, 'ig4');
+
 -- --------------------------------------------------------
 
 --
@@ -66,17 +97,6 @@ CREATE TABLE `Class` (
 CREATE TABLE `Liked` (
   `idStudent` int(11) NOT NULL,
   `idMediaFiles` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `Manage`
---
-
-CREATE TABLE `Manage` (
-  `idStudent` int(11) NOT NULL,
-  `idClass` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -98,7 +118,7 @@ CREATE TABLE `MediaFiles` (
 --
 
 CREATE TABLE `Participate` (
-  `idSingleSession` int(11) NOT NULL,
+  `idRevisionSession` int(11) NOT NULL,
   `idStudent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -114,6 +134,15 @@ CREATE TABLE `Question` (
   `idTopic` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `Question`
+--
+
+INSERT INTO `Question` (`idQuestion`, `contentQuestion`, `idTopic`) VALUES
+(1, 'Qui est le meilleur ?', 0),
+(2, 'deux ?', 0),
+(3, 'Y a qqn ?', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -124,6 +153,17 @@ CREATE TABLE `Rank` (
   `idStudent` int(11) NOT NULL,
   `idQuestion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `Rank`
+--
+
+INSERT INTO `Rank` (`idStudent`, `idQuestion`) VALUES
+(0, 1),
+(0, 2),
+(0, 3),
+(1, 0),
+(2, 0);
 
 -- --------------------------------------------------------
 
@@ -144,9 +184,12 @@ CREATE TABLE `Recommand` (
 
 CREATE TABLE `RevisionSession` (
   `idRevisionSession` int(11) NOT NULL,
+  `idClass` int(11) NOT NULL,
   `dateAppointement` date NOT NULL,
   `idSubject` int(11) NOT NULL,
-  `idTeacher` int(11) NOT NULL
+  `idTeacher` int(11) NOT NULL,
+  `place` varchar(30) NOT NULL,
+  `meetingTime` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -157,10 +200,13 @@ CREATE TABLE `RevisionSession` (
 
 CREATE TABLE `SingleSession` (
   `idSingleRevision` int(11) NOT NULL,
+  `idClass` int(11) NOT NULL,
   `dateAppointement` date NOT NULL,
   `idSubject` int(11) NOT NULL,
   `idStudent` int(11) NOT NULL,
-  `idTeacher` int(11) NOT NULL
+  `idTeacher` int(11) NOT NULL,
+  `place` text NOT NULL,
+  `meetingTime` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -211,6 +257,13 @@ CREATE TABLE `Study` (
   `nameStatus` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `Study`
+--
+
+INSERT INTO `Study` (`idStudent`, `idClass`, `nameStatus`) VALUES
+(1, 1, 'admin');
+
 -- --------------------------------------------------------
 
 --
@@ -223,6 +276,13 @@ CREATE TABLE `Subject` (
   `idClass` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `Subject`
+--
+
+INSERT INTO `Subject` (`idSubject`, `nameSubject`, `idClass`) VALUES
+(1, 'OOSE', 7);
+
 -- --------------------------------------------------------
 
 --
@@ -234,6 +294,13 @@ CREATE TABLE `Topic` (
   `idSubject` int(11) NOT NULL,
   `nameTopic` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `Topic`
+--
+
+INSERT INTO `Topic` (`idTopic`, `idSubject`, `nameTopic`) VALUES
+(0, 1, 'tpOOSE');
 
 --
 -- Index pour les tables déchargées
@@ -273,7 +340,7 @@ ALTER TABLE `MediaFiles`
 -- Index pour la table `Participate`
 --
 ALTER TABLE `Participate`
-  ADD PRIMARY KEY (`idSingleSession`,`idStudent`);
+  ADD PRIMARY KEY (`idRevisionSession`,`idStudent`);
 
 --
 -- Index pour la table `Question`
@@ -328,10 +395,58 @@ ALTER TABLE `Topic`
 --
 
 --
+-- AUTO_INCREMENT pour la table `Answer`
+--
+ALTER TABLE `Answer`
+  MODIFY `idAnswer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pour la table `Class`
+--
+ALTER TABLE `Class`
+  MODIFY `idClass` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pour la table `Liked`
+--
+ALTER TABLE `Liked`
+  MODIFY `idStudent` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `MediaFiles`
+--
+ALTER TABLE `MediaFiles`
+  MODIFY `idMediaFiles` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `Participate`
+--
+ALTER TABLE `Participate`
+  MODIFY `idRevisionSession` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `Question`
+--
+ALTER TABLE `Question`
+  MODIFY `idQuestion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `Skill`
+--
+ALTER TABLE `Skill`
+  MODIFY `idSkill` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `Student`
 --
 ALTER TABLE `Student`
   MODIFY `idStudent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `Subject`
+--
+ALTER TABLE `Subject`
+  MODIFY `idSubject` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

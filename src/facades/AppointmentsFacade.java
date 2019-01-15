@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import application.classesApp.Appointment;
 import application.classesApp.RevisionSession;
 import application.classesApp.SingleSession;
 import application.classesApp.Student;
@@ -127,5 +128,15 @@ public class AppointmentsFacade {
     public void deleteRevisionSession(RevisionSession revisionSession) {
         // TODO implement here
     }
+
+
+	public ArrayList<Appointment> getAppointmentByStudent(Student s) {
+		// TODO Auto-generated method stub
+		ArrayList<Appointment> res = new ArrayList<Appointment>();
+		res = appointmentDAO.getAppointmentByStudent(s.getId());
+		
+		return res;
+		
+	}
 
 }

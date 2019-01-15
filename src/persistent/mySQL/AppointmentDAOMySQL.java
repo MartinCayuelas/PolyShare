@@ -14,7 +14,7 @@ import application.classesApp.Subject;
 import persistent.DAO.AppointmentDAO;
 
 /**
- * @author lucadebeir
+ * @authors julienroumagnac lucadebeir
  */
 
 /**
@@ -459,6 +459,43 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 	}
 	
 	public void recommendStudent(Student student) {
+		
+	}
+	public ArrayList<Appointment> getAppointmentByStudent(int studentid) {
+		ArrayList<Appointment> appointments = new ArrayList<Appointment>(); 
+		Appointment appt = new Appointment(0, null, 0, null);
+		// on recupere tous les appt il est eleve d'une single session 
+		try {
+			ResultSet result = this.con.createStatement().executeQuery("SELECT s.idSingleRevision ,t.nameStudent,b.nameSubject,s.dateAppointement as date FROM SingleSession s,Student t,Subject b WHERE s.idSubject=b.idSubject AND  s.idStudent ="+studentid+" AND s.idTeacher = t.idStudent; ");
+			
+			while(result.next()){ 
+				
+				appt = new Appointment(
+					result.getInt("idSingleRevision"),new Student(0,result.getString("nameStudent")),new Subject(0,result.getString("nameSubject")),null
+		  	        
+		  	    );
+				
+				appointments.add(appt);
+			}
+			
+			// on recupere tous les appt il est prof d'une single session 			
+			ResultSet resultb = this.con.createStatement().executeQuery("SELECT s.idSingleRevision ,t.nameStudent,b.nameSubject,s.dateAppointement FROM SingleSession s,Student t,Subject b WHERE s.idSubject=b.idSubject AND  s.idTeacher ="+studentid+" AND s.idTeacher = t.idStudent; ");
+		while(result.next()){ 
+		appt = new Appointment(
+			resultb.getInt("idSingleRevision"),
+			new Student(0,resultb.getString("nameStudent")),
+  	        new Subject(0,resultb.getString("nameSubject")),
+	  	        null
+	  	        
+	  	    );
+			appointments.add(appt);		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return appointments;
 		
 	}
 

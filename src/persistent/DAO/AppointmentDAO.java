@@ -72,4 +72,7 @@ public abstract class AppointmentDAO {
      */
     public abstract ArrayList<RevisionSession> getAppointmentByClass(int idClass);
 
+
+	public abstract ArrayList<Appointment> getAppointmentByStudent(int i);
+
 }

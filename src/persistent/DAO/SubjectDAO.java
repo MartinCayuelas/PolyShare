@@ -69,9 +69,13 @@ public abstract class SubjectDAO {
      * @param idSubject 
      * @return subject found
      */
-    public Subject findSubjectById(int idSubject) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public abstract Subject findSubjectById(int idSubject);
+    
+    /**
+     * Find a Subject
+     * @param nameSubject 
+     * @return subject found
+     */
+    public abstract Subject findSubjectByName(String nameSubject);
 
 }

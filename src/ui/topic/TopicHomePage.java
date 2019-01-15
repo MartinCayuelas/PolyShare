@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 
@@ -20,6 +21,7 @@ public class TopicHomePage {
 	@FXML Button popup;
 	@FXML ListView<Question> questionLV;
 	@FXML TextArea questionArea;
+	@FXML Label topicName;
 	
 	SchoolClassFacade scFac;
 	List<Question> qList;
@@ -83,13 +85,17 @@ public class TopicHomePage {
      */
     @FXML
     public void initialize() {
+    	
+    	
     	// get Class and fill ClassView
     	scFac = new SchoolClassFacade();
     	
     	//Topic topic = (Topic)Router.getInstance().getParams()[0];
     	//TODO enlever comment
-    	
+
     	topic = new Topic(0, "OOSE");
+    	
+    	this.topicName.setText(this.topic.getNameTopic());
     	qList = scFac.getAllQuestionByTopic(topic);
     	
     	questionObservableList = FXCollections.observableArrayList();

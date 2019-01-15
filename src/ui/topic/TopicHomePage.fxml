@@ -5,9 +5,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
@@ -17,28 +17,28 @@
    <children>
       <VBox alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="TopicName">
-               <font>
-                  <Font size="36.0" />
-               </font></Label>
-            <BorderPane>
-               <left>
-                  <Button mnemonicParsing="false" text="Back" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets left="20.0" />
-                     </BorderPane.margin>
-                  </Button>
-               </left>
-               <right>
-                  <Button fx:id="popup" mnemonicParsing="false" text="Appointment" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets right="20.0" />
-                     </BorderPane.margin>
-                  </Button>
-               </right></BorderPane>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" text="Back" />
+                  <Label fx:id="topicName" alignment="CENTER" contentDisplay="CENTER" text="TopicName" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="popup" mnemonicParsing="false" text="Appointment" GridPane.columnIndex="2" />
+               </children>
+            </GridPane>
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <VBox alignment="CENTER" prefHeight="300.0" prefWidth="100.0">
          <children>
             <GridPane>
               <columnConstraints>
@@ -52,7 +52,7 @@
                <children>
                   <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Add document" GridPane.columnIndex="2">
                      <GridPane.margin>
-                        <Insets right="20.0" />
+                        <Insets />
                      </GridPane.margin>
                   </Button>
                   <Label alignment="CENTER" text="Documents" GridPane.columnIndex="1">
@@ -82,7 +82,7 @@
                <children>
                   <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Add questions" GridPane.columnIndex="2">
                      <GridPane.margin>
-                        <Insets right="20.0" />
+                        <Insets />
                      </GridPane.margin>
                   </Button>
                   <Label alignment="CENTER" text="Questions" GridPane.columnIndex="1">
@@ -95,27 +95,40 @@
                   </Label>
                </children>
             </GridPane>
-            <ListView fx:id="questionLV" prefHeight="200.0" prefWidth="200.0">
+            <ListView fx:id="questionLV" prefHeight="300.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" top="30.0" />
                </VBox.margin>
             </ListView>
          </children>
       </VBox>
-      <Label text=" Add question : ">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Label>
-      <TextArea fx:id="questionArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
-         <VBox.margin>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label prefWidth="120.0" text=" Add question : ">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="questionArea" wrapText="true">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextArea>
+            <Button mnemonicParsing="false" onMouseClicked="#addQuestion" text="Add question">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <opaqueInsets>
             <Insets left="20.0" right="20.0" />
-         </VBox.margin>
-      </TextArea>
-      <Button mnemonicParsing="false" onMouseClicked="#addQuestion" text="Add question">
+         </opaqueInsets>
          <VBox.margin>
-            <Insets bottom="30.0" />
+            <Insets />
          </VBox.margin>
-      </Button>
+      </HBox>
    </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
 </VBox>

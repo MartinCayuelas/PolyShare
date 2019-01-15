@@ -72,13 +72,6 @@ public abstract class SubjectDAO {
     public abstract Subject findSubjectById(int idSubject);
     
     /**
-     * Find a Subject
-     * @param nameSubject 
-     * @return subject found
-     */
-    public abstract Subject findSubjectByName(String nameSubject);
-    
-    /**
      * Add a new Subject
      * @param subject the new Subject add
      */

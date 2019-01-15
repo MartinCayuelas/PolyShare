@@ -107,25 +107,6 @@ public class SubjectDAOMySQL extends SubjectDAO {
 	}
 
 	@Override
-	public Subject findSubjectByName(String nameSubject) {
-		Subject subject = new Subject(0, null);      
-	    
-	  	  try {
-	  	    ResultSet result = this.con.createStatement(
-	  	    ResultSet.TYPE_SCROLL_INSENSITIVE,
-	  	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM subject WHERE nameSubject = " + "'" + nameSubject + "'");
-	  	    if(result.first())
-	  	    	subject = new Subject(
-	  	    			result.getInt("idSubject"),
-	  	    			nameSubject
-	  	        );         
-	  	  } catch (SQLException e) {
-	  	    e.printStackTrace();
-	  	  }
-	  	  return subject;
-	}
-
-	@Override
 	public void addSubject(Subject subject) {
 		// TODO Auto-generated method stub
 		int maxId = 0;

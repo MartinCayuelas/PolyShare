@@ -90,4 +90,23 @@ public class TopicDAOMySQL extends TopicDAO {
 	  	  return topic;
 		}
 
+	@Override
+	public void addTopic(Topic topic) {
+		// TODO Auto-generated method stub
+		int maxId = 0;
+		try {
+			ResultSet result = this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT MAX(idTopic) AS max FROM topic");
+			if(result.first())
+	  	    	maxId = result.getInt("max") + 1; 
+			
+			this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO topic VALUES (" + maxId + ",'" + topic.getIdSubject() + "," + topic.getNameTopic() + "')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

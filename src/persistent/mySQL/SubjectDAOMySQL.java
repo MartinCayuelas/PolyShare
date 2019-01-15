@@ -125,4 +125,10 @@ public class SubjectDAOMySQL extends SubjectDAO {
 	  	  return subject;
 	}
 
+	@Override
+	public void addSubject(Subject subject) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

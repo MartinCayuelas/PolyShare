@@ -6,6 +6,7 @@ import java.util.List;
 import application.classesApp.Answer;
 import application.classesApp.Question;
 import application.classesApp.SchoolClass;
+import application.classesApp.Skill;
 import application.classesApp.Student;
 import application.classesApp.Subject;
 import application.classesApp.Topic;
@@ -169,6 +170,16 @@ public class SchoolClassFacade {
 		SubjectDAO sDAO = factory.createSubjectDAO();
 		sDAO.updateSubject(id, name);
 	}
+	
+	/**
+     * Add the Subject in param
+     * @param Subject the Subject to add 
+     * 
+     */
+    public void addSubject(Subject subject) {
+    	SubjectDAO sDAO = factory.createSubjectDAO();
+		sDAO.addSubject(subject);
+    }
 	
 	//////////
 	//TOPICS//

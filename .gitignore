@@ -1,5 +1,6 @@
 src/configDb.txt
 bin/*
 src/persistent/DAO/MainTestDAO.java
-src/ui/classes/SchoolclassController
+src/ui/classes/MainSchoolClass
 src/ui/topic/testTopic.java
+src/ui/subject/MainAddSubject

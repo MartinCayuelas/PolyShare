@@ -261,7 +261,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			while (result.next()) {
 				teacher = new Student(result.getInt("idTeacher"));
 				subject = new Subject(result.getInt("idSubject"), null);
-				appointment = new SingleSession(result.getInt("idSingleRevision"), teacher, null, result.getDate("dateAppointement"), subject);
+				appointment = new SingleSession(result.getInt("idSingleRevision"), teacher, null, result.getDate("dateAppointement").toLocalDate(), subject);
 				listSingleSession.add(appointment);
 			}
 			
@@ -325,7 +325,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			while(result.next()) {
 				teacher = new Student(result.getInt("idTeacher"));
 				subject = new Subject(result.getInt("idSubject"), null);
-				appointment = new RevisionSession(result.getInt("idRevisionSession"), teacher, listStudent, subject, result.getDate("dateAppointement"));
+				appointment = new RevisionSession(result.getInt("idRevisionSession"), teacher, listStudent, subject, result.getDate("dateAppointement").toLocalDate());
 				System.out.println(appointment.getIdAppointment());
 				listRevisionSession.add(appointment);
 			}

@@ -1,6 +1,6 @@
 package ui.appointement;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import application.classesApp.Student;
@@ -12,17 +12,17 @@ public class RevisionSessionCell {
 	private Student teacher;
 	private ArrayList<Student> students;
 	private Subject subject;
-	private Date dateRevisionSession;
+	private LocalDate dateRevisionSession;
 	private String placeRevisionSession;
 	
 	
 	
-	public RevisionSessionCell(int idRevisionSession, Student teacher, ArrayList<Student> students, Subject subject, Date dateRevisionSession/*, String placeRevisionSession*/) {
+	public RevisionSessionCell(int idRevisionSession, Student teacher, ArrayList<Student> students, Subject subject, LocalDate localDate) {
 		this.idRevisionSession = idRevisionSession;
 		this.teacher = teacher;
 		this.students = students;
 		this.subject = subject;
-		this.dateRevisionSession = dateRevisionSession;
+		this.dateRevisionSession = localDate;
 		/*this.placeRevisionSession = placeRevisionSession;*/
 	}
 
@@ -76,13 +76,13 @@ public class RevisionSessionCell {
 
 
 
-	public Date getDateRevisionSession() {
+	public LocalDate getDateRevisionSession() {
 		return dateRevisionSession;
 	}
 
 
 
-	public void setDateRevisionSession(Date dateRevisionSession) {
+	public void setDateRevisionSession(LocalDate dateRevisionSession) {
 		this.dateRevisionSession = dateRevisionSession;
 	}
 

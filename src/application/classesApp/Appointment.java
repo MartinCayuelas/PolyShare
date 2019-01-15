@@ -1,6 +1,6 @@
 package application.classesApp;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * @author lucadebeir
@@ -19,14 +19,14 @@ public class Appointment {
     	this.teacher = teacher;
     }
 	
-	public Appointment(int idAppointment, Student teacher, int idSubject, Date dateAppointment) {
+	public Appointment(int idAppointment, Student teacher, int idSubject, LocalDate localDate) {
     	this.idAppointment = idAppointment;
     	this.teacher = teacher;
     	this.idSubject = idSubject;
-    	this.dateAppointment = dateAppointment;
+    	this.dateAppointment = localDate;
     }
 	
-	public Appointment(int idAppointment, Student teacher, Subject subject, Date dateAppointment) {
+	public Appointment(int idAppointment, Student teacher, Subject subject, LocalDate dateAppointment) {
     	this.idAppointment = idAppointment;
     	this.teacher = teacher;
     	this.subject = subject;
@@ -56,7 +56,7 @@ public class Appointment {
     /**
      * 
      */
-    public Date dateAppointment;
+    public LocalDate dateAppointment;
 
 
     /**
@@ -111,7 +111,7 @@ public class Appointment {
      * Get the date of the appointment
      * @return the date of the appointment
      */
-	public Date getDateAppointment() {
+	public LocalDate getDateAppointment() {
 		return dateAppointment;
 	}
 
@@ -119,7 +119,7 @@ public class Appointment {
      * Modify the date of the appointment
      * @param dateAppointment the date added of the appointment
      */
-	public void setDateAppointment(Date dateAppointment) {
+	public void setDateAppointment(LocalDate dateAppointment) {
 		this.dateAppointment = dateAppointment;
 	}
 

@@ -1,6 +1,6 @@
 package ui.appointement;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import application.classesApp.Student;
 import application.classesApp.Subject;
@@ -10,16 +10,16 @@ public class SingleSessionCell {
 	private int idRevisionSession;
 	private Student teacher;
 	private Subject subject;
-	private Date dateRevisionSession;
+	private LocalDate dateRevisionSession;
 	//private String placeRevisionSession;
 	
 	
 	
-	public SingleSessionCell(int idRevisionSession, Student teacher, Subject subject, Date dateRevisionSession/*, String placeRevisionSession*/) {
+	public SingleSessionCell(int idRevisionSession, Student teacher, Subject subject, LocalDate localDate) {
 		this.idRevisionSession = idRevisionSession;
 		this.teacher = teacher;
 		this.subject = subject;
-		this.dateRevisionSession = dateRevisionSession;
+		this.dateRevisionSession = localDate;
 		//this.placeRevisionSession = placeRevisionSession;
 	}
 
@@ -61,13 +61,13 @@ public class SingleSessionCell {
 
 
 
-	public Date getDateRevisionSession() {
+	public LocalDate getDateRevisionSession() {
 		return dateRevisionSession;
 	}
 
 
 
-	public void setDateRevisionSession(Date dateRevisionSession) {
+	public void setDateRevisionSession(LocalDate dateRevisionSession) {
 		this.dateRevisionSession = dateRevisionSession;
 	}
 

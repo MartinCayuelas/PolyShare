@@ -1,6 +1,7 @@
 package facades;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import application.classesApp.RevisionSession;
@@ -41,10 +42,10 @@ public class AppointmentsFacade {
      * and the connected student
      * @throws DisconnectedStudentException 
      */
-    public void addSingleSession(Date date, Subject subject, Student student) throws DisconnectedStudentException {
+    public void addSingleSession(LocalDate localDate, Subject subject, Student student) throws DisconnectedStudentException {
         // TODO implement here
     	Student teacher = LoginFacade.getInstance().getConnectedStudent();
-    	SingleSession singleSession = new SingleSession(0, teacher, student, date, subject.getId());
+    	SingleSession singleSession = new SingleSession(0, teacher, student, localDate, subject.getId());
     	appointmentDAO.createSingleSession(singleSession);
     }
     

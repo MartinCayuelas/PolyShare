@@ -1,6 +1,7 @@
 package application.classesApp;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -25,13 +26,8 @@ public class RevisionSession extends Appointment {
     	this.students = student;
     }
     
-    public RevisionSession(int idAppointment, Student teacher, ArrayList<Student> student, int idSubject, Date dateA) {
-    	super(idAppointment, teacher, idSubject, dateA);
-    	this.students = student;
-    }
-    
-    public RevisionSession(int idAppointment, Student teacher, ArrayList<Student> student, Subject subject, Date dateA) {
-    	super(idAppointment, teacher, subject, dateA);
+    public RevisionSession(int idAppointment, Student teacher, ArrayList<Student> student, Subject subject, LocalDate localDate) {
+    	super(idAppointment, teacher, subject, localDate);
     	this.students = student;
     }
 

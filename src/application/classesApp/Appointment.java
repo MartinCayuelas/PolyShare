@@ -30,7 +30,7 @@ public class Appointment {
     	this.idAppointment = idAppointment;
     	this.teacher = teacher;
     	this.subject = subject;
-    	this.dateAppointment = dateAppointment;
+    	this.dateAppointment = date;
     }
 
 	/**

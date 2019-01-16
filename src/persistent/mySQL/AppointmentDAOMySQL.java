@@ -470,7 +470,8 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			ResultSet result = this.con.createStatement().executeQuery("SELECT s.idSingleRevision ,t.nameStudent,b.nameSubject,s.dateAppointement as date FROM SingleSession s,Student t,Subject b WHERE s.idSubject=b.idSubject AND  s.idStudent ="+studentid+" AND s.idTeacher = t.idStudent; ");
 			
 			while(result.next()){ 
-				System.out.println(result.getString("date"));
+				
+				
 				appt = new Appointment(
 					result.getInt("idSingleRevision"),
 					new Student(0,result.getString("nameStudent")),
@@ -483,7 +484,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			}
 			
 			// on recupere tous les appt il est prof d'une single session 			
-			ResultSet resultb = this.con.createStatement().executeQuery("SELECT s.idSingleRevision ,t.nameStudent,b.nameSubject,s.dateAppointement FROM SingleSession s,Student t,Subject b WHERE s.idSubject=b.idSubject AND  s.idTeacher ="+studentid+" AND s.idTeacher = t.idStudent; ");
+			ResultSet resultb = this.con.createStatement().executeQuery("SELECT s.idSingleRevision ,t.nameStudent,b.nameSubject,s.dateAppointement as date FROM SingleSession s,Student t,Subject b WHERE s.idSubject=b.idSubject AND  s.idTeacher ="+studentid+" AND s.idTeacher = t.idStudent; ");
 		while(result.next()){ 
 		appt = new Appointment(
 			resultb.getInt("idSingleRevision"),

@@ -214,6 +214,17 @@ public class SchoolClassFacade {
 		TopicDAO tDAO = factory.createTopicDAO();
 		tDAO.updateTopic(id, name);
 	}
+	
+	/**
+     * Add the Topic in param
+     * @param Topic the Topic to add 
+     * 
+     */
+    public void addTopic(Topic topic) {
+    	TopicDAO tDAO = factory.createTopicDAO();
+		tDAO.addTopic(topic);
+    }
+    
 	/**
 	 * 
 	 * @param topic 

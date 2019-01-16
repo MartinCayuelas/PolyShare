@@ -6,10 +6,10 @@ src/persistent/DAO/MainTestDAO.java
 
 /bin/
 
-src/ui/classes/SchoolclassController
 src/ui/topic/testTopic.java
 
-src/ui/classes/MainSchoolClass
+src/ui/classes/MainSchoolClass.java
 src/ui/topic/testTopic.java
-src/ui/subject/MainAddSubject
+src/ui/subject/addSubject/MainAddSubject.java
+src/ui/subject/updateSubject/MainUpdateSubject.java
 

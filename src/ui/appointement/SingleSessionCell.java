@@ -2,6 +2,7 @@ package ui.appointement;
 
 import java.time.LocalDate;
 
+import application.classesApp.MyDate;
 import application.classesApp.Student;
 import application.classesApp.Subject;
 
@@ -10,16 +11,16 @@ public class SingleSessionCell {
 	private int idRevisionSession;
 	private Student teacher;
 	private Subject subject;
-	private LocalDate dateRevisionSession;
+	private MyDate dateRevisionSession;
 	//private String placeRevisionSession;
 	
 	
 	
-	public SingleSessionCell(int idRevisionSession, Student teacher, Subject subject, LocalDate localDate) {
+	public SingleSessionCell(int idRevisionSession, Student teacher, Subject subject, MyDate myDate) {
 		this.idRevisionSession = idRevisionSession;
 		this.teacher = teacher;
 		this.subject = subject;
-		this.dateRevisionSession = localDate;
+		this.dateRevisionSession = myDate;
 		//this.placeRevisionSession = placeRevisionSession;
 	}
 
@@ -61,13 +62,13 @@ public class SingleSessionCell {
 
 
 
-	public LocalDate getDateRevisionSession() {
+	public MyDate getDateRevisionSession() {
 		return dateRevisionSession;
 	}
 
 
 
-	public void setDateRevisionSession(LocalDate dateRevisionSession) {
+	public void setDateRevisionSession(MyDate dateRevisionSession) {
 		this.dateRevisionSession = dateRevisionSession;
 	}
 

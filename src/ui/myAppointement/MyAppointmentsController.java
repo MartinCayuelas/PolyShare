@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 /**
  * @author julienroumagnac
  */
-public class MyAppointmentsController implements Initializable {
+public class MyAppointmentsController  {
 	
 	private AppointmentsFacade myAppFac = new AppointmentsFacade();
 
@@ -45,10 +45,6 @@ public class MyAppointmentsController implements Initializable {
     }
 
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

@@ -25,12 +25,12 @@ public class SingleSession extends Appointment {
     	this.student = student;
     }
     
-    public SingleSession(int idAppointment, Student teacher, Student student, LocalDate localDate, int idSubject) {
+    public SingleSession(int idAppointment, Student teacher, Student student, MyDate localDate, int idSubject) {
     	super(idAppointment, teacher, idSubject, localDate);
     	this.student = student;
     }
     
-    public SingleSession(int idAppointment, Student teacher, Student student, LocalDate dateA, Subject subject) {
+    public SingleSession(int idAppointment, Student teacher, Student student, MyDate dateA, Subject subject) {
     	super(idAppointment, teacher, subject, dateA);
     	this.student = student;
     }

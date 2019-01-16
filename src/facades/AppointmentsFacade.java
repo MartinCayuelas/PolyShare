@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import application.classesApp.Appointment;
+import application.classesApp.MyDate;
 import application.classesApp.RevisionSession;
 import application.classesApp.SingleSession;
 import application.classesApp.Student;
@@ -44,7 +45,7 @@ public class AppointmentsFacade {
      * and the connected student
      * @throws DisconnectedStudentException 
      */
-    public void addSingleSession(LocalDate localDate, Subject subject, Student student) throws DisconnectedStudentException {
+    public void addSingleSession(MyDate localDate, Subject subject, Student student) throws DisconnectedStudentException {
         // TODO implement here
     	Student teacher = LoginFacade.getInstance().getConnectedStudent();
     	SingleSession singleSession = new SingleSession(0, teacher, student, localDate, subject.getId());

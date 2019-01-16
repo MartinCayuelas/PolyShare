@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import application.classesApp.Appointment;
+import application.classesApp.MyDate;
 import application.classesApp.RevisionSession;
 import application.classesApp.SingleSession;
 import application.classesApp.Student;
@@ -261,7 +262,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			while (result.next()) {
 				teacher = new Student(result.getInt("idTeacher"));
 				subject = new Subject(result.getInt("idSubject"), null);
-				appointment = new SingleSession(result.getInt("idSingleRevision"), teacher, null, result.getDate("dateAppointement").toLocalDate(), subject);
+				appointment = new SingleSession(result.getInt("idSingleRevision"), teacher, null,new MyDate( result.getString("dateAppointement")), subject);
 				listSingleSession.add(appointment);
 			}
 			
@@ -325,7 +326,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			while(result.next()) {
 				teacher = new Student(result.getInt("idTeacher"));
 				subject = new Subject(result.getInt("idSubject"), null);
-				appointment = new RevisionSession(result.getInt("idRevisionSession"), teacher, listStudent, subject, result.getDate("dateAppointement").toLocalDate());
+				appointment = new RevisionSession(result.getInt("idRevisionSession"), teacher, listStudent, subject, new MyDate(result.getString("dateAppointement")));
 				System.out.println(appointment.getIdAppointment());
 				listRevisionSession.add(appointment);
 			}
@@ -469,9 +470,12 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			ResultSet result = this.con.createStatement().executeQuery("SELECT s.idSingleRevision ,t.nameStudent,b.nameSubject,s.dateAppointement as date FROM SingleSession s,Student t,Subject b WHERE s.idSubject=b.idSubject AND  s.idStudent ="+studentid+" AND s.idTeacher = t.idStudent; ");
 			
 			while(result.next()){ 
-				
+				System.out.println(result.getString("date"));
 				appt = new Appointment(
-					result.getInt("idSingleRevision"),new Student(0,result.getString("nameStudent")),new Subject(0,result.getString("nameSubject")),null
+					result.getInt("idSingleRevision"),
+					new Student(0,result.getString("nameStudent")),
+					new Subject(0,result.getString("nameSubject")),
+					new MyDate(result.getString("date"))
 		  	        
 		  	    );
 				
@@ -485,9 +489,10 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			resultb.getInt("idSingleRevision"),
 			new Student(0,resultb.getString("nameStudent")),
   	        new Subject(0,resultb.getString("nameSubject")),
-	  	        null
+	  	    new MyDate(resultb.getString("date"))
 	  	        
 	  	    );
+		System.out.println(resultb.getString("date"));
 			appointments.add(appt);		}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

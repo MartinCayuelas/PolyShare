@@ -26,7 +26,7 @@ public class RevisionSession extends Appointment {
     	this.students = student;
     }
     
-    public RevisionSession(int idAppointment, Student teacher, ArrayList<Student> student, Subject subject, LocalDate localDate) {
+    public RevisionSession(int idAppointment, Student teacher, ArrayList<Student> student, Subject subject, MyDate localDate) {
     	super(idAppointment, teacher, subject, localDate);
     	this.students = student;
     }

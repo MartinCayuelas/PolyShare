@@ -19,14 +19,14 @@ public class Appointment {
     	this.teacher = teacher;
     }
 	
-	public Appointment(int idAppointment, Student teacher, int idSubject, LocalDate localDate) {
+	public Appointment(int idAppointment, Student teacher, int idSubject, MyDate date) {
     	this.idAppointment = idAppointment;
     	this.teacher = teacher;
     	this.idSubject = idSubject;
-    	this.dateAppointment = localDate;
+    	this.dateAppointment = date;
     }
 	
-	public Appointment(int idAppointment, Student teacher, Subject subject, LocalDate dateAppointment) {
+	public Appointment(int idAppointment, Student teacher, Subject subject, MyDate date) {
     	this.idAppointment = idAppointment;
     	this.teacher = teacher;
     	this.subject = subject;
@@ -56,7 +56,7 @@ public class Appointment {
     /**
      * 
      */
-    public LocalDate dateAppointment;
+    public MyDate dateAppointment;
 
 
     /**
@@ -111,7 +111,7 @@ public class Appointment {
      * Get the date of the appointment
      * @return the date of the appointment
      */
-	public LocalDate getDateAppointment() {
+	public MyDate getDateAppointment() {
 		return dateAppointment;
 	}
 
@@ -119,7 +119,7 @@ public class Appointment {
      * Modify the date of the appointment
      * @param dateAppointment the date added of the appointment
      */
-	public void setDateAppointment(LocalDate dateAppointment) {
+	public void setDateAppointment(MyDate dateAppointment) {
 		this.dateAppointment = dateAppointment;
 	}
 

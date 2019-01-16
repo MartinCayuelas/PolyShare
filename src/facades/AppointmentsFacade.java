@@ -15,7 +15,7 @@ import persistent.DAO.AppointmentDAO;
 
 /**
  * @author lucadebeir julienroumagnac
- * 
+ * *
  */
 
 public class AppointmentsFacade {

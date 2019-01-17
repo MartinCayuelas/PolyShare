@@ -44,6 +44,7 @@ public class SchoolClassController implements Initializable {
 	protected List<String> listSubjects = new ArrayList<>();
 	protected List<Integer> listSubjectsId = new ArrayList<>();
 	protected List<String> listTopics = new ArrayList<>();
+	protected List<Integer> listTopicsId = new ArrayList<>();
 
 	protected ListProperty<String> listPropertySubjects = new SimpleListProperty<>();
 	protected ListProperty<String> listPropertyTopics = new SimpleListProperty<>();
@@ -51,7 +52,8 @@ public class SchoolClassController implements Initializable {
 	private LoginFacade loginFacade = new LoginFacade();
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	private Router r = Router.getInstance();
-	private int subjectSelectedId;
+	private int subjectSelectedId = -1;
+	private int topicSelectedId = -1;
 
 	//Partie du controller
     /**
@@ -131,8 +133,8 @@ public class SchoolClassController implements Initializable {
 		 subjectsListView.itemsProperty().bind(listPropertySubjects);
 		 listPropertySubjects.set(FXCollections.observableArrayList(listSubjects));
 		 
-
-		 ChangeListener listener = new ChangeListener() {  
+		 //To know the selected Subject
+		 ChangeListener listenerSubject = new ChangeListener() {  
 				@Override
 				public void changed(ObservableValue arg0, Object arg1, Object arg2) {
 					// TODO Auto-generated method stub
@@ -145,18 +147,41 @@ public class SchoolClassController implements Initializable {
 					//Get the topics of the selected Subject in the ListView
 					for(Topic t : schoolClassFacade.getTopics(subjectSelectedId)) {
 						 listTopics.add(t.getNameTopic());
+						 listTopicsId.add(t.getId());
 					 }
 					
 					//Add topics to the Topics ListView
 					 topicsListView.itemsProperty().bind(listPropertyTopics);
 					 listPropertyTopics.set(FXCollections.observableArrayList(listTopics));
+					 
+					//Get update and delete buttons visible
+					 
 				}  
 			}; 
 			
 			//Listener for selecting a Subject in the ListView
 			subjectsListView.getSelectionModel().selectedIndexProperty().addListener(
-					 listener
+					 listenerSubject
 					 );
+			
+			//To know the selected Topic
+			 ChangeListener listenerTopic = new ChangeListener() {  
+					@Override
+					public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+						// TODO Auto-generated method stub
+						
+						//Get the ID of the selected Topic in the ListView
+						topicSelectedId = listTopicsId.get(topicsListView.getSelectionModel().getSelectedIndex());
+						
+						//Get update and delete buttons visible
+
+					}  
+				}; 
+				
+				//Listener for selecting a Subject in the ListView
+				topicsListView.getSelectionModel().selectedIndexProperty().addListener(
+						listenerTopic
+						 );
 			
 	}
 	
@@ -210,7 +235,7 @@ public class SchoolClassController implements Initializable {
 	}
 	
 	public void deleteTopic() throws DisconnectedStudentException {
-    	//schoolClassFacade.deleteSubject(subjectSelectedId);
+    	schoolClassFacade.deleteTopic(topicSelectedId);
 
 	}
 	

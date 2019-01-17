@@ -24,7 +24,7 @@ public class LoginUI extends Application {
 
 		try {
 			FXMLLoader root = new FXMLLoader(getClass().getResource("Login.fxml"));
-			root.setController(new LoginController());
+			//root.setController(new LoginController());
 			loginLayout = (VBox) root.load();
 			Scene scene = new Scene(loginLayout);
 			primaryStage.setTitle("Login Interface");

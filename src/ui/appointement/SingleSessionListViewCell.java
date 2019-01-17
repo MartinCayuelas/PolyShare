@@ -69,7 +69,7 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
             this.cellLabelnameTeacher.setText(String.valueOf(ssc.getTeacher().getNameStudent()));
             //this.cellLabelnameSubject.setText(String.valueOf(ssc.getSubject().getNameSubject()));
             this.cellLabelExplication.setText(String.valueOf(ssc.getTeacher().getNameStudent()));
-            this.cellLabelDateAppointment.setText(String.valueOf(ssc.getDateRevisionSession()));
+            this.cellLabelDateAppointment.setText(String.valueOf(ssc.getDateRevisionSession().getShowingDate()));
            
            /* this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
                @Override

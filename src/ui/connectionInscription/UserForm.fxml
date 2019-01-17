@@ -21,6 +21,9 @@
                </font>
             </Label>
          </center>
+         <bottom>
+            <Label fx:id="errorLabel" prefHeight="17.0" prefWidth="167.0" textFill="RED" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
       <GridPane>
         <columnConstraints>

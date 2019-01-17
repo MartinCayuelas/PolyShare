@@ -70,7 +70,7 @@ public class RevisionSessionListViewCell extends ListCell<RevisionSessionCell> {
             this.cellLabelnameTeacher.setText(String.valueOf(rsc.getTeacher().getNameStudent()));
             this.cellLabelnameSubject.setText(String.valueOf(rsc.getSubject().getNameSubject()));
             this.cellLabelExplication.setText(String.valueOf(rsc.getTeacher().getNameStudent()));
-            this.cellLabelDateAppointment.setText(String.valueOf(rsc.getDateRevisionSession()));
+            this.cellLabelDateAppointment.setText(String.valueOf(rsc.getDateRevisionSession().getShowingDate()));
             this.students.setId(String.valueOf(rsc.getStudents()));
            
            /* this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {

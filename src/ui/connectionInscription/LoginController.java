@@ -62,7 +62,7 @@ public class LoginController {
 		 emailStudent = txtEmailStudent.getText();
 		 passWord = txtPassWord.getText();
 	     if(emailStudent.equals("") || passWord.equals("")) {
-	    	 display("Enter email or password");
+	    	 errorText.setText("Enter email or password");
 	     } else {
 	    	 loginFacade.login(emailStudent, passWord);
 	    	 if (loginFacade.isConnected()) {
@@ -80,7 +80,7 @@ public class LoginController {
                 nextStage.setScene(scene);
                 nextStage.show(); 
 	    	 } else {
-	    		display("Wrong email/password");
+	    		 errorText.setText("Wrong email/password");
 	    	 }
 	    	 try {
 				if (loginFacade.getConnectedStudent() != null) {
@@ -98,7 +98,7 @@ public class LoginController {
 				    nextStage.setScene(scene);
 				    nextStage.show(); 
 				 } else {
-					display("Wrong email/password");
+					 errorText.setText("Wrong email/password");
 				 }
 			} catch (DisconnectedStudentException e1) {
 				// TODO Auto-generated catch block
@@ -121,11 +121,6 @@ public class LoginController {
 	    Scene scene = new Scene(myPane);
 	    nextStage.setScene(scene);
 	    nextStage.show(); 
-	}
-	
-	@FXML
-	public void display(String msg) {
-		errorText.setText(msg);
 	}
 	
 	public void initialize(URL arg0, ResourceBundle arg1) {

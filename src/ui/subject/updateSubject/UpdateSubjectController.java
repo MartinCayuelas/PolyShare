@@ -63,7 +63,7 @@ public class UpdateSubjectController implements Initializable {
     		System.out.println("PASSER UN SUBJECT SVP");
     	}*/
 		
-		//Remplissage du TextField avec le nom du topic à modifier
+		//Remplissage du TextField avec le nom du subject à modifier
 		nameSubject.setText(schoolClassFacade.findSubjectById(5).getNameSubject());
 	}
 

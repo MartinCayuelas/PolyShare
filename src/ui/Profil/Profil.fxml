@@ -19,9 +19,33 @@
          </image>
       </ImageView>
       <TitledPane animated="false" layoutX="26.0" layoutY="194.0" prefHeight="156.0" prefWidth="519.0" text="Skills">
-         <content>
-            <fx:include source="BaseTab.fxml" />
-         </content>
+         <AnchorPane id="AnchorPane" prefHeight="362.0" prefWidth="564.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.skill.SkillControlleur">
+    <children>
+      <BorderPane prefHeight="362.0" prefWidth="564.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ListView fx:id="mySkillsLView" layoutX="63.0" layoutY="54.0" prefHeight="199.0" prefWidth="439.0" />
+                  <ButtonBar layoutX="138.0" layoutY="261.0" prefHeight="40.0" prefWidth="244.0">
+                     <padding>
+                        <Insets right="2.0" top="2.0" />
+                     </padding>
+                     <buttons>
+                          <Button fx:id="button" minWidth="73.0" onAction="#backHome" prefHeight="26.0" prefWidth="100.0" text="Back" />
+                        <Button mnemonicParsing="false" onAction="#handleAddNewSkill" prefHeight="25.0" prefWidth="43.0" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Add" />
+                     </buttons>
+                  </ButtonBar>
+                  <Text layoutX="249.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #357AB7;" text="Skills">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+    </children>
+</AnchorPane>
       </TitledPane>
       <TitledPane animated="false" layoutX="26.0" layoutY="365.0" prefHeight="167.0" prefWidth="519.0" text="Managed Classes">
          <content>
@@ -39,7 +63,7 @@
       </TitledPane>
       <TitledPane animated="false" layoutX="26.0" layoutY="548.0" prefHeight="121.0" prefWidth="519.0" text="Password">
          <content>
-            <fx:include source="BaseTab.fxml" />
+            
          </content>
       </TitledPane>
       <Label layoutX="266.0" layoutY="22.0" text="Label" />

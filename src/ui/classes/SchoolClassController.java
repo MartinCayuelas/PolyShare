@@ -14,6 +14,7 @@ import application.classesApp.Topic;
 import facades.LoginFacade;
 import facades.SchoolClassFacade;
 import facades.SkillFacade;
+import facades.exceptions.DisconnectedStudentException;
 import javafx.application.Application;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -50,6 +51,7 @@ public class SchoolClassController implements Initializable {
 	private LoginFacade loginFacade = new LoginFacade();
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	private Router r = Router.getInstance();
+	private int subjectSelectedId;
 
 	//Partie du controller
     /**
@@ -138,7 +140,7 @@ public class SchoolClassController implements Initializable {
 					listTopics.clear();
 					
 					//Get the ID of the selected Subject in the ListView
-					int subjectSelectedId = listSubjectsId.get(subjectsListView.getSelectionModel().getSelectedIndex());
+					subjectSelectedId = listSubjectsId.get(subjectsListView.getSelectionModel().getSelectedIndex());
 					
 					//Get the topics of the selected Subject in the ListView
 					for(Topic t : schoolClassFacade.getTopics(subjectSelectedId)) {
@@ -157,4 +159,59 @@ public class SchoolClassController implements Initializable {
 					 );
 			
 	}
+	
+	///////////////////
+	//Subject buttons//
+	///////////////////
+	
+	public void addSubject() throws DisconnectedStudentException {
+    	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    	//Ajouter l'ID de la SchoolClass courante dans le router pour pouvoir la récupérer dans la nouvelle fenêtre pour ajouter un subject//
+    	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		//Ouvrir la fenêtre "AddSubject.fxml"
+
+	}
+	
+	public void updateSubject() throws DisconnectedStudentException {
+    	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    	//Ajouter le subject courant dans le router pour pouvoir la récupérer dans la nouvelle fenêtre pour modifier un subject//
+    	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		//Ouvrir la fenêtre "UpdateSubject.fxml"
+
+	}
+	
+	public void deleteSubject() throws DisconnectedStudentException {
+    	schoolClassFacade.deleteSubject(subjectSelectedId);
+
+	}
+	
+	/////////////////
+	//Topic buttons//
+	/////////////////
+	
+	public void addTopic() throws DisconnectedStudentException {
+    	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    	//Ajouter l'ID du Subject courant dans le router pour pouvoir le récupérer dans la nouvelle fenêtre pour ajouter un topic//
+    	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		//Ouvrir la fenêtre "AddTopic.fxml"
+
+	}
+	
+	public void updateTopic() throws DisconnectedStudentException {
+    	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    	//Ajouter le topic courant dans le router pour pouvoir la récupérer dans la nouvelle fenêtre pour modifier un topic//
+    	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		//Ouvrir la fenêtre "UpdateTopic.fxml"
+
+	}
+	
+	public void deleteTopic() throws DisconnectedStudentException {
+    	//schoolClassFacade.deleteSubject(subjectSelectedId);
+
+	}
+	
 }

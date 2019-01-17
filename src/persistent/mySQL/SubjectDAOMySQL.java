@@ -78,7 +78,13 @@ public class SubjectDAOMySQL extends SubjectDAO {
 	@Override
 	public void deleteSubject(int idSubject) {
 		// TODO Auto-generated method stub
-		
+		try {
+			this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM subject WHERE idSubject = " + idSubject);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

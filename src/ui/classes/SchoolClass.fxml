@@ -47,7 +47,9 @@
                                              <children>
                                                 <ButtonBar layoutX="85.0" layoutY="14.0" prefHeight="90.0" prefWidth="493.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <buttons>
-                                                    <Button mnemonicParsing="false" text="See topics" />
+                                                      <Button fx:id="addSubjectButton" mnemonicParsing="false" onAction="#addSubject" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Add a subject" />
+                                                      <Button fx:id="updateSubjectButton" mnemonicParsing="false" onAction="#updateSubject" style="-fx-background-color: #FFBB33; -fx-text-fill: white;" text="Update the subject" />
+                                                      <Button fx:id="deleteSubjectButton" mnemonicParsing="false" onAction="#deleteSubject" style="-fx-background-color: #FF3F33; -fx-text-fill: white;" text="Delete the subject" />
                                                   </buttons>
                                                 </ButtonBar>
                                              </children>
@@ -74,10 +76,10 @@
                                              <children>
                                                 <ButtonBar layoutX="93.0" layoutY="14.0" prefHeight="89.0" prefWidth="493.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <buttons>
-                                                    <Button mnemonicParsing="false" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Add a topic" />
-                                                      <Button mnemonicParsing="false" text="Offer help" />
-                                                      <Button mnemonicParsing="false" text="Ask for help" />
-                                                      <Button mnemonicParsing="false" text="See documents" />
+                                                    <Button fx:id="addTopicButton" mnemonicParsing="false" onAction="#addTopic" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Add a topic" />
+                                                      <Button fx:id="updateTopicButton" mnemonicParsing="false" onAction="#updateTopic" style="-fx-background-color: #FFBB33; -fx-text-fill: white;" text="Update the topic" />
+                                                      <Button fx:id="deleteTopicButton" mnemonicParsing="false" onAction="#deleteTopic" style="-fx-background-color: #FF3F33; -fx-text-fill: white;" text="Delete the topic" />
+                                                      <Button mnemonicParsing="false" text="Next" />
                                                   </buttons>
                                                 </ButtonBar>
                                              </children>

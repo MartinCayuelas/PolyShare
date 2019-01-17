@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import application.classesApp.MyDate;
 import application.classesApp.RevisionSession;
 import application.classesApp.SchoolClass;
 import application.classesApp.SingleSession;
@@ -126,7 +127,8 @@ public class AppointmentController {
 				if(!subjectsHelpProposal.getValue().toString().isEmpty() && !topicsHelpProposal.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeHelpProposal.getText().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty()){
 					Subject subject = new Subject(0, subjectsHelpProposal.getValue().toString());
 					try {
-						appointmentsFacade.addSingleSession(dateHelpProposal.getValue(),subject,null);
+						MyDate date = new MyDate("dateHelpProposal.getValue().getDayOfMonth()", "dateHelpProposal.getValue().getMonthValue()", "dateHelpProposal.getValue().getYear()");
+						appointmentsFacade.addSingleSession(date,subject,null);
 					} catch (DisconnectedStudentException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

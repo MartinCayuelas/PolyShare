@@ -142,7 +142,11 @@ public class SchoolClassController implements Initializable {
 					listTopics.clear();
 					
 					//Get the ID of the selected Subject in the ListView
-					subjectSelectedId = listSubjectsId.get(subjectsListView.getSelectionModel().getSelectedIndex());
+					try {
+						subjectSelectedId = listSubjectsId.get(subjectsListView.getSelectionModel().getSelectedIndex());
+					}catch (Exception e) {
+						// TODO: handle exception
+					}
 					
 					//Get the topics of the selected Subject in the ListView
 					for(Topic t : schoolClassFacade.getTopics(subjectSelectedId)) {
@@ -171,7 +175,11 @@ public class SchoolClassController implements Initializable {
 						// TODO Auto-generated method stub
 						
 						//Get the ID of the selected Topic in the ListView
-						topicSelectedId = listTopicsId.get(topicsListView.getSelectionModel().getSelectedIndex());
+						try {
+							topicSelectedId = listTopicsId.get(topicsListView.getSelectionModel().getSelectedIndex());
+						}catch (Exception e) {
+							// TODO: handle exception
+						}
 						
 						//Get update and delete buttons visible
 
@@ -208,8 +216,22 @@ public class SchoolClassController implements Initializable {
 	}
 	
 	public void deleteSubject() throws DisconnectedStudentException {
+		//Get the name of the deleted Subject
+    	String deletedSubjectName = schoolClassFacade.findSubjectById(subjectSelectedId).getNameSubject();
+    	
+    	//Get the index of the deleted Subject in lists
+    	int index = listSubjects.indexOf(deletedSubjectName);
+    	
+    	//Remove the deleted Subject to lists
+    	listSubjects.remove(deletedSubjectName);
+    	listSubjectsId.remove(index);
+    	
+    	//Delete the Subject from the database
     	schoolClassFacade.deleteSubject(subjectSelectedId);
-
+    	
+    	//Update the Subjects ListView
+    	subjectsListView.itemsProperty().bind(listPropertySubjects);
+        listPropertySubjects.set(FXCollections.observableArrayList(listSubjects));
 	}
 	
 	/////////////////
@@ -235,7 +257,22 @@ public class SchoolClassController implements Initializable {
 	}
 	
 	public void deleteTopic() throws DisconnectedStudentException {
+		//Get the name of the deleted Subject
+    	String deletedTopicName = schoolClassFacade.findTopicById(topicSelectedId).getNameTopic();
+    	
+    	//Get the index of the deleted Subject in lists
+    	int index = listTopics.indexOf(deletedTopicName);
+    	
+    	//Remove the deleted Subject to lists
+    	listTopics.remove(deletedTopicName);
+    	listTopicsId.remove(index);
+    	
+    	//Delete the Topic from the database
     	schoolClassFacade.deleteTopic(topicSelectedId);
+    	
+    	//Update the Subjects ListView
+    	topicsListView.itemsProperty().bind(listPropertyTopics);
+    	listPropertyTopics.set(FXCollections.observableArrayList(listTopics));
 
 	}
 	

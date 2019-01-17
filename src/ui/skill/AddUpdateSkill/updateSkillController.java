@@ -38,14 +38,12 @@ public class updateSkillController implements Initializable {
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	ObservableList<String> SchoolClassObservableList;
 	Router r = Router.getInstance();
-	
+
 	private Skill skillToUpdate;
-	
 
 	public void initSkill(Skill s) {
-		System.out.println("Dedans");
 		this.skillToUpdate = s;
-		//this.nameSkill.setText(this.skillToUpdate.getNameSkill());
+		// this.nameSkill.setText(this.skillToUpdate.getNameSkill());
 	}
 
 	@FXML
@@ -58,7 +56,6 @@ public class updateSkillController implements Initializable {
 	@FXML
 	private ChoiceBox<String> choiceBoxClass;
 
-	
 	public void updateSkill(ActionEvent event) throws DisconnectedStudentException, IOException {
 		// int idStudent = loginFacade.getConnectedStudent().getId();
 		// Mettre idStudent à la place de 1
@@ -71,22 +68,20 @@ public class updateSkillController implements Initializable {
 		int idClass = lClass.getIdSchoolClass();
 		Skill s = new Skill(skillToUpdate.getIdSkill(), nameSkill.getText(), mySpinner.getValue(), 1, idClass);
 		skillFacade.updateSkill(s);
-		
-		
-		//Quand on appuie sur Update ça doit renvoyer vers la page des skills
-		Node  source = (Node)  event.getSource(); 
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
-                            
-        Stage nextStage = new Stage();
-        nextStage.setTitle("Student Account");
-        Pane myPane = null;
-        myPane = FXMLLoader.load(getClass().getResource("/ui/skill/Skill.fxml"));
-                
-                
-        Scene scene = new Scene(myPane);
-        nextStage.setScene(scene);
-        nextStage.show(); 
+
+		// Quand on appuie sur Update ça doit renvoyer vers la page des skills
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
+
+		Stage nextStage = new Stage();
+		nextStage.setTitle("UpdateSkill");
+		Pane myPane = null;
+		myPane = FXMLLoader.load(getClass().getResource("/ui/skill/Skill.fxml"));
+
+		Scene scene = new Scene(myPane);
+		nextStage.setScene(scene);
+		nextStage.show();
 
 	}
 
@@ -98,23 +93,22 @@ public class updateSkillController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
-		
 
 		initSpinner();
 		List<SchoolClass> sc = new ArrayList<>();
 		sc = schoolClassFacade.getAllSchoolClass();
 		SchoolClassObservableList = FXCollections.observableArrayList();
 		for (SchoolClass c : sc) {
-			//System.out.println("Class : " + c.getNameSchoolClass());
+			// System.out.println("Class : " + c.getNameSchoolClass());
 			SchoolClassObservableList.add(c.getNameSchoolClass());
 		}
 
 		this.choiceBoxClass.setItems(SchoolClassObservableList);
-		
+
 		this.nameSkill.setText(skillToUpdate.getNameSkill());
-		
-		//System.out.println("update: "+this.skillToUpdate.getNameSkill() + "id: "+this.skillToUpdate.getIdSkill());
+
+		// System.out.println("update: "+this.skillToUpdate.getNameSkill() + "id:
+		// "+this.skillToUpdate.getIdSkill());
 
 	}
 

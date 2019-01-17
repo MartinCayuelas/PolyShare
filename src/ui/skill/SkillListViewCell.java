@@ -20,113 +20,105 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ui.skill.AddUpdateSkill.updateSkillController;
 
-
 /**
  * @author martinCayuelas
  */
 
 public class SkillListViewCell extends ListCell<SkillCell> {
-	
+
 	private SkillControlleur controller;
 	private SkillFacade skillFacade = new SkillFacade();
-	@FXML private Label cellLabelnomSkill;
-	@FXML private Label cellLabelSchoolClassSkill;
-	@FXML private Label cellLabelmarkSkill;
-	
-	@FXML private Button buttonDelete;
-	@FXML private Button buttonUpdate;
-	
-	@FXML private  HBox cellLayout;
+	@FXML
+	private Label cellLabelnomSkill;
+	@FXML
+	private Label cellLabelSchoolClassSkill;
+	@FXML
+	private Label cellLabelmarkSkill;
+
+	@FXML
+	private Button buttonDelete;
+	@FXML
+	private Button buttonUpdate;
+
+	@FXML
+	private HBox cellLayout;
 	FXMLLoader mLLoader;
-	
-	
-	
+
 	public SkillListViewCell(SkillControlleur controller) {
 		super();
 		this.controller = controller;
 	}
 
-
-
 	@Override
-    protected void updateItem(SkillCell sc, boolean empty) {
-        super.updateItem(sc, empty);
-        
-        if(empty || sc == null) {
+	protected void updateItem(SkillCell sc, boolean empty) {
+		super.updateItem(sc, empty);
 
-            setText(null);
-            setGraphic(null);
+		if (empty || sc == null) {
 
-        } else {
-            if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("SkillListViewCell.fxml"));
-                mLLoader.setController(this);
-                try {
-                    mLLoader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+			setText(null);
+			setGraphic(null);
 
-            }
-            
-            this.cellLabelnomSkill.setText(String.valueOf(sc.getNomSkill()));
-            this.cellLabelSchoolClassSkill.setText(String.valueOf(sc.getNomClasse()));
-           String mark = String.valueOf(sc.getMarkSkill());
-           this.cellLabelmarkSkill.setText(mark);
-           
-           this.buttonUpdate.setOnAction(new EventHandler<ActionEvent>() {
-               @Override
-               public void handle(ActionEvent event) {
-            	  
-            			Node  source = (Node)  event.getSource(); 
-            	        Stage stage  = (Stage) source.getScene().getWindow();
-            	        stage.close();
-            	                            
-            	        Stage nextStage = new Stage();
-            	        nextStage.setTitle("UpdateSkill");
-            	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/skill/AddUpdateSkill/updateSkill.fxml"));
+		} else {
+			if (mLLoader == null) {
+				mLLoader = new FXMLLoader(getClass().getResource("SkillListViewCell.fxml"));
+				mLLoader.setController(this);
+				try {
+					mLLoader.load();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 
-                        Parent sceneMain = null;
-						try {
-							updateSkillController controllerU = new updateSkillController();
-							loader.setController(controllerU );
-							System.out.println("id "+sc.getIdSkill());
-							
-							controllerU.initSkill(sc.getSkill());
-						
-	                        System.out.println("id "+sc.getIdSkill());
-							sceneMain = loader.load();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+			}
 
-                        
-            	                
-            	       	
-            	        Scene scene = new Scene(sceneMain);
-            	        nextStage.setScene(scene);
-            	        nextStage.show(); 
-            	        
-            	      
-            	       // updateSkillController sk = new updateSkillController(sc.getSkill());
-            			
-            			
-            		
-               }                            
-           });
-           
-           this.buttonDelete.setOnAction(new EventHandler<ActionEvent>() {
-               @Override
-               public void handle(ActionEvent event) { 
-                   controller.deleteSkill(sc);
-               }                            
-           });
-           
-            setText(null);
-            setGraphic(cellLayout);
-        }
+			this.cellLabelnomSkill.setText(String.valueOf(sc.getNomSkill()));
+			this.cellLabelSchoolClassSkill.setText(String.valueOf(sc.getNomClasse()));
+			String mark = String.valueOf(sc.getMarkSkill());
+			this.cellLabelmarkSkill.setText(mark);
 
-    }
-	
+			this.buttonUpdate.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+
+					Node source = (Node) event.getSource();
+					Stage stage = (Stage) source.getScene().getWindow();
+					stage.close();
+
+					Stage nextStage = new Stage();
+					nextStage.setTitle("UpdateSkill");
+					FXMLLoader loader = new FXMLLoader(
+							getClass().getResource("/ui/skill/AddUpdateSkill/updateSkill.fxml"));
+
+					Parent sceneMain = null;
+					try {
+						updateSkillController controllerU = new updateSkillController();
+						loader.setController(controllerU);
+
+						controllerU.initSkill(sc.getSkill());
+
+						sceneMain = loader.load();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					Scene scene = new Scene(sceneMain);
+					nextStage.setScene(scene);
+					nextStage.show();
+
+				}
+			});
+
+			this.buttonDelete.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					controller.deleteSkill(sc);
+				}
+			});
+
+			setText(null);
+			setGraphic(cellLayout);
+		}
+
+	}
+
 }

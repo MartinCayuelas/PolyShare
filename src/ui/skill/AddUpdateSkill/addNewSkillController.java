@@ -62,25 +62,21 @@ public class addNewSkillController implements Initializable {
 		int idClass = lClass.getIdSchoolClass();
 		Skill s = new Skill(0, nameSkill.getText(), mySpinner.getValue(), 1, idClass);
 		skillFacade.addSkill(s);
-		
-		
-		
-		
-		//Quand on appuie sur Add ça doit renvoyer vers la page des skills
-		
-		Node  source = (Node)  event.getSource(); 
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
-                            
-        Stage nextStage = new Stage();
-        nextStage.setTitle("Student Account");
-        Pane myPane = null;
-        myPane = FXMLLoader.load(getClass().getResource("/ui/skill/Skill.fxml"));
-                
-                
-        Scene scene = new Scene(myPane);
-        nextStage.setScene(scene);
-        nextStage.show(); 
+
+		// Quand on appuie sur Add ça doit renvoyer vers la page des skills
+
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
+
+		Stage nextStage = new Stage();
+		nextStage.setTitle("AddSkill");
+		Pane myPane = null;
+		myPane = FXMLLoader.load(getClass().getResource("/ui/skill/Skill.fxml"));
+
+		Scene scene = new Scene(myPane);
+		nextStage.setScene(scene);
+		nextStage.show();
 
 	}
 
@@ -98,7 +94,7 @@ public class addNewSkillController implements Initializable {
 		sc = schoolClassFacade.getAllSchoolClass();
 		SchoolClassObservableList = FXCollections.observableArrayList();
 		for (SchoolClass c : sc) {
-			//System.out.println("Class : " + c.getNameSchoolClass());
+			// System.out.println("Class : " + c.getNameSchoolClass());
 			SchoolClassObservableList.add(c.getNameSchoolClass());
 		}
 

@@ -103,8 +103,9 @@ public class SchoolClassFacade {
 	 * Get all the subjects for a SchoolClass
 	 * @param idSchoolClass SchoolClass to analize
 	 * @return 
+	 * @throws DisconnectedStudentException 
 	 */
-	public List<SchoolClass> getAllSchoolClassConnectedStudent() {
+	public List<SchoolClass> getAllSchoolClassConnectedStudent() throws DisconnectedStudentException {
 		SchoolClassDAO scDAO = this.factory.createSchoolClassDAO();
 		//Student co = LoginFacade.getInstance().getConnectedStudent();
 		return scDAO.getAllSchoolClassByIdStudent(1);

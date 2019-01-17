@@ -4,6 +4,7 @@ import java.util.List;
 
 import application.classesApp.SchoolClass;
 import facades.SchoolClassFacade;
+import facades.exceptions.DisconnectedStudentException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -66,13 +67,13 @@ public class HomePageController {
     	if (selected != null) {
     		System.out.println(selected.getNameSchoolClass());
     		SchoolClass[] params  = {selected};
-        	Router.getInstance().activate("Subject", params);
+        	Router.getInstance().activate("Subject", params); 
     	}
     	
     }
     
     @FXML
-    public void initialize() {
+    public void initialize() throws DisconnectedStudentException {
     	// get Class and fill ClassView
     	SchoolClassFacade scFac = new SchoolClassFacade();
     	

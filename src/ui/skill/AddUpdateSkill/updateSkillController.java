@@ -60,12 +60,11 @@ public class updateSkillController implements Initializable {
 		// int idStudent = loginFacade.getConnectedStudent().getId();
 		// Mettre idStudent à la place de 1
 
-		// System.out.println(nameSkill.getText());
-		// System.out.println(choiceBoxClass.getValue());
 		SchoolClass lClass = schoolClassFacade.findSchoolClass(choiceBoxClass.getValue());
 		// System.out.println(lClass.getIdSchoolClass() + " - "
 		// +lClass.getNameSchoolClass());
 		int idClass = lClass.getIdSchoolClass();
+		// Mettre idStudent à la place de 1
 		Skill s = new Skill(skillToUpdate.getIdSkill(), nameSkill.getText(), mySpinner.getValue(), 1, idClass);
 		skillFacade.updateSkill(s);
 

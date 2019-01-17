@@ -27,7 +27,7 @@ public class SchoolClassListViewCell extends ListCell<SchoolClass> {
             if (mLLoader == null) {
                 mLLoader = new FXMLLoader(getClass().getResource("ListCellSchoolClass.fxml"));
                 mLLoader.setController(this);
-                try {
+                try { 
                     mLLoader.load();
                 } catch (IOException e) {
                     e.printStackTrace();

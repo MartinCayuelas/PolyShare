@@ -1,4 +1,4 @@
-package ui.skill.AddSkill;
+package ui.skill.AddUpdateSkill;
 
 import java.net.URL;
 import java.util.ArrayList;

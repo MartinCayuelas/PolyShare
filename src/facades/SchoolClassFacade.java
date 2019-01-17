@@ -20,7 +20,7 @@ import persistent.DAO.TopicDAO;
 import persistent.factories.DAOFactoryMySql;
 
 /**
- * @author guillaud, ponthieu
+ * @author guillaud, ponthieu, cayuelas
  */
 public class SchoolClassFacade {
 	AbstractFactory factory = new DAOFactoryMySql(); 

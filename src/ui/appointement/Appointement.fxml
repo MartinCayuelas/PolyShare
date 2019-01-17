@@ -29,7 +29,7 @@
                         <Font size="19.0" />
                      </font>
                   </Button>
-                  <Button fx:id="helProposal" mnemonicParsing="false" onAction="#addSingleSession" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Help Proposal" GridPane.columnIndex="1">
+                  <Button mnemonicParsing="false" onAction="#addSingleSession" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Help Proposal" GridPane.columnIndex="1">
                      <font>
                         <Font size="19.0" />
                      </font>

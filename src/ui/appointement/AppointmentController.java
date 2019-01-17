@@ -15,7 +15,7 @@ import facades.exceptions.DisconnectedStudentException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -97,8 +97,8 @@ public class AppointmentController {
      * @return
      * @throws IOException 
      */
+    @FXML
     public void addSingleSession(ActionEvent e) throws IOException {
-        // TODO implement here
     	Node  source = (Node)  e.getSource(); 
 	    Stage stage  = (Stage) source.getScene().getWindow();
 	    stage.close();
@@ -117,25 +117,20 @@ public class AppointmentController {
      * @return
      */
     @FXML
-    private void addHelpProposal() {
-    	validateNewHelpProposal.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				if(!subjectsHelpProposal.getValue().toString().isEmpty() && !topicsHelpProposal.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeHelpProposal.getText().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty()){
-					Subject subject = new Subject(0, subjectsHelpProposal.getValue().toString());
-					try {
-						MyDate date = new MyDate("dateHelpProposal.getValue().getDayOfMonth()", "dateHelpProposal.getValue().getMonthValue()", "dateHelpProposal.getValue().getYear()");
-						appointmentsFacade.addSingleSession(date,subject,null);
-					} catch (DisconnectedStudentException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			    } else {
-			    	errorText.setText("Erreur : tous les champs ne sont pas remplis !");
-			    }
+    private void addHelpProposal(ActionEvent event) {
+    	if(!subjectsHelpProposal.getValue().toString().isEmpty() && !topicsHelpProposal.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeHelpProposal.getText().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty()){
+    		Subject subject = new Subject(0, subjectsHelpProposal.getValue().toString());
+			try {
+				MyDate date = new MyDate("dateHelpProposal.getValue().getDayOfMonth()", "dateHelpProposal.getValue().getMonthValue()", "dateHelpProposal.getValue().getYear()");
+				appointmentsFacade.addSingleSession(date,subject,null);
+			} catch (DisconnectedStudentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-    	});
-    }
+		} else {
+			errorText.setText("Erreur : tous les champs ne sont pas remplis !");
+		}
+	}
 
     /**
      * @return

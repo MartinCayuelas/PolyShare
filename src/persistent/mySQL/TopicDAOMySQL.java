@@ -62,13 +62,25 @@ public class TopicDAOMySQL extends TopicDAO {
 	@Override
 	public void deleteTopic(int idTopic) {
 		// TODO Auto-generated method stub
-		
+		try {
+			this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM topic WHERE idTopic = " + idTopic);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void updateTopic(int idTopic, String nameTopic) {
 		// TODO Auto-generated method stub
-		
+		try {
+			this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE topic SET nameTopic = '" + nameTopic + "' WHERE idTopic = " + idTopic);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

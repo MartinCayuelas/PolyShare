@@ -20,6 +20,7 @@ public class MyDate {
 		this.annee= date.substring(0, 4);
 		this.mois= date.substring(5, 7);
 		this.jour= date.substring(8,10);
+		
 	}
 	
 	// this function return the date of this object date in the sql format needed to create a date in SQL

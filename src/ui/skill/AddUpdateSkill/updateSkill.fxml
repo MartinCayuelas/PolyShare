@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="243.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.skill.AddUpdateSkill.addNewSkillController">
+<BorderPane prefHeight="243.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.skill.AddUpdateSkill.updateSkillController">
    <left>
       <Pane prefHeight="243.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>
@@ -25,12 +25,12 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="135.0" layoutY="14.0" style="-fx-text-fill: #357AB7;" text="Update Skill">
+            <Label layoutX="122.0" layoutY="14.0" style="-fx-text-fill: #357AB7;" text="Update Skill">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="142.0" layoutY="189.0" mnemonicParsing="false" onAction="#updateSkill" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #FFBB33; -fx-text-fill: white;" text="Update" />
+            <Button layoutX="130.0" layoutY="190.0" mnemonicParsing="false" onAction="#updateSkill" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #FFBB33; -fx-text-fill: white;" text="Update" />
             <Label layoutX="61.0" layoutY="143.0" prefHeight="25.0" prefWidth="42.0" style="-fx-text-fill: #357AB7;" text="Class">
                <font>
                   <Font size="16.0" />

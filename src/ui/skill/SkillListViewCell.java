@@ -9,10 +9,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 
 /**
@@ -71,7 +75,28 @@ public class SkillListViewCell extends ListCell<SkillCell> {
            this.buttonUpdate.setOnAction(new EventHandler<ActionEvent>() {
                @Override
                public void handle(ActionEvent event) {
-                   
+            	  
+            			Node  source = (Node)  event.getSource(); 
+            	        Stage stage  = (Stage) source.getScene().getWindow();
+            	        stage.close();
+            	                            
+            	        Stage nextStage = new Stage();
+            	        nextStage.setTitle("Student Account");
+            	        Pane myPane = null;
+            	        try {
+							myPane = FXMLLoader.load(getClass().getResource("/ui/skill/AddUpdateSkill/UpdateSkill.fxml"));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+            	                
+            	                
+            	        Scene scene = new Scene(myPane);
+            	        nextStage.setScene(scene);
+            	        nextStage.show(); 
+            			
+            			
+            		
                }                            
            });
            

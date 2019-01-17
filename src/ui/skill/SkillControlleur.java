@@ -19,10 +19,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ui.Router;
 import ui.homePage.SchoolClassListViewCell;
@@ -66,13 +70,7 @@ public class SkillControlleur implements Initializable {
 		
 	}
 
-	/**
-	 * @return
-	 */
-	public void updateSkill() {
-		Skill s = new Skill(14, "Modifi�", 1, 2, 1);
-		skillFacade.updateSkill(s);
-	}
+	
 
 	@FXML
 	private Button button;
@@ -81,18 +79,45 @@ public class SkillControlleur implements Initializable {
 	private Label label;
 
 	@FXML
-	private ListView myListSkills;
+	private ListView<?> myListSkills;
 
 	
+	
+	
 	@FXML
-	private void handleButtonAction(ActionEvent event) {
-		//listProperty.set(FXCollections.observableArrayList(skillsList));
-		//listProperty.set(FXCollections.observableArrayList(europeanCurrencyList));
+	private void handleAddNewSkill(ActionEvent event) throws IOException {
+		Node  source = (Node)  event.getSource(); 
+        Stage stage  = (Stage) source.getScene().getWindow();
+        stage.close();
+                            
+        Stage nextStage = new Stage();
+        nextStage.setTitle("Student Account");
+        Pane myPane = null;
+        myPane = FXMLLoader.load(getClass().getResource("/ui/skill/AddUpdateSkill/addNewSkill.fxml"));
+                
+                
+        Scene scene = new Scene(myPane);
+        nextStage.setScene(scene);
+        nextStage.show(); 
+		
+		
 	}
 	
 	@FXML
-	private void handleAddNewSkill(ActionEvent event) {
-		//Router r = Router.getInstance();
+	private void backHome(ActionEvent event) throws IOException {
+		Node  source = (Node)  event.getSource(); 
+        Stage stage  = (Stage) source.getScene().getWindow();
+        stage.close();
+                            
+        Stage nextStage = new Stage();
+        nextStage.setTitle("Student Account");
+        Pane myPane = null;
+        myPane = FXMLLoader.load(getClass().getResource("/ui/homePage/HomePage.fxml"));
+                
+                
+        Scene scene = new Scene(myPane);
+        nextStage.setScene(scene);
+        nextStage.show(); 
 		
 		
 	}

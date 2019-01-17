@@ -20,7 +20,6 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import ui.Router;
-import ui.skill.SkillCell;
 
 /**
  * @author martinCayuelas

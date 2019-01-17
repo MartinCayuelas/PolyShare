@@ -152,7 +152,7 @@ public class SchoolClassController implements Initializable {
 		deleteTopicButton.setDisable(true);
 		 
 		 //To know the selected Subject
-		 ChangeListener listenerSubject = new ChangeListener() {  
+		 ChangeListener listenerSubject = new ChangeListener<Object>() {  
 				@Override
 				public void changed(ObservableValue arg0, Object arg1, Object arg2) {
 					// TODO Auto-generated method stub

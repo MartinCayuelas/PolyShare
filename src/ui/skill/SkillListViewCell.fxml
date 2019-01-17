@@ -7,23 +7,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<HBox fx:id="cellLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="358.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="cellLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="42.0" prefWidth="197.0">
+      <Pane prefHeight="42.0" prefWidth="246.0">
          <children>
-            <Label fx:id="cellLabelnomSkill" layoutX="14.0" layoutY="12.0" prefHeight="17.0" prefWidth="44.0" text="Label" />
-            <Label fx:id="cellLabelSchoolClassSkill" layoutX="69.0" layoutY="12.0" prefHeight="17.0" prefWidth="34.0" text="Label" />
-            <Label fx:id="cellLabelmarkSkill" layoutX="125.0" layoutY="12.0" text="Label" />
-            <Separator layoutX="59.0" layoutY="10.0" orientation="VERTICAL" prefHeight="24.0" prefWidth="4.0" />
-            <Separator layoutX="110.0" layoutY="10.0" orientation="VERTICAL" prefHeight="24.0" prefWidth="4.0" />
+            <Label fx:id="cellLabelnomSkill" layoutX="21.0" layoutY="12.0" prefHeight="17.0" prefWidth="121.0" text="Label" />
+            <Label fx:id="cellLabelSchoolClassSkill" layoutX="161.0" layoutY="12.0" prefHeight="17.0" prefWidth="34.0" text="Label" />
+            <Label fx:id="cellLabelmarkSkill" layoutX="208.0" layoutY="12.0" prefHeight="17.0" prefWidth="49.0" text="Label" />
+            <Separator layoutX="144.0" layoutY="10.0" orientation="VERTICAL" prefHeight="24.0" prefWidth="4.0" />
+            <Separator layoutX="195.0" layoutY="10.0" orientation="VERTICAL" prefHeight="24.0" prefWidth="4.0" />
          </children>
       </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0">
+      <Pane prefHeight="42.0" prefWidth="170.0">
          <children>
-            <ButtonBar layoutX="-19.0" layoutY="1.0" prefHeight="40.0" prefWidth="200.0">
+            <ButtonBar layoutX="-4.0" layoutY="1.0" prefHeight="40.0" prefWidth="170.0">
               <buttons>
                 <Button fx:id="buttonUpdate" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" style="-fx-background-color: #FFBB33;" text="Update" />
-                  <Button fx:id="buttonDelete" mnemonicParsing="false" style="-fx-background-color: #FF3F33; -fx-text-fill: white;" text="Delete" />
+                  <Button fx:id="buttonDelete" minWidth="61.0" mnemonicParsing="false" prefHeight="26.0" style="-fx-background-color: #FF3F33; -fx-text-fill: white;" text="Delete" />
               </buttons>
             </ButtonBar>
          </children>

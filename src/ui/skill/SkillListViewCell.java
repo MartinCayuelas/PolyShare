@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,6 +18,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ui.skill.AddUpdateSkill.updateSkillController;
 
 
 /**
@@ -81,19 +83,33 @@ public class SkillListViewCell extends ListCell<SkillCell> {
             	        stage.close();
             	                            
             	        Stage nextStage = new Stage();
-            	        nextStage.setTitle("Student Account");
-            	        Pane myPane = null;
-            	        try {
-							myPane = FXMLLoader.load(getClass().getResource("/ui/skill/AddUpdateSkill/UpdateSkill.fxml"));
+            	        nextStage.setTitle("UpdateSkill");
+            	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/skill/AddUpdateSkill/updateSkill.fxml"));
+
+                        Parent sceneMain = null;
+						try {
+							updateSkillController controllerU = new updateSkillController();
+							loader.setController(controllerU );
+							System.out.println("id "+sc.getIdSkill());
+							
+							controllerU.initSkill(sc.getSkill());
+						
+	                        System.out.println("id "+sc.getIdSkill());
+							sceneMain = loader.load();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+
+                        
             	                
-            	                
-            	        Scene scene = new Scene(myPane);
+            	       	
+            	        Scene scene = new Scene(sceneMain);
             	        nextStage.setScene(scene);
             	        nextStage.show(); 
+            	        
+            	      
+            	       // updateSkillController sk = new updateSkillController(sc.getSkill());
             			
             			
             		

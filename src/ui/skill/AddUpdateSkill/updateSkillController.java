@@ -38,10 +38,18 @@ public class updateSkillController implements Initializable {
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	ObservableList<String> SchoolClassObservableList;
 	Router r = Router.getInstance();
+	
+	private Skill skillToUpdate;
+	
+
+	public void initSkill(Skill s) {
+		System.out.println("Dedans");
+		this.skillToUpdate = s;
+		//this.nameSkill.setText(this.skillToUpdate.getNameSkill());
+	}
 
 	@FXML
 	private TextField nameSkill;
-	// @FXML private TextField nameSkill;
 
 	private SkillFacade skillFacade = new SkillFacade();
 
@@ -61,7 +69,7 @@ public class updateSkillController implements Initializable {
 		// System.out.println(lClass.getIdSchoolClass() + " - "
 		// +lClass.getNameSchoolClass());
 		int idClass = lClass.getIdSchoolClass();
-		Skill s = new Skill(56, nameSkill.getText(), mySpinner.getValue(), 1, idClass);
+		Skill s = new Skill(skillToUpdate.getIdSkill(), nameSkill.getText(), mySpinner.getValue(), 1, idClass);
 		skillFacade.updateSkill(s);
 		
 		
@@ -90,6 +98,8 @@ public class updateSkillController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		
+		
 
 		initSpinner();
 		List<SchoolClass> sc = new ArrayList<>();
@@ -102,7 +112,9 @@ public class updateSkillController implements Initializable {
 
 		this.choiceBoxClass.setItems(SchoolClassObservableList);
 		
-		this.nameSkill.setText("Test");
+		this.nameSkill.setText(skillToUpdate.getNameSkill());
+		
+		//System.out.println("update: "+this.skillToUpdate.getNameSkill() + "id: "+this.skillToUpdate.getIdSkill());
 
 	}
 

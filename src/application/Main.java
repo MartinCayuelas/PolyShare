@@ -20,7 +20,7 @@ public class Main extends Application {
 		Main.primaryStage = primaryStage;
 		
 		try {
-			FXMLLoader root = new FXMLLoader(getClass().getResource("/ui/homePage/HomePage.fxml"));
+			FXMLLoader root = new FXMLLoader(getClass().getResource("/ui/connectionInscription/Login.fxml"));
 		    Parent skillLayout = root.load();
 	        Scene scene = new Scene(skillLayout, 700, 600);
 	        

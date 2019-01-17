@@ -35,7 +35,7 @@ import ui.Router;
 /**
  * 
  */
-public class AppointmentController implements Initializable {
+public class AppointmentController {
 	
 	ObservableList<SingleSessionCell> singleSessionObservableList;
 	
@@ -185,7 +185,8 @@ public class AppointmentController implements Initializable {
      * @param to initialize this ui, Router.getInstance() i should have : 
      * case 0 : SchoolClass-appointments of this class will be display
      */
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML
+    public void initialize() {
     	//ArrayList<Skill> request = new ArrayList<>();
     	ArrayList<SingleSession> proposal = new ArrayList<>();
     	ArrayList<RevisionSession> revisionSession = new ArrayList<>();

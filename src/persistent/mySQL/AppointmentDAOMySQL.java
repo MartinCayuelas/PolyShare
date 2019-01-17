@@ -336,7 +336,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 				System.out.println(rs.getIdAppointment());
 				ResultSet resultParticipate = this.con.createStatement(
 						ResultSet.TYPE_SCROLL_INSENSITIVE,
-						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Participate WHERE idSingleSession = " + rs.getIdAppointment());
+						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Participate WHERE idRevisionSession = " + rs.getIdAppointment());
 				while(resultParticipate.next()) {
 					student = new Student(resultParticipate.getInt("idStudent"));
 					System.out.println(student.getId());

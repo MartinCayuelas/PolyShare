@@ -28,6 +28,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -114,8 +115,19 @@ public class SchoolClassController implements Initializable {
     
     @FXML
     private ListView topicsListView;
+    
+    @FXML
+    private Button updateSubjectButton;
 
-	
+    @FXML
+    private Button deleteSubjectButton;
+    
+    @FXML
+    private Button updateTopicButton;
+    
+    @FXML
+    private Button deleteTopicButton;
+    
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -133,6 +145,12 @@ public class SchoolClassController implements Initializable {
 		 subjectsListView.itemsProperty().bind(listPropertySubjects);
 		 listPropertySubjects.set(FXCollections.observableArrayList(listSubjects));
 		 
+		 //Disabled buttons delete and update
+		 updateSubjectButton.setDisable(true);
+		 deleteSubjectButton.setDisable(true);
+		 updateTopicButton.setDisable(true);
+		deleteTopicButton.setDisable(true);
+		 
 		 //To know the selected Subject
 		 ChangeListener listenerSubject = new ChangeListener() {  
 				@Override
@@ -144,8 +162,14 @@ public class SchoolClassController implements Initializable {
 					//Get the ID of the selected Subject in the ListView
 					try {
 						subjectSelectedId = listSubjectsId.get(subjectsListView.getSelectionModel().getSelectedIndex());
+						//Get update and delete buttons visible
+						 updateSubjectButton.setDisable(false);
+						 deleteSubjectButton.setDisable(false);
 					}catch (Exception e) {
 						// TODO: handle exception
+						//After a deletion
+						updateSubjectButton.setDisable(true);
+						deleteSubjectButton.setDisable(true);
 					}
 					
 					//Get the topics of the selected Subject in the ListView
@@ -156,10 +180,7 @@ public class SchoolClassController implements Initializable {
 					
 					//Add topics to the Topics ListView
 					 topicsListView.itemsProperty().bind(listPropertyTopics);
-					 listPropertyTopics.set(FXCollections.observableArrayList(listTopics));
-					 
-					//Get update and delete buttons visible
-					 
+					 listPropertyTopics.set(FXCollections.observableArrayList(listTopics));	
 				}  
 			}; 
 			
@@ -177,12 +198,15 @@ public class SchoolClassController implements Initializable {
 						//Get the ID of the selected Topic in the ListView
 						try {
 							topicSelectedId = listTopicsId.get(topicsListView.getSelectionModel().getSelectedIndex());
+							//Get update and delete buttons visible
+							 updateTopicButton.setDisable(false);
+							 deleteTopicButton.setDisable(false);
 						}catch (Exception e) {
 							// TODO: handle exception
+							//After a deletion
+							updateTopicButton.setDisable(true);
+							deleteTopicButton.setDisable(true);
 						}
-						
-						//Get update and delete buttons visible
-
 					}  
 				}; 
 				

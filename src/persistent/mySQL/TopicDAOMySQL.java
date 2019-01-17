@@ -115,7 +115,7 @@ public class TopicDAOMySQL extends TopicDAO {
 			
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO topic VALUES (" + maxId + ",'" + topic.getIdSubject() + "," + topic.getNameTopic() + "')");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO topic VALUES (" + maxId + "," + topic.getIdSubject() + ",'" + topic.getNameTopic() + "')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

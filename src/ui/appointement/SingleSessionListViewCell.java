@@ -3,14 +3,11 @@ package ui.appointement;
 import java.io.IOException;
 
 import facades.AppointmentsFacade;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 
 public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
@@ -66,8 +63,8 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
             
             
             
-            this.cellLabelnameTeacher.setText(String.valueOf(ssc.getTeacher().getNameStudent()));
-            //this.cellLabelnameSubject.setText(String.valueOf(ssc.getSubject().getNameSubject()));
+            this.cellLabelnameTeacher.setText(String.valueOf(ssc.getTeacher().getNameStudent() + " " + ssc.getTeacher().getFirstNameStudent()));
+            this.cellLabelnameSubject.setText(String.valueOf(ssc.getSubject().getNameSubject()));
             this.cellLabelExplication.setText(String.valueOf(ssc.getTeacher().getNameStudent()));
             this.cellLabelDateAppointment.setText(String.valueOf(ssc.getDateRevisionSession().getShowingDate()));
            

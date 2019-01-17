@@ -1,12 +1,14 @@
 package persistent.DAO;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import application.classesApp.Appointment;
 import application.classesApp.RevisionSession;
 import application.classesApp.SingleSession;
 import application.classesApp.Student;
+import application.classesApp.Subject;
 
 /**
  * @author julienroumagnac ponthieu 
@@ -74,5 +76,12 @@ public abstract class AppointmentDAO {
 
 
 	public abstract ArrayList<Appointment> getAppointmentByStudent(int i);
+
+
+	public abstract Subject getSubjectOfOneAppointmentById(int idSubject) throws SQLException;
+	
+	public abstract ArrayList<Student> getListStudentOfOneAppointment(RevisionSession rs) throws SQLException;
+	
+	public abstract Student getStudentOfOneAppointment(int idStudent) throws SQLException;
 
 }

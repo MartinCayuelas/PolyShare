@@ -17,8 +17,8 @@
                <top>
                   <GridPane BorderPane.alignment="CENTER">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="124.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="76.0" minWidth="10.0" prefWidth="37.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="154.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="76.0" minWidth="3.0" prefWidth="3.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="85.0" />
                     </columnConstraints>
                     <rowConstraints>
@@ -26,7 +26,7 @@
                     </rowConstraints>
                      <children>
                         <Label fx:id="cellLabelnameTeacher" text="Label" GridPane.halignment="CENTER" />
-                        <Label fx:id="cellLabelNameSubject" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                        <Label fx:id="cellLabelnameSubject" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                      </children>
                   </GridPane>
                </top>
@@ -47,7 +47,7 @@
                   </GridPane>
                </bottom>
                <center>
-                  <Label fx:id="cellLabelExplication" alignment="TOP_LEFT" prefHeight="126.0" prefWidth="195.0" style="-fx-background-color: lightgrey;" text="Label" BorderPane.alignment="CENTER" />
+                  <Label fx:id="cellLabelExplication" alignment="CENTER" prefHeight="126.0" prefWidth="195.0" style="-fx-background-color: lightgrey;" text="Label" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </children></Pane>

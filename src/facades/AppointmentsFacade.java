@@ -1,5 +1,6 @@
 package facades;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import application.classesApp.Appointment;
 import application.classesApp.MyDate;
@@ -136,6 +137,21 @@ public class AppointmentsFacade {
 		
 		return res;
 		
+	}
+	
+	public Subject getSubjectOfOneAppointmentById(int idSubject) throws SQLException {
+		Subject subject = appointmentDAO.getSubjectOfOneAppointmentById(idSubject);
+		return subject;
+	}
+	
+	public Student getStudentOfOneAppointment(int idStudent) throws SQLException {
+		Student student = appointmentDAO.getStudentOfOneAppointment(idStudent);
+		return student;
+	}
+	
+	public ArrayList<Student> getListStudentOfOneAppointment(RevisionSession rs) throws SQLException {
+		ArrayList<Student> listStudent = appointmentDAO.getListStudentOfOneAppointment(rs);
+		return listStudent;
 	}
 
 }

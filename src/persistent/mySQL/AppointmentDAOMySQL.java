@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import application.classesApp.Appointment;
 import application.classesApp.MyDate;
 import application.classesApp.RevisionSession;
@@ -243,6 +241,44 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		return appointment;
 	}
 	
+	public Student getStudentOfOneAppointment(int idStudent) throws SQLException {
+		Student student = null;
+		ResultSet resultStudent = this.con.createStatement(
+				ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + idStudent);
+		if(resultStudent.first()) {
+			student = new Student(
+					idStudent,
+					resultStudent.getString("nameStudent"),
+					resultStudent.getString("firstNameStudent"),
+					resultStudent.getString("emailStudent"),
+					resultStudent.getString("password"),
+					resultStudent.getString("loginID"),
+			        null);
+		}
+		return student;
+	}
+	
+	public ArrayList<Student> getListStudentOfOneAppointment(RevisionSession rs) throws SQLException {
+		ArrayList<Student> listStudent = new ArrayList<Student>();
+		for(Student s : rs.getStudent()) {
+			listStudent.add(getStudentOfOneAppointment(s.getId()));
+		}
+		return listStudent;
+	}
+	
+	public Subject getSubjectOfOneAppointmentById(int idSubject) throws SQLException {
+		Subject subject = null;
+		ResultSet resultSubject = this.con.createStatement(
+				ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Subject WHERE idSubject = " + idSubject);
+		if(resultSubject.next()) {
+			subject = new Subject(idSubject, resultSubject.getString("nameSubject"));
+			System.out.println("subject : " + resultSubject.getString("nameSubject"));
+		}
+		return subject;
+	}
+	
 	/**
      * @param idClass
      * @return list of SingleSession of the class who corresponds to idClass
@@ -266,37 +302,16 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 				listSingleSession.add(appointment);
 			}
 			
-			for (SingleSession ss : listSingleSession) {
-				ResultSet resultTeacher = this.con.createStatement(
-						ResultSet.TYPE_SCROLL_INSENSITIVE,
-						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + ss.getTeacher().getId());
-				
-				if (resultTeacher.first()) {
-					teacher = new Student(
-							ss.getTeacher().getId(),
-							resultTeacher.getString("nameStudent"),
-							resultTeacher.getString("firstNameStudent"),
-							resultTeacher.getString("emailStudent"),
-							resultTeacher.getString("password"),
-							resultTeacher.getString("loginID"),
-					        null);
-					ss.setTeacher(teacher);
-					System.out.println("nameTeacherStudent : " + resultTeacher.getString("nameStudent"));
-				}
-				resultTeacher.close();
+			/*for (SingleSession ss : listSingleSession) {
+				teacher = getStudentOfOneAppointmentById(ss.getTeacher().getId());
+				System.out.println("nameTeacherStudent : " + teacher.getNameStudent());
+				ss.setTeacher(teacher);
 			}
 			
 			for (SingleSession ss : listSingleSession) {
-				ResultSet resultSubject = this.con.createStatement(
-						ResultSet.TYPE_SCROLL_INSENSITIVE,
-						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Subject WHERE idSubject = " + ss.getIdSubject());
-				if(resultSubject.next()) {
-					subject = new Subject(ss.getIdSubject(), resultSubject.getString("nameSubject"));
-					ss.setSubject(subject);
-					System.out.println("subject : " + resultSubject.getString("nameSubject"));
-				}
-				resultSubject.close();
-			}
+				subject = getSubjectOfOneAppointmentById(ss.getIdSubject());
+				ss.setSubject(subject);
+			}*/
 			  
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -315,7 +330,6 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		Student student;
 		Subject subject;
 		ArrayList<Student> listStudent = new ArrayList<Student>();
-		//List<Student> listStudent2 = new CopyOnWriteArrayList<Student>();
 		ArrayList<RevisionSession> listRevisionSession = new ArrayList<RevisionSession>();
 		    
 		try {
@@ -327,82 +341,36 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 				teacher = new Student(result.getInt("idTeacher"));
 				subject = new Subject(result.getInt("idSubject"), null);
 				appointment = new RevisionSession(result.getInt("idRevisionSession"), teacher, listStudent, subject, new MyDate(result.getString("dateAppointement")));
-				System.out.println(appointment.getIdAppointment());
 				listRevisionSession.add(appointment);
 			}
 			result.close();
 			
 			for (RevisionSession rs : listRevisionSession) {
-				System.out.println(rs.getIdAppointment());
+				ArrayList<Student> listStudentRS = new ArrayList<Student>();
 				ResultSet resultParticipate = this.con.createStatement(
 						ResultSet.TYPE_SCROLL_INSENSITIVE,
-						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Participate WHERE idRevisionSession = " + rs.getIdAppointment());
+						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Participate WHERE idSingleSession = " + rs.getIdAppointment());
 				while(resultParticipate.next()) {
 					student = new Student(resultParticipate.getInt("idStudent"));
-					System.out.println(student.getId());
-					rs.getStudent().add(student);
+					listStudentRS.add(student);
+					rs.setStudent(listStudentRS);
 				}
 				resultParticipate.close();
 			}
-			
-			System.out.println(listRevisionSession);
-			
-			/*for (RevisionSession rs : listRevisionSession) {
-				System.out.println(rs);
-				listStudent2 = rs.getStudent();
-				System.out.print(listStudent2);
-				Iterator<Student> iter = listStudent2.iterator();
-				while(iter.hasNext()) {
-					Student s = iter.next();
-					ResultSet resultStudent = this.con.createStatement(
-							ResultSet.TYPE_SCROLL_INSENSITIVE,
-							ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + s.getId());
-					if(resultStudent.first()) {
-						student = new Student(
-								s.getId(),
-								resultStudent.getString("nameStudent"),
-								resultStudent.getString("firstNameStudent"),
-								resultStudent.getString("emailStudent"),
-								resultStudent.getString("password"),
-								resultStudent.getString("loginID"),
-						        null);
-						System.out.println(student);
 						
-						listStudent.add(student);
-						continue;
-					}	
-				}
-				rs.setStudent(listStudent);
-			}*/
-			
 			for (RevisionSession rs : listRevisionSession) {
-				ResultSet resultTeacher = this.con.createStatement(
-						ResultSet.TYPE_SCROLL_INSENSITIVE,
-						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + rs.getTeacher().getId());
-				while(resultTeacher.next()) {
-					teacher = new Student(
-							rs.getTeacher().getId(),
-							resultTeacher.getString("nameStudent"),
-							resultTeacher.getString("firstNameStudent"),
-							resultTeacher.getString("emailStudent"),
-							resultTeacher.getString("password"),
-							resultTeacher.getString("loginID"),
-					        null);
-					rs.setTeacher(teacher);
-				}
-				resultTeacher.close();
+				listStudent = getListStudentOfOneAppointment(rs);
+				rs.setStudent(listStudent);
 			}
 			
 			for (RevisionSession rs : listRevisionSession) {
-				ResultSet resultSubject = this.con.createStatement(
-						ResultSet.TYPE_SCROLL_INSENSITIVE,
-						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Subject WHERE idSubject = " + rs.getIdSubject());
-				while(resultSubject.next()) {
-					subject = new Subject(rs.getIdSubject(), resultSubject.getString("nameSubject"));
-					rs.setSubject(subject);
-					System.out.println("subject : " + resultSubject.getString("nameSubject"));
-				}
-				resultSubject.close();
+				teacher = getStudentOfOneAppointment(rs.getTeacher().getId());
+				rs.setTeacher(teacher);
+			}
+			
+			for (RevisionSession rs : listRevisionSession) {
+				subject = getSubjectOfOneAppointmentById(rs.getSubject().getId());
+				rs.setSubject(subject);
 			}
 			
 			

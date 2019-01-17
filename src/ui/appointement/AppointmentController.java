@@ -1,15 +1,14 @@
 package ui.appointement;
 
 import java.io.IOException;
-import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-
 import application.classesApp.MyDate;
 import application.classesApp.RevisionSession;
 import application.classesApp.SchoolClass;
 import application.classesApp.SingleSession;
+import application.classesApp.Student;
 import application.classesApp.Subject;
 import facades.AppointmentsFacade;
 import facades.exceptions.DisconnectedStudentException;
@@ -19,7 +18,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,7 +29,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ui.Router;
 
 /**
  * 
@@ -186,9 +183,10 @@ public class AppointmentController {
     /**
      * @param to initialize this ui, Router.getInstance() i should have : 
      * case 0 : SchoolClass-appointments of this class will be display
+     * @throws SQLException 
      */
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
     	//ArrayList<Skill> request = new ArrayList<>();
     	ArrayList<SingleSession> proposal = new ArrayList<>();
     	ArrayList<RevisionSession> revisionSession = new ArrayList<>();
@@ -203,12 +201,17 @@ public class AppointmentController {
     	listRevisionSession = new ArrayList<>();
     	
     	for (SingleSession ss : proposal) {
-    		SingleSessionCell singleSessionCell = new SingleSessionCell(ss.getIdAppointment(), ss.getTeacher(), ss.getSubject(), ss.getDateAppointment());
+    		Student teacher = appointmentsFacade.getStudentOfOneAppointment(ss.getTeacher().getId());
+    		Subject subject = appointmentsFacade.getSubjectOfOneAppointmentById(ss.getSubject().getId());
+    		SingleSessionCell singleSessionCell = new SingleSessionCell(ss.getIdAppointment(), teacher, subject, ss.getDateAppointment());
     		listSingleSession.add(singleSessionCell);
     	}
     	
     	for (RevisionSession rs : revisionSession) {
-    		RevisionSessionCell revisionSessionCell = new RevisionSessionCell(rs.getIdAppointment(), rs.getTeacher(), rs.getStudent(), rs.getSubject(), rs.getDateAppointment());
+    		Student teacher = appointmentsFacade.getStudentOfOneAppointment(rs.getTeacher().getId());
+    		ArrayList<Student> listStudent = appointmentsFacade.getListStudentOfOneAppointment(rs);
+    		Subject subject = appointmentsFacade.getSubjectOfOneAppointmentById(rs.getSubject().getId());
+    		RevisionSessionCell revisionSessionCell = new RevisionSessionCell(rs.getIdAppointment(), teacher, listStudent, subject, rs.getDateAppointment());
     		listRevisionSession.add(revisionSessionCell);
     	}
     	

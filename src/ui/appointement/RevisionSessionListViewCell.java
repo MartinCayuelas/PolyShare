@@ -1,7 +1,9 @@
 package ui.appointement;
 
 import java.io.IOException;
+import java.util.List;
 
+import application.classesApp.Student;
 import facades.AppointmentsFacade;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,11 +69,15 @@ public class RevisionSessionListViewCell extends ListCell<RevisionSessionCell> {
             
             
             
-            this.cellLabelnameTeacher.setText(String.valueOf(rsc.getTeacher().getNameStudent()));
+            this.cellLabelnameTeacher.setText(String.valueOf(rsc.getTeacher().getNameStudent() + " " + rsc.getTeacher().getFirstNameStudent()));
             this.cellLabelnameSubject.setText(String.valueOf(rsc.getSubject().getNameSubject()));
             this.cellLabelExplication.setText(String.valueOf(rsc.getTeacher().getNameStudent()));
             this.cellLabelDateAppointment.setText(String.valueOf(rsc.getDateRevisionSession().getShowingDate()));
-            this.students.setId(String.valueOf(rsc.getStudents()));
+            for(Student s : rsc.getStudents()) {
+            	this.students.getItems().add(String.valueOf(s.getNameStudent() + " " + s.getFirstNameStudent()));
+            	this.students.setPromptText(s.getNameStudent());
+            }
+            
            
            /* this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
                @Override

@@ -27,7 +27,7 @@ public class SingleSessionCell {
 
 
 	public int getIdRevisionSession() {
-		return idRevisionSession;
+		return this.idRevisionSession;
 	}
 
 
@@ -39,7 +39,7 @@ public class SingleSessionCell {
 
 
 	public Student getTeacher() {
-		return teacher;
+		return this.teacher;
 	}
 
 
@@ -51,7 +51,7 @@ public class SingleSessionCell {
 
 
 	public Subject getSubject() {
-		return subject;
+		return this.subject;
 	}
 
 
@@ -63,7 +63,7 @@ public class SingleSessionCell {
 
 
 	public MyDate getDateRevisionSession() {
-		return dateRevisionSession;
+		return this.dateRevisionSession;
 	}
 
 

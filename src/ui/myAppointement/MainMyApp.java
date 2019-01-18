@@ -29,17 +29,17 @@ public class MainMyApp extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		this.stage = primaryStage;
-		initSkillLayout();
+		initApptLayout();
 	}
 
-	private void initSkillLayout() throws IOException {
+	private void initApptLayout() throws IOException {
 
 		try {
 			FXMLLoader root = new FXMLLoader(getClass().getResource("MyAppointements.fxml"));
-			Parent skillLayout = root.load();
-			Scene scene = new Scene(skillLayout, 700, 600);
+			Parent homeLayout = root.load();
+			Scene scene = new Scene(homeLayout, 1000, 800);
 
-			stage.setTitle("MySkills");
+			stage.setTitle("MyAppointments");
 			stage.setScene(scene);
 			stage.show();
 		} catch (IOException e) {

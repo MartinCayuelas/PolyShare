@@ -17,35 +17,19 @@
    <bottom>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="58.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.0" minWidth="10.0" prefWidth="142.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Button mnemonicParsing="false" style="-fx-background-color: #357AB7;" text="Note" textFill="#f2efef" GridPane.halignment="CENTER" />
-            <Button mnemonicParsing="false" style="-fx-background-color: #357AB7;" text="Comment" textFill="#f8f8f8" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-            <Label text="01/08/09 SC 002" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Label fx:id="cellLabelDate" text="01/08/09 SC 002" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
    </bottom>
-   <left>
-      <Label fx:id="cellLabelSchoolClass" text="IG4" BorderPane.alignment="CENTER">
-         <padding>
-            <Insets left="3.0" />
-         </padding>
-      </Label>
-   </left>
    <center>
       <Label fx:id="cellLabelSubject" text="Design patterns" BorderPane.alignment="CENTER" />
    </center>
-   <right>
-      <Label fx:id="cellLabelTopic" text="OOSE" BorderPane.alignment="CENTER">
-         <padding>
-            <Insets right="3.0" />
-         </padding>
-      </Label>
-   </right>
 </BorderPane>

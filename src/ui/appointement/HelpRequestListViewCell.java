@@ -1,6 +1,7 @@
 package ui.appointement;
 
 import java.io.IOException;
+
 import application.classesApp.SingleSession;
 import facades.AppointmentsFacade;
 import javafx.event.ActionEvent;
@@ -12,8 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 
-public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
-	
+public class HelpRequestListViewCell extends ListCell<HelpRequestCell> {
+
 	private AppointmentController controller;
 	
 	private AppointmentsFacade appointmentsFacade = new AppointmentsFacade();
@@ -38,16 +39,16 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
 	
 	FXMLLoader mLLoader;
 	
-	public SingleSessionListViewCell(AppointmentController controller) {
+	public HelpRequestListViewCell(AppointmentController controller) {
 		super();
 		this.controller = controller;
 	}
 	
 	@Override
-	protected void updateItem(SingleSessionCell ssc, boolean empty) {
-        super.updateItem(ssc, empty);
+	protected void updateItem(HelpRequestCell hrc, boolean empty) {
+        super.updateItem(hrc, empty);
         
-        if(empty || ssc == null) {
+        if(empty || hrc == null) {
 
             setText(null);
             setGraphic(null);
@@ -64,15 +65,15 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
 
             }
             
-            this.cellLabelnameTeacher.setText(String.valueOf(ssc.getTeacherCell().getNameStudent() + " " + ssc.getTeacherCell().getFirstNameStudent()));
-            this.cellLabelnameSubject.setText(String.valueOf(ssc.getSubjectCell().getNameSubject()));
-            this.cellLabelExplication.setText(String.valueOf(ssc.getTeacherCell().getNameStudent()));
-            this.cellLabelDateAppointment.setText(String.valueOf(ssc.getDateRevisionSessionCell().getShowingDate()));
+            this.cellLabelnameTeacher.setText(String.valueOf(hrc.getStudent().getNameStudent() + " " + hrc.getStudent().getFirstNameStudent()));
+            this.cellLabelnameSubject.setText(String.valueOf(hrc.getSubject().getNameSubject()));
+            this.cellLabelExplication.setText(String.valueOf(hrc.getStudent().getNameStudent()));
+            this.cellLabelDateAppointment.setText(String.valueOf(hrc.getDateRevisionSession().getShowingDate()));
            
             this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
             	@Override
             	public void handle(ActionEvent event) {
-            		SingleSession ss = appointmentsFacade.getSingleSessionById(ssc.getIdSingleSessionCell());
+            		SingleSession ss = appointmentsFacade.getSingleSessionById(hrc.getIdSingleSession());
             		controller.updateSingleSession(ss);
             	}                            
             });
@@ -82,5 +83,5 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
         }
 
     }
-
+	
 }

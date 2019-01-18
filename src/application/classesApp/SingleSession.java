@@ -1,6 +1,6 @@
 package application.classesApp;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * @author lucadebeir
@@ -14,7 +14,7 @@ public class SingleSession extends Appointment {
 	/**
 	 * 
 	 */
-	public Student student;
+	private Student student;
 
 
     /**
@@ -26,10 +26,11 @@ public class SingleSession extends Appointment {
     	this.student = student;
     }
     
-    public SingleSession(int idAppointment, int idClass, Student teacher, Student student, Subject subject,
-			MyDate dateAppointment, MyDate meetingTime, String place) {
-		super(idAppointment, idClass, teacher, student, subject, dateAppointment, meetingTime, place);
+    public SingleSession(int idAppointment, int idClass, Student teacher, Student student, Subject subject, ArrayList<Topic> topic,
+			MyDate dateAppointment, String message, MyDate meetingTime, String place) {
+		super(idAppointment, idClass, teacher, subject, topic, dateAppointment, message, meetingTime, place);
 		// TODO Auto-generated constructor stub
+		this.student = student;
 	}
 
 	public SingleSession(int idAppointment, Student teacher, Student student, MyDate localDate, int idSubject) {

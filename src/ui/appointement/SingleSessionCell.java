@@ -14,16 +14,6 @@ public class SingleSessionCell {
 	private MyDate dateRevisionSession;
 	private String place;
 	private MyDate meetingTime;
-	
-	
-	
-	public SingleSessionCell(int idSingleSession, Student teacher, Subject subject, MyDate myDate) {
-		this.idSingleSession = idSingleSession;
-		this.teacher = teacher;
-		this.subject = subject;
-		this.dateRevisionSession = myDate;
-	}
-
 
 
 	public SingleSessionCell(int idSingleSession, int idClass, Student teacher, Student student, Subject subject,
@@ -31,7 +21,7 @@ public class SingleSessionCell {
 		this.idSingleSession = idSingleSession;
 		this.idClass = idClass;
 		this.teacher = teacher;
-		this.setStudent(student);
+		this.student = student;
 		this.subject = subject;
 		this.dateRevisionSession = dateRevisionSession;
 		this.place = place;
@@ -40,97 +30,97 @@ public class SingleSessionCell {
 
 
 
-	public int getIdClass() {
+	public int getIdClassCell() {
 		return this.idClass;
 	}
 
 
 
-	public void setIdClass(int idClass) {
+	public void setIdClassCell(int idClass) {
 		this.idClass = idClass;
 	}
 
 
 
-	public String getPlace() {
+	public String getPlaceCell() {
 		return this.place;
 	}
 
 
 
-	public void setPlace(String place) {
+	public void setPlaceCell(String place) {
 		this.place = place;
 	}
 
 
 
-	public MyDate getMeetingTime() {
+	public MyDate getMeetingTimeCell() {
 		return this.meetingTime;
 	}
 
 
 
-	public void setMeetingTime(MyDate meetingTime) {
+	public void setMeetingTimeCell(MyDate meetingTime) {
 		this.meetingTime = meetingTime;
 	}
 
 
 
-	public int getIdSingleSession() {
+	public int getIdSingleSessionCell() {
 		return this.idSingleSession;
 	}
 
 
 
-	public void setIdSingleSession(int idSingleSession) {
+	public void setIdSingleSessionCell(int idSingleSession) {
 		this.idSingleSession = idSingleSession;
 	}
 
 
 
-	public Student getTeacher() {
+	public Student getTeacherCell() {
 		return this.teacher;
 	}
 
 
 
-	public void setTeacher(Student teacher) {
+	public void setTeacherCell(Student teacher) {
 		this.teacher = teacher;
 	}
 
 
 
-	public Subject getSubject() {
+	public Subject getSubjectCell() {
 		return this.subject;
 	}
 
 
 
-	public void setSubject(Subject subject) {
+	public void setSubjectCell(Subject subject) {
 		this.subject = subject;
 	}
 
 
 
-	public MyDate getDateRevisionSession() {
+	public MyDate getDateRevisionSessionCell() {
 		return this.dateRevisionSession;
 	}
 
 
 
-	public void setDateRevisionSession(MyDate dateRevisionSession) {
+	public void setDateRevisionSessionCell(MyDate dateRevisionSession) {
 		this.dateRevisionSession = dateRevisionSession;
 	}
 
 
 
-	public Student getStudent() {
+	public Student getStudentCell() {
 		return this.student;
 	}
 
 
 
-	public void setStudent(Student student) {
+	public void setStudentCell(Student student) {
 		this.student = student;
 	}
 

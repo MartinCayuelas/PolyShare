@@ -2,6 +2,8 @@ package ui.appointement;
 
 import java.io.IOException;
 
+import application.classesApp.RevisionSession;
+import application.classesApp.SingleSession;
 import application.classesApp.Student;
 import facades.AppointmentsFacade;
 import facades.LoginFacade;
@@ -17,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
@@ -50,6 +53,7 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
 		this.controller = controller;
 	}
 	
+	@Override
 	protected void updateItem(SingleSessionCell ssc, boolean empty) {
         super.updateItem(ssc, empty);
         
@@ -80,7 +84,8 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
             this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
             	@Override
             	public void handle(ActionEvent event) {
-            		controller.updateSingleSession(ssc);
+            		SingleSession ss = appointmentsFacade.getSingleSessionById(ssc.getIdSingleSession());
+            		controller.updateSingleSession(ss);
             	}                            
             });
             

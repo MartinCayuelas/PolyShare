@@ -24,7 +24,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="+ Help Request">
+                  <Button fx:id="helpRequest" mnemonicParsing="false" onAction="#handleAddHelpRequest" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="+ Help Request">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -56,22 +56,31 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <Pane prefHeight="540.0" prefWidth="266.0" GridPane.columnIndex="1">
                <children>
-                  <ListView fx:id="helpRequestLView" layoutY="-5.0" prefHeight="589.0" prefWidth="267.0" />
+                  <ListView fx:id="helpRequestLView" layoutY="-5.0" prefHeight="560.0" prefWidth="267.0" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
                <children>
-                  <ListView fx:id="singleSessionLView" layoutX="-4.0" layoutY="-3.0" prefHeight="585.0" prefWidth="272.0" />
+                  <ListView fx:id="singleSessionLView" layoutX="-4.0" layoutY="-3.0" prefHeight="556.0" prefWidth="272.0" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5">
                <children>
-                  <ListView fx:id="revisionSessionLView" layoutX="-5.0" layoutY="-1.0" prefHeight="589.0" prefWidth="275.0" />
+                  <ListView fx:id="revisionSessionLView" layoutX="-5.0" layoutY="-1.0" prefHeight="552.0" prefWidth="275.0" />
                </children>
             </Pane>
          </children>
       </GridPane>
+      <BorderPane prefHeight="98.0" prefWidth="1000.0">
+         <center>
+            <Button fx:id="backHome" mnemonicParsing="false" onAction="#backHome" style="-fx-background-color: #357AB7 #357AB7; -fx-text-fill: white;" text="Exit" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </center>
+      </BorderPane>
    </children>
 </VBox>

@@ -446,12 +446,26 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 	}
 
 	@Override
-	public void updateSingleSession(SingleSessionCell ss) {
+	public void updateSingleSession(SingleSession ss) {
 		// TODO Auto-generated method stub
 		try {
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE SingleSession SET idStudent = '" + ss.getStudent().getId() + "' WHERE idSingleRevision = " + ss.getIdSingleSession() + "'");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE SingleSession SET idStudent = '" + ss.getStudent().getId() + "' WHERE idSingleRevision = " + ss.getIdAppointment() + "'");
+			//ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE SingleSession SET idClass = '" + ss.getIdClass() + "', dateAppointement = '" + ss.getDateRevisionSession() + "', idSubject = '" + ss.getSubject().getId() + "', idStudent = '" + ss.getStudent().getId() + "', idTeacher = '" + ss.getTeacher().getId() + "', place = '" + ss.getPlace() + "', meetingTime = '" + ss.getMeetingTime() + "' WHERE idSingleRevision = '" + ss.getIdSingleSession() + "'");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void updateRevisionSession(RevisionSession rs, int idStudent) {
+		// TODO Auto-generated method stub
+		
+		try {
+			this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO Participate VALUES ('" + rs.getIdAppointment() + "', '" + idStudent + "')");
 			//ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE SingleSession SET idClass = '" + ss.getIdClass() + "', dateAppointement = '" + ss.getDateRevisionSession() + "', idSubject = '" + ss.getSubject().getId() + "', idStudent = '" + ss.getStudent().getId() + "', idTeacher = '" + ss.getTeacher().getId() + "', place = '" + ss.getPlace() + "', meetingTime = '" + ss.getMeetingTime() + "' WHERE idSingleRevision = '" + ss.getIdSingleSession() + "'");
 		} catch (SQLException e) {
 			e.printStackTrace();

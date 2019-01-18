@@ -71,6 +71,9 @@ public class AppointmentController implements Initializable {
 	@FXML
 	private Button addRevisionSession;
 	
+	@FXML
+	private Button backHome;
+	
 	
 
     /**
@@ -116,17 +119,35 @@ public class AppointmentController implements Initializable {
 	    nextStage.setScene(scene);
 	    nextStage.show(); 
     }
+    
+    
+    @FXML
+    public void handleAddHelpRequest(ActionEvent e) throws IOException {
+    	Node  source = (Node)  e.getSource(); 
+	    Stage stage  = (Stage) source.getScene().getWindow();
+	    stage.close();
+	                          
+	    Stage nextStage = new Stage();
+	    nextStage.setTitle("Add Help Request");
+	    Pane myPane = null;
+	    myPane = FXMLLoader.load(getClass().getResource("/ui/appointement/addJoin/addHelpRequest.fxml"));
+	
+	    Scene scene = new Scene(myPane);
+	    nextStage.setScene(scene);
+	    nextStage.show(); 
+    }
+    
 
     /**
      * @return
      */
-    public void updateSingleSession(SingleSessionCell ssc) {
+    public void updateSingleSession(SingleSession ss) {
         // TODO implement here
-    	appointmentsFacade.updateSingleSession(ssc);
-    	listSingleSession.remove(ssc);
-    	singleSessionObservableList.clear();
-    	singleSessionObservableList.addAll(listSingleSession);
-    	singleSessionLView.setItems(singleSessionObservableList);
+    	appointmentsFacade.updateSingleSession(ss);
+    	listSingleSession.remove(ss);
+    	revisionSessionObservableList.clear();
+    	revisionSessionObservableList.addAll(listRevisionSession);
+    	revisionSessionLView.setItems(revisionSessionObservableList);
     }
 
     /**
@@ -168,8 +189,13 @@ public class AppointmentController implements Initializable {
     /**
      * @return
      */
-    public void updateRevisionSession() {
+    public void updateRevisionSession(RevisionSession rs, int idStudent) {
         // TODO implement here
+    	appointmentsFacade.updateRevisionSession(rs, idStudent);
+    	listSingleSession.remove(rs);
+    	singleSessionObservableList.clear();
+    	singleSessionObservableList.addAll(listSingleSession);
+    	singleSessionLView.setItems(singleSessionObservableList);
     }
 
     /**

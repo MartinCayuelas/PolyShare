@@ -51,6 +51,13 @@ public class AppointmentsFacade {
     	appointmentDAO.createSingleSession(singleSession);
     }
     
+    public void addHelpRequest(MyDate date, Subject subject) throws DisconnectedStudentException {
+        // TODO implement here
+    	Student student = LoginFacade.getInstance().getConnectedStudent();
+    	SingleSession singleSession = new SingleSession(0, null, student, date, subject.getId());
+    	appointmentDAO.createSingleSession(singleSession);
+    }
+    
     /**
      * @param idClass
      * @return list of SingleSession of the class who corresponds to idClass
@@ -72,9 +79,9 @@ public class AppointmentsFacade {
      * @param Student student
      * @return 
      */
-    public void updateSingleSession(SingleSessionCell ssc) {
+    public void updateSingleSession(SingleSession ss) {
         // TODO implement here
-    	appointmentDAO.updateSingleSession(ssc);
+    	appointmentDAO.updateSingleSession(ss);
     }
 
     /**
@@ -120,8 +127,9 @@ public class AppointmentsFacade {
     /**
      * @param revisionSession who is going to be updated
      */
-    public void updateRevisionSession(RevisionSession revisionSession) {
+    public void updateRevisionSession(RevisionSession revisionSession, int idStudent) {
         // TODO implement here
+    	
     }
 
     /**
@@ -159,6 +167,14 @@ public class AppointmentsFacade {
 	public ArrayList<SingleSession> getHelpRequestByClass(int idClass) {
 		ArrayList<SingleSession> listHelpRequest = appointmentDAO.getHelpRequestByClass(idClass);
 		return listHelpRequest;
+	}
+	
+	public SingleSession getSingleSessionById(int idSS) {
+		return (SingleSession) appointmentDAO.getAppointmentById(idSS);
+	}
+	
+	public RevisionSession getRevisionSessionById(int idRS) {
+		return (RevisionSession) appointmentDAO.getAppointmentById(idRS);
 	}
 
 }

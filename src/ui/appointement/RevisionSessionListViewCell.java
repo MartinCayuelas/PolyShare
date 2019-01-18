@@ -3,8 +3,13 @@ package ui.appointement;
 import java.io.IOException;
 import java.util.List;
 
+import application.classesApp.RevisionSession;
 import application.classesApp.Student;
 import facades.AppointmentsFacade;
+import facades.LoginFacade;
+import facades.exceptions.DisconnectedStudentException;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -79,12 +84,19 @@ public class RevisionSessionListViewCell extends ListCell<RevisionSessionCell> {
             }
             
            
-           /* this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
+           this.buttonJoin.setOnAction(new EventHandler<ActionEvent>() {
                @Override
                public void handle(ActionEvent event) {
-                   
+            	   RevisionSession rs = appointmentsFacade.getRevisionSessionById(rsc.getIdRevisionSession());
+            	   try {
+					int idStudent = LoginFacade.getInstance().getConnectedStudent().getId();
+					controller.updateRevisionSession(rs, idStudent);
+				} catch (DisconnectedStudentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                }                            
-           });*/
+           });
             
             setText(null);
             setGraphic(cellLayout);

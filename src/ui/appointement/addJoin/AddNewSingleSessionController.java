@@ -103,6 +103,36 @@ public class AddNewSingleSessionController implements Initializable {
 	}
     
     @FXML
+    private void addHelpRequest(ActionEvent event) throws IOException {
+    	if(!choiceBoxSubject.getValue().toString().isEmpty() && !choiceBoxTopic.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeHelpProposal.getText().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty()){
+    		Subject subject = new Subject(0, choiceBoxSubject.getValue().toString());
+			try {
+				MyDate date = new MyDate("dateHelpProposal.getValue().getDayOfMonth()", "dateHelpProposal.getValue().getMonthValue()", "dateHelpProposal.getValue().getYear()");
+				appointmentsFacade.addHelpRequest(date,subject);
+			} catch (DisconnectedStudentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			errorTextHelpProposal.setText("Erreur : tous les champs ne sont pas remplis !");
+		}
+    	
+    	Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
+
+		Stage nextStage = new Stage();
+		nextStage.setTitle("Add Help Proposal");
+		Pane myPane = null;
+		myPane = FXMLLoader.load(getClass().getResource("/ui/appointement/Appointement.fxml"));
+
+		Scene scene = new Scene(myPane);
+		nextStage.setScene(scene);
+		nextStage.show();
+		
+	}
+    
+    @FXML
     private void goBack(ActionEvent e) throws IOException {
     	Node source = (Node) e.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();

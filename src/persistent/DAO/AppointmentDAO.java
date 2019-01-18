@@ -12,7 +12,7 @@ import application.classesApp.Subject;
 import ui.appointement.SingleSessionCell;
 
 /**
- * @author julienroumagnac ponthieu 
+ * @author julienroumagnac ponthieu lucadebeir
  */
 public abstract class AppointmentDAO {
 
@@ -88,6 +88,8 @@ public abstract class AppointmentDAO {
 
 	public abstract ArrayList<SingleSession> getHelpRequestByClass(int idClass);
 	
-	public abstract void updateSingleSession(SingleSessionCell ssc);
+	public abstract void updateSingleSession(SingleSession ss);
+	
+	public abstract void updateRevisionSession(RevisionSession rs, int idStudent);
 
 }

@@ -228,4 +228,20 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
     	}
 		return nameClass;
 	}
+
+	@Override
+	public void createSchoolClass(SchoolClass sc) {
+		System.out.println("DAO");
+		
+		try {
+			
+			
+			this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO Class VALUES (0,'" + sc.getNameSchoolClass()+"')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }

@@ -44,6 +44,11 @@ public class HomePageController {
     }
     
     @FXML 
+    public void goAddClass() {
+    	Router.getInstance().activate("AddSchoolClass");
+    }
+    
+    @FXML 
     public void exit() {
     	Router.getInstance().activate("Exit");
     }

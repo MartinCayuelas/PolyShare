@@ -28,6 +28,8 @@ public abstract class SchoolClassDAO {
      * Save a school with a Student in admin
      */
     public abstract void createSchoolClass(SchoolClass sc, Student admin);
+    
+    public abstract void createSchoolClass(SchoolClass sc);
 
     /**
      * @param c

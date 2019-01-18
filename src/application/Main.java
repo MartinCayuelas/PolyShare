@@ -43,10 +43,12 @@ public class Main extends Application {
 		r.add("Skill", "/ui/skill/Skill.fxml");
 		r.add("Profil", "");
 		r.add("SchoolClass", "/ui/classes/SchoolClass.fxml");
+		r.add("AddSchoolClass", "/ui/classes/addSchoolClass/AddSchoolClass.fxml");
 		r.add("ConnectionInscription", "/ui/connectionInscription/Login.fxml");
 		r.add("Forum", "");
 		r.add("MediaFiles", "/ui/mediaFile/MediaFile.fxmls");
 		r.add("MyAppointements", "/ui/myAppointement/MyAppointements.fxml");
 		r.add("Topic", "/ui/topic/TopicHomePage.fxml");
+		
 	}
 }

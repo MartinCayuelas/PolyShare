@@ -34,7 +34,7 @@ import ui.homePage.SchoolClassListViewCell;
 /**
  * 
  */
-public class SkillControlleur implements Initializable {
+public class SkillControlleur {
 
 	@FXML
 	private ListView<SkillCell> mySkillsLView;
@@ -79,9 +79,7 @@ public class SkillControlleur implements Initializable {
 
 	@FXML
 	private void handleAddNewSkill(ActionEvent event) throws IOException {
-		Node source = (Node) event.getSource();
-		Stage stage = (Stage) source.getScene().getWindow();
-		stage.close();
+		
 
 		Stage nextStage = new Stage();
 		nextStage.setTitle("Student's Skill");
@@ -95,24 +93,13 @@ public class SkillControlleur implements Initializable {
 	}
 
 	@FXML
-	private void backHome(ActionEvent event) throws IOException {
-		Node source = (Node) event.getSource();
-		Stage stage = (Stage) source.getScene().getWindow();
-		stage.close();
+    public void backHome() {
+    	Router.getInstance().activate("HomePage");
+    }
+	
 
-		Stage nextStage = new Stage();
-		nextStage.setTitle("Student Account");
-		Pane myPane = null;
-		myPane = FXMLLoader.load(getClass().getResource("/ui/homePage/HomePage.fxml"));
-
-		Scene scene = new Scene(myPane);
-		nextStage.setScene(scene);
-		nextStage.show();
-
-	}
-
-	@Override
-	public void initialize(URL url, ResourceBundle rb) {
+	@FXML
+	public void initialize() {
 		/*
 		 * try { student = loginFacade.getConnectedStudent(); } catch
 		 * (DisconnectedStudentException e) { // TODO Auto-generated catch block

@@ -1,14 +1,16 @@
 package ui.myAppointement;
 
-import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 import application.classesApp.Appointment;
 import application.classesApp.MyDate;
 import application.classesApp.Student;
 import facades.AppointmentsFacade;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import ui.Router;
 
 /**
  * @author julienroumagnac
@@ -16,7 +18,7 @@ import javafx.fxml.Initializable;
 public class MyAppointmentsController  {
 	
 	private AppointmentsFacade myAppFac = new AppointmentsFacade();
-
+	
     /**
      * Default constructor
      */
@@ -85,6 +87,11 @@ public class MyAppointmentsController  {
     	}
    		}
     	return futureApps;
+    }
+    
+    @FXML
+    public void back () {
+    	Router.getInstance().activate("HomePage");
     }
 
 

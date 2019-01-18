@@ -27,7 +27,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" text="Back" />
+                  <Button mnemonicParsing="false" onMouseClicked="#backHome" text="Back home" />
                   <Label fx:id="topicName" alignment="CENTER" contentDisplay="CENTER" text="TopicName" GridPane.columnIndex="1">
                      <font>
                         <Font size="36.0" />

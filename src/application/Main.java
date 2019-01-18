@@ -42,11 +42,11 @@ public class Main extends Application {
 		r.add("Subject", "/ui/subject/Subject.fxml");
 		r.add("Skill", "/ui/skill/Skill.fxml");
 		r.add("Profil", "");
-		r.add("Appointment", "/ui/appointement/Appointement.fxml");
 		r.add("SchoolClass", "/ui/classes/SchoolClass.fxml");
 		r.add("ConnectionInscription", "/ui/connectionInscription/Login.fxml");
 		r.add("Forum", "");
 		r.add("MediaFiles", "/ui/mediaFile/MediaFile.fxmls");
-		r.add("MyAppointements", "/ui/myAppointements/MyAppointements.fxml");
+		r.add("MyAppointements", "/ui/myAppointement/MyAppointements.fxml");
+		r.add("Topic", "/ui/topic/TopicHomePage.fxml");
 	}
 }

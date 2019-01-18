@@ -30,17 +30,17 @@ public class HomePageController {
 
     @FXML 
     public void goProfil() {
-    	Router.getInstance().activate("Profil");
+    	Router.getInstance().activate("Skill");
     }
     
     @FXML 
     public void goAppointement() {
-    	Router.getInstance().activate("Appointement");
+    	Router.getInstance().activate("MyAppointements");
     }
     
     @FXML 
     public void goClass() {
-    	Router.getInstance().activate("Class");
+    	Router.getInstance().activate("SchoolClass");
     }
     
     @FXML 
@@ -55,7 +55,7 @@ public class HomePageController {
     	if (selected != null) {
     		System.out.println(selected.getNameSchoolClass());
     		SchoolClass[] params  = {selected};
-        	Router.getInstance().activate("Subject", params);
+        	Router.getInstance().activate("SchoolClass", params);
     	}
     	
     }
@@ -67,7 +67,7 @@ public class HomePageController {
     	if (selected != null) {
     		System.out.println(selected.getNameSchoolClass());
     		SchoolClass[] params  = {selected};
-        	Router.getInstance().activate("Subject", params); 
+        	Router.getInstance().activate("SchoolClass", params); 
     	}
     	
     }

@@ -38,7 +38,7 @@
                         <Image url="@../../../img/user.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onMouseClicked="#goProfil" stylesheets="@homePage.css" text="My profil" />
+                  <Button mnemonicParsing="false" onMouseClicked="#goProfil" text="My profil" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1">

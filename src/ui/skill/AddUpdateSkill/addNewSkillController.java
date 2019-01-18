@@ -52,7 +52,7 @@ public class addNewSkillController implements Initializable {
 
 	public void addSkill(ActionEvent event) throws DisconnectedStudentException, IOException {
 		// int idStudent = loginFacade.getConnectedStudent().getId();
-		// Mettre idStudent à la place de 1
+		// Mettre idStudent ï¿½ la place de 1
 
 		// System.out.println(nameSkill.getText());
 		// System.out.println(choiceBoxClass.getValue());
@@ -63,20 +63,13 @@ public class addNewSkillController implements Initializable {
 		Skill s = new Skill(0, nameSkill.getText(), mySpinner.getValue(), 1, idClass);
 		skillFacade.addSkill(s);
 
-		// Quand on appuie sur Add ça doit renvoyer vers la page des skills
+		// Quand on appuie sur Add ï¿½a doit renvoyer vers la page des skills
 
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();
 
-		Stage nextStage = new Stage();
-		nextStage.setTitle("AddSkill");
-		Pane myPane = null;
-		myPane = FXMLLoader.load(getClass().getResource("/ui/skill/Skill.fxml"));
-
-		Scene scene = new Scene(myPane);
-		nextStage.setScene(scene);
-		nextStage.show();
+		Router.getInstance().activate("Skill");
 
 	}
 

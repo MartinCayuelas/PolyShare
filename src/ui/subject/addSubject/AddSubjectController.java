@@ -40,27 +40,20 @@ public class AddSubjectController implements Initializable {
     
     public void addSubject(ActionEvent event) throws DisconnectedStudentException, IOException {
     	/////////////////////////////////////////////////////////////////////////////////////////////////////
-    	//Récupérer l'ID de la SchoolClass courante grâce à la fonction getParams() de l'instance du router//
+    	//Rï¿½cupï¿½rer l'ID de la SchoolClass courante grï¿½ce ï¿½ la fonction getParams() de l'instance du router//
     	/////////////////////////////////////////////////////////////////////////////////////////////////////
     	//Pour l'instant, test avec la SchoolClass 2 (IG4)
-		Subject newSubject = new Subject(0, nameSubject.getText(), 2);
+    	SchoolClass sc = (SchoolClass)Router.getInstance().getParams()[0];
+		Subject newSubject = new Subject(0, nameSubject.getText(), sc.getIdSchoolClass());
 		schoolClassFacade.addSubject(newSubject);
 		
-		//Quand on appuie sur Add ça doit renvoyer vers la page SchoolClass.fxml (avec la liste des subject et topics)
+		//Quand on appuie sur Add ï¿½a doit renvoyer vers la page SchoolClass.fxml (avec la liste des subject et topics)
 		
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();
 
-		Stage nextStage = new Stage();
-		nextStage.setTitle("");
-		Pane myPane = null;
-		myPane = FXMLLoader.load(getClass().getResource("/ui/classes/SchoolClass.fxml"));
-
-		Scene scene = new Scene(myPane);
-		nextStage.setScene(scene);
-		nextStage.show();
-
+		Router.getInstance().activate("SchoolClass", Router.getInstance().getParams());
 	}
     
     
@@ -69,19 +62,6 @@ public class AddSubjectController implements Initializable {
      */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		/*Object[] params = Router.getInstance().getParams();
-    	
-    	if (params[0] instanceof SchoolClass) {
-    		SchoolClass selectSchoolClass = (SchoolClass)params[0];
-    		
-    		//TODO afficher la liste des subjects de la class
-    		this.nameSubject.setText(selectSchoolClass.getNameSchoolClass());
-    	}
-    	else {
-    		//TODO do a custom message error
-    		System.out.println("PASSER UN SUBJECT SVP");
-    	}*/
 	}
 
 }

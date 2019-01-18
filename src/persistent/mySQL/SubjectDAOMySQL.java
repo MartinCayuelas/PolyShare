@@ -89,7 +89,7 @@ public class SubjectDAOMySQL extends SubjectDAO {
 		try {
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM subject WHERE idSubject = " + idSubject);
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM Subject WHERE idSubject = " + idSubject);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -101,7 +101,7 @@ public class SubjectDAOMySQL extends SubjectDAO {
 		try {
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE subject SET nameSubject = '" + nameSubject + "' WHERE idSubject = " + idSubject);
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE Subject SET nameSubject = '" + nameSubject + "' WHERE idSubject = " + idSubject);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -114,7 +114,7 @@ public class SubjectDAOMySQL extends SubjectDAO {
   	  try {
   	    ResultSet result = this.con.createStatement(
   	    ResultSet.TYPE_SCROLL_INSENSITIVE,
-  	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM subject WHERE idSubject = " + idSubject);
+  	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Subject WHERE idSubject = " + idSubject);
   	    if(result.first())
   	    	subject = new Subject(
   	    			idSubject,
@@ -152,13 +152,13 @@ public class SubjectDAOMySQL extends SubjectDAO {
 		try {
 			ResultSet result = this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT MAX(idSubject) AS max FROM subject");
+			ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT MAX(idSubject) AS max FROM Subject");
 			if(result.first())
 	  	    	maxId = result.getInt("max") + 1; 
 			
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO subject VALUES (" + maxId + ",'" + subject.getNameSubject() + "',"+subject.getIdSchoolClass()+")");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO Subject VALUES (" + maxId + ",'" + subject.getNameSubject() + "',"+subject.getIdSchoolClass()+")");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

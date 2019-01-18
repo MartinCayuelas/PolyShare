@@ -79,10 +79,6 @@ public class SkillListViewCell extends ListCell<SkillCell> {
 				@Override
 				public void handle(ActionEvent event) {
 
-					Node source = (Node) event.getSource();
-					Stage stage = (Stage) source.getScene().getWindow();
-					stage.close();
-
 					Stage nextStage = new Stage();
 					nextStage.setTitle("UpdateSkill");
 					FXMLLoader loader = new FXMLLoader(

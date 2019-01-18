@@ -1,6 +1,8 @@
 package ui.subject.updateSubject;
 
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -10,8 +12,10 @@ import application.classesApp.Subject;
 import facades.LoginFacade;
 import facades.SchoolClassFacade;
 import facades.exceptions.DisconnectedStudentException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import ui.Router;
 
@@ -19,6 +23,8 @@ import ui.Router;
  * @author guillaud
  */
 public class UpdateSubjectController implements Initializable {
+	
+	private int idSubject;
 	
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	
@@ -30,17 +36,21 @@ public class UpdateSubjectController implements Initializable {
     public UpdateSubjectController() {
     }
     
-    public void updateSubject() throws DisconnectedStudentException {
+    public void updateSubject(ActionEvent event) throws DisconnectedStudentException {
     	/////////////////////////////////////////////////////////////////////////////////////////
-    	//Récupérer le Subject courant grâce à la fonction getParams() de l'instance du router//
+    	//Rï¿½cupï¿½rer le Subject courant grï¿½ce ï¿½ la fonction getParams() de l'instance du router//
     	////////////////////////////////////////////////////////////////////////////////////////
     	//Pour l'instant, test avec le subject 5 (Panorama)
     	
-		Subject currentSubject = schoolClassFacade.findSubjectById(5);
-		schoolClassFacade.updateSubject(5, nameSubject.getText());
+		Subject currentSubject = schoolClassFacade.findSubjectById(this.idSubject);
+		schoolClassFacade.updateSubject(this.idSubject, nameSubject.getText());
 		
-		//Quand on appuie sur Save ça doit renvoyer vers la page SchoolClass.fxml (avec la liste des subject et topics)
+		//Quand on appuie sur Save ï¿½a doit renvoyer vers la page SchoolClass.fxml (avec la liste des subject et topics)
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
 
+		Router.getInstance().activate("SchoolClass", Router.getInstance().getParams());
 	}
     
     
@@ -49,22 +59,13 @@ public class UpdateSubjectController implements Initializable {
      */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		/*Object[] params = Router.getInstance().getParams();
-    	
-    	if (params[0] instanceof SchoolClass) {
-    		SchoolClass selectSchoolClass = (SchoolClass)params[0];
-    		
-    		//TODO afficher la liste des subjects de la class
-    		this.nameSubject.setText(selectSchoolClass.getNameSchoolClass());
-    	}
-    	else {
-    		//TODO do a custom message error
-    		System.out.println("PASSER UN SUBJECT SVP");
-    	}*/
 		
-		//Remplissage du TextField avec le nom du subject à modifier
-		nameSubject.setText(schoolClassFacade.findSubjectById(5).getNameSubject());
+		//Remplissage du TextField avec le nom du subject ï¿½ modifier
+		nameSubject.setText(schoolClassFacade.findSubjectById(this.idSubject).getNameSubject());
 	}
-
+	
+	public void init(int idS) {
+		this.idSubject = idS;
+	}
+	
 }

@@ -17,6 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ui.Router;
 
 /**
  * 
@@ -66,44 +67,33 @@ public class LoginController {
 	     } else {
 	    	 loginFacade.login(emailStudent, passWord);
 	    	 if (loginFacade.isConnected()) {
-             	Node  source = (Node)  e.getSource(); 
-                Stage stage  = (Stage) source.getScene().getWindow();
-                stage.close();
-		                            
-                Stage nextStage = new Stage();
-                nextStage.setTitle("Student Account");
-                Pane myPane = null;
-                myPane = FXMLLoader.load(getClass().getResource("/ui/homePage/HomePage.fxml"));
-                        
-                        
-                Scene scene = new Scene(myPane);
-                nextStage.setScene(scene);
-                nextStage.show(); 
+             	
+                Router.getInstance().activate("HomePage");
 	    	 } else {
 	    		 errorText.setText("Wrong email/password");
 	    	 }
-	    	 try {
-				if (loginFacade.getConnectedStudent() != null) {
-				 	Node  source = (Node)  e.getSource(); 
-				    Stage stage  = (Stage) source.getScene().getWindow();
-				    stage.close();
-				                        
-				    Stage nextStage = new Stage();
-				    nextStage.setTitle("Student Account");
-				    Pane myPane = null;
-				    myPane = FXMLLoader.load(getClass().getResource("/ui/homePage/HomePage.fxml"));
-				            
-				            
-				    Scene scene = new Scene(myPane);
-				    nextStage.setScene(scene);
-				    nextStage.show(); 
-				 } else {
-					 errorText.setText("Wrong email/password");
-				 }
-			} catch (DisconnectedStudentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+////	    	 try {
+////				if (loginFacade.getConnectedStudent() != null) {
+////				 	Node  source = (Node)  e.getSource(); 
+////				    Stage stage  = (Stage) source.getScene().getWindow();
+////				    stage.close();
+////				                        
+////				    Stage nextStage = new Stage();
+////				    nextStage.setTitle("Student Account");
+////				    Pane myPane = null;
+////				    myPane = FXMLLoader.load(getClass().getResource("/ui/homePage/HomePage.fxml"));
+////				            
+////				            
+////				    Scene scene = new Scene(myPane);
+////				    nextStage.setScene(scene);
+////				    nextStage.show(); 
+////				 } else {
+////					 errorText.setText("Wrong email/password");
+////				 }
+//			} catch (DisconnectedStudentException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
 	     }
 	 }
 	 

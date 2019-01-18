@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import application.classesApp.SchoolClass;
@@ -29,7 +28,7 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
     	SchoolClass schoolClass = new SchoolClass(null);
     	ArrayList<SchoolClass> schoolClasses = new ArrayList<SchoolClass>();
 		try {
-			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM class");
+			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM Class");
 			while(result.next()){ 
 				schoolClass = new SchoolClass(
 					result.getInt("idClass"),
@@ -123,7 +122,7 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 		SchoolClass schoolClass = new SchoolClass(null);
     	
 		try {
-			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM class WHERE nameClass like \'"+ s + "\'");
+			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM Class WHERE nameClass like \'"+ s + "\'");
 			  if(result.next()) {
 				schoolClass = new SchoolClass(
 					result.getInt("idClass"),
@@ -145,7 +144,7 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 		SchoolClass schoolClass = new SchoolClass(null);
     	ArrayList<SchoolClass> schoolClasses = new ArrayList<SchoolClass>();
 		try {
-			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM class");
+			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM Class");
 			while(result.next()){ 
 				schoolClass = new SchoolClass(
 					result.getInt("idClass"),
@@ -154,7 +153,7 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 				schoolClasses.add(schoolClass);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		

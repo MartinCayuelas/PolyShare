@@ -30,7 +30,7 @@ public class HomePageController {
 
     @FXML 
     public void goProfil() {
-    	Router.getInstance().activate("Skill");
+    	Router.getInstance().activate("Profil");
     }
     
     @FXML 

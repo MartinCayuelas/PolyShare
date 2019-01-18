@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import application.classesApp.Student;
+import database.BdConnection;
 import persistent.DAO.StudentDAO;
 
 /**
@@ -20,7 +21,7 @@ public class StudentDAOMySQL extends StudentDAO {
     }
     
     public Student login(String id, String password) {
-		Student student = new Student(0, null, null, null, null, null, null);
+		Student student = new Student(0, null, null, null, null, null);
 		
 		try {
 		   ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM Student WHERE emailStudent = '" + id + "' AND password = '" + password + "'");
@@ -31,8 +32,7 @@ public class StudentDAOMySQL extends StudentDAO {
 			        result.getString("firstNameStudent"),
 			        result.getString("emailStudent"),
 			        result.getString("password"),
-			        result.getString("loginID"),
-			        null);
+			        result.getString("loginID"));
 			   return student;
 		   } else { 
 			   return null;
@@ -44,7 +44,7 @@ public class StudentDAOMySQL extends StudentDAO {
 	}
     
     public Student findById(int id) {
-  	  Student student = new Student(0, null, null, null, null, null, null);      
+  	  Student student = new Student(0, null, null, null, null, null);      
   	    
   	  try {
   	    ResultSet result = this.connect.createStatement(
@@ -57,8 +57,7 @@ public class StudentDAOMySQL extends StudentDAO {
   	        result.getString("firstNameStudent"),
   	        result.getString("emailStudent"),
   	        result.getString("password"),
-  	        result.getString("loginID"),
-  	        null);         
+  	        result.getString("loginID"));         
   	  } catch (SQLException e) {
   	    e.printStackTrace();
   	  }
@@ -78,7 +77,7 @@ public class StudentDAOMySQL extends StudentDAO {
 	}
     
     public Student findByName(String name) {
-		Student student = new Student(0, null, null, null, null, null, null);
+		Student student = new Student(0, null, null, null, null, null);
 		
 	    try {
 		    ResultSet result = this.connect.createStatement(
@@ -91,8 +90,7 @@ public class StudentDAOMySQL extends StudentDAO {
 		        result.getString("firstNameStudent"),
 		        result.getString("emailStudent"),
 		        result.getString("password"),
-		        result.getString("loginID"),
-		        null);         
+		        result.getString("loginID"));         
 		  } catch (SQLException e) {
 		    e.printStackTrace();
 		  }
@@ -125,6 +123,17 @@ public class StudentDAOMySQL extends StudentDAO {
 	public boolean verifyCredentials(String login, String password) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void updateStudent(Student sCo) {
+		BdConnection.request("UPDATE Student SET "
+				+ "nameStudent= \'" + sCo.nameStudent 
+				+ "\', firstNameStudent=\'" + sCo.getFirstNameStudent()
+				+ "\',emailStudent= \'" + sCo.getEmailStudent()
+				+ "\',password=\'" + sCo.getPasswordStudent()
+				+ "\',loginID=\'" + sCo.getLoginID() 
+				+ "\' WHERE idStudent = " + sCo.getId());
 	}
 
 	@Override

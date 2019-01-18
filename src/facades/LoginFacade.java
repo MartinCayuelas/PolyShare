@@ -6,7 +6,7 @@ import factory.AbstractFactory;
 import persistent.DAO.StudentDAO;
 
 /**
- * @author lucadebeir
+ * @author lucadebeir, ponthieu
  */
 
 public class LoginFacade {
@@ -36,10 +36,12 @@ public class LoginFacade {
      */
     public void login(String email, String password) {
     	student = studentDAO.login(email, password);
+    	LoginFacade.getInstance().setConnectedStudent(student);
+    
     }
     
     public void signUp(String nameStudent, String firstNameStudent, String emailStudent, String password, String loginID) {
-		student = new Student(0, nameStudent,firstNameStudent,emailStudent,password,loginID,null);
+		student = new Student(0, nameStudent,firstNameStudent,emailStudent,password,loginID);
 		studentDAO.createStudent(student);
 	}
     
@@ -50,5 +52,18 @@ public class LoginFacade {
     public boolean isConnected () {
     	return this.student != null;
     }
+
+    /**
+     * update the student thanks to his id.
+     * @param sCo
+     */
+	public void updateStudent(Student sCo) {
+		studentDAO.updateStudent(sCo);
+		
+	}
+
+	public void setConnectedStudent(Student newStudent) {
+		this.student = newStudent;
+	}
 
 }

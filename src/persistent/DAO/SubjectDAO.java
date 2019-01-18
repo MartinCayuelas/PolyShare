@@ -77,4 +77,8 @@ public abstract class SubjectDAO {
      */
     public abstract void addSubject(Subject subject);
 
+
+
+	public abstract Subject findSubjectByName(String nameSubject);
+
 }

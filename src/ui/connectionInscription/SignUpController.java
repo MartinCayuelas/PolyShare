@@ -90,6 +90,23 @@ public class SignUpController {
     		errorLabel.setText("Error : Missing Field");
     	}
     }
+    
+    @FXML
+	private void backLogin(ActionEvent event) throws IOException {
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
+
+		Stage nextStage = new Stage();
+		nextStage.setTitle("Student Account");
+		Pane myPane = null;
+		myPane = FXMLLoader.load(getClass().getResource("/ui/connectionInscription/Login.fxml"));
+
+		Scene scene = new Scene(myPane);
+		nextStage.setScene(scene);
+		nextStage.show();
+
+	}
 
     public void initialize(URL arg0, ResourceBundle arg1) {
     	// TODO Auto-generated method stub

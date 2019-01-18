@@ -1,9 +1,12 @@
 package ui.appointement;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
+
 import application.classesApp.MyDate;
 import application.classesApp.RevisionSession;
 import application.classesApp.SchoolClass;
@@ -15,9 +18,9 @@ import facades.exceptions.DisconnectedStudentException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,15 +36,19 @@ import javafx.stage.Stage;
 /**
  * 
  */
-public class AppointmentController {
+public class AppointmentController implements Initializable {
 	
 	ObservableList<SingleSessionCell> singleSessionObservableList;
 	
 	ObservableList<RevisionSessionCell> revisionSessionObservableList;
 	
+	ObservableList<SingleSessionCell> helpRequestObservableList;
+	
 	List<SingleSessionCell> listSingleSession;
 	
 	List<RevisionSessionCell> listRevisionSession;
+	
+	List<SingleSessionCell> listHelpRequest;
 	
 	
 	private AppointmentsFacade appointmentsFacade = new AppointmentsFacade();
@@ -53,6 +60,9 @@ public class AppointmentController {
 	private ListView<RevisionSessionCell> revisionSessionLView;
 	
 	@FXML
+	private ListView<SingleSessionCell> helpRequestLView;
+	
+	@FXML
 	private Button helpRequest;
 	
 	@FXML
@@ -61,30 +71,7 @@ public class AppointmentController {
 	@FXML
 	private Button addRevisionSession;
 	
-	//Help Proposal
-	@FXML
-	private Button validateNewHelpProposal;
 	
-	@FXML
-	private ComboBox subjectsHelpProposal;
-	
-	@FXML
-	private ComboBox topicsHelpProposal;
-	
-	@FXML
-	private TextArea messageHelpProposal;
-	
-	@FXML
-	private TextField placeHelpProposal;
-	
-	@FXML
-	private TextField timeHelpProposal;
-	
-	@FXML
-	private DatePicker dateHelpProposal;
-	
-	@FXML
-	private Label errorText;
 
     /**
      * Default constructor
@@ -92,13 +79,30 @@ public class AppointmentController {
     public AppointmentController() {
     }
 
+    
+    @FXML
+	private void backHome(ActionEvent event) throws IOException {
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
+
+		Stage nextStage = new Stage();
+		nextStage.setTitle("Student Account");
+		Pane myPane = null;
+		myPane = FXMLLoader.load(getClass().getResource("/ui/homePage/HomePage.fxml"));
+
+		Scene scene = new Scene(myPane);
+		nextStage.setScene(scene);
+		nextStage.show();
+
+	}
 
     /**
      * @return
      * @throws IOException 
      */
     @FXML
-    public void addSingleSession(ActionEvent e) throws IOException {
+    public void handleAddSingleSession(ActionEvent e) throws IOException {
     	Node  source = (Node)  e.getSource(); 
 	    Stage stage  = (Stage) source.getScene().getWindow();
 	    stage.close();
@@ -106,37 +110,23 @@ public class AppointmentController {
 	    Stage nextStage = new Stage();
 	    nextStage.setTitle("Add Help Proposal");
 	    Pane myPane = null;
-	    myPane = FXMLLoader.load(getClass().getResource("/ui/appointement/HelpProposal.fxml"));
+	    myPane = FXMLLoader.load(getClass().getResource("/ui/appointement/addJoin/addSingleSession.fxml"));
 	
 	    Scene scene = new Scene(myPane);
 	    nextStage.setScene(scene);
 	    nextStage.show(); 
     }
-    
-    /**
-     * @return
-     */
-    @FXML
-    private void addHelpProposal(ActionEvent event) {
-    	if(!subjectsHelpProposal.getValue().toString().isEmpty() && !topicsHelpProposal.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeHelpProposal.getText().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty()){
-    		Subject subject = new Subject(0, subjectsHelpProposal.getValue().toString());
-			try {
-				MyDate date = new MyDate("dateHelpProposal.getValue().getDayOfMonth()", "dateHelpProposal.getValue().getMonthValue()", "dateHelpProposal.getValue().getYear()");
-				appointmentsFacade.addSingleSession(date,subject,null);
-			} catch (DisconnectedStudentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			errorText.setText("Erreur : tous les champs ne sont pas remplis !");
-		}
-	}
 
     /**
      * @return
      */
-    public void updateSingleSession() {
+    public void updateSingleSession(SingleSessionCell ssc) {
         // TODO implement here
+    	appointmentsFacade.updateSingleSession(ssc);
+    	listSingleSession.remove(ssc);
+    	singleSessionObservableList.clear();
+    	singleSessionObservableList.addAll(listSingleSession);
+    	singleSessionLView.setItems(singleSessionObservableList);
     }
 
     /**
@@ -144,6 +134,7 @@ public class AppointmentController {
      */
     public void deleteSingleSession() {
         // TODO implement here
+    	
     }
 
     /**
@@ -153,12 +144,25 @@ public class AppointmentController {
     public void searchSingleSession(String subject) {
         // TODO implement here
     }
-
+    
     /**
      * @return
+     * @throws IOException 
      */
-    public void addRevisionSession() {
-        // TODO implement here
+    @FXML
+    public void addAppointment(ActionEvent e) throws IOException {
+    	Node  source = (Node)  e.getSource(); 
+	    Stage stage  = (Stage) source.getScene().getWindow();
+	    stage.close();
+	                          
+	    Stage nextStage = new Stage();
+	    nextStage.setTitle("Add Revision Session");
+	    Pane myPane = null;
+	    myPane = FXMLLoader.load(getClass().getResource("/ui/appointement/addJoin/addRevisionSession.fxml"));
+	
+	    Scene scene = new Scene(myPane);
+	    nextStage.setScene(scene);
+	    nextStage.show(); 
     }
 
     /**
@@ -178,11 +182,10 @@ public class AppointmentController {
     /**
      * @param to initialize this ui, Router.getInstance() i should have : 
      * case 0 : SchoolClass-appointments of this class will be display
-     * @throws SQLException 
      */
-    @FXML
-    public void initialize() throws SQLException {
-    	//ArrayList<Skill> request = new ArrayList<>();
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    	ArrayList<SingleSession> request = new ArrayList<>();
     	ArrayList<SingleSession> proposal = new ArrayList<>();
     	ArrayList<RevisionSession> revisionSession = new ArrayList<>();
     	    	
@@ -190,25 +193,61 @@ public class AppointmentController {
     	
     	SchoolClass sc = new SchoolClass(1, "IG3");
     	
+    	request = appointmentsFacade.getHelpRequestByClass(sc.getIdSchoolClass());
+    	System.out.println(request);
     	proposal = appointmentsFacade.getSingleSessionByClass(sc.getIdSchoolClass());
+    	System.out.println(proposal);
     	revisionSession = appointmentsFacade.getAppointmentByClass(sc.getIdSchoolClass());
+    	System.out.println(revisionSession);
     	listSingleSession = new ArrayList<>();
+    	listHelpRequest = new ArrayList<>();
     	listRevisionSession = new ArrayList<>();
     	
+    	/*for (SingleSession r : request) {
+    		Student student;
+			try {
+				student = appointmentsFacade.getStudentOfOneAppointment(r.getStudent().getId());
+				Subject subject = appointmentsFacade.getSubjectOfOneAppointmentById(r.getSubject().getId());
+	        	SingleSessionCell helpRequestCell = new SingleSessionCell(r.getIdAppointment(), r.getIdClass(), null, student, subject, r.getDateAppointment(), r.getPlace(), r.getMeetingTime());
+	        	listHelpRequest.add(helpRequestCell);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}*/
+    	
     	for (SingleSession ss : proposal) {
-    		Student teacher = appointmentsFacade.getStudentOfOneAppointment(ss.getTeacher().getId());
-    		Subject subject = appointmentsFacade.getSubjectOfOneAppointmentById(ss.getSubject().getId());
-    		SingleSessionCell singleSessionCell = new SingleSessionCell(ss.getIdAppointment(), teacher, subject, ss.getDateAppointment());
-    		listSingleSession.add(singleSessionCell);
+    		Student teacher;
+			try {
+				teacher = appointmentsFacade.getStudentOfOneAppointment(ss.getTeacher().getId());
+				Subject subject = appointmentsFacade.getSubjectOfOneAppointmentById(ss.getSubject().getId());
+	        	SingleSessionCell singleSessionCell = new SingleSessionCell(ss.getIdAppointment(), ss.getIdClass(), teacher, null, subject, ss.getDateAppointment(), ss.getPlace(), ss.getMeetingTime());
+	       		listSingleSession.add(singleSessionCell);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
     	
     	for (RevisionSession rs : revisionSession) {
-    		Student teacher = appointmentsFacade.getStudentOfOneAppointment(rs.getTeacher().getId());
-    		ArrayList<Student> listStudent = appointmentsFacade.getListStudentOfOneAppointment(rs);
-    		Subject subject = appointmentsFacade.getSubjectOfOneAppointmentById(rs.getSubject().getId());
-    		RevisionSessionCell revisionSessionCell = new RevisionSessionCell(rs.getIdAppointment(), teacher, listStudent, subject, rs.getDateAppointment());
-    		listRevisionSession.add(revisionSessionCell);
+    		Student teacher;
+			try {
+				teacher = appointmentsFacade.getStudentOfOneAppointment(rs.getTeacher().getId());
+				ArrayList<Student> listStudent = appointmentsFacade.getListStudentOfOneAppointment(rs);
+	    		Subject subject = appointmentsFacade.getSubjectOfOneAppointmentById(rs.getSubject().getId());
+	    		RevisionSessionCell revisionSessionCell = new RevisionSessionCell(rs.getIdAppointment(), rs.getIdClass(), teacher, listStudent, subject, rs.getDateAppointment(), rs.getMeetingTime(), rs.getPlace());
+	    		listRevisionSession.add(revisionSessionCell);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
+    	
+    	helpRequestObservableList = FXCollections.observableArrayList();
+    	helpRequestObservableList.addAll(listHelpRequest);
+    	
+    	this.helpRequestLView.setItems(helpRequestObservableList);
+    	this.helpRequestLView.setCellFactory(studentListView -> new SingleSessionListViewCell(this));
     	
     	singleSessionObservableList = FXCollections.observableArrayList();
     	singleSessionObservableList.addAll(listSingleSession);
@@ -223,5 +262,6 @@ public class AppointmentController {
     	this.revisionSessionLView.setCellFactory(studentListView -> new RevisionSessionListViewCell(this));
     	
     }
+    
 
 }

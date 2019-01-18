@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.sql.Statement;
 import java.util.*;
 
+import application.classesApp.RevisionSession;
 import application.classesApp.SchoolClass;
+import application.classesApp.Student;
 import application.classesApp.Subject;
 import application.classesApp.Topic;
 import persistent.DAO.SubjectDAO;
@@ -42,30 +44,36 @@ public class SubjectDAOMySQL extends SubjectDAO {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public Topic getTopicOfOneSubject(int idSubject) throws SQLException {
+		Topic topic = null;
+		ResultSet resultTopic = this.con.createStatement(
+				ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Topic WHERE idSubject = " + idSubject);
+		if(resultTopic.first()) {
+			topic = new Topic(
+					resultTopic.getInt("idTopic"),
+					resultTopic.getString("nameTopic"));
+		}
+		return topic;
+	}
 
 	@Override
 	public ArrayList<Subject> findSubjectsByIdSchoolClass(int idSchoolClass) {
-		Subject subject = new Subject(0, null, null);
+		Subject subject;
+		Topic topic;
     	ArrayList<Subject> subjects = new ArrayList<Subject>();
+    	ArrayList<Topic> topics = new ArrayList<Topic>();
 		try {
-			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM subject WHERE idClass = " + idSchoolClass);
+			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM Subject WHERE idClass = " + idSchoolClass);
 			while(result.next()){ 
-				//Récupération des topics du subject
-				ResultSet resultTopics = this.con.createStatement().executeQuery("SELECT * FROM topic WHERE idSubject = " + result.getInt("idSubject"));
-				ArrayList<Topic> topics = new ArrayList<Topic>();
-				while(resultTopics.next()){
-					Topic t = new Topic(
-							resultTopics.getInt("idTopic"),
-							resultTopics.getString("nameTopic")
-				  	    );
-					topics.add(t);
-				}
-				
+				topic = getTopicOfOneSubject(result.getInt("idSubject"));
+				topics.add(topic);
 				subject = new Subject(
-					result.getInt("idSubject"),
-		  	        result.getString("nameSubject"),
-		  	        topics
-		  	    );
+						result.getInt("idSubject"),
+				  	    result.getString("nameSubject"),
+				  	    topics
+				);
 				subjects.add(subject);
 			}
 		} catch (SQLException e) {
@@ -111,6 +119,25 @@ public class SubjectDAOMySQL extends SubjectDAO {
   	    	subject = new Subject(
   	    			idSubject,
   	        result.getString("nameSubject")
+  	        );         
+  	  } catch (SQLException e) {
+  	    e.printStackTrace();
+  	  }
+  	  return subject;
+	}
+	
+	@Override
+	public Subject findSubjectByName(String nameSubject) {
+		Subject subject = new Subject(0, nameSubject);      
+	    
+  	  try {
+  	    ResultSet result = this.con.createStatement(
+  	    ResultSet.TYPE_SCROLL_INSENSITIVE,
+  	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Subject WHERE nameSubject = " + nameSubject);
+  	    if(result.first())
+  	    	subject = new Subject(
+  	    			result.getInt("idSubject"),
+  	    			nameSubject
   	        );         
   	  } catch (SQLException e) {
   	    e.printStackTrace();

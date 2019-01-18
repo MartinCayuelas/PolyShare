@@ -20,12 +20,19 @@ public class SingleSession extends Appointment {
     /**
      * Default constructor
      */
+	
     public SingleSession(int idAppointment, Student teacher, Student student) {
     	super(idAppointment, teacher);
     	this.student = student;
     }
     
-    public SingleSession(int idAppointment, Student teacher, Student student, MyDate localDate, int idSubject) {
+    public SingleSession(int idAppointment, int idClass, Student teacher, Student student, Subject subject,
+			MyDate dateAppointment, MyDate meetingTime, String place) {
+		super(idAppointment, idClass, teacher, student, subject, dateAppointment, meetingTime, place);
+		// TODO Auto-generated constructor stub
+	}
+
+	public SingleSession(int idAppointment, Student teacher, Student student, MyDate localDate, int idSubject) {
     	super(idAppointment, teacher, idSubject, localDate);
     	this.student = student;
     }

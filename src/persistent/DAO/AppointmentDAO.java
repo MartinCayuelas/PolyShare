@@ -9,6 +9,7 @@ import application.classesApp.RevisionSession;
 import application.classesApp.SingleSession;
 import application.classesApp.Student;
 import application.classesApp.Subject;
+import ui.appointement.SingleSessionCell;
 
 /**
  * @author julienroumagnac ponthieu 
@@ -83,5 +84,10 @@ public abstract class AppointmentDAO {
 	public abstract ArrayList<Student> getListStudentOfOneAppointment(RevisionSession rs) throws SQLException;
 	
 	public abstract Student getStudentOfOneAppointment(int idStudent) throws SQLException;
+
+
+	public abstract ArrayList<SingleSession> getHelpRequestByClass(int idClass);
+	
+	public abstract void updateSingleSession(SingleSessionCell ssc);
 
 }

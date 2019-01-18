@@ -24,17 +24,17 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Help Request">
+                  <Button mnemonicParsing="false" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="+ Help Request">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#addSingleSession" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Help Proposal" GridPane.columnIndex="1">
+                  <Button fx:id="helProposal" mnemonicParsing="false" onAction="#handleAddSingleSession" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="+ Help Proposal" GridPane.columnIndex="1">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Revision Session" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                  <Button fx:id="addRevisionSession" mnemonicParsing="false" onAction="#addAppointment" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="+ Revision Session" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -58,7 +58,7 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <ListView layoutY="-5.0" prefHeight="589.0" prefWidth="267.0" />
+                  <ListView fx:id="helpRequestLView" layoutY="-5.0" prefHeight="589.0" prefWidth="267.0" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">

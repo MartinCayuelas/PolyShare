@@ -10,13 +10,25 @@ import application.classesApp.Subject;
 public class RevisionSessionCell {
 	
 	private int idRevisionSession;
+	private int idClass;
 	private Student teacher;
 	private ArrayList<Student> students;
 	private Subject subject;
 	private MyDate dateRevisionSession;
-	private String placeRevisionSession;
+	private MyDate meetingTime;
+	private String place;
 	
 	
+	public RevisionSessionCell(int idRevisionSession, int idClass, Student teacher, ArrayList<Student> students, Subject subject, MyDate myDate, MyDate meetingTime, String place) {
+		this.idRevisionSession = idRevisionSession;
+		this.idClass = idClass;
+		this.teacher = teacher;
+		this.students = students;
+		this.subject = subject;
+		this.dateRevisionSession = myDate;
+		this.meetingTime = meetingTime;
+		this.place = place;
+	}
 	
 	public RevisionSessionCell(int idRevisionSession, Student teacher, ArrayList<Student> students, Subject subject, MyDate myDate) {
 		this.idRevisionSession = idRevisionSession;
@@ -24,10 +36,36 @@ public class RevisionSessionCell {
 		this.students = students;
 		this.subject = subject;
 		this.dateRevisionSession = myDate;
-		/*this.placeRevisionSession = placeRevisionSession;*/
+	}
+	
+	
+	
+
+
+
+	public int getIdClass() {
+		return idClass;
 	}
 
+	public void setIdClass(int idClass) {
+		this.idClass = idClass;
+	}
 
+	public MyDate getMeetingTime() {
+		return meetingTime;
+	}
+
+	public void setMeetingTime(MyDate meetingTime) {
+		this.meetingTime = meetingTime;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
 
 	public int getIdRevisionSession() {
 		return idRevisionSession;
@@ -85,18 +123,6 @@ public class RevisionSessionCell {
 
 	public void setDateRevisionSession(MyDate dateRevisionSession) {
 		this.dateRevisionSession = dateRevisionSession;
-	}
-
-
-
-	public String getPlaceRevisionSession() {
-		return placeRevisionSession;
-	}
-
-
-
-	public void setPlaceRevisionSession(String placeRevisionSession) {
-		this.placeRevisionSession = placeRevisionSession;
 	}
 
 	

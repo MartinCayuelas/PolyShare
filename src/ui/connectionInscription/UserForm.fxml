@@ -85,7 +85,7 @@
             <TextField fx:id="loginIDField" alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="286.0" promptText="Your login" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
-      <BorderPane prefHeight="65.0" prefWidth="600.0">
+      <BorderPane prefHeight="109.0" prefWidth="600.0">
          <center>
             <Button fx:id="validateNewUserButton" mnemonicParsing="false" onAction="#welcome" prefHeight="26.0" prefWidth="86.0" text="Validate" BorderPane.alignment="CENTER">
                <font>
@@ -93,6 +93,9 @@
                </font>
             </Button>
          </center>
+         <bottom>
+            <Button mnemonicParsing="false" onAction="#backLogin" text="Exit" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
    </children>
 </VBox>

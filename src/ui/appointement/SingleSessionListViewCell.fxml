@@ -42,7 +42,7 @@
                     </rowConstraints>
                      <children>
                         <Label fx:id="cellLabelDateAppointment" text="Label" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" style="-fx-background-color: green; -fx-text-fill: white;" text="Accept" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
+                        <Button fx:id="buttonAccept" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" style="-fx-background-color: green; -fx-text-fill: white;" text="Accept" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
                      </children>
                   </GridPane>
                </bottom>

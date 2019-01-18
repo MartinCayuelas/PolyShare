@@ -2,3 +2,8 @@
 /addNewRevisionSession.class
 /joinRevisionSession.class
 /acceptSingleSession.class
+/addNewRevisionSessionController.class
+/addNewSingleSessionController.class
+/AddNewSingleSessionController.class
+/AddNewRevisionSessionController.class
+/AcceptSingleSessionController.class

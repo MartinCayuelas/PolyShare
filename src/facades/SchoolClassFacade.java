@@ -143,6 +143,17 @@ public class SchoolClassFacade {
 	}
 	
 	/**
+	 * find a Subject with a name
+	 * @param id the name of the researched subject
+	 * @return Subject return the matched schoolClass
+	 */
+	public Subject findSubjectByName(String nameSubject) {
+		SubjectDAO sDAO = factory.createSubjectDAO();
+		Subject s = sDAO.findSubjectByName(nameSubject);
+		return s;
+	}
+	
+	/**
 	 * Delete a Subject with an ID
 	 * @param id the id of the researched subject
 	 */

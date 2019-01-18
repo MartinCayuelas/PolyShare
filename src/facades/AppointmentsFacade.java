@@ -11,6 +11,7 @@ import application.classesApp.Subject;
 import facades.exceptions.DisconnectedStudentException;
 import factory.AbstractFactory;
 import persistent.DAO.AppointmentDAO;
+import ui.appointement.SingleSessionCell;
 
 /**
  * @author lucadebeir julienroumagnac
@@ -68,11 +69,12 @@ public class AppointmentsFacade {
     }
 
     /**
-     * @param 
+     * @param Student student
      * @return 
      */
-    public void updateSingleSession() {
+    public void updateSingleSession(SingleSessionCell ssc) {
         // TODO implement here
+    	appointmentDAO.updateSingleSession(ssc);
     }
 
     /**
@@ -152,6 +154,11 @@ public class AppointmentsFacade {
 	public ArrayList<Student> getListStudentOfOneAppointment(RevisionSession rs) throws SQLException {
 		ArrayList<Student> listStudent = appointmentDAO.getListStudentOfOneAppointment(rs);
 		return listStudent;
+	}
+	
+	public ArrayList<SingleSession> getHelpRequestByClass(int idClass) {
+		ArrayList<SingleSession> listHelpRequest = appointmentDAO.getHelpRequestByClass(idClass);
+		return listHelpRequest;
 	}
 
 }

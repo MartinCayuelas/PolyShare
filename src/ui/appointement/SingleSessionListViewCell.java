@@ -2,13 +2,22 @@ package ui.appointement;
 
 import java.io.IOException;
 
+import application.classesApp.Student;
 import facades.AppointmentsFacade;
+import facades.LoginFacade;
+import facades.exceptions.DisconnectedStudentException;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
 	
@@ -68,12 +77,12 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
             this.cellLabelExplication.setText(String.valueOf(ssc.getTeacher().getNameStudent()));
             this.cellLabelDateAppointment.setText(String.valueOf(ssc.getDateRevisionSession().getShowingDate()));
            
-           /* this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
-               @Override
-               public void handle(ActionEvent event) {
-                   
-               }                            
-           });*/
+            this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
+            	@Override
+            	public void handle(ActionEvent event) {
+            		controller.updateSingleSession(ssc);
+            	}                            
+            });
             
             setText(null);
             setGraphic(cellLayout);

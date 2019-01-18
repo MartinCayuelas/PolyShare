@@ -1,7 +1,5 @@
 package application.classesApp;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -32,7 +30,18 @@ public class RevisionSession extends Appointment {
     }
 
 
-    /**
+    public RevisionSession(int idAppointment, MyDate date, Subject subject) {
+		// TODO Auto-generated constructor stub
+    	super(idAppointment, subject, date);
+	}
+
+	public RevisionSession(int idAppointment, int idClass, Student teacher, Subject subject,
+			MyDate dateAppointment, MyDate meetingTime, String place, ArrayList<Student> students) {
+		super(idAppointment, idClass, teacher, subject, dateAppointment, meetingTime, place);
+		this.students = students;
+	}
+
+	/**
      * Add a student for a Revision Session
      * @param s new student who participate to the session
      */

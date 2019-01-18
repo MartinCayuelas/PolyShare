@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -13,18 +13,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="1000.0" style="-fx-border-color: #357ab7#357ab7; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.appointement.AppointmentController">
+<VBox prefHeight="800.0" prefWidth="1000.0" style="-fx-border-color: #357ab7#357ab7; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.appointement.addJoin.AddNewSingleSessionController">
    <children>
       <BorderPane prefHeight="104.0" prefWidth="1000.0">
          <center>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="314.0" text="HELP PROPOSAL" textAlignment="CENTER" textFill="#357ab7" BorderPane.alignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="403.0" text="ADD HELP PROPOSAL" textAlignment="CENTER" textFill="#357ab7" BorderPane.alignment="CENTER">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
          </center>
          <bottom>
-            <Label fx:id="errorText" prefHeight="17.0" prefWidth="167.0" textFill="RED" BorderPane.alignment="CENTER" />
+            <Label fx:id="errorTextHelpProposal" prefHeight="17.0" prefWidth="167.0" textFill="RED" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
       <GridPane prefHeight="116.0" prefWidth="1000.0">
@@ -43,13 +43,13 @@
                   <Font size="30.0" />
                </font>
             </Label>
+            <ChoiceBox fx:id="choiceBoxSubject" prefHeight="38.0" prefWidth="217.0" GridPane.columnIndex="1" />
             <Label text="Topic" textFill="#357ab7" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <ComboBox prefHeight="37.0" prefWidth="218.0" GridPane.columnIndex="1" />
-            <ComboBox prefHeight="38.0" prefWidth="217.0" GridPane.columnIndex="3" />
+            <ChoiceBox fx:id="choiceBoxTopic" onDragDetected="#chooseTopic" prefHeight="38.0" prefWidth="217.0" GridPane.columnIndex="3" />
          </children>
       </GridPane>
       <GridPane prefHeight="466.0" prefWidth="1000.0">
@@ -85,19 +85,37 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-            <DatePicker prefHeight="37.0" prefWidth="282.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextArea fx:id="messageHelpProposal" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+            <DatePicker fx:id="dateHelpProposal" prefHeight="37.0" prefWidth="282.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <TextField fx:id="placeHelpProposal" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <TextField fx:id="timeHelpProposal" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <BorderPane prefHeight="79.0" prefWidth="1000.0">
          <center>
-            <Button fx:id="validateNewHelpProposal" mnemonicParsing="false" onAction="#addHelpProposal" style="-fx-background-color: #357ab7#357ab7; -fx-text-fill: white;" text="Submit" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="validateNewHelpProposal" mnemonicParsing="false" onAction="#addHelpProposal" style="-fx-background-color: #357ab7#357ab7; -fx-text-fill: white;" text="Submit" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="goBack" mnemonicParsing="false" onAction="#goBack" prefHeight="48.0" prefWidth="117.0" style="-fx-background-color: #357ab7#357ab7 #357ab7#357ab7; -fx-text-fill: white;" text="Exit" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
          </center>
       </BorderPane>
    </children>

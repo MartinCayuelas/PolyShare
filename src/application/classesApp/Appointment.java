@@ -1,6 +1,5 @@
 package application.classesApp;
 
-import java.time.LocalDate;
 
 /**
  * @author julienroumagnac lucadebeir  
@@ -14,6 +13,36 @@ public class Appointment {
     /**
      * Default constructor
      */
+	public Appointment(int idAppointment, int idClass, Student teacher, Student student, Subject subject,
+			MyDate dateAppointment, MyDate meetingTime, String place) {
+		this.idAppointment = idAppointment;
+		this.idClass = idClass;
+		this.teacher = teacher;
+		this.student = student;
+		this.subject = subject;
+		this.dateAppointment = dateAppointment;
+		this.meetingTime = meetingTime;
+		this.place = place;
+	}
+	
+	public Appointment(int idAppointment, int idClass, Student teacher, Subject subject,
+			MyDate dateAppointment, MyDate meetingTime, String place) {
+		this.idAppointment = idAppointment;
+		this.idClass = idClass;
+		this.teacher = teacher;
+		this.subject = subject;
+		this.dateAppointment = dateAppointment;
+		this.meetingTime = meetingTime;
+		this.place = place;
+	}
+	
+
+	public Appointment(int idAppointment, Subject subject, MyDate date) {
+    	this.idAppointment = idAppointment;
+    	this.subject = subject;
+    	this.dateAppointment = date;
+    }
+	
 	public Appointment(int idAppointment, Student teacher) {
     	this.idAppointment = idAppointment;
     	this.teacher = teacher;
@@ -32,16 +61,29 @@ public class Appointment {
     	this.subject = subject;
     	this.dateAppointment = date;
     }
+	
+	
 
 	/**
      * 
      */
 	public int idAppointment;
 	
-    /**
+	/**
+     * 
+     */
+	public int idClass;
+	
+
+	/**
      * 
      */
     public Student teacher;
+    
+    /**
+     * 
+     */
+    public Student student;
     
     /**
      * 
@@ -57,6 +99,41 @@ public class Appointment {
      * 
      */
     public MyDate dateAppointment;
+    
+    /**
+     * 
+     */
+    public MyDate meetingTime;
+    
+    /**
+     * 
+     */
+    public String place;
+    
+    
+	public int getIdClass() {
+		return idClass;
+	}
+
+	public void setIdClass(int idClass) {
+		this.idClass = idClass;
+	}
+
+	public MyDate getMeetingTime() {
+		return meetingTime;
+	}
+
+	public void setMeetingTime(MyDate meetingTime) {
+		this.meetingTime = meetingTime;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
 
 
     /**

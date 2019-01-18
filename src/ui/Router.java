@@ -50,8 +50,7 @@ public class Router {
 		this.params = new String[0];
 		try {
 			
-			Main.primaryStage.getScene()
-					.setRoot(FXMLLoader.load(getClass().getResource(INSTANCE.getScreenMap().get(name))));
+			Main.primaryStage.getScene().setRoot(FXMLLoader.load(getClass().getResource(INSTANCE.getScreenMap().get(name))));
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -68,7 +67,7 @@ public class Router {
 		this.params = params;
 		try {
 			Main.primaryStage.getScene()
-					.setRoot(FXMLLoader.load(getClass().getResource(INSTANCE.getScreenMap().get(name))));
+							.setRoot(FXMLLoader.load(getClass().getResource(INSTANCE.getScreenMap().get(name))));
 		} catch (IOException e) {
 
 			e.printStackTrace();

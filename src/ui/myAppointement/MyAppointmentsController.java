@@ -39,11 +39,14 @@ public class MyAppointmentsController  {
 	private AppointmentsFacade myAppFac = new AppointmentsFacade();
 
 	private ArrayList<Appointment> myAppsPast;
+	private ArrayList<Appointment> myAppsFutur;
 	ObservableList<Appointment> pastObservableList;
+	ObservableList<Appointment> futurObservableList;
 
 	
 	@FXML
 	private ListView<Appointment> myPastLView;
+	private ListView<Appointment> myFuturLView;
 
 	
     /**
@@ -127,11 +130,16 @@ public class MyAppointmentsController  {
 		// TODO Auto-generated method stub
 		Student s = new Student(1);
 		myAppsPast = this.getPastAppointment(this.getMyAppointments(s));
+		myAppsFutur = this.getFutureAppointment(this.getMyAppointments(s));
 		
+//		futurObservableList = FXCollections.observableArrayList();
+//		futurObservableList.addAll(myAppsFutur);
 		pastObservableList = FXCollections.observableArrayList();
 		pastObservableList.addAll(myAppsPast);
 		this.myPastLView.setItems(pastObservableList);
 		this.myPastLView.setCellFactory(studentListView -> new PastListCell(this));
+//		this.myFuturLView.setItems(pastObservableList);
+//		this.myFuturLView.setCellFactory(studentListView -> new FuturListCell(this));
 	}
 
 

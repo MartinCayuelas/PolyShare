@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
  * @author julienroumagnac
  */
 
-public class PastListCell extends ListCell<Appointment> {
+public class FuturListCell extends ListCell<Appointment> {
 
 	private MyAppointmentsController controller;
 	// private SkillFacade skillFacade = new SkillFacade();
@@ -23,22 +23,16 @@ public class PastListCell extends ListCell<Appointment> {
 	@FXML
 	private Label cellLabelTeacher;
 	@FXML
-	private Label cellLabelSchoolClass;
+	private Label cellLabelClassSubjectTopic;
 	@FXML
-	private Label cellLabelSubject;
-	@FXML
-	private Label cellLabelTopic;
+	private Label cellLabelDate;
 
-	@FXML
-	private Button buttonDelete;
-	@FXML
-	private Button buttonUpdate;
 
 	@FXML
 	private BorderPane cellLayout;
 	FXMLLoader mLLoader;
 
-	public PastListCell(MyAppointmentsController controller) {
+	public FuturListCell(MyAppointmentsController controller) {
 		super();
 		this.controller = controller;
 	}
@@ -54,7 +48,7 @@ public class PastListCell extends ListCell<Appointment> {
 
 		} else {
 			if (mLLoader == null) {
-				mLLoader = new FXMLLoader(getClass().getResource("pastApptCell.fxml"));
+				mLLoader = new FXMLLoader(getClass().getResource("FuturApptCell.fxml"));
 				mLLoader.setController(this);
 				try {
 					mLLoader.load();
@@ -64,10 +58,9 @@ public class PastListCell extends ListCell<Appointment> {
 
 			}
 			System.out.println((ap.getTeacher().getNameStudent()));
-			this.cellLabelTeacher.setText(String.valueOf(ap.getTeacher().getNameStudent()));
-			this.cellLabelSchoolClass.setText(String.valueOf(ap.getIdClass()));
-			this.cellLabelSubject.setText(String.valueOf(ap.getSubject().getNameSubject()));
-			this.cellLabelTopic.setText("Design");
+			this.cellLabelTeacher.setText(String.valueOf("teacher" + ap.getTeacher().getNameStudent()));
+			this.cellLabelClassSubjectTopic.setText(String.valueOf(ap.getIdClass()));
+			this.cellLabelDate.setText(String.valueOf("Date :" + ap.getDateAppointment().getShowingDate()));
 //			this.buttonUpdate.setOnAction(new EventHandler<ActionEvent>() {
 //				@Override
 //				public void handle(ActionEvent event) {

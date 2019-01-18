@@ -74,11 +74,14 @@ public class AddNewSingleSessionController implements Initializable {
      */
     @FXML
     private void addHelpProposal(ActionEvent event) throws IOException {
-    	if(!choiceBoxSubject.getValue().toString().isEmpty() && !choiceBoxTopic.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeHelpProposal.getText().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty()){
+    	if(!choiceBoxSubject.getValue().toString().isEmpty() && !choiceBoxTopic.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty()){
     		Subject subject = new Subject(0, choiceBoxSubject.getValue().toString());
+    		Topic topic = new Topic(0, choiceBoxTopic.getValue().toString(), subject.getId());
+    		ArrayList<Topic> listTopic = new ArrayList<>();
+    		listTopic.add(topic);
 			try {
 				MyDate date = new MyDate("dateHelpProposal.getValue().getDayOfMonth()", "dateHelpProposal.getValue().getMonthValue()", "dateHelpProposal.getValue().getYear()");
-				appointmentsFacade.addSingleSession(date,subject,null);
+				appointmentsFacade.addSingleSession(date,subject,listTopic,messageHelpProposal.getText(),placeHelpProposal.getText());
 			} catch (DisconnectedStudentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -104,11 +107,14 @@ public class AddNewSingleSessionController implements Initializable {
     
     @FXML
     private void addHelpRequest(ActionEvent event) throws IOException {
-    	if(!choiceBoxSubject.getValue().toString().isEmpty() && !choiceBoxTopic.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeHelpProposal.getText().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty()){
+    	if(!choiceBoxSubject.getValue().toString().isEmpty() && !choiceBoxTopic.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeHelpProposal.getText().isEmpty()){
     		Subject subject = new Subject(0, choiceBoxSubject.getValue().toString());
+    		Topic topic = new Topic(0, choiceBoxTopic.getValue().toString(), subject.getId());
+    		ArrayList<Topic> listTopic = new ArrayList<>();
+    		listTopic.add(topic);
 			try {
 				MyDate date = new MyDate("dateHelpProposal.getValue().getDayOfMonth()", "dateHelpProposal.getValue().getMonthValue()", "dateHelpProposal.getValue().getYear()");
-				appointmentsFacade.addHelpRequest(date,subject);
+				appointmentsFacade.addHelpRequest(date,subject,listTopic,messageHelpProposal.getText(),placeHelpProposal.getText());
 			} catch (DisconnectedStudentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -149,7 +155,7 @@ public class AddNewSingleSessionController implements Initializable {
     }
     
     @FXML
-    private void chooseTopic(ActionEvent e) throws IOException {
+    private void chooseTopic() {
     	String nameSubject = this.choiceBoxSubject.getValue();
     	Subject subject = schoolClassFacade.findSubjectByName(nameSubject);
     	ArrayList<Topic> topics = schoolClassFacade.getTopics(subject.getId());
@@ -173,8 +179,15 @@ public class AddNewSingleSessionController implements Initializable {
 		for (Subject s : subjects) {
 			SubjectObservableList.add(s.getNameSubject());
 			this.choiceBoxSubject.setValue(s.getNameSubject());
+			ArrayList<Topic> topics = schoolClassFacade.getTopics(s.getId());
+	    	TopicObservableList = FXCollections.observableArrayList();
+	    	for (Topic t : topics) {
+	    		TopicObservableList.add(t.getNameTopic());
+			}
+			this.choiceBoxTopic.setItems(TopicObservableList);
 		}
 		this.choiceBoxSubject.setItems(SubjectObservableList);
+		
 	
 	}
 

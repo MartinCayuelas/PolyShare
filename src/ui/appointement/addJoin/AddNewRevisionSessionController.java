@@ -75,8 +75,11 @@ public class AddNewRevisionSessionController implements Initializable {
     private void addRevisionSession(ActionEvent event) {
     	if(!choiceBoxSubject.getValue().toString().isEmpty() && !choiceBoxTopic.getValue().toString().isEmpty() && !messageRevisionSession.getText().isEmpty() && !placeRevisionSession.getText().isEmpty() && !timeRevisionSession.getText().isEmpty() && !dateRevisionSession.getValue().toString().isEmpty()){
     		Subject subject = new Subject(0, choiceBoxSubject.getValue().toString());
+    		Topic topic = new Topic(0, choiceBoxTopic.getValue().toString(), subject.getId());
+    		ArrayList<Topic> listTopic = new ArrayList<>();
+    		listTopic.add(topic);
 			MyDate date = new MyDate("dateRevisionSession.getValue().getDayOfMonth()", "dateRevisionSession.getValue().getMonthValue()", "dateRevisionSession.getValue().getYear()");
-			RevisionSession revisionSession = new RevisionSession(0, date, subject); 
+			RevisionSession revisionSession = new RevisionSession(0, 0, null, null, subject, listTopic, date, messageRevisionSession.getText(), null, placeRevisionSession.getText()); 
 			appointmentsFacade.addRevisionSession(revisionSession);
 		} else {
 			errorTextRevisionSession.setText("Erreur : tous les champs ne sont pas remplis !");

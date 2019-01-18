@@ -10,6 +10,11 @@ import application.classesApp.Appointment;
 import application.classesApp.MyDate;
 import application.classesApp.Student;
 import facades.AppointmentsFacade;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import ui.Router;
@@ -18,8 +23,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ui.Router;
+import ui.skill.SkillCell;
+import ui.skill.SkillListViewCell;
 
 
 /**
@@ -28,6 +37,17 @@ import javafx.stage.Stage;
 public class MyAppointmentsController  {
 	
 	private AppointmentsFacade myAppFac = new AppointmentsFacade();
+
+	private ArrayList<Appointment> myAppsPast;
+	private ArrayList<Appointment> myAppsFutur;
+	ObservableList<Appointment> pastObservableList;
+	ObservableList<Appointment> futurObservableList;
+
+	
+	@FXML
+	private ListView<Appointment> myPastLView;
+	private ListView<Appointment> myFuturLView;
+
 	
     /**
      * Default constructor
@@ -99,13 +119,35 @@ public class MyAppointmentsController  {
     	return futureApps;
     }
 
-    
     @FXML
-    public void back () {
-    	Router.getInstance().activate("HomePage");
-    }
+	private void backHome(ActionEvent event) throws IOException {
+		Router.getInstance().activate("HomePage");
+	}
+
+
+	@FXML
+	public void initialize() {
+		// TODO Auto-generated method stub
+		Student s = new Student(1);
+		myAppsPast = this.getPastAppointment(this.getMyAppointments(s));
+		myAppsFutur = this.getFutureAppointment(this.getMyAppointments(s));
+		
+//		futurObservableList = FXCollections.observableArrayList();
+//		futurObservableList.addAll(myAppsFutur);
+		pastObservableList = FXCollections.observableArrayList();
+		pastObservableList.addAll(myAppsPast);
+		this.myPastLView.setItems(pastObservableList);
+		this.myPastLView.setCellFactory(studentListView -> new PastListCell(this));
+//		this.myFuturLView.setItems(pastObservableList);
+//		this.myFuturLView.setCellFactory(studentListView -> new FuturListCell(this));
+	}
+
+
+    
+    
 
    
+
 
 
 

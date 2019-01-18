@@ -1,5 +1,6 @@
 package application.classesApp;
 
+import java.util.ArrayList;
 
 /**
  * @author julienroumagnac lucadebeir  
@@ -13,25 +14,15 @@ public class Appointment {
     /**
      * Default constructor
      */
-	public Appointment(int idAppointment, int idClass, Student teacher, Student student, Subject subject,
-			MyDate dateAppointment, MyDate meetingTime, String place) {
-		this.idAppointment = idAppointment;
-		this.idClass = idClass;
-		this.teacher = teacher;
-		this.student = student;
-		this.subject = subject;
-		this.dateAppointment = dateAppointment;
-		this.meetingTime = meetingTime;
-		this.place = place;
-	}
-	
-	public Appointment(int idAppointment, int idClass, Student teacher, Subject subject,
-			MyDate dateAppointment, MyDate meetingTime, String place) {
+	public Appointment(int idAppointment, int idClass, Student teacher, Subject subject, ArrayList<Topic> topic,
+			MyDate dateAppointment, String message, MyDate meetingTime, String place) {
 		this.idAppointment = idAppointment;
 		this.idClass = idClass;
 		this.teacher = teacher;
 		this.subject = subject;
+		this.topic = topic;
 		this.dateAppointment = dateAppointment;
+		this.message = message;
 		this.meetingTime = meetingTime;
 		this.place = place;
 	}
@@ -79,11 +70,7 @@ public class Appointment {
      * 
      */
     public Student teacher;
-    
-    /**
-     * 
-     */
-    public Student student;
+
     
     /**
      * 
@@ -98,7 +85,18 @@ public class Appointment {
     /**
      * 
      */
+    public ArrayList<Topic> topic;
+
+
+	/**
+     * 
+     */
     public MyDate dateAppointment;
+    
+    /**
+     * 
+     */
+    public String message;
     
     /**
      * 
@@ -109,6 +107,17 @@ public class Appointment {
      * 
      */
     public String place;
+    
+    
+    
+    public ArrayList<Topic> getTopic() {
+		return topic;
+	}
+
+
+	public void setTopic(ArrayList<Topic> topic) {
+		this.topic = topic;
+	}
     
     
 	public int getIdClass() {
@@ -136,7 +145,17 @@ public class Appointment {
 	}
 
 
-    /**
+    public String getMessage() {
+		return message;
+	}
+
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+
+	/**
      * Get the id of the appointment
      * @return the id of the appointment
      */
@@ -225,5 +244,7 @@ public class Appointment {
         // TODO implement here
         return teacher;
     }
+    
+    
 
 }

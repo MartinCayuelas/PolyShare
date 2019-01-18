@@ -8,10 +8,10 @@ import application.classesApp.RevisionSession;
 import application.classesApp.SingleSession;
 import application.classesApp.Student;
 import application.classesApp.Subject;
+import application.classesApp.Topic;
 import facades.exceptions.DisconnectedStudentException;
 import factory.AbstractFactory;
 import persistent.DAO.AppointmentDAO;
-import ui.appointement.SingleSessionCell;
 
 /**
  * @author lucadebeir julienroumagnac
@@ -44,17 +44,17 @@ public class AppointmentsFacade {
      * and the connected student
      * @throws DisconnectedStudentException 
      */
-    public void addSingleSession(MyDate date, Subject subject, Student student) throws DisconnectedStudentException {
+    public void addSingleSession(MyDate date, Subject subject, ArrayList<Topic> listTopic, String message, String place) throws DisconnectedStudentException {
         // TODO implement here
     	Student teacher = LoginFacade.getInstance().getConnectedStudent();
-    	SingleSession singleSession = new SingleSession(0, teacher, student, date, subject.getId());
+    	SingleSession singleSession = new SingleSession(0, 0, teacher, null, subject, listTopic, date, message, null, place);
     	appointmentDAO.createSingleSession(singleSession);
     }
     
-    public void addHelpRequest(MyDate date, Subject subject) throws DisconnectedStudentException {
+    public void addHelpRequest(MyDate date, Subject subject, ArrayList<Topic> topic, String message, String place) throws DisconnectedStudentException {
         // TODO implement here
     	Student student = LoginFacade.getInstance().getConnectedStudent();
-    	SingleSession singleSession = new SingleSession(0, null, student, date, subject.getId());
+    	SingleSession singleSession = new SingleSession(0, 0, null, student, subject, topic, date, message, null, place);
     	appointmentDAO.createSingleSession(singleSession);
     }
     

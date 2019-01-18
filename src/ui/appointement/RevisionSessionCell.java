@@ -29,19 +29,6 @@ public class RevisionSessionCell {
 		this.meetingTime = meetingTime;
 		this.place = place;
 	}
-	
-	public RevisionSessionCell(int idRevisionSession, Student teacher, ArrayList<Student> students, Subject subject, MyDate myDate) {
-		this.idRevisionSession = idRevisionSession;
-		this.teacher = teacher;
-		this.students = students;
-		this.subject = subject;
-		this.dateRevisionSession = myDate;
-	}
-	
-	
-	
-
-
 
 	public int getIdClass() {
 		return idClass;

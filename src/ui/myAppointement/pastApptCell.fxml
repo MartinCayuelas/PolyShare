@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="cellLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <Label text="Student:&quot;theo&quot;" BorderPane.alignment="CENTER">
+      <Label fx:id="cellLabelTeacher" text="Student:&quot;theo&quot;" BorderPane.alignment="CENTER">
          <padding>
             <Insets top="3.0" />
          </padding>
@@ -33,17 +32,17 @@
       </GridPane>
    </bottom>
    <left>
-      <Label text="IG4" BorderPane.alignment="CENTER">
+      <Label fx:id="cellLabelSchoolClass" text="IG4" BorderPane.alignment="CENTER">
          <padding>
             <Insets left="3.0" />
          </padding>
       </Label>
    </left>
    <center>
-      <Label text="Design patterns" BorderPane.alignment="CENTER" />
+      <Label fx:id="cellLabelSubject" text="Design patterns" BorderPane.alignment="CENTER" />
    </center>
    <right>
-      <Label text="OOSE" BorderPane.alignment="CENTER">
+      <Label fx:id="cellLabelTopic" text="OOSE" BorderPane.alignment="CENTER">
          <padding>
             <Insets right="3.0" />
          </padding>

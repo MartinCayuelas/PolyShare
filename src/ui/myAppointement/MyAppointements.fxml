@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane prefHeight="800.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="800.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.myAppointement.MyAppointmentsController">
    <bottom>
-      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #357AB7;" text="Exit" textFill="#f2eded" BorderPane.alignment="CENTER" />
+      <Button fx:id="backbutton" mnemonicParsing="false" onAction="#backHome" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #357AB7;" text="back Home" textFill="#f2eded" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="2.0" top="2.0" />
+         </BorderPane.margin></Button>
    </bottom>
    <top>
       <Label style="-fx-alignment: center;" text="My Appointments" textFill="#357ab7" BorderPane.alignment="CENTER">

@@ -44,7 +44,7 @@ public class TopicDAOMySQL extends TopicDAO {
 		Topic topic = new Topic(0, null);
     	ArrayList<Topic> topics = new ArrayList<Topic>();
 		try {
-			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM topic WHERE idSubject = " + idSubject);
+			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM Topic WHERE idSubject = " + idSubject);
 			while(result.next()){ 
 				topic = new Topic(
 					result.getInt("idTopic"),
@@ -65,7 +65,7 @@ public class TopicDAOMySQL extends TopicDAO {
 		try {
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM topic WHERE idTopic = " + idTopic);
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM Topic WHERE idTopic = " + idTopic);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -77,7 +77,7 @@ public class TopicDAOMySQL extends TopicDAO {
 		try {
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE topic SET nameTopic = '" + nameTopic + "' WHERE idTopic = " + idTopic);
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE Topic SET nameTopic = '" + nameTopic + "' WHERE idTopic = " + idTopic);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -90,7 +90,7 @@ public class TopicDAOMySQL extends TopicDAO {
 	  	  try {
 	  	    ResultSet result = this.con.createStatement(
 	  	    ResultSet.TYPE_SCROLL_INSENSITIVE,
-	  	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM topic WHERE idTopic = " + idTopic);
+	  	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Topic WHERE idTopic = " + idTopic);
 	  	    if(result.first())
 	  	    	topic = new Topic(
 	  	    			idTopic,
@@ -109,13 +109,13 @@ public class TopicDAOMySQL extends TopicDAO {
 		try {
 			ResultSet result = this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT MAX(idTopic) AS max FROM topic");
+			ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT MAX(idTopic) AS max FROM Topic");
 			if(result.first())
 	  	    	maxId = result.getInt("max") + 1; 
 			
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO topic VALUES (" + maxId + "," + topic.getIdSubject() + ",'" + topic.getNameTopic() + "')");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO Topic VALUES (" + maxId + "," + topic.getIdSubject() + ",'" + topic.getNameTopic() + "')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

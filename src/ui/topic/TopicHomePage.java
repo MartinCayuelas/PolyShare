@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import ui.Router;
 
 /**
  * @author ponthieu
@@ -116,5 +117,11 @@ public class TopicHomePage {
     	fetchListQuestionView();
     	updateListView();
     }
+    
+    @FXML
+    public void backHome() {
+    	Router.getInstance().activate("HomePage");
+    }
+    
 
 }

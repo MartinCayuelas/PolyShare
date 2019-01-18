@@ -1,18 +1,24 @@
 package ui.myAppointement;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Date;
 import application.classesApp.Appointment;
 import application.classesApp.MyDate;
 import application.classesApp.Student;
 import facades.AppointmentsFacade;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import ui.Router;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -24,18 +30,21 @@ import ui.Router;
 import ui.skill.SkillCell;
 import ui.skill.SkillListViewCell;
 
+
 /**
  * @author julienroumagnac
  */
-public class MyAppointmentsController implements Initializable {
+public class MyAppointmentsController  {
 	
 	private AppointmentsFacade myAppFac = new AppointmentsFacade();
+
 	private ArrayList<Appointment> myAppsPast;
 	ObservableList<Appointment> pastObservableList;
 
 	
 	@FXML
 	private ListView<Appointment> myPastLView;
+
 	
     /**
      * Default constructor
@@ -106,14 +115,15 @@ public class MyAppointmentsController implements Initializable {
    		}
     	return futureApps;
     }
+
     @FXML
 	private void backHome(ActionEvent event) throws IOException {
 		Router.getInstance().activate("HomePage");
 	}
 
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	@FXML
+	public void initialize() {
 		// TODO Auto-generated method stub
 		Student s = new Student(1);
 		myAppsPast = this.getPastAppointment(this.getMyAppointments(s));
@@ -123,6 +133,13 @@ public class MyAppointmentsController implements Initializable {
 		this.myPastLView.setItems(pastObservableList);
 		this.myPastLView.setCellFactory(studentListView -> new PastListCell(this));
 	}
+
+
+    
+    
+
+   
+
 
 
 

@@ -29,6 +29,8 @@ import ui.Router;
  */
 public class AddTopicController {
 	
+	private int idSubject;
+	
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	
 	@FXML private TextField nameTopic;
@@ -41,26 +43,24 @@ public class AddTopicController {
     
     public void addTopic(ActionEvent event) throws DisconnectedStudentException, IOException {
     	/////////////////////////////////////////////////////////////////////////////////////////////////////
-    	//Récupérer l'ID du Subject courant grâce à la fonction getParams() de l'instance du router//
+    	//Rï¿½cupï¿½rer l'ID du Subject courant grï¿½ce ï¿½ la fonction getParams() de l'instance du router//
     	/////////////////////////////////////////////////////////////////////////////////////////////////////
     	//Pour l'instant, test avec le Subject 2 (AnaFi)
-		Topic newTopic = new Topic(0, nameTopic.getText(), 2);
+    	//int idS = (Subject)Router.getInstance().getParams()[0];
+		Topic newTopic = new Topic(0, nameTopic.getText(), this.idSubject);
 		schoolClassFacade.addTopic(newTopic);
 		
-		//Quand on appuie sur Add ça doit renvoyer vers la page SchoolClass.fxml (avec la liste des subjects et topics)
+		//Quand on appuie sur Add ï¿½a doit renvoyer vers la page SchoolClass.fxml (avec la liste des subjects et topics)
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();
 
-		Stage nextStage = new Stage();
-		nextStage.setTitle("");
-		Pane myPane = null;
-		myPane = FXMLLoader.load(getClass().getResource("/ui/classes/SchoolClass.fxml"));
-
-		Scene scene = new Scene(myPane);
-		nextStage.setScene(scene);
-		nextStage.show();
+		Router.getInstance().activate("SchoolClass", Router.getInstance().getParams());
 
 	}
+    
+    public void init(int idS) {
+    	this.idSubject = idS;
+    }
 
 }

@@ -58,29 +58,22 @@ public class updateSkillController implements Initializable {
 
 	public void updateSkill(ActionEvent event) throws DisconnectedStudentException, IOException {
 		// int idStudent = loginFacade.getConnectedStudent().getId();
-		// Mettre idStudent à la place de 1
+		// Mettre idStudent ï¿½ la place de 1
 
 		SchoolClass lClass = schoolClassFacade.findSchoolClass(choiceBoxClass.getValue());
 		// System.out.println(lClass.getIdSchoolClass() + " - "
 		// +lClass.getNameSchoolClass());
 		int idClass = lClass.getIdSchoolClass();
-		// Mettre idStudent à la place de 1
+		// Mettre idStudent ï¿½ la place de 1
 		Skill s = new Skill(skillToUpdate.getIdSkill(), nameSkill.getText(), mySpinner.getValue(), 1, idClass);
 		skillFacade.updateSkill(s);
 
-		// Quand on appuie sur Update ça doit renvoyer vers la page des skills
+		// Quand on appuie sur Update ï¿½a doit renvoyer vers la page des skills
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();
 
-		Stage nextStage = new Stage();
-		nextStage.setTitle("UpdateSkill");
-		Pane myPane = null;
-		myPane = FXMLLoader.load(getClass().getResource("/ui/skill/Skill.fxml"));
-
-		Scene scene = new Scene(myPane);
-		nextStage.setScene(scene);
-		nextStage.show();
+		Router.getInstance().activate("Skill");
 
 	}
 

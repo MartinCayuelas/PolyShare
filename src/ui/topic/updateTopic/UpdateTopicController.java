@@ -1,6 +1,8 @@
 package ui.topic.updateTopic;
 
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -11,8 +13,10 @@ import application.classesApp.Topic;
 import facades.LoginFacade;
 import facades.SchoolClassFacade;
 import facades.exceptions.DisconnectedStudentException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import ui.Router;
 
@@ -20,6 +24,8 @@ import ui.Router;
  * @author guillaud
  */
 public class UpdateTopicController implements Initializable {
+	
+	private int idTopic;
 	
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	
@@ -31,25 +37,33 @@ public class UpdateTopicController implements Initializable {
     public UpdateTopicController() {
     }
     
-    public void updateTopic() throws DisconnectedStudentException {
+    public void updateTopic(ActionEvent event) throws DisconnectedStudentException {
     	/////////////////////////////////////////////////////////////////////////////////////////
-    	//Récupérer le Topic courant grâce à la fonction getParams() de l'instance du router//
+    	//Rï¿½cupï¿½rer le Topic courant grï¿½ce ï¿½ la fonction getParams() de l'instance du router//
     	////////////////////////////////////////////////////////////////////////////////////////
-    	//Pour l'instant, test avec le topic 1 (Mathématiques financières)
+    	//Pour l'instant, test avec le topic 1 (Mathï¿½matiques financiï¿½res)
     	
-		Topic currentTopic = schoolClassFacade.findTopicById(1);
-		schoolClassFacade.updateTopic(1, nameTopic.getText());
+		Topic currentTopic = schoolClassFacade.findTopicById(this.idTopic);
+		schoolClassFacade.updateTopic(this.idTopic, nameTopic.getText());
 		
-		//Quand on appuie sur Save ça doit renvoyer vers la page SchoolClass.fxml (avec la liste des subjects et topics)
+		//Quand on appuie sur Save ï¿½a doit renvoyer vers la page SchoolClass.fxml (avec la liste des subjects et topics)
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
 
+		Router.getInstance().activate("SchoolClass", Router.getInstance().getParams());
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
-		//Remplissage du TextField avec le nom du topic à modifier
-		nameTopic.setText(schoolClassFacade.findTopicById(1).getNameTopic());
+		//Remplissage du TextField avec le nom du topic ï¿½ modifier
+		nameTopic.setText(schoolClassFacade.findTopicById(this.idTopic).getNameTopic());
 	}
+	
+	 public void init(int idT) {
+	    	this.idTopic = idT;
+	    }
 
 }

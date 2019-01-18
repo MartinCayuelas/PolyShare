@@ -1,6 +1,6 @@
 package ui.classes;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -34,6 +35,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ui.Router;
 
@@ -220,11 +222,23 @@ public class SchoolClassController implements Initializable {
 	///////////////////
 	//Subject buttons//
 	///////////////////
-	
-	public void addSubject() throws DisconnectedStudentException {
+	@FXML
+	public void addSubject(ActionEvent event) throws IOException, DisconnectedStudentException {
     	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     	//Ajouter l'ID de la SchoolClass courante dans le router pour pouvoir la récupérer dans la nouvelle fenêtre pour ajouter un subject//
     	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
+
+		Stage nextStage = new Stage();
+		nextStage.setTitle("");
+		Pane myPane = null;
+		myPane = FXMLLoader.load(getClass().getResource("/ui/subject/addSubject/AddSubject.fxml"));
+
+		Scene scene = new Scene(myPane);
+		nextStage.setScene(scene);
+		nextStage.show();
 		
 		//Ouvrir la fenêtre "AddSubject.fxml"
 
@@ -261,12 +275,23 @@ public class SchoolClassController implements Initializable {
 	/////////////////
 	//Topic buttons//
 	/////////////////
-	
-	public void addTopic() throws DisconnectedStudentException {
+	@FXML
+	public void addTopic(ActionEvent event) throws DisconnectedStudentException, IOException {
     	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     	//Ajouter l'ID du Subject courant dans le router pour pouvoir le récupérer dans la nouvelle fenêtre pour ajouter un topic//
     	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
+
+		Stage nextStage = new Stage();
+		nextStage.setTitle("");
+		Pane myPane = null;
+		myPane = FXMLLoader.load(getClass().getResource("/ui/topic/addTopic/AddTopic.fxml"));
+
+		Scene scene = new Scene(myPane);
+		nextStage.setScene(scene);
+		nextStage.show();
 		//Ouvrir la fenêtre "AddTopic.fxml"
 
 	}
@@ -297,6 +322,23 @@ public class SchoolClassController implements Initializable {
     	//Update the Subjects ListView
     	topicsListView.itemsProperty().bind(listPropertyTopics);
     	listPropertyTopics.set(FXCollections.observableArrayList(listTopics));
+
+	}
+	
+	@FXML
+	private void backHome(ActionEvent event) throws IOException {
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
+
+		Stage nextStage = new Stage();
+		nextStage.setTitle("");
+		Pane myPane = null;
+		myPane = FXMLLoader.load(getClass().getResource("/ui/homePage/HomePage.fxml"));
+
+		Scene scene = new Scene(myPane);
+		nextStage.setScene(scene);
+		nextStage.show();
 
 	}
 	

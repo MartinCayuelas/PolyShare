@@ -1,6 +1,10 @@
 package ui.subject.addSubject;
 
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -10,8 +14,12 @@ import application.classesApp.Subject;
 import facades.LoginFacade;
 import facades.SchoolClassFacade;
 import facades.exceptions.DisconnectedStudentException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import ui.Router;
 
@@ -30,7 +38,7 @@ public class AddSubjectController implements Initializable {
     public AddSubjectController() {
     }
     
-    public void addSubject() throws DisconnectedStudentException {
+    public void addSubject(ActionEvent event) throws DisconnectedStudentException, IOException {
     	/////////////////////////////////////////////////////////////////////////////////////////////////////
     	//Récupérer l'ID de la SchoolClass courante grâce à la fonction getParams() de l'instance du router//
     	/////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,6 +47,19 @@ public class AddSubjectController implements Initializable {
 		schoolClassFacade.addSubject(newSubject);
 		
 		//Quand on appuie sur Add ça doit renvoyer vers la page SchoolClass.fxml (avec la liste des subject et topics)
+		
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
+
+		Stage nextStage = new Stage();
+		nextStage.setTitle("");
+		Pane myPane = null;
+		myPane = FXMLLoader.load(getClass().getResource("/ui/classes/SchoolClass.fxml"));
+
+		Scene scene = new Scene(myPane);
+		nextStage.setScene(scene);
+		nextStage.show();
 
 	}
     

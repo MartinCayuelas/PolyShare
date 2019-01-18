@@ -1,9 +1,11 @@
 package ui.myAppointement;
 
+
+import java.io.IOException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import application.classesApp.Appointment;
 import application.classesApp.MyDate;
 import application.classesApp.Student;
@@ -11,6 +13,14 @@ import facades.AppointmentsFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import ui.Router;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
 
 /**
  * @author julienroumagnac
@@ -88,12 +98,14 @@ public class MyAppointmentsController  {
    		}
     	return futureApps;
     }
+
     
     @FXML
     public void back () {
     	Router.getInstance().activate("HomePage");
     }
 
+   
 
 
 

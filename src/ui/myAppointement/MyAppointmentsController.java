@@ -132,12 +132,13 @@ public class MyAppointmentsController  {
 	public void initialize() {
 		// TODO Auto-generated method stub
 		Student s = new Student(1);
-//		try {
+//	try {
 //			s = LoginFacade.getInstance().getConnectedStudent();
 //		} catch (DisconnectedStudentException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		
 		myAppsPast = this.getPastAppointment(this.getMyAppointments(s));
 		myAppsFutur = this.getFutureAppointment(this.getMyAppointments(s));
 		System.out.println(myAppsPast.toString());

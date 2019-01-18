@@ -35,9 +35,9 @@ public class RevisionSession extends Appointment {
     	super(idAppointment, subject, date);
 	}
 
-	public RevisionSession(int idAppointment, int idClass, Student teacher, Subject subject,
-			MyDate dateAppointment, MyDate meetingTime, String place, ArrayList<Student> students) {
-		super(idAppointment, idClass, teacher, subject, dateAppointment, meetingTime, place);
+	public RevisionSession(int idAppointment, int idClass, Student teacher, ArrayList<Student> students, Subject subject, ArrayList<Topic> topic,
+			MyDate dateAppointment, String message, MyDate meetingTime, String place) {
+		super(idAppointment, idClass, teacher, subject, topic, dateAppointment, message, meetingTime, place);
 		this.students = students;
 	}
 
@@ -70,7 +70,7 @@ public class RevisionSession extends Appointment {
      * Get the student who is teached for the appointment
      * @return student who is teached for the appointment
      */
-    public ArrayList<Student> getStudent() {
+    public ArrayList<Student> getStudents() {
         // TODO implement here
         return this.students;
     }

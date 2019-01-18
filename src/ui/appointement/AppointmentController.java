@@ -7,14 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import application.classesApp.MyDate;
 import application.classesApp.RevisionSession;
 import application.classesApp.SchoolClass;
 import application.classesApp.SingleSession;
 import application.classesApp.Student;
 import application.classesApp.Subject;
 import facades.AppointmentsFacade;
-import facades.exceptions.DisconnectedStudentException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,12 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -42,16 +35,16 @@ public class AppointmentController implements Initializable {
 	
 	ObservableList<RevisionSessionCell> revisionSessionObservableList;
 	
-	ObservableList<SingleSessionCell> helpRequestObservableList;
+	ObservableList<HelpRequestCell> helpRequestObservableList;
 	
 	List<SingleSessionCell> listSingleSession;
 	
 	List<RevisionSessionCell> listRevisionSession;
 	
-	List<SingleSessionCell> listHelpRequest;
+	List<HelpRequestCell> listHelpRequest;
 	
 	
-	private AppointmentsFacade appointmentsFacade = new AppointmentsFacade();
+	private AppointmentsFacade appointmentsFacade;
 	
 	@FXML 
 	private ListView<SingleSessionCell> singleSessionLView;
@@ -60,7 +53,7 @@ public class AppointmentController implements Initializable {
 	private ListView<RevisionSessionCell> revisionSessionLView;
 	
 	@FXML
-	private ListView<SingleSessionCell> helpRequestLView;
+	private ListView<HelpRequestCell> helpRequestLView;
 	
 	@FXML
 	private Button helpRequest;
@@ -80,7 +73,7 @@ public class AppointmentController implements Initializable {
      * Default constructor
      */
     public AppointmentController() {
-    }
+    } 
 
     
     @FXML
@@ -211,6 +204,7 @@ public class AppointmentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	this.appointmentsFacade = new AppointmentsFacade();
     	ArrayList<SingleSession> request = new ArrayList<>();
     	ArrayList<SingleSession> proposal = new ArrayList<>();
     	ArrayList<RevisionSession> revisionSession = new ArrayList<>();
@@ -229,18 +223,18 @@ public class AppointmentController implements Initializable {
     	listHelpRequest = new ArrayList<>();
     	listRevisionSession = new ArrayList<>();
     	
-    	/*for (SingleSession r : request) {
+    	for (SingleSession r : request) {
     		Student student;
 			try {
 				student = appointmentsFacade.getStudentOfOneAppointment(r.getStudent().getId());
 				Subject subject = appointmentsFacade.getSubjectOfOneAppointmentById(r.getSubject().getId());
-	        	SingleSessionCell helpRequestCell = new SingleSessionCell(r.getIdAppointment(), r.getIdClass(), null, student, subject, r.getDateAppointment(), r.getPlace(), r.getMeetingTime());
+	        	HelpRequestCell helpRequestCell = new HelpRequestCell(r.getIdAppointment(), r.getIdClass(), null, student, subject, r.getDateAppointment(), r.getPlace(), r.getMeetingTime());
 	        	listHelpRequest.add(helpRequestCell);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-    	}*/
+    	}
     	
     	for (SingleSession ss : proposal) {
     		Student teacher;
@@ -273,7 +267,7 @@ public class AppointmentController implements Initializable {
     	helpRequestObservableList.addAll(listHelpRequest);
     	
     	this.helpRequestLView.setItems(helpRequestObservableList);
-    	this.helpRequestLView.setCellFactory(studentListView -> new SingleSessionListViewCell(this));
+    	this.helpRequestLView.setCellFactory(studentListView -> new HelpRequestListViewCell(this));
     	
     	singleSessionObservableList = FXCollections.observableArrayList();
     	singleSessionObservableList.addAll(listSingleSession);

@@ -10,7 +10,8 @@ import application.classesApp.Appointment;
 import application.classesApp.MyDate;
 import application.classesApp.Student;
 import facades.AppointmentsFacade;
-
+import facades.LoginFacade;
+import facades.exceptions.DisconnectedStudentException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,6 +38,7 @@ import ui.skill.SkillListViewCell;
 public class MyAppointmentsController  {
 	
 	private AppointmentsFacade myAppFac = new AppointmentsFacade();
+	private LoginFacade loginFac = new LoginFacade();
 
 	private ArrayList<Appointment> myAppsPast;
 	private ArrayList<Appointment> myAppsFutur;
@@ -46,6 +48,7 @@ public class MyAppointmentsController  {
 	
 	@FXML
 	private ListView<Appointment> myPastLView;
+	@FXML
 	private ListView<Appointment> myFuturLView;
 
 	
@@ -128,18 +131,32 @@ public class MyAppointmentsController  {
 	@FXML
 	public void initialize() {
 		// TODO Auto-generated method stub
-		Student s = new Student(2);
+		Student s = new Student(1);
+//	try {
+//			s = LoginFacade.getInstance().getConnectedStudent();
+//		} catch (DisconnectedStudentException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+
 		myAppsPast = this.getPastAppointment(this.getMyAppointments(s));
 		myAppsFutur = this.getFutureAppointment(this.getMyAppointments(s));
+		System.out.println(myAppsPast.toString());
+		System.out.println(myAppsFutur.toString());
 		
-//		futurObservableList = FXCollections.observableArrayList();
-//		futurObservableList.addAll(myAppsFutur);
+		
 		pastObservableList = FXCollections.observableArrayList();
 		pastObservableList.addAll(myAppsPast);
 		this.myPastLView.setItems(pastObservableList);
-		this.myPastLView.setCellFactory(studentListView -> new PastListCell(this));
-//		this.myFuturLView.setItems(pastObservableList);
-//		this.myFuturLView.setCellFactory(studentListView -> new FuturListCell(this));
+		this.myPastLView.setCellFactory(pastListView -> new PastListCell(this));
+		futurObservableList = FXCollections.observableArrayList();
+		
+		futurObservableList.addAll(myAppsFutur);
+		
+		
+		this.myFuturLView.setItems(futurObservableList);
+		this.myFuturLView.setCellFactory(futurListView -> new PastListCell(this));
 	}
 
 

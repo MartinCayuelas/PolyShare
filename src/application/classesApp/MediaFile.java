@@ -2,9 +2,14 @@ package application.classesApp;
 
 import java.util.*;
 
+
 /**
  * <b>MediaFile</b> corresponds to documents shared between Students
  */
+/** @author julien
+ * 
+ * 
+ * */
 public class MediaFile {
 
     /**
@@ -13,15 +18,30 @@ public class MediaFile {
     public MediaFile() {
     }
 
-    /**
+    public MediaFile(String url) {
+		// TODO Auto-generated constructor stub
+    	this.nameMediaFile = url;
+	}
+
+	public MediaFile(String titre, String lien) {
+		// TODO Auto-generated constructor stub
+		this.nameMediaFile=titre;
+		this.lienMF = lien;
+	}
+
+	/**
      * 
      */
     public String nameMediaFile;
+    
+    public String lienMF;
 
     /**
      * 
      */
     public int nbLikesMediaFile;
+
+	public int idTopic;
 
 
     /**
@@ -75,7 +95,7 @@ public class MediaFile {
      */
     public String getNameMediaFile() {
         // TODO implement here
-        return "";
+        return this.nameMediaFile;
     }
 
     /**
@@ -102,5 +122,15 @@ public class MediaFile {
     public void setNbLikesMediaFile(int value) {
         // TODO implement here
     }
+
+	public String getLien() {
+		// TODO Auto-generated method stub
+		return this.lienMF;
+	}
+
+	public int getIdTopic() {
+		// TODO Auto-generated method stub
+		return this.idTopic;
+	}
 
 }

@@ -22,7 +22,7 @@ public class Main extends Application {
 		try {
 			FXMLLoader root = new FXMLLoader(getClass().getResource("/ui/connectionInscription/Login.fxml"));
 		    Parent skillLayout = root.load();
-	        Scene scene = new Scene(skillLayout, 700, 600);
+	        Scene scene = new Scene(skillLayout, 1000, 800);
 	        
 	        primaryStage.setTitle("FXML Welcome");
 	        primaryStage.setScene(scene);
@@ -43,10 +43,12 @@ public class Main extends Application {
 		r.add("Skill", "/ui/skill/Skill.fxml");
 		r.add("Profil", "/ui/profil/Profilt.fxml");
 		r.add("SchoolClass", "/ui/classes/SchoolClass.fxml");
+		r.add("AddSchoolClass", "/ui/classes/addSchoolClass/AddSchoolClass.fxml");
 		r.add("ConnectionInscription", "/ui/connectionInscription/Login.fxml");
 		r.add("Forum", "");
 		r.add("MediaFiles", "/ui/mediaFile/MediaFile.fxmls");
 		r.add("MyAppointements", "/ui/myAppointement/MyAppointements.fxml");
 		r.add("Topic", "/ui/topic/TopicHomePage.fxml");
+		
 	}
 }

@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 
 /**
  * @author julienroumagnac
+ *
  */
 
 public class FuturListCell extends ListCell<Appointment> {
@@ -29,7 +30,7 @@ public class FuturListCell extends ListCell<Appointment> {
 
 
 	@FXML
-	private BorderPane cellLayout;
+	private BorderPane cellLayoutb;
 	FXMLLoader mLLoader;
 
 	public FuturListCell(MyAppointmentsController controller) {
@@ -48,7 +49,7 @@ public class FuturListCell extends ListCell<Appointment> {
 
 		} else {
 			if (mLLoader == null) {
-				mLLoader = new FXMLLoader(getClass().getResource("FuturApptCell.fxml"));
+				mLLoader = new FXMLLoader(getClass().getResource("futurApptCell.fxml"));
 				mLLoader.setController(this);
 				try {
 					mLLoader.load();
@@ -102,7 +103,7 @@ public class FuturListCell extends ListCell<Appointment> {
 //			});
 //
 			setText(null);
-			setGraphic(cellLayout);
+			setGraphic(cellLayoutb);
 //		}
 
 		}

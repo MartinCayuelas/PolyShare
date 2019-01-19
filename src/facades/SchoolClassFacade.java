@@ -43,6 +43,19 @@ public class SchoolClassFacade {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+     * Add the SchoolClass in param
+     * @param Subject the Subject to add 
+     * 
+     */
+    public void addSchoolClass(String str) {
+    	System.out.println("Facade");
+    	SchoolClassDAO sDAO = factory.createSchoolClassDAO();
+    	SchoolClass sc = new SchoolClass(0, str);
+		sDAO.createSchoolClass(sc);
+    }
+	
 
 	/**
 	 * @param subjectName Create a new subject and save it
@@ -187,6 +200,8 @@ public class SchoolClassFacade {
     	SubjectDAO sDAO = factory.createSubjectDAO();
 		sDAO.addSubject(subject);
     }
+    
+    
 	
 	//////////
 	//TOPICS//

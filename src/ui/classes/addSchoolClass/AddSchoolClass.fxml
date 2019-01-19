@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.classes.addSchoolClass.AddSchoolClassController">
+   <center>
+      <Pane prefHeight="261.0" prefWidth="526.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="117.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #357AB7;" text="Create a new SchoolClass">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+            <TextField fx:id="nameSchoolClass" layoutX="188.0" layoutY="118.0" />
+            <Text layoutX="189.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #357AB7;" text="SchoolClass Name">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Button layoutX="448.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#goBack" text="Go back" />
+            <Button layoutX="244.0" layoutY="158.0" mnemonicParsing="false" onAction="#createSchoolClass" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Add" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

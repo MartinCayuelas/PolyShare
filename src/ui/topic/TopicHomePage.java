@@ -1,9 +1,12 @@
 package ui.topic;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import application.classesApp.MediaFile;
 import application.classesApp.Question;
 import application.classesApp.Topic;
+import facades.ForumFacade;
 import facades.SchoolClassFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +18,7 @@ import javafx.scene.control.TextArea;
 import ui.Router;
 
 /**
- * @author ponthieu
+ * @author ponthieu julienroumagnac
  */
 public class TopicHomePage {
 	
@@ -25,6 +28,7 @@ public class TopicHomePage {
 	@FXML Label topicName;
 	
 	SchoolClassFacade scFac;
+	ForumFacade forumFac ;
 	List<Question> qList;
 	Topic topic;
 	ObservableList<Question> questionObservableList;
@@ -121,6 +125,11 @@ public class TopicHomePage {
     @FXML
     public void backHome() {
     	Router.getInstance().activate("HomePage");
+    }
+    public ArrayList<MediaFile> getAllMediaFiles() {
+    	forumFac= new ForumFacade();
+    	ArrayList<MediaFile> listMediaFile = forumFac.getAllMd();
+    	return listMediaFile;
     }
     
 

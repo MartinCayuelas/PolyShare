@@ -2,15 +2,17 @@ package persistent.DAO;
 
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import application.classesApp.MediaFile;
 
 /**
+ * @author julien
  * 
  */
 public abstract class MediaFileDAO {
 
-    private Connection con;
+    protected Connection con;
     
     public MediaFileDAO(Connection con) {
     	this.con = con;
@@ -30,10 +32,10 @@ public abstract class MediaFileDAO {
     public abstract MediaFile findByName(String s);
 
     /**
-     * @param d 
+     * @param idMedia 
      * @return
      */
-    public abstract void delete(MediaFile d);
+    public abstract void deleteMediaFileById(int idMedia);
 
     /**
      * @param d 
@@ -52,5 +54,11 @@ public abstract class MediaFileDAO {
      * @return
      */
     public abstract void unlike(MediaFile m);
+
+
+    public abstract ArrayList<MediaFile> getAllMd();
+
+
+	public abstract ArrayList<MediaFile> getAllMdByTopic(int idtopic);
 
 }

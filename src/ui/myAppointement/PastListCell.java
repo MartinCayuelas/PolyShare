@@ -27,7 +27,7 @@ public class PastListCell extends ListCell<Appointment> {
 	@FXML
 	private Label cellLabelSubject;
 	@FXML
-	private Label cellLabelTopic;
+	private Label cellLabelDate;
 
 	@FXML
 	private Button buttonDelete;
@@ -64,50 +64,11 @@ public class PastListCell extends ListCell<Appointment> {
 
 			}
 			System.out.println((ap.getTeacher().getNameStudent()));
-			this.cellLabelTeacher.setText(String.valueOf(ap.getTeacher().getNameStudent()));
-			this.cellLabelSchoolClass.setText(String.valueOf(ap.getIdClass()));
-			this.cellLabelSubject.setText(String.valueOf(ap.getSubject().getNameSubject()));
-			this.cellLabelTopic.setText("Design");
-//			this.buttonUpdate.setOnAction(new EventHandler<ActionEvent>() {
-//				@Override
-//				public void handle(ActionEvent event) {
-//
-//					Node source = (Node) event.getSource();
-//					Stage stage = (Stage) source.getScene().getWindow();
-//					stage.close();
-//
-//					Stage nextStage = new Stage();
-//					nextStage.setTitle("UpdateSkill");
-//					FXMLLoader loader = new FXMLLoader(
-//							getClass().getResource("/ui/skill/AddUpdateSkill/updateSkill.fxml"));
-//
-//					Parent sceneMain = null;
-//					try {
-//						updateSkillController controllerU = new updateSkillController();
-//						loader.setController(controllerU);
-//
-//						controllerU.initSkill(sc.getSkill());
-//
-//						sceneMain = loader.load();
-//					} catch (IOException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//
-//					Scene scene = new Scene(sceneMain);
-//					nextStage.setScene(scene);
-//					nextStage.show();
-//
-//				}
-//			});
-//
-//			this.buttonDelete.setOnAction(new EventHandler<ActionEvent>() {
-//				@Override
-//				public void handle(ActionEvent event) {
-//					controller.deleteSkill(sc);
-//				}
-//			});
-//
+			this.cellLabelTeacher.setText(String.valueOf(  ap.getTeacher().getNameStudent()));
+			
+			this.cellLabelSubject.setText( String.valueOf(ap.getSchoolClass().getNameSchoolClass()+"-->"+ String.valueOf(ap.getSubject().getNameSubject())));
+			this.cellLabelDate.setText(String.valueOf("rdv le " + ap.getDateAppointment().getShowingDate() + " en " +ap.getPlace()));
+
 			setText(null);
 			setGraphic(cellLayout);
 //		}

@@ -15,14 +15,20 @@ public class TestAddFile extends Application {
 	public void start(Stage primaryStage) {
 		Main.primaryStage = primaryStage;
 		
-		try {
-			FXMLLoader root = new FXMLLoader(getClass().getResource("/ui/mediaFile/AddMediaFille.fxml"));
+		try {System.out.println(1);
+			FXMLLoader root = new FXMLLoader(getClass().getResource("/ui/mediaFile/MediaFile.fxml"));
+			System.out.println(2);
 		    Parent skillLayout = root.load();
+		    System.out.println(3);
 	        Scene scene = new Scene(skillLayout, 1000, 800);
+	        System.out.println(4);
 	        
 	        primaryStage.setTitle("FXML Welcome");
+	        System.out.println(4);
 	        primaryStage.setScene(scene);
+	        System.out.println(4);
 	        primaryStage.show();
+	        System.out.println(5);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 

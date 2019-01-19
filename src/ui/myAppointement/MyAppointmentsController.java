@@ -142,8 +142,7 @@ public class MyAppointmentsController  {
 
 		myAppsPast = this.getPastAppointment(this.getMyAppointments(s));
 		myAppsFutur = this.getFutureAppointment(this.getMyAppointments(s));
-		System.out.println(myAppsPast.toString());
-		System.out.println(myAppsFutur.toString());
+		
 		
 		
 		pastObservableList = FXCollections.observableArrayList();

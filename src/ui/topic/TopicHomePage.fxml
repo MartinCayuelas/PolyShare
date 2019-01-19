@@ -65,6 +65,11 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
+                  <Button fx:id="getAllMf" mnemonicParsing="false" onAction="#getRessources" text="See All Ressources">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
                </children>
                <VBox.margin>
                   <Insets />

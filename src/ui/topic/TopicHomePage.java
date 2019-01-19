@@ -125,6 +125,20 @@ public class TopicHomePage {
 		nextStage.show();
 
 	}
+    @FXML
+	private void getRessources(ActionEvent event) throws IOException {
+		
+
+		Stage nextStage = new Stage();
+		nextStage.setTitle("Ressources");
+		Pane myPane = null;
+		myPane = FXMLLoader.load(getClass().getResource("/ui/mediaFile/MediaFile.fxml"));
+
+		Scene scene = new Scene(myPane,1000,800);
+		nextStage.setScene(scene);
+		nextStage.show();
+
+	}
     
 
 }

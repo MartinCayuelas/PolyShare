@@ -38,29 +38,7 @@ public class TopicHomePage {
      */
     public TopicHomePage() {
     }
-
-
-    /**
-     * @return
-     */
-    public void add() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public void update() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public void delete() {
-        // TODO implement here
-    }
-
+    
     /**
      * @return
      */
@@ -95,10 +73,7 @@ public class TopicHomePage {
     	// get Class and fill ClassView
     	scFac = new SchoolClassFacade();
     	
-    	//Topic topic = (Topic)Router.getInstance().getParams()[0];
-    	//TODO enlever comment
-
-    	topic = new Topic(0, "OOSE");
+    	Topic topic = (Topic)Router.getInstance().getParams()[0];
     	
     	this.topicName.setText(this.topic.getNameTopic());
     	qList = scFac.getAllQuestionByTopic(topic);

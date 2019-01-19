@@ -230,7 +230,6 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void joinSchoolClass(int idStudent, SchoolClass sc) {
 		BdConnection.request("INSERT INTO Study VALUES (\'" + idStudent + "\', \'" + sc.getIdSchoolClass() +"\', \'study\')");
 	}
@@ -243,7 +242,9 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 				 + idStudent + ")");
 		
 		return bdToObjects(rs);
-=======
+	}
+	
+
 	public void createSchoolClass(SchoolClass sc) {
 		System.out.println("DAO");
 		
@@ -256,7 +257,5 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
->>>>>>> 4da177be795e993827ceeb95e613078591a30025
 	}
 }

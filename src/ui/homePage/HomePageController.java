@@ -1,5 +1,6 @@
 package ui.homePage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import application.classesApp.SchoolClass;
@@ -21,6 +22,16 @@ public class HomePageController {
 	@FXML private TextField inputClassName;
 	@FXML private ListView<SchoolClass> classSearchedList;
 	
+	SchoolClassFacade scFac = null;
+	
+	List<SchoolClass> searchedClasses;
+	List<SchoolClass> myClass;
+	
+	ObservableList<SchoolClass> myClassObservableList;
+	ObservableList<SchoolClass> searchedClassObservableList;
+	
+	
+	String searchedString;
 
     /**
      * Default constructor
@@ -65,7 +76,7 @@ public class HomePageController {
     	SchoolClass selected = this.classSearchedList.getSelectionModel().getSelectedItem();
     	
     	if (selected != null) {
-    		System.out.println(selected.getNameSchoolClass());
+
     		SchoolClass[] params  = {selected};
         	Router.getInstance().activate("SchoolClass", params); 
     	}
@@ -74,34 +85,73 @@ public class HomePageController {
     
     @FXML
     public void initialize() throws DisconnectedStudentException {
+    	
     	// get Class and fill ClassView
-    	SchoolClassFacade scFac = new SchoolClassFacade();
+    	scFac = new SchoolClassFacade();
     	
-    	List<SchoolClass> scList = scFac.getAllSchoolClassConnectedStudent();
+    	myClass = scFac.getAllSchoolClassConnectedStudent();
     	
-    	ObservableList<SchoolClass> schoolClassObservableList = FXCollections.observableArrayList();
-    	schoolClassObservableList.addAll(scList);
+    	myClassObservableList = FXCollections.observableArrayList();
+    	myClassObservableList.addAll(myClass);
     	
-    	this.myClassesLV.setItems(schoolClassObservableList);
-    	this.myClassesLV.setCellFactory(studentListView -> new SchoolClassListViewCell());
+    	this.myClassesLV.setItems(myClassObservableList);
+    	this.myClassesLV.setCellFactory(studentListView -> new SchoolClassListViewCell(this, false));
+    	this.searchedString = "";
     	
+    	// init searchList
+    	this.inputClassName.setText("");
+    	searchedString = "";
+    	
+    	searchedClasses = new ArrayList<SchoolClass>();
+    	
+    	searchedClassObservableList = FXCollections.observableArrayList();
+    	searchedClassObservableList.addAll(searchedClasses);
+    	
+    	this.classSearchedList.setItems(searchedClassObservableList);
+    	this.classSearchedList.setCellFactory(studentListView -> new SchoolClassListViewCell(this, true));
     }
-    /**
-     * Show in a listView all matched classes with a name in argument of a input text
-     */
+    
     @FXML
-    public void searchClass() {
-    	String schoolSearchedName = this.inputClassName.getText();
+    private void searchClass() {
+    	searchedString = this.inputClassName.getText();
     	this.inputClassName.setText("");
     	
-    	SchoolClassFacade scFac = new SchoolClassFacade();
-    	List<SchoolClass> scList = scFac.findMatchedSchoolClass(schoolSearchedName);
-    	ObservableList<SchoolClass> schoolClassObservableList = FXCollections.observableArrayList();
-    	schoolClassObservableList.addAll(scList);
-    	
-    	this.classSearchedList.setItems(schoolClassObservableList);
-    	this.classSearchedList.setCellFactory(studentListView -> new SchoolClassListViewCell());
-    	
+    	searchedClasses = scFac.findUnlikedMatchedSchoolClass(searchedString);
+    	searchedClassObservableList.clear();
+		searchedClassObservableList.addAll(searchedClasses);
+		this.classSearchedList.setItems(searchedClassObservableList);
     }
+    
+    
+    public void fetchList() {
+    	try {
+    		searchedClasses = scFac.findUnlikedMatchedSchoolClass(searchedString);
+			myClass = scFac.getAllSchoolClassConnectedStudent();
+			
+			
+		} catch (DisconnectedStudentException e) {
+			e.printStackTrace();
+		}
+	}
+    
+	public void updateListView () {
+		searchedClassObservableList.clear();
+		searchedClassObservableList.addAll(searchedClasses);
+		this.classSearchedList.setItems(searchedClassObservableList);
+		
+		
+		myClassObservableList.clear();
+		myClassObservableList.addAll(myClass);
+		this.myClassesLV.setItems(myClassObservableList);
+//		System.out.println("My class : ");
+//		System.out.println(myClass);
+//		System.out.println("SearchedClasses : ");
+//		System.out.println(searchedClasses);
+//		System.out.println("end");
+	}
+    
+    
+	
+	
 
 }

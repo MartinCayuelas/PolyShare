@@ -120,7 +120,7 @@ public class MyAppointmentsController  {
     }
 
     @FXML
-	private void backHome(ActionEvent event) throws IOException {
+	private void backHome() {
 		Router.getInstance().activate("HomePage");
 	}
 
@@ -128,7 +128,7 @@ public class MyAppointmentsController  {
 	@FXML
 	public void initialize() {
 		// TODO Auto-generated method stub
-		Student s = new Student(1);
+		Student s = new Student(2);
 		myAppsPast = this.getPastAppointment(this.getMyAppointments(s));
 		myAppsFutur = this.getFutureAppointment(this.getMyAppointments(s));
 		

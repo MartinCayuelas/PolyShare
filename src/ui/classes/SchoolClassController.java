@@ -1,45 +1,31 @@
 package ui.classes;
 
-import javafx.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import application.classesApp.SchoolClass;
-import application.classesApp.Skill;
 import application.classesApp.Student;
 import application.classesApp.Subject;
 import application.classesApp.Topic;
 import facades.LoginFacade;
 import facades.SchoolClassFacade;
-import facades.SkillFacade;
 import facades.exceptions.DisconnectedStudentException;
-import javafx.application.Application;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ui.Router;
-import ui.skill.AddUpdateSkill.updateSkillController;
 import ui.subject.updateSubject.UpdateSubjectController;
 import ui.topic.addTopic.AddTopicController;
 import ui.topic.updateTopic.UpdateTopicController;
@@ -61,6 +47,7 @@ public class SchoolClassController {
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	private int subjectSelectedId = -1;
 	private int topicSelectedId = -1;
+	private SchoolClass schoolClass= null;
 
 	//Partie du controller
     /**
@@ -109,13 +96,6 @@ public class SchoolClassController {
         // TODO implement here
     }
 
-    /**
-     * @return
-     */
-    public void join() {
-        // TODO implement here
-    }
-    
     @FXML
 	private ListView subjectsListView;
     
@@ -140,12 +120,21 @@ public class SchoolClassController {
     @FXML
     private Button nextButton;
     
+	private Student sConnected;
+    
 
 	
 	@FXML
 	public void initialize() {
+		try {
+			this.sConnected = LoginFacade.getInstance().getConnectedStudent();
+		} catch (DisconnectedStudentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		ArrayList<Subject> subs = new ArrayList<>();
-		SchoolClass schoolClass = (SchoolClass)Router.getInstance().getParams()[0];
+		schoolClass = (SchoolClass)Router.getInstance().getParams()[0];
 		//Test avec la classe 2 (IG4), il faudra ensuite mettre idSchoolClass
 		
 		subs = schoolClassFacade.getSubjects(schoolClass.getIdSchoolClass());
@@ -166,7 +155,7 @@ public class SchoolClassController {
 		deleteTopicButton.setDisable(true);
 		addTopicButton.setDisable(true);
 		nextButton.setDisable(true);
-		 
+		
 		 //To know the selected Subject
 		 ChangeListener listenerSubject = new ChangeListener<Object>() {  
 				@Override

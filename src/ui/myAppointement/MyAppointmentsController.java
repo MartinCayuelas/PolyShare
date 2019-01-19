@@ -150,11 +150,9 @@ public class MyAppointmentsController  {
 		this.myPastLView.setItems(pastObservableList);
 		this.myPastLView.setCellFactory(pastListView -> new PastListCell(this));
 		futurObservableList = FXCollections.observableArrayList();
-		System.out.println(futurObservableList.toString());
+		
 		futurObservableList.addAll(myAppsFutur);
-		System.out.println(futurObservableList.toString());
-		System.out.println(myPastLView.toString());
-		System.out.println(myFuturLView.toString());
+		
 		
 		this.myFuturLView.setItems(futurObservableList);
 		this.myFuturLView.setCellFactory(futurListView -> new PastListCell(this));

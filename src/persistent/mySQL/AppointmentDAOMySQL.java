@@ -7,6 +7,7 @@ import java.util.*;
 import application.classesApp.Appointment;
 import application.classesApp.MyDate;
 import application.classesApp.RevisionSession;
+import application.classesApp.SchoolClass;
 import application.classesApp.SingleSession;
 import application.classesApp.Student;
 import application.classesApp.Subject;
@@ -412,30 +413,31 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		Appointment appt = new Appointment(0, null, 0, null);
 		// on recupere tous les appt il est eleve d'une single session 
 		try {
-			ResultSet result = this.con.createStatement().executeQuery("SELECT s.idSingleRevision ,t.nameStudent,b.nameSubject,s.dateAppointement as date FROM SingleSession s,Student t,Subject b WHERE s.idSubject=b.idSubject AND  s.idStudent ="+studentid+" AND s.idTeacher = t.idStudent; ");
+			ResultSet result = this.con.createStatement().executeQuery("SELECT s.idSingleRevision ,t.nameStudent,b.nameSubject,s.dateAppointement as date, place,c.nameClass FROM SingleSession s,Student t,Subject b, Class c WHERE s.idSubject=b.idSubject AND  s.idStudent ="+studentid+" AND s.idTeacher = t.idStudent AND c.idClass=s.idClass; ");
 			
 			while(result.next()){ 
 				
 				
 				appt = new Appointment(
-					result.getInt("idSingleRevision"),
-					new Student(0,result.getString("nameStudent")),
-					new Subject(0,result.getString("nameSubject")),
-					new MyDate(result.getString("date"))
-		  	        
-		  	    );
-				
+						result.getString("place"),
+						new Student(0,result.getString("nameStudent")),
+			  	        new Subject(0,result.getString("nameSubject")),
+				  	    new MyDate(result.getString("date")),
+				  	    new SchoolClass(result.getString("nameClass"))
+				  	        
+				  	    );
 				appointments.add(appt);
 			}
 			
 			// on recupere tous les appt il est prof d'une single session 			
-			ResultSet resultb = this.con.createStatement().executeQuery("SELECT s.idSingleRevision ,t.nameStudent,b.nameSubject,s.dateAppointement as date FROM SingleSession s,Student t,Subject b WHERE s.idSubject=b.idSubject AND  s.idTeacher ="+studentid+" AND s.idTeacher = t.idStudent; ");
+			ResultSet resultb = this.con.createStatement().executeQuery("SELECT s.idSingleRevision ,t.nameStudent,b.nameSubject,s.dateAppointement as date, place,c.nameClass FROM SingleSession s,Student t,Subject b, Class c WHERE s.idSubject=b.idSubject AND  s.idTeacher ="+studentid+" AND s.idTeacher = t.idStudent AND c.idClass=s.idClass; ");
 		while(result.next()){ 
 		appt = new Appointment(
-			resultb.getInt("idSingleRevision"),
+			resultb.getString("place"),
 			new Student(0,resultb.getString("nameStudent")),
   	        new Subject(0,resultb.getString("nameSubject")),
-	  	    new MyDate(resultb.getString("date"))
+	  	    new MyDate(resultb.getString("date")),
+	  	    new SchoolClass(resultb.getString("nameClass"))
 	  	        
 	  	    );
 		System.out.println(resultb.getString("date"));

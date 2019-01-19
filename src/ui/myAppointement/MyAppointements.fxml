@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.myAppointement.MyAppointmentsController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #e0e2e5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.myAppointement.MyAppointmentsController">
    <bottom>
       <Button fx:id="backbutton" mnemonicParsing="false" onAction="#backHome" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #357AB7;" text="back Home" textFill="#f2eded" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -21,65 +21,42 @@
          </font>
       </Label>
    </top>
-   <right>
-      <BorderPane prefHeight="734.0" prefWidth="500.0" BorderPane.alignment="CENTER">
-         <top>
-            <Label text="Appt Made" BorderPane.alignment="CENTER">
+   <center>
+      <GridPane alignment="CENTER" prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="359.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="691.0" minHeight="10.0" prefHeight="671.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label style="-: ;" text="Past" textFill="#4ad34a" GridPane.halignment="CENTER">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-         </top>
-         <center>
-            <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                     <children>
-                        <Label layoutX="109.0" layoutY="7.0" text="Past" />
-                        <Separator layoutY="42.0" prefHeight="0.0" prefWidth="504.0" />
-                        
-                     </children>
-                  </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                     <children>
-                        <Label layoutX="90.0" layoutY="7.0" text="Upcoming" />
-                        <Separator layoutX="-748.0" layoutY="40.0" prefHeight="1.0" prefWidth="1126.0" />
-                     </children>
-                  </AnchorPane>
-              </items>
-            </SplitPane>
-         </center>
-      </BorderPane>
-   </right>
-   <left>
-      <BorderPane prefHeight="734.0" prefWidth="503.0" BorderPane.alignment="CENTER">
-         <top>
-            <Label text="Appt Given" BorderPane.alignment="CENTER">
+            <Label text="Future" textFill="#d71818" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-         </top>
-         <center>
-            <SplitPane dividerPositions="0.499001996007984" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                     <children>
-                        <Label layoutX="104.0" layoutY="7.0" text="Past" />
-                        <Separator layoutX="4.0" layoutY="43.0" prefHeight="2.0" prefWidth="498.0" />
-                        <ListView fx:id="myPastLView" layoutY="48.0" prefHeight="656.0" prefWidth="243.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="48.0" />
-                     </children>
-                  </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                     <children>
-                        <Label layoutX="91.0" layoutY="7.0" text="Upcoming" />
-                        <Separator layoutX="-254.0" layoutY="43.0" prefHeight="0.0" prefWidth="1003.0" />
-                        <ListView fx:id="myFuturLView" layoutY="46.0" prefHeight="657.0" prefWidth="243.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="46.0" />
-                     </children>
-                  </AnchorPane>
-              </items>
-            </SplitPane>
-         </center>
-      </BorderPane>
-   </left>
+            <ListView fx:id="myPastLView" prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="5.0" />
+               </padding></ListView>
+            <ListView fx:id="myFuturLView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="5.0" />
+               </padding></ListView>
+         </children>
+         <opaqueInsets>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="75.0" right="75.0" top="5.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
 </BorderPane>

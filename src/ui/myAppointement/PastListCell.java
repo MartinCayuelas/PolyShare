@@ -64,10 +64,10 @@ public class PastListCell extends ListCell<Appointment> {
 
 			}
 			System.out.println((ap.getTeacher().getNameStudent()));
-			this.cellLabelTeacher.setText(String.valueOf("teacher : " + ap.getTeacher().getNameStudent()));
-			//this.cellLabelSchoolClass.setText("info rdv : "+ String.valueOf(ap.getIdClass()+ String.valueOf(ap.getSubject().getNameSubject())+ ""));
-			this.cellLabelSubject.setText("info rdv : "+ String.valueOf(ap.getIdClass()+" "+ String.valueOf(ap.getSubject().getNameSubject())+ " topic"));
-			this.cellLabelDate.setText(String.valueOf(ap.getDateAppointment().getShowingDate()));
+			this.cellLabelTeacher.setText(String.valueOf(  ap.getTeacher().getNameStudent()));
+			
+			this.cellLabelSubject.setText( String.valueOf(ap.getSchoolClass().getNameSchoolClass()+"-->"+ String.valueOf(ap.getSubject().getNameSubject())));
+			this.cellLabelDate.setText(String.valueOf("rdv le " + ap.getDateAppointment().getShowingDate() + " en " +ap.getPlace()));
 
 			setText(null);
 			setGraphic(cellLayout);

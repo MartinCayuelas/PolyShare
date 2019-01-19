@@ -55,6 +55,17 @@ public class Appointment {
 	
 	
 
+	public Appointment(String place, Student student, Subject subject2, MyDate myDate, SchoolClass classe) {
+		this.place=place;
+		this.teacher= student;
+		this.subject=subject2;
+		this.dateAppointment = myDate;
+		this.schoolClass = classe;
+		
+	}
+
+
+
 	/**
      * 
      */
@@ -107,10 +118,21 @@ public class Appointment {
      * 
      */
     public String place;
+    public SchoolClass schoolClass;
     
     
     
-    public ArrayList<Topic> getTopic() {
+    public SchoolClass getSchoolClass() {
+		return schoolClass;
+	}
+
+
+	public void setSchoolClass(SchoolClass schoolClass) {
+		this.schoolClass = schoolClass;
+	}
+
+
+	public ArrayList<Topic> getTopic() {
 		return topic;
 	}
 

@@ -22,7 +22,7 @@ public class Main extends Application {
 		try {
 			FXMLLoader root = new FXMLLoader(getClass().getResource("/ui/connectionInscription/Login.fxml"));
 		    Parent skillLayout = root.load();
-	        Scene scene = new Scene(skillLayout, 700, 600);
+	        Scene scene = new Scene(skillLayout, 1000, 800);
 	        
 	        primaryStage.setTitle("FXML Welcome");
 	        primaryStage.setScene(scene);

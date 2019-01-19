@@ -68,12 +68,10 @@ public class TopicHomePage {
      */
     @FXML
     public void initialize() {
-    	
-    	
     	// get Class and fill ClassView
     	scFac = new SchoolClassFacade();
     	
-    	Topic topic = (Topic)Router.getInstance().getParams()[0];
+    	this.topic = (Topic)Router.getInstance().getParams()[0];
     	
     	this.topicName.setText(this.topic.getNameTopic());
     	qList = scFac.getAllQuestionByTopic(topic);

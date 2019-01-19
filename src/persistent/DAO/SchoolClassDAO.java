@@ -105,4 +105,19 @@ public abstract class SchoolClassDAO {
 	 * @return all the name of the classes where student has a link
 	 */
 	public abstract List<String> getAllSchoolClassNameByIdStudent(int idStudent);
+	
+	/**
+	 * the student join the SchoolClass
+	 * @param idStudent
+	 * @param sc
+	 */
+	public abstract void joinSchoolClass(int idStudent, SchoolClass sc);
+
+
+	/**
+	 * 
+	 * @param searchedString
+	 * @return all class not like and corresponding to the searchingString
+	 */
+	public abstract List<SchoolClass> getUnlikedMatchedSchoolClasses(String searchedString, int idStudent);
 }

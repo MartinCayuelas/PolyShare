@@ -24,14 +24,14 @@ public class Student {
 	}
 	
 	public Student(int id, String nameStudent, String firstNameStudent, String emailStudent, String passwordStudent,
-			String loginID, Set<SchoolClass> listClassManaged) {
+			String loginID) {
 		this.idStudent = id;
 		this.nameStudent = nameStudent;
 		this.firstNameStudent = firstNameStudent;
 		this.emailStudent = emailStudent;
 		this.passwordStudent = passwordStudent;
 		this.loginID = loginID;
-		this.listClassManaged = listClassManaged;
+		
 	}
 	
 	/**

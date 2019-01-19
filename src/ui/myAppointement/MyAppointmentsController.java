@@ -123,7 +123,7 @@ public class MyAppointmentsController  {
     }
 
     @FXML
-	private void backHome(ActionEvent event) throws IOException {
+	private void backHome() {
 		Router.getInstance().activate("HomePage");
 	}
 
@@ -139,6 +139,7 @@ public class MyAppointmentsController  {
 //			e.printStackTrace();
 //		}
 		
+
 		myAppsPast = this.getPastAppointment(this.getMyAppointments(s));
 		myAppsFutur = this.getFutureAppointment(this.getMyAppointments(s));
 		System.out.println(myAppsPast.toString());

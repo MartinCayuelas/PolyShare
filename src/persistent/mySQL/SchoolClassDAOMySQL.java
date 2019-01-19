@@ -92,6 +92,8 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
     	c.getIdSchoolClass() +
     	" and idStudent=" +
     	s.getId());
+    	
+    	System.out.println(c.getIdSchoolClass() + " " + s.getId());
     }
 
 	@Override
@@ -175,8 +177,6 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 	 */
 	public List<SchoolClass> getAllSchoolClassByIdStudent(int idStudent) {
 		ResultSet rs = BdConnection.selectRequest("Select Class.* from Study, Class where Class.idClass = Study.idClass and Study.idStudent = " + idStudent);
-		
-		
 		return bdToObjects(rs);
 	}
 	
@@ -230,6 +230,21 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 	}
 
 	@Override
+	public void joinSchoolClass(int idStudent, SchoolClass sc) {
+		BdConnection.request("INSERT INTO Study VALUES (\'" + idStudent + "\', \'" + sc.getIdSchoolClass() +"\', \'study\')");
+	}
+
+	@Override
+	public List<SchoolClass> getUnlikedMatchedSchoolClasses(String searchedString, int idStudent) {
+		ResultSet rs = BdConnection.selectRequest("Select Class.* from Class where Class.nameClass like \'"
+				 + searchedString
+				 + "\' and Class.idClass not in (SELECT idClass FROM Study WHERE idStudent ="
+				 + idStudent + ")");
+		
+		return bdToObjects(rs);
+	}
+	
+
 	public void createSchoolClass(SchoolClass sc) {
 		System.out.println("DAO");
 		
@@ -242,6 +257,5 @@ public class SchoolClassDAOMySQL extends SchoolClassDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 }

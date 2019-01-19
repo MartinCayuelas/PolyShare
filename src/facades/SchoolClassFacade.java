@@ -109,7 +109,13 @@ public class SchoolClassFacade {
 	 * 
 	 */
 	public void joinSchoolClass(SchoolClass schoolClass) {
-		// TODO implement here
+		SchoolClassDAO scDAO = factory.createSchoolClassDAO();
+		try {
+			scDAO.joinSchoolClass(LoginFacade.getInstance().getConnectedStudent().getId(), schoolClass);
+		} catch (DisconnectedStudentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -120,8 +126,8 @@ public class SchoolClassFacade {
 	 */
 	public List<SchoolClass> getAllSchoolClassConnectedStudent() throws DisconnectedStudentException {
 		SchoolClassDAO scDAO = this.factory.createSchoolClassDAO();
-		//Student co = LoginFacade.getInstance().getConnectedStudent();
-		return scDAO.getAllSchoolClassByIdStudent(1);
+		Student co = LoginFacade.getInstance().getConnectedStudent();
+		return scDAO.getAllSchoolClassByIdStudent(co.getId());
 	}
 	
 	public List<SchoolClass> getAllSchoolClass() {
@@ -313,6 +319,48 @@ public class SchoolClassFacade {
 	public void addQuestion(String content, int idTopic) {
 		QuestionDAO qDAO = factory.createQuestionDAO();
 		qDAO.addQuestion(new Question(content), idTopic);
+	}
+	
+	/**
+	 * the user quit the prefered class
+	 * @param schoolClass
+	 */
+	public void quitClass(SchoolClass schoolClass) {
+		SchoolClassDAO scDAO = factory.createSchoolClassDAO();
+		try {
+			scDAO.quitSchoolClass(schoolClass, LoginFacade.getInstance().getConnectedStudent());
+		} catch (DisconnectedStudentException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	/**
+	 * return true if the class is a prefered class of the student
+	 * @param schoolClass
+	 * @param sConnected
+	 * @return
+	 */
+	public Boolean isPreferedClass(SchoolClass schoolClass, Student sConnected) {
+		SchoolClassDAO scDAO = factory.createSchoolClassDAO();
+		List<SchoolClass> prefs = scDAO.getAllSchoolClassByIdStudent(sConnected.getId());
+		boolean isPref = false;
+		for(SchoolClass pref : prefs) {
+			if (pref.getIdSchoolClass() == schoolClass.getIdSchoolClass()) {
+				isPref = true;
+			}
+		}
+		return isPref;
+	}
+
+	public List<SchoolClass> findUnlikedMatchedSchoolClass(String searchedString) {
+		SchoolClassDAO scDAO = factory.createSchoolClassDAO();
+		Student co = null;
+		try {
+			co = LoginFacade.getInstance().getConnectedStudent();
+		} catch (DisconnectedStudentException e) {
+			e.printStackTrace();
+		}
+		return scDAO.getUnlikedMatchedSchoolClasses(searchedString , co.getId());
 	}
 
 }

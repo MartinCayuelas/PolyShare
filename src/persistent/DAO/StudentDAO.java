@@ -75,4 +75,10 @@ public abstract class StudentDAO {
      */
     public abstract void signalizeStudent(Student s);
 
+    /**
+     * Update the student thanks to his id
+     * @param sCo
+     */
+	public abstract void updateStudent(Student sCo);
+
 }

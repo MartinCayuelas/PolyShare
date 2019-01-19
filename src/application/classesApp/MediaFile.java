@@ -2,9 +2,14 @@ package application.classesApp;
 
 import java.util.*;
 
+
 /**
  * <b>MediaFile</b> corresponds to documents shared between Students
  */
+/** @author julien
+ * 
+ * 
+ * */
 public class MediaFile {
 
     /**
@@ -13,7 +18,12 @@ public class MediaFile {
     public MediaFile() {
     }
 
-    /**
+    public MediaFile(String url) {
+		// TODO Auto-generated constructor stub
+    	this.nameMediaFile = url;
+	}
+
+	/**
      * 
      */
     public String nameMediaFile;
@@ -75,7 +85,7 @@ public class MediaFile {
      */
     public String getNameMediaFile() {
         // TODO implement here
-        return "";
+        return this.nameMediaFile;
     }
 
     /**

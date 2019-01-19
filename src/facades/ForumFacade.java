@@ -1,11 +1,18 @@
 package facades;
 
+import java.util.ArrayList;
+
+import application.classesApp.MediaFile;
 import application.classesApp.Topic;
+import factory.AbstractFactory;
+
 
 /**
  * 
  */
 public class ForumFacade {
+	private AbstractFactory abstractFactory = AbstractFactory.getFactoryMySql();
+	private persistent.DAO.MediaFileDAO MediaFileDAO = abstractFactory.createMediaFileDAO();
 
     /**
      * Default constructor
@@ -79,5 +86,11 @@ public class ForumFacade {
     public void unlikeA() {
         // TODO implement here
     }
+
+
+	public ArrayList<MediaFile> getAllMd() {
+		// TODO Auto-generated method stub
+		return MediaFileDAO.getAllMd() ;
+	}
 
 }

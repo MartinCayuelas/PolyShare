@@ -29,6 +29,13 @@ public class MediaFile {
 		this.lienMF = lien;
 	}
 
+	public MediaFile(String titre, String lien, int idTopic) {
+		// TODO Auto-generated constructor stub
+		this.idTopic=idTopic;
+		this.lienMF = lien;
+		this.nameMediaFile=titre;
+	}
+
 	/**
      * 
      */
@@ -42,6 +49,7 @@ public class MediaFile {
     public int nbLikesMediaFile;
 
 	public int idTopic;
+	public int idMedia ;
 
 
     /**

@@ -103,12 +103,16 @@ public class MediaFileDAOMySQL extends MediaFileDAO {
 		
 		return listMediaFile;
 		
+		
 	}
 	
 	public void deleteMediaFileById(int MfId){
+		System.out.println(MfId);
 		
 		try {
-			this.con.createStatement().executeQuery("delete from MediaFiles where idMediaFiles = "+MfId+"; ");
+			this.con.createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM MediaFiles WHERE idMediaFiles = '"+MfId+ "'");
 			
 			
 		
@@ -126,8 +130,11 @@ public class MediaFileDAOMySQL extends MediaFileDAO {
 public void createMediaFile(MediaFile md){
 		
 		try {
-			this.con.createStatement()
-			.executeQuery("insert into MediaFiles values (0,"+md.getNameMediaFile()+","+md.getIdTopic()+" , "+md.getLien()+");");
+			
+		
+			this.con.createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY).executeUpdate("insert into MediaFiles values (0,'"+md.getNameMediaFile()+"',"+md.getIdTopic()+", '"+md.getLien()+"');");
 			
 			
 		

@@ -121,7 +121,13 @@ public class RessourceFacade {
 
 	public ArrayList<MediaFile> getAllMdByTopic(int idtopic) {
 		ArrayList<MediaFile> listMediaFile = MfDAO.getAllMdByTopic(idtopic);
-		return null;
+		return listMediaFile;
+	}
+
+
+	public void addMedia(MediaFile media) {
+		MfDAO.createMediaFile(media);
+		
 	}
 
 }

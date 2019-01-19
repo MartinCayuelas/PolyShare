@@ -29,7 +29,8 @@ public class MediaFileController {
     }
     public ArrayList<MediaFile> getAllMediaFilesByTopic(int idtopic) {
     	rssFac= new RessourceFacade();
-    	ArrayList<MediaFile> listMediaFile = rssFac.getAllMdByTopic( idtopic);
+    	ArrayList<MediaFile> listMediaFile = new ArrayList<MediaFile>();
+    	listMediaFile = rssFac.getAllMdByTopic( idtopic);
     	return listMediaFile;
     }
 

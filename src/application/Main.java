@@ -50,5 +50,6 @@ public class Main extends Application {
 		r.add("MyAppointements", "/ui/myAppointement/MyAppointements.fxml");
 		r.add("Topic", "/ui/topic/TopicHomePage.fxml");
 		
+		
 	}
 }

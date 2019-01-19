@@ -1,5 +1,6 @@
 package ui.topic;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +11,16 @@ import facades.ForumFacade;
 import facades.SchoolClassFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import ui.Router;
 
 /**
@@ -104,6 +110,21 @@ public class TopicHomePage {
     	ArrayList<MediaFile> listMediaFile = forumFac.getAllMd();
     	return listMediaFile;
     }
+    
+    @FXML
+	private void handleAddNewMedia(ActionEvent event) throws IOException {
+		
+
+		Stage nextStage = new Stage();
+		nextStage.setTitle("New Media");
+		Pane myPane = null;
+		myPane = FXMLLoader.load(getClass().getResource("/ui/mediaFile/AddMediaFille.fxml"));
+
+		Scene scene = new Scene(myPane);
+		nextStage.setScene(scene);
+		nextStage.show();
+
+	}
     
 
 }

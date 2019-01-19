@@ -6,8 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="254.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="260.0" maxWidth="580.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="254.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.mediaFile.AddMediaFileController">
    <top>
       <Label text="Add New MediaFile" textFill="#260c8d" BorderPane.alignment="CENTER">
          <font>
@@ -25,12 +24,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: green;" text="Create" textFill="#eef2ef" GridPane.halignment="CENTER">
+            <Button fx:id="addNewMedia" mnemonicParsing="false" onAction="#createMedia" style="-fx-background-color: green;" text="Create" textFill="#eef2ef" GridPane.halignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Cancel" textFill="#f5eeee" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <Button fx:id="backbutton" mnemonicParsing="false" onAction="#backHome" style="-fx-background-color: red;" text="Cancel" textFill="#f5eeee" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -59,8 +58,8 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField promptText="Recap of designs" GridPane.columnIndex="1" />
-            <TextField promptText="htpps//MyRecap.com" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="titleMedia" promptText="Recap of designs" GridPane.columnIndex="1" />
+            <TextField fx:id="linkMedia" promptText="htpps//MyRecap.com" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>

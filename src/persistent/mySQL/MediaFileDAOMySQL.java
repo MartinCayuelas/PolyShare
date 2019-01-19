@@ -25,11 +25,7 @@ public class MediaFileDAOMySQL extends MediaFileDAO {
     	super(con);
     }
 
-	@Override
-	public void createMediaFile(MediaFile d) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public MediaFile findByName(String s) {
@@ -37,11 +33,7 @@ public class MediaFileDAOMySQL extends MediaFileDAO {
 		return null;
 	}
 
-	@Override
-	public void delete(MediaFile d) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void update(MediaFile d) {
@@ -69,12 +61,12 @@ public class MediaFileDAOMySQL extends MediaFileDAO {
 			while(result.next()){ 
 				
 				
-				md = new MediaFile(result.getString("nameMediaFile"));
+				md = new MediaFile(result.getString("nameMediaFile"),result.getString("lien"));
 				listMediaFile.add(md); 
 				
 			}
 			
-			// on recupere tous les appt il est prof d'une single session 			
+			
 				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -86,5 +78,65 @@ public class MediaFileDAOMySQL extends MediaFileDAO {
 		return listMediaFile;
 		
 	}
+	public ArrayList<MediaFile> getAllMdByTopic(int topicId){
+		ArrayList<MediaFile> listMediaFile = new ArrayList<MediaFile>();
+		MediaFile md = null;
+		try {
+			ResultSet result = this.con.createStatement().executeQuery("SELECT * FROM MediaFiles where idTopic= "+topicId+"; ");
+			
+			while(result.next()){ 
+				
+				
+				md = new MediaFile(result.getString("nameMediaFile"),result.getString("lien"));
+				listMediaFile.add(md); 
+				
+			}
+			
+			
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return listMediaFile;
+		
+	}
+	
+	public void deleteMediaFileById(int MfId){
+		
+		try {
+			this.con.createStatement().executeQuery("delete from MediaFiles where idMediaFiles = "+MfId+"; ");
+			
+			
+		
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+	}
+public void createMediaFile(MediaFile md){
+		
+		try {
+			this.con.createStatement()
+			.executeQuery("insert into MediaFiles values (0,"+md.getNameMediaFile()+","+md.getIdTopic()+" , "+md.getLien()+");");
+			
+			
+		
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		}
 
 }

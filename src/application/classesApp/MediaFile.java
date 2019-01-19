@@ -23,15 +23,25 @@ public class MediaFile {
     	this.nameMediaFile = url;
 	}
 
+	public MediaFile(String titre, String lien) {
+		// TODO Auto-generated constructor stub
+		this.nameMediaFile=titre;
+		this.lienMF = lien;
+	}
+
 	/**
      * 
      */
     public String nameMediaFile;
+    
+    public String lienMF;
 
     /**
      * 
      */
     public int nbLikesMediaFile;
+
+	public int idTopic;
 
 
     /**
@@ -112,5 +122,15 @@ public class MediaFile {
     public void setNbLikesMediaFile(int value) {
         // TODO implement here
     }
+
+	public String getLien() {
+		// TODO Auto-generated method stub
+		return this.lienMF;
+	}
+
+	public int getIdTopic() {
+		// TODO Auto-generated method stub
+		return this.idTopic;
+	}
 
 }

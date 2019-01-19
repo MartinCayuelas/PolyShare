@@ -32,10 +32,10 @@ public abstract class MediaFileDAO {
     public abstract MediaFile findByName(String s);
 
     /**
-     * @param d 
+     * @param idMedia 
      * @return
      */
-    public abstract void delete(MediaFile d);
+    public abstract void deleteMediaFileById(int idMedia);
 
     /**
      * @param d 
@@ -57,5 +57,8 @@ public abstract class MediaFileDAO {
 
 
     public abstract ArrayList<MediaFile> getAllMd();
+
+
+	public abstract ArrayList<MediaFile> getAllMdByTopic(int idtopic);
 
 }

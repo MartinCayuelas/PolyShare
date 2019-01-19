@@ -3,10 +3,17 @@ package facades;
 
 import java.util.*;
 
+import application.classesApp.MediaFile;
+import factory.AbstractFactory;
+import persistent.DAO.MediaFileDAO;
+
 /**
  * 
  */
 public class RessourceFacade {
+	
+	private AbstractFactory abstractFactory = AbstractFactory.getFactoryMySql();
+	private MediaFileDAO MfDAO = abstractFactory.createMediaFileDAO();
 
     /**
      * Default constructor
@@ -90,10 +97,11 @@ public class RessourceFacade {
     }
 
     /**
+     * @param idMedia 
      * @return
      */
-    public void deleteMediaFile() {
-        // TODO implement here
+    public void deleteMediaFile(int idMedia) {
+       MfDAO.deleteMediaFileById(idMedia);
     }
 
     /**
@@ -109,5 +117,11 @@ public class RessourceFacade {
     public void unlikeMediaFile() {
         // TODO implement here
     }
+
+
+	public ArrayList<MediaFile> getAllMdByTopic(int idtopic) {
+		ArrayList<MediaFile> listMediaFile = MfDAO.getAllMdByTopic(idtopic);
+		return null;
+	}
 
 }

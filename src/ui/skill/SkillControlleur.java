@@ -39,7 +39,6 @@ public class SkillControlleur {
 	@FXML
 	private ListView<SkillCell> mySkillsLView;
 
-	// protected ListProperty<String> listProperty = new SimpleListProperty<>();
 	private SkillFacade skillFacade = new SkillFacade();
 	private LoginFacade loginFacade = LoginFacade.getInstance();
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
@@ -106,15 +105,12 @@ public class SkillControlleur {
 		}
 
 		ArrayList<Skill> sk = new ArrayList<>();
-		//student = new Student(1, "Test");
 		sk = skillFacade.getSkills(student);
 		skCells = new ArrayList<>();
 
 		for (Skill sc : sk) {
 			SchoolClass clas = schoolClassFacade.findSchoolClassId(sc.getIdClass());
 			SkillCell sCell = new SkillCell(sc, clas.getNameSchoolClass());
-			System.out.println(sCell.getNomSkill() + " - " + sCell.getNomClasse() + " - " + sCell.getMarkSkill());
-
 			skCells.add(sCell);
 		}
 

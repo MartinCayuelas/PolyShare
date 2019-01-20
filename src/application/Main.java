@@ -24,7 +24,7 @@ public class Main extends Application {
 		    Parent skillLayout = root.load();
 	        Scene scene = new Scene(skillLayout, 1000, 800);
 	        
-	        primaryStage.setTitle("FXML Welcome");
+	        primaryStage.setTitle("PolyShare");
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 		} catch (IOException e) {

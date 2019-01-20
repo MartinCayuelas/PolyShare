@@ -34,16 +34,13 @@ import ui.Router;
 
 public class addNewSkillController implements Initializable {
 
-	private LoginFacade loginFacade = new LoginFacade();
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
+	private SkillFacade skillFacade = new SkillFacade();
 	ObservableList<String> SchoolClassObservableList;
 	Router r = Router.getInstance();
 
 	@FXML
 	private TextField nameSkill;
-	// @FXML private TextField nameSkill;
-
-	private SkillFacade skillFacade = new SkillFacade();
 
 	@FXML
 	private Spinner<Integer> mySpinner;
@@ -51,19 +48,12 @@ public class addNewSkillController implements Initializable {
 	private ChoiceBox<String> choiceBoxClass;
 
 	public void addSkill(ActionEvent event) throws DisconnectedStudentException, IOException {
-		// int idStudent = loginFacade.getConnectedStudent().getId();
-		// Mettre idStudent � la place de 1
+		int idStudent = LoginFacade.getInstance().getConnectedStudent().getId();
 
-		// System.out.println(nameSkill.getText());
-		// System.out.println(choiceBoxClass.getValue());
 		SchoolClass lClass = schoolClassFacade.findSchoolClass(choiceBoxClass.getValue());
-		// System.out.println(lClass.getIdSchoolClass() + " - "
-		// +lClass.getNameSchoolClass());
 		int idClass = lClass.getIdSchoolClass();
-		Skill s = new Skill(0, nameSkill.getText(), mySpinner.getValue(), 1, idClass);
+		Skill s = new Skill(0, nameSkill.getText(), mySpinner.getValue(), idStudent, idClass);
 		skillFacade.addSkill(s);
-
-		// Quand on appuie sur Add �a doit renvoyer vers la page des skills
 
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
@@ -87,7 +77,6 @@ public class addNewSkillController implements Initializable {
 		sc = schoolClassFacade.getAllSchoolClass();
 		SchoolClassObservableList = FXCollections.observableArrayList();
 		for (SchoolClass c : sc) {
-			// System.out.println("Class : " + c.getNameSchoolClass());
 			SchoolClassObservableList.add(c.getNameSchoolClass());
 		}
 

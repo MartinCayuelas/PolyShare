@@ -34,7 +34,7 @@ import ui.Router;
 
 public class updateSkillController implements Initializable {
 
-	private LoginFacade loginFacade = new LoginFacade();
+	private LoginFacade loginFacade = LoginFacade.getInstance();
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	ObservableList<String> SchoolClassObservableList;
 	Router r = Router.getInstance();
@@ -43,7 +43,6 @@ public class updateSkillController implements Initializable {
 
 	public void initSkill(Skill s) {
 		this.skillToUpdate = s;
-		// this.nameSkill.setText(this.skillToUpdate.getNameSkill());
 	}
 
 	@FXML
@@ -57,18 +56,14 @@ public class updateSkillController implements Initializable {
 	private ChoiceBox<String> choiceBoxClass;
 
 	public void updateSkill(ActionEvent event) throws DisconnectedStudentException, IOException {
-		// int idStudent = loginFacade.getConnectedStudent().getId();
-		// Mettre idStudent � la place de 1
+		int idStudent = loginFacade.getConnectedStudent().getId();
 
 		SchoolClass lClass = schoolClassFacade.findSchoolClass(choiceBoxClass.getValue());
-		// System.out.println(lClass.getIdSchoolClass() + " - "
-		// +lClass.getNameSchoolClass());
+
 		int idClass = lClass.getIdSchoolClass();
-		// Mettre idStudent � la place de 1
-		Skill s = new Skill(skillToUpdate.getIdSkill(), nameSkill.getText(), mySpinner.getValue(), 1, idClass);
+		Skill s = new Skill(skillToUpdate.getIdSkill(), nameSkill.getText(), mySpinner.getValue(), idStudent, idClass);
 		skillFacade.updateSkill(s);
 
-		// Quand on appuie sur Update �a doit renvoyer vers la page des skills
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();
@@ -91,16 +86,12 @@ public class updateSkillController implements Initializable {
 		sc = schoolClassFacade.getAllSchoolClass();
 		SchoolClassObservableList = FXCollections.observableArrayList();
 		for (SchoolClass c : sc) {
-			// System.out.println("Class : " + c.getNameSchoolClass());
 			SchoolClassObservableList.add(c.getNameSchoolClass());
 		}
 
 		this.choiceBoxClass.setItems(SchoolClassObservableList);
 
 		this.nameSkill.setText(skillToUpdate.getNameSkill());
-
-		// System.out.println("update: "+this.skillToUpdate.getNameSkill() + "id:
-		// "+this.skillToUpdate.getIdSkill());
 
 	}
 

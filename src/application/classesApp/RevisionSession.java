@@ -36,7 +36,7 @@ public class RevisionSession extends Appointment {
 	}
 
 	public RevisionSession(int idAppointment, int idClass, Student teacher, ArrayList<Student> students, Subject subject, ArrayList<Topic> topic,
-			MyDate dateAppointment, String message, MyDate meetingTime, String place) {
+			MyDate dateAppointment, String message, String meetingTime, String place) {
 		super(idAppointment, idClass, teacher, subject, topic, dateAppointment, message, meetingTime, place);
 		this.students = students;
 	}

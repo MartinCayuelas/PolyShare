@@ -67,7 +67,7 @@ public class HelpRequestListViewCell extends ListCell<HelpRequestCell> {
             
             this.cellLabelnameTeacher.setText(String.valueOf(hrc.getStudent().getNameStudent() + " " + hrc.getStudent().getFirstNameStudent()));
             this.cellLabelnameSubject.setText(String.valueOf(hrc.getSubject().getNameSubject()));
-            this.cellLabelExplication.setText(String.valueOf(hrc.getStudent().getNameStudent()));
+            this.cellLabelExplication.setText(String.valueOf(hrc.getMessage()));
             this.cellLabelDateAppointment.setText(String.valueOf(hrc.getDateRevisionSession().getShowingDate()));
            
             this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {

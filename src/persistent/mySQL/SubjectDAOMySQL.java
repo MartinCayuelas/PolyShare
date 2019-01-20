@@ -133,12 +133,10 @@ public class SubjectDAOMySQL extends SubjectDAO {
   	  try {
   	    ResultSet result = this.con.createStatement(
   	    ResultSet.TYPE_SCROLL_INSENSITIVE,
-  	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Subject WHERE nameSubject = " + nameSubject);
+  	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Subject WHERE nameSubject = '" + nameSubject + "'");
   	    if(result.first())
-  	    	subject = new Subject(
-  	    			result.getInt("idSubject"),
-  	    			nameSubject
-  	        );         
+  	    	subject.setId(result.getInt("idSubject"));         
+        
   	  } catch (SQLException e) {
   	    e.printStackTrace();
   	  }

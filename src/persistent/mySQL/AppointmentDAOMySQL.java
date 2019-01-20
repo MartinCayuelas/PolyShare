@@ -33,7 +33,18 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		try {
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO SingleSession VALUES (NULL,'" + s.getIdClass() + "','" + s.getDateAppointment() + "','" + s.getIdSubject() + "','" + s.getStudent().getId() + "','" + s.getTeacher().getId() + "','" + s.getPlace() + "','" + s.getMeetingTime() + "')");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO SingleSession VALUES (NULL,'" + s.getIdClass() + "','" + s.getDateAppointment().getSQLDate() + "','" + s.getSubject().getId() + "',NULL,'" + s.getTeacher().getId() + "','" + s.getPlace() + "','" + s.getMeetingTime() + "','" + s.getMessage() + "')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void createHelpRequest(SingleSession s) {
+		// TODO Auto-generated method stub
+		try {
+			this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO SingleSession VALUES (NULL,'" + s.getIdClass() + "','" + s.getDateAppointment().getSQLDate() + "','" + s.getSubject().getId() + "','" + s.getStudent().getId() + "',NULL,'" + s.getPlace() + "','" + s.getMeetingTime() + "','" + s.getMessage() + "')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

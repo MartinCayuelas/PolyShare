@@ -51,7 +51,7 @@ public class AppointmentsFacade {
     
     public void addHelpRequest(SingleSession singleSession) {
         // TODO implement here
-    	appointmentDAO.createSingleSession(singleSession);
+    	appointmentDAO.createHelpRequest(singleSession);
     }
     
     /**

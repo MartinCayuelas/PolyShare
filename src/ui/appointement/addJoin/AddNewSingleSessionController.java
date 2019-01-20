@@ -97,7 +97,8 @@ public class AddNewSingleSessionController implements Initializable {
     		MyDate date = new MyDate(dateString);
     		Student teacher = new Student(1, "Ponthieu");
     		//Student teacher = LoginFacade.getInstance().getConnectedStudent();
-    		String timeHelpRequest = timeSingleSessionHour.getValue().toString() + ":" + timeSingleSessionMin.getValue().toString() + ":00";
+    		String timeHelpRequest = "0"+timeSingleSessionHour.getValue().toString() + ":0" + timeSingleSessionMin.getValue().toString() + ":00";
+    		System.out.println(timeHelpRequest);
     		SingleSession helpProposal = new SingleSession(0, 1, teacher, null, subject, listTopic, date, messageHelpProposal.getText(), timeHelpRequest, placeHelpProposal.getText());
     		appointmentsFacade.addSingleSession(helpProposal);
 		} else {

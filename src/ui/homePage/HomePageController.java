@@ -9,8 +9,10 @@ import facades.exceptions.DisconnectedStudentException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import ui.Router;
 
 /**
@@ -59,9 +61,13 @@ public class HomePageController {
     	Router.getInstance().activate("AddSchoolClass");
     }
     
+    @FXML
+    private Button exitButton;
+    
     @FXML 
     public void exit() {
-    	Router.getInstance().activate("Exit");
+    	Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
     
     @FXML 

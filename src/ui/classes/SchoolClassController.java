@@ -120,6 +120,15 @@ public class SchoolClassController {
     @FXML
     private Button nextButton;
     
+    @FXML
+    private Button exitButton;
+    
+    @FXML 
+    public void exit() {
+    	Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
+    
 	private Student sConnected;
     
 

@@ -21,7 +21,7 @@
                               <Font size="36.0" />
                            </font>
                         </Label>
-                        <Button layoutX="949.0" layoutY="18.0" mnemonicParsing="false" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Exit" />
+                        <Button fx:id="exitButton" layoutX="949.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#exit" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Exit" />
                         <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#backHome" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Back home" />
                      </children>
                   </AnchorPane>

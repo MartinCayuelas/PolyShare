@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ui.Router;
@@ -21,13 +22,18 @@ public class AddMediaFileController {
 	private TextField titleMedia;
 	@FXML
 	private TextField linkMedia;
+	
+	@FXML
+	private Button addNewMedia;
+	@FXML
+	private Button backbutton;
 
 	public AddMediaFileController() {
 		super();
 	}
 	@FXML
 	public void createMedia(ActionEvent event) throws DisconnectedStudentException, IOException {
-		MediaFile media = new MediaFile(titleMedia.getText(),linkMedia.getText(),1);
+		MediaFile media = new MediaFile(0,titleMedia.getText(),1,linkMedia.getText());
 		rssFac = new RessourceFacade();
 		rssFac.addMedia(media);
 		
@@ -35,7 +41,7 @@ public class AddMediaFileController {
 		Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();
 
-		Router.getInstance().activate("Topic");
+		//Router.getInstance().activate("Topic");
 		
 	}
 	@FXML

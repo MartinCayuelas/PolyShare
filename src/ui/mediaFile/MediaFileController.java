@@ -59,17 +59,12 @@ public class MediaFileController {
 
     	System.out.println("initialize");
 		mediaFiles= this.getAllMediaFilesByTopic(1);
-		System.out.println(mediaFiles.toString());
 		
-		for(int i = 0 ; i< mediaFiles.size();i++ ) {
-			System.out.println(mediaFiles.get(i).getNameMediaFile()+ " "+ mediaFiles.get(i).getLien());
-		}
 		mfObservableList = FXCollections.observableArrayList();
 		mfObservableList.addAll(mediaFiles);
-		System.out.println(mfObservableList.toString());
 		this.mfListView.setItems(mfObservableList);
 		this.mfListView.setCellFactory(mfListView -> new MediaListCell(this));
-		System.out.println("fin init");
+		
 		
 		
 		
@@ -80,15 +75,22 @@ public class MediaFileController {
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();
-		Router.getInstance().activate("HomePage");
+		//Router.getInstance().activate("HomePage");
 	}
 
     /**
      * @return
      */
-    public void delete(int idMedia) {
+    
+    public void delete(MediaFile md) {
     	rssFac= new RessourceFacade();
-    	rssFac.deleteMediaFile(idMedia);
+    	rssFac.deleteMediaFile(md.getIdMediaFile());
+    
+    	mediaFiles.remove(md);
+    	mfObservableList.clear();
+    	mfObservableList.addAll(mediaFiles);
+		
+		mfListView.setItems(mfObservableList);
     }
 
     /**

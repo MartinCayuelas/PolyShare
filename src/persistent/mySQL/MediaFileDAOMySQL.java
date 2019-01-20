@@ -61,7 +61,8 @@ public class MediaFileDAOMySQL extends MediaFileDAO {
 			while(result.next()){ 
 				
 				
-				md = new MediaFile(result.getString("nameMediaFile"),result.getString("lien"));
+				md = new MediaFile(result.getInt("idMediaFiles"),result.getString("nameMediaFile"),result.getInt("idTopic"),result.getString("lien"));
+				
 				listMediaFile.add(md); 
 				
 			}
@@ -87,7 +88,8 @@ public class MediaFileDAOMySQL extends MediaFileDAO {
 			while(result.next()){ 
 				
 				
-				md = new MediaFile(result.getString("nameMediaFile"),result.getString("lien"));
+				md = new MediaFile(result.getInt("idMediaFiles"),result.getString("nameMediaFile"),result.getInt("idTopic"),result.getString("lien"));
+				
 				listMediaFile.add(md); 
 				
 			}
@@ -121,7 +123,6 @@ public class MediaFileDAOMySQL extends MediaFileDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 		
 		

@@ -8,7 +8,7 @@ import factory.AbstractFactory;
 import persistent.DAO.MediaFileDAO;
 
 /**
- * 
+ * roumagnac,cayuelas,guillaud,ponthieu
  */
 public class RessourceFacade {
 	

@@ -61,7 +61,7 @@ public class SkillControlleur {
 		skCells.remove(s);
 		skillObservableList.clear();
 		skillObservableList.addAll(skCells);
-		System.out.println(skCells.size());
+		
 		mySkillsLView.setItems(skillObservableList);
 
 	}

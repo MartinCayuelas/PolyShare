@@ -70,8 +70,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 							resultStudent.getString("firstNameStudent"),
 							resultStudent.getString("emailStudent"),
 							resultStudent.getString("password"),
-							resultStudent.getString("loginID"),
-					        null);
+							resultStudent.getString("loginID"));
 					
 					listStudent.add(student);
 				}
@@ -86,8 +85,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 						resultTeacher.getString("firstNameStudent"),
 						resultTeacher.getString("emailStudent"),
 						resultTeacher.getString("password"),
-						resultTeacher.getString("loginID"),
-				        null);
+						resultTeacher.getString("loginID"));
 				
 				appointment = new RevisionSession(id, teacher, listStudent);
 			}
@@ -116,8 +114,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		        result.getString("firstNameStudent"),
 		        result.getString("emailStudent"),
 		        result.getString("password"),
-		        result.getString("loginID"),
-		        null);         
+		        result.getString("loginID"));         
 		  } catch (SQLException e) {
 		    e.printStackTrace();
 		  }
@@ -156,8 +153,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 							resultTeacher.getString("firstNameStudent"),
 							resultTeacher.getString("emailStudent"),
 							resultTeacher.getString("password"),
-							resultTeacher.getString("loginID"),
-					        null);
+							resultTeacher.getString("loginID"));
 					
 					ResultSet resultStudent = this.con.createStatement(
 							ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -169,8 +165,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 							resultStudent.getString("firstNameStudent"),
 							resultStudent.getString("emailStudent"),
 							resultStudent.getString("password"),
-							resultStudent.getString("loginID"),
-					        null);
+							resultStudent.getString("loginID"));
 					
 					singleSession = new SingleSession(result.getInt("idSingleSession"), teacher, student);
 				}
@@ -218,8 +213,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 						resultStudent.getString("firstNameStudent"),
 						resultStudent.getString("emailStudent"),
 						resultStudent.getString("password"),
-						resultStudent.getString("loginID"),
-				        null);
+						resultStudent.getString("loginID"));
 								
 				ResultSet resultTeacher = this.con.createStatement(
 						ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -231,8 +225,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 						resultTeacher.getString("firstNameStudent"),
 						resultTeacher.getString("emailStudent"),
 						resultTeacher.getString("password"),
-						resultTeacher.getString("loginID"),
-				        null);
+						resultTeacher.getString("loginID"));
 				  
 				appointment = new SingleSession(id, teacher, student);
 			}
@@ -255,8 +248,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 					resultStudent.getString("firstNameStudent"),
 					resultStudent.getString("emailStudent"),
 					resultStudent.getString("password"),
-					resultStudent.getString("loginID"),
-			        null);
+					resultStudent.getString("loginID"));
 		}
 		return student;
 	}

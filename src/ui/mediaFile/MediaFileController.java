@@ -2,12 +2,10 @@ package ui.mediaFile;
 
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
 
-import application.classesApp.Appointment;
 import application.classesApp.MediaFile;
-import application.classesApp.Student;
-import facades.ForumFacade;
+import application.classesApp.Topic;
 import facades.RessourceFacade;
 import facades.exceptions.DisconnectedStudentException;
 import javafx.collections.FXCollections;
@@ -17,15 +15,13 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import ui.Router;
-import ui.myAppointement.PastListCell;
 
 /**
- * @author julien
+ * @author roumagnac, cayuelas
  */
 public class MediaFileController {
 	
-	
+	private Topic topic;
 	RessourceFacade rssFac ;
 	ObservableList<MediaFile> mfObservableList;
 	@FXML
@@ -57,8 +53,8 @@ public class MediaFileController {
 //TODO recuperer le topicId de la page 
 		
 
-    	System.out.println("initialize");
-		mediaFiles= this.getAllMediaFilesByTopic(1);
+    	
+		mediaFiles= this.getAllMediaFilesByTopic(this.topic.getId());
 		
 		mfObservableList = FXCollections.observableArrayList();
 		mfObservableList.addAll(mediaFiles);
@@ -70,6 +66,11 @@ public class MediaFileController {
 		
 		
 	}
+    
+    public void init(Topic t) {
+    	this.topic = t;
+    }
+    
     @FXML
 	private void backHome(ActionEvent event) throws DisconnectedStudentException, IOException{
 		Node source = (Node) event.getSource();

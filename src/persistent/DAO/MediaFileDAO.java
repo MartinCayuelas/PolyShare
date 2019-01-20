@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import application.classesApp.MediaFile;
 
 /**
- * @author julien
+ * @author julienroumagnac
  * 
  */
 public abstract class MediaFileDAO {

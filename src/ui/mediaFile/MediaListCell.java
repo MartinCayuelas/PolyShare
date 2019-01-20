@@ -18,6 +18,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import ui.myAppointement.MyAppointmentsController;
 import ui.skill.AddUpdateSkill.updateSkillController;
+/**@author julien
+ * 
+ *
+ *
+ */
 
 public class MediaListCell extends ListCell<MediaFile> {
 

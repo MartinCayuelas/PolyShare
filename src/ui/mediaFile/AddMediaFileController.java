@@ -13,7 +13,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ui.Router;
-
+/**@author julien
+ * 
+ *
+ *
+ */
 public class AddMediaFileController {
 	private Topic topic;
 	RessourceFacade rssFac ;

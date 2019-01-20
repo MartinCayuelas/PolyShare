@@ -3,7 +3,7 @@ package application.classesApp;
 import java.util.ArrayList;
 
 /**
- * @author lucadebeir
+ * @author lucadebeir julienroumagnac
  */
 
 /**

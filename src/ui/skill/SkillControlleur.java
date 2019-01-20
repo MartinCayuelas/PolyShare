@@ -41,7 +41,7 @@ public class SkillControlleur {
 
 	// protected ListProperty<String> listProperty = new SimpleListProperty<>();
 	private SkillFacade skillFacade = new SkillFacade();
-	private LoginFacade loginFacade = new LoginFacade();
+	private LoginFacade loginFacade = LoginFacade.getInstance();
 	private SchoolClassFacade schoolClassFacade = new SchoolClassFacade();
 	private Student student;
 	private Router r = Router.getInstance();
@@ -58,7 +58,6 @@ public class SkillControlleur {
 	 * @return
 	 */
 	public void deleteSkill(SkillCell s) {
-		// Skill s = new Skill(12, "ASupprimer", 4, 2, 1);
 		skillFacade.deleteSkill(s.getSkill());
 		skCells.remove(s);
 		skillObservableList.clear();
@@ -79,7 +78,6 @@ public class SkillControlleur {
 
 	@FXML
 	private void handleAddNewSkill(ActionEvent event) throws IOException {
-		
 
 		Stage nextStage = new Stage();
 		nextStage.setTitle("Student's Skill");
@@ -93,28 +91,28 @@ public class SkillControlleur {
 	}
 
 	@FXML
-    public void backHome() {
-    	Router.getInstance().activate("HomePage");
-    }
-	
+	public void backHome() {
+		Router.getInstance().activate("HomePage");
+	}
 
 	@FXML
 	public void initialize() {
-		/*
-		 * try { student = loginFacade.getConnectedStudent(); } catch
-		 * (DisconnectedStudentException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); student.setId(2); }
-		 */
+
+		try {
+			student = loginFacade.getConnectedStudent();
+		} catch (DisconnectedStudentException e) { // TODO Auto-generated catch block
+			e.printStackTrace();
+			student.setId(1);
+		}
+
 		ArrayList<Skill> sk = new ArrayList<>();
-		student = new Student(1, "Test");
+		//student = new Student(1, "Test");
 		sk = skillFacade.getSkills(student);
 		skCells = new ArrayList<>();
 
 		for (Skill sc : sk) {
 			SchoolClass clas = schoolClassFacade.findSchoolClassId(sc.getIdClass());
 			SkillCell sCell = new SkillCell(sc, clas.getNameSchoolClass());
-			// skillsList.add(sc.getNameSkill()+" - "+clas.getNameSchoolClass()+" -
-			// "+sc.getMarkSkill());
 			System.out.println(sCell.getNomSkill() + " - " + sCell.getNomClasse() + " - " + sCell.getMarkSkill());
 
 			skCells.add(sCell);

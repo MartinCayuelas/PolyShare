@@ -37,6 +37,10 @@ public class MediaListCell extends ListCell<MediaFile> {
 			super();
 			this.controller = controller;
 		}
+		@FXML
+		private void delete() {
+			
+		}
 
 		@Override
 		protected void updateItem(MediaFile mf, boolean empty) {
@@ -67,7 +71,7 @@ public class MediaListCell extends ListCell<MediaFile> {
 				setText(null);
 				setGraphic(cellLayout);
 			}
-
+			
 			
 		
 

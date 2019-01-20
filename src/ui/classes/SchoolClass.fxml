@@ -21,8 +21,8 @@
                               <Font size="36.0" />
                            </font>
                         </Label>
-                        <Button layoutX="949.0" layoutY="18.0" mnemonicParsing="false" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Exit" />
-                        <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#backHome" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Go Back" />
+                        <Button fx:id="exitButton" layoutX="949.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#exit" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Exit" />
+                        <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#backHome" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Back home" />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -45,9 +45,9 @@
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                              <children>
-                                                <ButtonBar layoutX="85.0" layoutY="14.0" prefHeight="90.0" prefWidth="493.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <ButtonBar layoutX="85.0" layoutY="14.0" prefHeight="90.0" prefWidth="493.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="0.0">
                                                   <buttons>
-                                                      <Button fx:id="addSubjectButton" mnemonicParsing="false" onAction="#addSubject" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Add" />
+                                                      <Button fx:id="addSubjectButton" mnemonicParsing="false" onAction="#addSubject" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Add" />
                                                       <Button fx:id="updateSubjectButton" mnemonicParsing="false" onAction="#updateSubject" style="-fx-background-color: #FFBB33; -fx-text-fill: white;" text="Update" />
                                                       <Button fx:id="deleteSubjectButton" mnemonicParsing="false" onAction="#deleteSubject" style="-fx-background-color: #FF3F33; -fx-text-fill: white;" text="Delete" />
                                                   </buttons>
@@ -74,12 +74,12 @@
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                              <children>
-                                                <ButtonBar layoutX="93.0" layoutY="14.0" prefHeight="89.0" prefWidth="493.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <ButtonBar layoutX="93.0" layoutY="14.0" prefHeight="89.0" prefWidth="493.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                                                   <buttons>
-                                                    <Button fx:id="addTopicButton" mnemonicParsing="false" onAction="#addTopic" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Add" />
-                                                      <Button fx:id="updateTopicButton" mnemonicParsing="false" onAction="#updateTopic" style="-fx-background-color: #FFBB33; -fx-text-fill: white;" text="Update" />
-                                                      <Button fx:id="deleteTopicButton" mnemonicParsing="false" onAction="#deleteTopic" style="-fx-background-color: #FF3F33; -fx-text-fill: white;" text="Delete" />
-                                                      <Button fx:id="nextButton" mnemonicParsing="false" onAction="#goNext" text="Next" />
+                                                    <Button fx:id="addTopicButton" maxWidth="75.0" minWidth="69.0" mnemonicParsing="false" onAction="#addTopic" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #357AB7; -fx-text-fill: white;" text="Add" />
+                                                      <Button fx:id="updateTopicButton" maxWidth="75.0" mnemonicParsing="false" onAction="#updateTopic" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFBB33; -fx-text-fill: white;" text="Update" />
+                                                      <Button fx:id="deleteTopicButton" maxWidth="75.0" mnemonicParsing="false" onAction="#deleteTopic" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FF3F33; -fx-text-fill: white;" text="Delete" />
+                                                      <Button fx:id="nextButton" mnemonicParsing="false" onAction="#goNext" text="See more about the topic" />
                                                   </buttons>
                                                 </ButtonBar>
                                              </children>

@@ -27,19 +27,16 @@ import ui.skill.AddUpdateSkill.updateSkillController;
 public class SkillListViewCell extends ListCell<SkillCell> {
 
 	private SkillControlleur controller;
-	private SkillFacade skillFacade = new SkillFacade();
 	@FXML
 	private Label cellLabelnomSkill;
 	@FXML
 	private Label cellLabelSchoolClassSkill;
 	@FXML
 	private Label cellLabelmarkSkill;
-
 	@FXML
 	private Button buttonDelete;
 	@FXML
 	private Button buttonUpdate;
-
 	@FXML
 	private HBox cellLayout;
 	FXMLLoader mLLoader;
@@ -83,20 +80,16 @@ public class SkillListViewCell extends ListCell<SkillCell> {
 					nextStage.setTitle("UpdateSkill");
 					FXMLLoader loader = new FXMLLoader(
 							getClass().getResource("/ui/skill/AddUpdateSkill/updateSkill.fxml"));
-
 					Parent sceneMain = null;
 					try {
 						updateSkillController controllerU = new updateSkillController();
 						loader.setController(controllerU);
-
 						controllerU.initSkill(sc.getSkill());
-
 						sceneMain = loader.load();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-
 					Scene scene = new Scene(sceneMain);
 					nextStage.setScene(scene);
 					nextStage.show();

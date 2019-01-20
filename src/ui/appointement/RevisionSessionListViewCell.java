@@ -76,7 +76,7 @@ public class RevisionSessionListViewCell extends ListCell<RevisionSessionCell> {
             
             this.cellLabelnameTeacher.setText(String.valueOf(rsc.getTeacher().getNameStudent() + " " + rsc.getTeacher().getFirstNameStudent()));
             this.cellLabelnameSubject.setText(String.valueOf(rsc.getSubject().getNameSubject()));
-            this.cellLabelExplication.setText(String.valueOf(rsc.getTeacher().getNameStudent()));
+            this.cellLabelExplication.setText(String.valueOf(rsc.getMessage()));
             this.cellLabelDateAppointment.setText(String.valueOf(rsc.getDateRevisionSession().getShowingDate()));
             for(Student s : rsc.getStudents()) {
             	this.students.getItems().add(String.valueOf(s.getNameStudent() + " " + s.getFirstNameStudent()));
@@ -88,13 +88,13 @@ public class RevisionSessionListViewCell extends ListCell<RevisionSessionCell> {
                @Override
                public void handle(ActionEvent event) {
             	   RevisionSession rs = appointmentsFacade.getRevisionSessionById(rsc.getIdRevisionSession());
-            	   try {
-					int idStudent = LoginFacade.getInstance().getConnectedStudent().getId();
-					controller.updateRevisionSession(rs, idStudent);
-				} catch (DisconnectedStudentException e) {
+            	   //try {
+					//int idStudent = LoginFacade.getInstance().getConnectedStudent().getId();
+					controller.updateRevisionSession(rs, 6);
+				//} catch (DisconnectedStudentException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				//	e.printStackTrace();
+				//}
                }                            
            });
             

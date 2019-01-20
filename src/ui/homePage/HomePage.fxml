@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" spacing="20.0" stylesheets="@../css/button.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.homePage.HomePageController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" spacing="20.0" stylesheets="@../css/button.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.homePage.HomePageController">
    <children>
       <Label style="-fx-text-fill: #357AB7;" text="Polytech Montpellier">
          <font>
@@ -68,7 +68,7 @@
                         <Image url="@../../../img/exit-to-app-button.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onMouseClicked="#exit" text="Exit" />
+                  <Button fx:id="exitButton" mnemonicParsing="false" onMouseClicked="#exit" text="Exit" />
                </children>
             </VBox>
          </children>

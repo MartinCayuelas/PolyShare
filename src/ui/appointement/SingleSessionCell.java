@@ -13,11 +13,12 @@ public class SingleSessionCell {
 	private Subject subject;
 	private MyDate dateRevisionSession;
 	private String place;
-	private MyDate meetingTime;
+	private String meetingTime;
+	private String message;
 
 
 	public SingleSessionCell(int idSingleSession, int idClass, Student teacher, Student student, Subject subject,
-			MyDate dateRevisionSession, String place, MyDate meetingTime) {
+			MyDate dateRevisionSession, String place, String meetingTime, String message) {
 		this.idSingleSession = idSingleSession;
 		this.idClass = idClass;
 		this.teacher = teacher;
@@ -26,6 +27,7 @@ public class SingleSessionCell {
 		this.dateRevisionSession = dateRevisionSession;
 		this.place = place;
 		this.meetingTime = meetingTime;
+		this.setMessage(message);
 	}
 
 
@@ -54,13 +56,13 @@ public class SingleSessionCell {
 
 
 
-	public MyDate getMeetingTimeCell() {
+	public String getMeetingTimeCell() {
 		return this.meetingTime;
 	}
 
 
 
-	public void setMeetingTimeCell(MyDate meetingTime) {
+	public void setMeetingTimeCell(String meetingTime) {
 		this.meetingTime = meetingTime;
 	}
 
@@ -122,6 +124,24 @@ public class SingleSessionCell {
 
 	public void setStudentCell(Student student) {
 		this.student = student;
+	}
+
+
+
+	/**
+	 * @return the message
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+
+
+	/**
+	 * @param message the message to set
+	 */
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

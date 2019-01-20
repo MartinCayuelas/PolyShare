@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import application.classesApp.MyDate;
 import application.classesApp.SchoolClass;
+import application.classesApp.SingleSession;
+import application.classesApp.Student;
 import application.classesApp.Subject;
 import application.classesApp.Topic;
 import facades.AppointmentsFacade;
+import facades.LoginFacade;
 import facades.SchoolClassFacade;
 import facades.exceptions.DisconnectedStudentException;
 import javafx.collections.FXCollections;
@@ -23,6 +26,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -58,7 +63,10 @@ public class AddNewSingleSessionController implements Initializable {
 	private TextField placeHelpProposal;
 		
 	@FXML
-	private TextField timeHelpProposal;
+	private Spinner<Integer> timeSingleSessionHour;
+	
+	@FXML
+	private Spinner<Integer> timeSingleSessionMin;
 		
 	@FXML
 	private DatePicker dateHelpProposal;
@@ -74,18 +82,25 @@ public class AddNewSingleSessionController implements Initializable {
      */
     @FXML
     private void addHelpProposal(ActionEvent event) throws IOException {
-    	if(!choiceBoxSubject.getValue().toString().isEmpty() && !choiceBoxTopic.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty()){
-    		Subject subject = new Subject(0, choiceBoxSubject.getValue().toString());
-    		Topic topic = new Topic(0, choiceBoxTopic.getValue().toString(), subject.getId());
-    		ArrayList<Topic> listTopic = new ArrayList<>();
-    		listTopic.add(topic);
-			try {
-				MyDate date = new MyDate("dateHelpProposal.getValue().getDayOfMonth()", "dateHelpProposal.getValue().getMonthValue()", "dateHelpProposal.getValue().getYear()");
-				appointmentsFacade.addSingleSession(date,subject,listTopic,messageHelpProposal.getText(),placeHelpProposal.getText());
-			} catch (DisconnectedStudentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    	if(!choiceBoxSubject.getValue().toString().isEmpty() && !choiceBoxTopic.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeSingleSessionHour.getValue().toString().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty() && !timeSingleSessionMin.getValue().toString().isEmpty()){
+    		Subject subject = schoolClassFacade.findSubjectByName(choiceBoxSubject.getValue().toString());
+    		ArrayList<Topic> listTopic = schoolClassFacade.getTopics(subject.getId());
+    		Topic topic = null;
+    		for(Topic t : listTopic) {
+    			if (t.getNameTopic().equals(choiceBoxTopic.getValue().toString())) {
+    				topic = t;
+    			}
+    		}
+    		ArrayList<Topic> listTopic2 = new ArrayList<>();
+    		listTopic2.add(topic);
+    		String dateString = dateHelpProposal.getValue().toString();
+    		MyDate date = new MyDate(dateString);
+    		Student teacher = new Student(1, "Ponthieu");
+    		//Student teacher = LoginFacade.getInstance().getConnectedStudent();
+    		String timeHelpRequest = "0"+timeSingleSessionHour.getValue().toString() + ":0" + timeSingleSessionMin.getValue().toString() + ":00";
+    		System.out.println(timeHelpRequest);
+    		SingleSession helpProposal = new SingleSession(0, 1, teacher, null, subject, listTopic, date, messageHelpProposal.getText(), timeHelpRequest, placeHelpProposal.getText());
+    		appointmentsFacade.addSingleSession(helpProposal);
 		} else {
 			errorTextHelpProposal.setText("Erreur : tous les champs ne sont pas remplis !");
 		}
@@ -107,18 +122,24 @@ public class AddNewSingleSessionController implements Initializable {
     
     @FXML
     private void addHelpRequest(ActionEvent event) throws IOException {
-    	if(!choiceBoxSubject.getValue().toString().isEmpty() && !choiceBoxTopic.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeHelpProposal.getText().isEmpty()){
-    		Subject subject = new Subject(0, choiceBoxSubject.getValue().toString());
-    		Topic topic = new Topic(0, choiceBoxTopic.getValue().toString(), subject.getId());
-    		ArrayList<Topic> listTopic = new ArrayList<>();
-    		listTopic.add(topic);
-			try {
-				MyDate date = new MyDate("dateHelpProposal.getValue().getDayOfMonth()", "dateHelpProposal.getValue().getMonthValue()", "dateHelpProposal.getValue().getYear()");
-				appointmentsFacade.addHelpRequest(date,subject,listTopic,messageHelpProposal.getText(),placeHelpProposal.getText());
-			} catch (DisconnectedStudentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    	if(!choiceBoxSubject.getValue().toString().isEmpty() && !choiceBoxTopic.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeSingleSessionHour.getValue().toString().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty() && !timeSingleSessionMin.getValue().toString().isEmpty()){
+    		Subject subject = schoolClassFacade.findSubjectByName(choiceBoxSubject.getValue().toString());
+    		ArrayList<Topic> listTopic = schoolClassFacade.getTopics(subject.getId());
+    		Topic topic = null;
+    		for(Topic t : listTopic) {
+    			if (t.getNameTopic().equals(choiceBoxTopic.getValue().toString())) {
+    				topic = t;
+    			}
+    		}
+    		ArrayList<Topic> listTopic2 = new ArrayList<>();
+    		listTopic2.add(topic);
+    		String dateString = dateHelpProposal.getValue().toString();
+    		MyDate date = new MyDate(dateString);
+    		Student student = new Student(1, "Ponthieu");
+    		//Student student = LoginFacade.getInstance().getConnectedStudent();
+    		String timeHelpRequest = timeSingleSessionHour.getValue().toString() + ":" + timeSingleSessionMin.getValue().toString() + ":00";
+    		SingleSession helpRequest = new SingleSession(0, 1, null, student, subject, listTopic, date, messageHelpProposal.getText(), timeHelpRequest, placeHelpProposal.getText());
+    		appointmentsFacade.addHelpRequest(helpRequest);
 		} else {
 			errorTextHelpProposal.setText("Erreur : tous les champs ne sont pas remplis !");
 		}
@@ -166,9 +187,17 @@ public class AddNewSingleSessionController implements Initializable {
 		this.choiceBoxTopic.setItems(TopicObservableList);
     }
     
+    private void initSpinner() {
+    	timeSingleSessionHour.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(00, 24));
+    	timeSingleSessionMin.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(00, 60));
+	}
+    
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+    	
+    	initSpinner();
+    	
     	ArrayList<Subject> subjects = new ArrayList<>();
     	//SchoolClass sc = (SchoolClass)Router.getInstance().getParams()[0];
     	SchoolClass sc = new SchoolClass(1, "IG3");

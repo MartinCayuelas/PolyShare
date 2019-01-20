@@ -44,18 +44,14 @@ public class AppointmentsFacade {
      * and the connected student
      * @throws DisconnectedStudentException 
      */
-    public void addSingleSession(MyDate date, Subject subject, ArrayList<Topic> listTopic, String message, String place) throws DisconnectedStudentException {
+    public void addSingleSession(SingleSession singleSession) {
         // TODO implement here
-    	Student teacher = LoginFacade.getInstance().getConnectedStudent();
-    	SingleSession singleSession = new SingleSession(0, 0, teacher, null, subject, listTopic, date, message, null, place);
     	appointmentDAO.createSingleSession(singleSession);
     }
     
-    public void addHelpRequest(MyDate date, Subject subject, ArrayList<Topic> topic, String message, String place) throws DisconnectedStudentException {
+    public void addHelpRequest(SingleSession singleSession) {
         // TODO implement here
-    	Student student = LoginFacade.getInstance().getConnectedStudent();
-    	SingleSession singleSession = new SingleSession(0, 0, null, student, subject, topic, date, message, null, place);
-    	appointmentDAO.createSingleSession(singleSession);
+    	appointmentDAO.createHelpRequest(singleSession);
     }
     
     /**

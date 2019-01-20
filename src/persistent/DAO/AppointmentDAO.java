@@ -28,6 +28,12 @@ public abstract class AppointmentDAO {
      * Creates a new SingleSession
      */
     public abstract void createSingleSession(SingleSession s);
+    
+    /**
+     * @param s 
+     * Creates a new HelpRequest
+     */
+    public abstract void createHelpRequest(SingleSession s);
 
     /**
      * @param id 

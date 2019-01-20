@@ -4,14 +4,20 @@ import java.io.IOException;
 
 import application.classesApp.Appointment;
 import application.classesApp.MediaFile;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import ui.myAppointement.MyAppointmentsController;
+import ui.skill.AddUpdateSkill.updateSkillController;
 
 public class MediaListCell extends ListCell<MediaFile> {
 
@@ -63,14 +69,50 @@ public class MediaListCell extends ListCell<MediaFile> {
 
 				}
 				
-				this.titreMedia.setText(String.valueOf( mf.getNameMediaFile()));
+				this.titreMedia.setText(String.valueOf(mf.getNameMediaFile()));
 				
 				this.linkMedia.setText( String.valueOf(mf.getLien()));
+				
+				this.buttonDelete.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						
+						controller.delete(mf);
+					}
+				});
+				
+			/*	this.buttonUpdate.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+
+						Stage nextStage = new Stage();
+						nextStage.setTitle("UpdateSkill");
+						FXMLLoader loader = new FXMLLoader(
+								getClass().getResource("/ui/skill/AddUpdateSkill/updateSkill.fxml"));
+						Parent sceneMain = null;
+						try {
+							updateSkillController controllerU = new updateSkillController();
+							loader.setController(controllerU);
+							controllerU.initSkill(sc.getSkill());
+							sceneMain = loader.load();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						Scene scene = new Scene(sceneMain);
+						nextStage.setScene(scene);
+						nextStage.show();
+
+					}
+				});*/
+
 				
 
 				setText(null);
 				setGraphic(cellLayout);
 			}
+			
+			
 			
 			
 		

@@ -27,7 +27,7 @@ public class SingleSession extends Appointment {
     }
     
     public SingleSession(int idAppointment, int idClass, Student teacher, Student student, Subject subject, ArrayList<Topic> topic,
-			MyDate dateAppointment, String message, MyDate meetingTime, String place) {
+			MyDate dateAppointment, String message, String meetingTime, String place) {
 		super(idAppointment, idClass, teacher, subject, topic, dateAppointment, message, meetingTime, place);
 		// TODO Auto-generated constructor stub
 		this.student = student;

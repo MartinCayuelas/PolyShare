@@ -1,7 +1,7 @@
 {
 
-"url" : "jdbc:mysql://localhost:3306/polyShare?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false",
+"url" : "jdbc:mysql://localhost/polyshare?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false",
 
 "user" : "root",
-"password" : "root"
+"password" : ""
 }

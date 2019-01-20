@@ -214,11 +214,8 @@ public class AppointmentController implements Initializable {
     	SchoolClass sc = new SchoolClass(1, "IG3");
     	
     	request = appointmentsFacade.getHelpRequestByClass(sc.getIdSchoolClass());
-    	System.out.println(request);
     	proposal = appointmentsFacade.getSingleSessionByClass(sc.getIdSchoolClass());
-    	System.out.println(proposal);
     	revisionSession = appointmentsFacade.getAppointmentByClass(sc.getIdSchoolClass());
-    	System.out.println(revisionSession);
     	listSingleSession = new ArrayList<>();
     	listHelpRequest = new ArrayList<>();
     	listRevisionSession = new ArrayList<>();
@@ -228,7 +225,7 @@ public class AppointmentController implements Initializable {
 			try {
 				student = appointmentsFacade.getStudentOfOneAppointment(r.getStudent().getId());
 				Subject subject = appointmentsFacade.getSubjectOfOneAppointmentById(r.getSubject().getId());
-	        	HelpRequestCell helpRequestCell = new HelpRequestCell(r.getIdAppointment(), r.getIdClass(), null, student, subject, r.getDateAppointment(), r.getPlace(), r.getMeetingTime());
+	        	HelpRequestCell helpRequestCell = new HelpRequestCell(r.getIdAppointment(), r.getIdClass(), null, student, subject, r.getDateAppointment(), r.getPlace(), r.getMeetingTime(), r.getMessage());
 	        	listHelpRequest.add(helpRequestCell);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -241,7 +238,7 @@ public class AppointmentController implements Initializable {
 			try {
 				teacher = appointmentsFacade.getStudentOfOneAppointment(ss.getTeacher().getId());
 				Subject subject = appointmentsFacade.getSubjectOfOneAppointmentById(ss.getSubject().getId());
-	        	SingleSessionCell singleSessionCell = new SingleSessionCell(ss.getIdAppointment(), ss.getIdClass(), teacher, null, subject, ss.getDateAppointment(), ss.getPlace(), ss.getMeetingTime());
+	        	SingleSessionCell singleSessionCell = new SingleSessionCell(ss.getIdAppointment(), ss.getIdClass(), teacher, null, subject, ss.getDateAppointment(), ss.getPlace(), ss.getMeetingTime(), ss.getMessage());
 	       		listSingleSession.add(singleSessionCell);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -255,7 +252,7 @@ public class AppointmentController implements Initializable {
 				teacher = appointmentsFacade.getStudentOfOneAppointment(rs.getTeacher().getId());
 				ArrayList<Student> listStudent = appointmentsFacade.getListStudentOfOneAppointment(rs);
 	    		Subject subject = appointmentsFacade.getSubjectOfOneAppointmentById(rs.getSubject().getId());
-	    		RevisionSessionCell revisionSessionCell = new RevisionSessionCell(rs.getIdAppointment(), rs.getIdClass(), teacher, listStudent, subject, rs.getDateAppointment(), rs.getMeetingTime(), rs.getPlace());
+	    		RevisionSessionCell revisionSessionCell = new RevisionSessionCell(rs.getIdAppointment(), rs.getIdClass(), teacher, listStudent, subject, rs.getDateAppointment(), rs.getMeetingTime(), rs.getPlace(), rs.getMessage());
 	    		listRevisionSession.add(revisionSessionCell);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

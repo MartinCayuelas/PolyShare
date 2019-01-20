@@ -33,7 +33,18 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		try {
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO SingleSession VALUES (NULL,'" + s.getIdClass() + "','" + s.getDateAppointment() + "','" + s.getIdSubject() + "','" + s.getStudent().getId() + "','" + s.getTeacher().getId() + "','" + s.getPlace() + "','" + s.getMeetingTime() + "')");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO SingleSession VALUES (NULL,'" + s.getIdClass() + "','" + s.getDateAppointment().getSQLDate() + "','" + s.getSubject().getId() + "',NULL,'" + s.getTeacher().getId() + "','" + s.getPlace() + "','" + s.getMeetingTime() + "','" + s.getMessage() + "')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void createHelpRequest(SingleSession s) {
+		// TODO Auto-generated method stub
+		try {
+			this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO SingleSession VALUES (NULL,'" + s.getIdClass() + "','" + s.getDateAppointment().getSQLDate() + "','" + s.getSubject().getId() + "','" + s.getStudent().getId() + "',NULL,'" + s.getPlace() + "','" + s.getMeetingTime() + "','" + s.getMessage() + "')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,8 +81,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 							resultStudent.getString("firstNameStudent"),
 							resultStudent.getString("emailStudent"),
 							resultStudent.getString("password"),
-							resultStudent.getString("loginID"),
-					        null);
+							resultStudent.getString("loginID"));
 					
 					listStudent.add(student);
 				}
@@ -86,8 +96,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 						resultTeacher.getString("firstNameStudent"),
 						resultTeacher.getString("emailStudent"),
 						resultTeacher.getString("password"),
-						resultTeacher.getString("loginID"),
-				        null);
+						resultTeacher.getString("loginID"));
 				
 				appointment = new RevisionSession(id, teacher, listStudent);
 			}
@@ -116,8 +125,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		        result.getString("firstNameStudent"),
 		        result.getString("emailStudent"),
 		        result.getString("password"),
-		        result.getString("loginID"),
-		        null);         
+		        result.getString("loginID"));         
 		  } catch (SQLException e) {
 		    e.printStackTrace();
 		  }
@@ -156,8 +164,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 							resultTeacher.getString("firstNameStudent"),
 							resultTeacher.getString("emailStudent"),
 							resultTeacher.getString("password"),
-							resultTeacher.getString("loginID"),
-					        null);
+							resultTeacher.getString("loginID"));
 					
 					ResultSet resultStudent = this.con.createStatement(
 							ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -169,8 +176,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 							resultStudent.getString("firstNameStudent"),
 							resultStudent.getString("emailStudent"),
 							resultStudent.getString("password"),
-							resultStudent.getString("loginID"),
-					        null);
+							resultStudent.getString("loginID"));
 					
 					singleSession = new SingleSession(result.getInt("idSingleSession"), teacher, student);
 				}
@@ -188,7 +194,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		try {
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO RevisionSession VALUES (NULL,'" + r.getDateAppointment() + "','" + r.getIdSubject() + "','" + r.getTeacher().getId() + "')");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO RevisionSession VALUES (NULL,'" + r.getIdClass() + "','" + r.getDateAppointment().getSQLDate() + "','" + r.getSubject().getId() + "','" + r.getTeacher().getId() + "','" + r.getPlace() + "','" + r.getMeetingTime() + "','" + r.getMessage() + "')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -218,8 +224,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 						resultStudent.getString("firstNameStudent"),
 						resultStudent.getString("emailStudent"),
 						resultStudent.getString("password"),
-						resultStudent.getString("loginID"),
-				        null);
+						resultStudent.getString("loginID"));
 								
 				ResultSet resultTeacher = this.con.createStatement(
 						ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -231,8 +236,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 						resultTeacher.getString("firstNameStudent"),
 						resultTeacher.getString("emailStudent"),
 						resultTeacher.getString("password"),
-						resultTeacher.getString("loginID"),
-				        null);
+						resultTeacher.getString("loginID"));
 				  
 				appointment = new SingleSession(id, teacher, student);
 			}
@@ -255,8 +259,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 					resultStudent.getString("firstNameStudent"),
 					resultStudent.getString("emailStudent"),
 					resultStudent.getString("password"),
-					resultStudent.getString("loginID"),
-			        null);
+					resultStudent.getString("loginID"));
 		}
 		return student;
 	}
@@ -276,7 +279,6 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 				ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Subject WHERE idSubject = " + idSubject);
 		if(resultSubject.next()) {
 			subject = new Subject(idSubject, resultSubject.getString("nameSubject"));
-			System.out.println("subject : " + resultSubject.getString("nameSubject"));
 		}
 		return subject;
 	}
@@ -302,7 +304,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 				teacher = new Student(result.getInt("idTeacher"));
 				subject = new Subject(result.getInt("idSubject"), null);
 				listTopic = findTopicByIdSubject(result.getInt("idSubject"));
-				appointment = new SingleSession(result.getInt("idSingleRevision"), idClass, teacher, null, subject, listTopic, new MyDate(result.getString("dateAppointement")), null, new MyDate(result.getString("meetingTime")), result.getString("place"));				
+				appointment = new SingleSession(result.getInt("idSingleRevision"), idClass, teacher, null, subject, listTopic, new MyDate(result.getString("dateAppointement")), result.getString("message"), result.getString("meetingTime"), result.getString("place"));				
 				listSingleSession.add(appointment);
 			}
 			  
@@ -333,7 +335,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 				student = new Student(result.getInt("idStudent"));
 				subject = new Subject(result.getInt("idSubject"), null);
 				listTopic = findTopicByIdSubject(result.getInt("idSubject"));
-				appointment = new SingleSession(result.getInt("idSingleRevision"), idClass, null, student, subject, listTopic, new MyDate(result.getString("dateAppointement")), null, new MyDate(result.getString("meetingTime")), result.getString("place"));
+				appointment = new SingleSession(result.getInt("idSingleRevision"), idClass, null, student, subject, listTopic, new MyDate(result.getString("dateAppointement")), result.getString("message"), result.getString("meetingTime"), result.getString("place"));
 				listSingleSession.add(appointment);
 			}
 			  
@@ -365,8 +367,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			while(result.next()) {
 				teacher = new Student(result.getInt("idTeacher"));
 				subject = new Subject(result.getInt("idSubject"), null);
-				appointment = new RevisionSession(result.getInt("idRevisionSession"), teacher, listStudent, subject, new MyDate(result.getString("dateAppointement")));
-				//appointment = new RevisionSession(result.getInt("idRevisionSession"), idClass, teacher, subject, new MyDate(result.getString("dateAppointement")), new MyDate(result.getString("meetingTime")), result.getString("place"), null);
+				appointment = new RevisionSession(result.getInt("idRevisionSession"), idClass, teacher, listStudent, subject, null, new MyDate(result.getString("dateAppointement")), result.getString("message"), result.getString("meetingTime"), result.getString("place"));
 				listRevisionSession.add(appointment);
 			}
 			result.close();

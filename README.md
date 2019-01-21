@@ -3,8 +3,22 @@ Projet OOSE - S7 - Polytech Montpellier
 
 ## Instructions to launch the project
 
-1. Unzip the folder Polyshare.zip
+To run the application, you must have Java 1.8 or higher with JavaFX also intstalled.
 
-2. Compile the code
+### 1. Unzip the folder PolyShare.zip
 
-3. Launch the app (in src/application/Main.java)
+### 2. Compile the code with the following commands :
+  <code>
+  cd PolyShare
+  </code>
+  <code>
+  find -name "*.java" > sources.txt
+  </code>
+  <code>
+  javac @sources.txt
+  </code>
+
+### 3. Launch the app
+<code>
+  java PolyShare/src/application/Main
+  </code>

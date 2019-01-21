@@ -46,7 +46,8 @@ public class BdConnection {
 	    		
 		    	Properties props = new Properties();
 				props.setProperty("ssl","true");
-		        connect = DriverManager.getConnection(url, user, password);
+				connect = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/polyshare?user=polyshare&password=polyshare");
+		        //connect = DriverManager.getConnection(url, user, password);
 		    } catch (SQLException | IOException | JSONException e) {
 		    	e.printStackTrace();
 		    }

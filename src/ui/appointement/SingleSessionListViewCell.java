@@ -2,7 +2,10 @@ package ui.appointement;
 
 import java.io.IOException;
 import application.classesApp.SingleSession;
+import application.classesApp.Student;
 import facades.AppointmentsFacade;
+import facades.LoginFacade;
+import facades.exceptions.DisconnectedStudentException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -29,6 +32,12 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
 	
 	@FXML 
 	private Label cellLabelDateAppointment;
+	
+	@FXML 
+	private Label cellLabelPlace;
+	
+	@FXML 
+	private Label cellLabelTimeAppointment;
 	
 	@FXML 
 	private Button buttonAccept;
@@ -66,14 +75,23 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
             
             this.cellLabelnameTeacher.setText(String.valueOf(ssc.getTeacherCell().getNameStudent() + " " + ssc.getTeacherCell().getFirstNameStudent()));
             this.cellLabelnameSubject.setText(String.valueOf(ssc.getSubjectCell().getNameSubject()));
-            this.cellLabelExplication.setText(String.valueOf(ssc.getTeacherCell().getNameStudent()));
+            this.cellLabelExplication.setText(String.valueOf(ssc.getMessage()));
             this.cellLabelDateAppointment.setText(String.valueOf(ssc.getDateRevisionSessionCell().getShowingDate()));
+            this.cellLabelPlace.setText(String.valueOf(ssc.getPlaceCell()));
+            this.cellLabelTimeAppointment.setText(String.valueOf(ssc.getMeetingTimeCell()));
            
             this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
             	@Override
             	public void handle(ActionEvent event) {
             		SingleSession ss = appointmentsFacade.getSingleSessionById(ssc.getIdSingleSessionCell());
-            		controller.updateSingleSession(ss);
+            		try {
+						Student student = LoginFacade.getInstance().getConnectedStudent();
+						ss.setStudent(student);
+						controller.updateSingleSession(ss);
+					} catch (DisconnectedStudentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
             	}                            
             });
             

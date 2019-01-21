@@ -33,7 +33,18 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		try {
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO SingleSession VALUES (NULL,'" + s.getIdClass() + "','" + s.getDateAppointment() + "','" + s.getIdSubject() + "','" + s.getStudent().getId() + "','" + s.getTeacher().getId() + "','" + s.getPlace() + "','" + s.getMeetingTime() + "')");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO SingleSession VALUES (NULL,'" + s.getIdClass() + "','" + s.getDateAppointment().getSQLDate() + "','" + s.getSubject().getId() + "',NULL,'" + s.getTeacher().getId() + "','" + s.getPlace() + "','" + s.getMeetingTime() + "','" + s.getMessage() + "')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void createHelpRequest(SingleSession s) {
+		// TODO Auto-generated method stub
+		try {
+			this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO SingleSession VALUES (NULL,'" + s.getIdClass() + "','" + s.getDateAppointment().getSQLDate() + "','" + s.getSubject().getId() + "','" + s.getStudent().getId() + "',NULL,'" + s.getPlace() + "','" + s.getMeetingTime() + "','" + s.getMessage() + "')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -44,60 +55,46 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		// TODO Auto-generated method stub
 		RevisionSession appointment = null;
 		Student teacher;
-		Student student;
+		Subject subject;
+		ArrayList<Topic> listTopic = new ArrayList<>();
 		ArrayList<Student> listStudent = new ArrayList<Student>();
-		    
+		 
 		try {
 			ResultSet result = this.con.createStatement(
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM RevisionSession WHERE idRevisionSession = " + id);
-			  
-			if (result.first()) {
-				  
-				ResultSet resultParticipate = this.con.createStatement(
-						ResultSet.TYPE_SCROLL_INSENSITIVE,
-						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Participate WHERE idRevisionSession = " + id);
-	  
-				while(resultParticipate.next()) {
-					
-					ResultSet resultStudent = this.con.createStatement(
-							ResultSet.TYPE_SCROLL_INSENSITIVE,
-							ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + resultParticipate.getInt("idStudent"));
-					
-					student = new Student(
-							resultStudent.getInt("idStudent"),
-							resultStudent.getString("nameStudent"),
-							resultStudent.getString("firstNameStudent"),
-							resultStudent.getString("emailStudent"),
-							resultStudent.getString("password"),
-							resultStudent.getString("loginID"),
-					        null);
-					
-					listStudent.add(student);
-				}
-				
-				ResultSet resultTeacher = this.con.createStatement(
-						ResultSet.TYPE_SCROLL_INSENSITIVE,
-						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + result.getInt("idTeacher"));
-				  
-				teacher = new Student(
-						resultTeacher.getInt("idStudent"),
-						resultTeacher.getString("nameStudent"),
-						resultTeacher.getString("firstNameStudent"),
-						resultTeacher.getString("emailStudent"),
-						resultTeacher.getString("password"),
-						resultTeacher.getString("loginID"),
-				        null);
-				
-				appointment = new RevisionSession(id, teacher, listStudent);
+			
+			while (result.next()) {
+				teacher = getStudentOfOneAppointment(result.getInt("idTeacher"));
+				listStudent = getListOfStudentByIdRevisionSession(id);
+				subject =  getSubjectOfOneAppointmentById(result.getInt("idSubject"));
+				listTopic = findTopicByIdSubject(result.getInt("idSubject"));
+				appointment = new RevisionSession(result.getInt("idRevisionSession"), result.getInt("idClass"), teacher, listStudent, subject, listTopic, new MyDate(result.getString("dateAppointement")), result.getString("message"), result.getString("meetingTime"), result.getString("place"));				
 			}
 			  
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return appointment;
-	}
+	}	
 	
+	public ArrayList<Student> getListOfStudentByIdRevisionSession(int id) {
+		Student student;
+		ArrayList<Student> listStudent = new ArrayList<Student>();
+		try {
+			ResultSet resultParticipate = this.con.createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Participate WHERE idRevisionSession = " + id);
+
+			while(resultParticipate.next()) {
+				student = getStudentOfOneAppointment(resultParticipate.getInt("idTeacher"));
+				listStudent.add(student);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listStudent;
+	}
 	
 
 	@Override
@@ -116,8 +113,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		        result.getString("firstNameStudent"),
 		        result.getString("emailStudent"),
 		        result.getString("password"),
-		        result.getString("loginID"),
-		        null);         
+		        result.getString("loginID"));         
 		  } catch (SQLException e) {
 		    e.printStackTrace();
 		  }
@@ -156,8 +152,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 							resultTeacher.getString("firstNameStudent"),
 							resultTeacher.getString("emailStudent"),
 							resultTeacher.getString("password"),
-							resultTeacher.getString("loginID"),
-					        null);
+							resultTeacher.getString("loginID"));
 					
 					ResultSet resultStudent = this.con.createStatement(
 							ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -169,8 +164,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 							resultStudent.getString("firstNameStudent"),
 							resultStudent.getString("emailStudent"),
 							resultStudent.getString("password"),
-							resultStudent.getString("loginID"),
-					        null);
+							resultStudent.getString("loginID"));
 					
 					singleSession = new SingleSession(result.getInt("idSingleSession"), teacher, student);
 				}
@@ -188,7 +182,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		try {
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO RevisionSession VALUES (NULL,'" + r.getDateAppointment() + "','" + r.getIdSubject() + "','" + r.getTeacher().getId() + "')");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO RevisionSession VALUES (NULL,'" + r.getIdClass() + "','" + r.getDateAppointment().getSQLDate() + "','" + r.getSubject().getId() + "','" + r.getTeacher().getId() + "','" + r.getPlace() + "','" + r.getMeetingTime() + "','" + r.getMessage() + "')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -200,41 +194,47 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 		SingleSession appointment = null;
 		Student teacher;
 		Student student;
-		    
+		Subject subject;
+		ArrayList<Topic> listTopic = new ArrayList<>();
+		
 		try {
 			ResultSet result = this.con.createStatement(
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM SingleSession WHERE idSingleSession = " + id);
+					ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM SingleSession WHERE idSingleRevision = " + id + " AND idStudent IS NULL");
+			
+			if (result.next()) {
+				teacher = getStudentOfOneAppointment(result.getInt("idTeacher"));
+				//student = getStudentOfOneAppointment(result.getInt("idStudent"));
+				subject =  getSubjectOfOneAppointmentById(result.getInt("idSubject"));
+				listTopic = findTopicByIdSubject(result.getInt("idSubject"));
+				appointment = new SingleSession(result.getInt("idSingleRevision"), result.getInt("idClass"), teacher, null, subject, listTopic, new MyDate(result.getString("dateAppointement")), result.getString("message"), result.getString("meetingTime"), result.getString("place"));				
+			}
 			  
-			if (result.first()) {
-				  
-				ResultSet resultStudent = this.con.createStatement(
-						ResultSet.TYPE_SCROLL_INSENSITIVE,
-						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + result.getInt("idStudent"));
-				  
-				student = new Student(
-						resultStudent.getInt("idStudent"),
-						resultStudent.getString("nameStudent"),
-						resultStudent.getString("firstNameStudent"),
-						resultStudent.getString("emailStudent"),
-						resultStudent.getString("password"),
-						resultStudent.getString("loginID"),
-				        null);
-								
-				ResultSet resultTeacher = this.con.createStatement(
-						ResultSet.TYPE_SCROLL_INSENSITIVE,
-						ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Student WHERE idStudent = " + result.getInt("idTeacher"));
-				  
-				teacher = new Student(
-						resultTeacher.getInt("idStudent"),
-						resultTeacher.getString("nameStudent"),
-						resultTeacher.getString("firstNameStudent"),
-						resultTeacher.getString("emailStudent"),
-						resultTeacher.getString("password"),
-						resultTeacher.getString("loginID"),
-				        null);
-				  
-				appointment = new SingleSession(id, teacher, student);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return appointment;
+	}
+	
+	public Appointment getHelpRequestById(int id) {
+		// TODO Auto-generated method stub
+		SingleSession appointment = null;
+		Student teacher;
+		Student student;
+		Subject subject;
+		ArrayList<Topic> listTopic = new ArrayList<>();
+		
+		try {
+			ResultSet result = this.con.createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM SingleSession WHERE idSingleRevision = " + id + " AND idTeacher IS NULL");
+			
+			if (result.next()) {
+				//teacher = getStudentOfOneAppointment(result.getInt("idTeacher"));
+				student = getStudentOfOneAppointment(result.getInt("idStudent"));
+				subject =  getSubjectOfOneAppointmentById(result.getInt("idSubject"));
+				listTopic = findTopicByIdSubject(result.getInt("idSubject"));
+				appointment = new SingleSession(result.getInt("idSingleRevision"), result.getInt("idClass"), null, student, subject, listTopic, new MyDate(result.getString("dateAppointement")), result.getString("message"), result.getString("meetingTime"), result.getString("place"));				
 			}
 			  
 		} catch (SQLException e) {
@@ -255,8 +255,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 					resultStudent.getString("firstNameStudent"),
 					resultStudent.getString("emailStudent"),
 					resultStudent.getString("password"),
-					resultStudent.getString("loginID"),
-			        null);
+					resultStudent.getString("loginID"));
 		}
 		return student;
 	}
@@ -276,7 +275,6 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 				ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Subject WHERE idSubject = " + idSubject);
 		if(resultSubject.next()) {
 			subject = new Subject(idSubject, resultSubject.getString("nameSubject"));
-			System.out.println("subject : " + resultSubject.getString("nameSubject"));
 		}
 		return subject;
 	}
@@ -302,7 +300,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 				teacher = new Student(result.getInt("idTeacher"));
 				subject = new Subject(result.getInt("idSubject"), null);
 				listTopic = findTopicByIdSubject(result.getInt("idSubject"));
-				appointment = new SingleSession(result.getInt("idSingleRevision"), idClass, teacher, null, subject, listTopic, new MyDate(result.getString("dateAppointement")), null, new MyDate(result.getString("meetingTime")), result.getString("place"));				
+				appointment = new SingleSession(result.getInt("idSingleRevision"), idClass, teacher, null, subject, listTopic, new MyDate(result.getString("dateAppointement")), result.getString("message"), result.getString("meetingTime"), result.getString("place"));				
 				listSingleSession.add(appointment);
 			}
 			  
@@ -333,7 +331,7 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 				student = new Student(result.getInt("idStudent"));
 				subject = new Subject(result.getInt("idSubject"), null);
 				listTopic = findTopicByIdSubject(result.getInt("idSubject"));
-				appointment = new SingleSession(result.getInt("idSingleRevision"), idClass, null, student, subject, listTopic, new MyDate(result.getString("dateAppointement")), null, new MyDate(result.getString("meetingTime")), result.getString("place"));
+				appointment = new SingleSession(result.getInt("idSingleRevision"), idClass, null, student, subject, listTopic, new MyDate(result.getString("dateAppointement")), result.getString("message"), result.getString("meetingTime"), result.getString("place"));
 				listSingleSession.add(appointment);
 			}
 			  
@@ -365,11 +363,9 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			while(result.next()) {
 				teacher = new Student(result.getInt("idTeacher"));
 				subject = new Subject(result.getInt("idSubject"), null);
-				appointment = new RevisionSession(result.getInt("idRevisionSession"), teacher, listStudent, subject, new MyDate(result.getString("dateAppointement")));
-				//appointment = new RevisionSession(result.getInt("idRevisionSession"), idClass, teacher, subject, new MyDate(result.getString("dateAppointement")), new MyDate(result.getString("meetingTime")), result.getString("place"), null);
+				appointment = new RevisionSession(result.getInt("idRevisionSession"), idClass, teacher, listStudent, subject, null, new MyDate(result.getString("dateAppointement")), result.getString("message"), result.getString("meetingTime"), result.getString("place"));
 				listRevisionSession.add(appointment);
 			}
-			result.close();
 			
 			for (RevisionSession rs : listRevisionSession) {
 				ArrayList<Student> listStudentRS = new ArrayList<Student>();
@@ -459,7 +455,17 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
 			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE SingleSession SET idStudent = '" + ss.getStudent().getId() + "' WHERE idSingleRevision = '" + ss.getIdAppointment() + "'");
-			//ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE SingleSession SET idClass = '" + ss.getIdClass() + "', dateAppointement = '" + ss.getDateRevisionSession() + "', idSubject = '" + ss.getSubject().getId() + "', idStudent = '" + ss.getStudent().getId() + "', idTeacher = '" + ss.getTeacher().getId() + "', place = '" + ss.getPlace() + "', meetingTime = '" + ss.getMeetingTime() + "' WHERE idSingleRevision = '" + ss.getIdSingleSession() + "'");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateHelpRequest(SingleSession ss) {
+		// TODO Auto-generated method stub
+		try {
+			this.con.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE SingleSession SET idTeacher = '" + ss.getTeacher().getId() + "' WHERE idSingleRevision = '" + ss.getIdAppointment() + "'");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -473,7 +479,6 @@ public class AppointmentDAOMySQL extends AppointmentDAO {
 			this.con.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
 			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO Participate VALUES ('" + rs.getIdAppointment() + "', '" + idStudent + "')");
-			//ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE SingleSession SET idClass = '" + ss.getIdClass() + "', dateAppointement = '" + ss.getDateRevisionSession() + "', idSubject = '" + ss.getSubject().getId() + "', idStudent = '" + ss.getStudent().getId() + "', idTeacher = '" + ss.getTeacher().getId() + "', place = '" + ss.getPlace() + "', meetingTime = '" + ss.getMeetingTime() + "' WHERE idSingleRevision = '" + ss.getIdSingleSession() + "'");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

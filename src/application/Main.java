@@ -24,7 +24,7 @@ public class Main extends Application {
 		    Parent skillLayout = root.load();
 	        Scene scene = new Scene(skillLayout, 1000, 800);
 	        
-	        primaryStage.setTitle("FXML Welcome");
+	        primaryStage.setTitle("PolyShare");
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 		} catch (IOException e) {
@@ -49,6 +49,12 @@ public class Main extends Application {
 		r.add("MediaFiles", "/ui/mediaFile/MediaFile.fxmls");
 		r.add("MyAppointements", "/ui/myAppointement/MyAppointements.fxml");
 		r.add("Topic", "/ui/topic/TopicHomePage.fxml");
+		r.add("Appointements", "/ui/appointement/Appointement.fxml");
+		r.add("Login", "/ui/connectionInscription/Login.fxml");
+		r.add("SignUp", "/ui/connectionInscription/UserForm.fxml");
+		r.add("AddRevisionSession", "/ui/appointement/addJoin/addRevisionSession.fxml");
+		r.add("AddHelpRequest", "/ui/appointement/addJoin/addHelpRequest.fxml");
+		r.add("AddHelpProposal", "/ui/appointement/addJoin/addSingleSession.fxml");
 		
 	}
 }

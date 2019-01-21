@@ -75,7 +75,7 @@
       </GridPane>
       <BorderPane prefHeight="98.0" prefWidth="1000.0">
          <center>
-            <Button fx:id="backHome" mnemonicParsing="false" onAction="#backHome" style="-fx-background-color: #357AB7 #357AB7; -fx-text-fill: white;" text="Exit" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#backHome" style="-fx-background-color: #357AB7 #357AB7; -fx-text-fill: white;" text="Exit" BorderPane.alignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>

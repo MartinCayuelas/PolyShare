@@ -1,6 +1,5 @@
 package application.classesApp;
-/*
- *  @author julienroumagnac
+/**  @author julienroumagnac
  *  
  * */
 public class MyDate {

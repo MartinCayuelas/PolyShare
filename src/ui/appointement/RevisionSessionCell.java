@@ -15,11 +15,13 @@ public class RevisionSessionCell {
 	private ArrayList<Student> students;
 	private Subject subject;
 	private MyDate dateRevisionSession;
-	private MyDate meetingTime;
+	private String meetingTime;
 	private String place;
+	private String message;
 	
 	
-	public RevisionSessionCell(int idRevisionSession, int idClass, Student teacher, ArrayList<Student> students, Subject subject, MyDate myDate, MyDate meetingTime, String place) {
+	public RevisionSessionCell(int idRevisionSession, int idClass, Student teacher, ArrayList<Student> students, 
+			Subject subject, MyDate myDate, String meetingTime, String place, String message) {
 		this.idRevisionSession = idRevisionSession;
 		this.idClass = idClass;
 		this.teacher = teacher;
@@ -28,6 +30,7 @@ public class RevisionSessionCell {
 		this.dateRevisionSession = myDate;
 		this.meetingTime = meetingTime;
 		this.place = place;
+		this.setMessage(message);
 	}
 
 	public int getIdClass() {
@@ -38,11 +41,11 @@ public class RevisionSessionCell {
 		this.idClass = idClass;
 	}
 
-	public MyDate getMeetingTime() {
+	public String getMeetingTime() {
 		return meetingTime;
 	}
 
-	public void setMeetingTime(MyDate meetingTime) {
+	public void setMeetingTime(String meetingTime) {
 		this.meetingTime = meetingTime;
 	}
 
@@ -110,6 +113,20 @@ public class RevisionSessionCell {
 
 	public void setDateRevisionSession(MyDate dateRevisionSession) {
 		this.dateRevisionSession = dateRevisionSession;
+	}
+
+	/**
+	 * @return the message
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+	/**
+	 * @param message the message to set
+	 */
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	

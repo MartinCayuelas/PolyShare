@@ -28,6 +28,12 @@ public abstract class AppointmentDAO {
      * Creates a new SingleSession
      */
     public abstract void createSingleSession(SingleSession s);
+    
+    /**
+     * @param s 
+     * Creates a new HelpRequest
+     */
+    public abstract void createHelpRequest(SingleSession s);
 
     /**
      * @param id 
@@ -42,6 +48,13 @@ public abstract class AppointmentDAO {
      * Return an SingleSession
      */
     public abstract Appointment getSingleSessionById(int id);
+    
+    /**
+     * @param id 
+     * @return Appointment
+     * Return an SingleSession
+     */
+    public abstract Appointment getHelpRequestById(int id) ;
 
     /**
      * Return a Student corresponding to the Id
@@ -89,6 +102,8 @@ public abstract class AppointmentDAO {
 	public abstract ArrayList<SingleSession> getHelpRequestByClass(int idClass);
 	
 	public abstract void updateSingleSession(SingleSession ss);
+	
+	public abstract void updateHelpRequest(SingleSession ss);
 	
 	public abstract void updateRevisionSession(RevisionSession rs, int idStudent);
 

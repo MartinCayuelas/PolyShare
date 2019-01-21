@@ -1,7 +1,0 @@
-{
-
-"url" : "jdbc:mysql://ec2-13-58-118-115.us-east-2.compute.amazonaws.com:3306/polysharebase?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false",
-
-"user" : "root",
-"password" : "root"
-}

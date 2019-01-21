@@ -132,18 +132,18 @@ public class MyAppointmentsController  {
 	public void initialize() {
 		// TODO Auto-generated method stub
 		Student s = new Student(1);
-//	try {
-//			s = LoginFacade.getInstance().getConnectedStudent();
-//		} catch (DisconnectedStudentException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		
+try {		s = LoginFacade.getInstance().getConnectedStudent();
+			System.out.println(s.getId());
+		} catch (DisconnectedStudentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 
 		myAppsPast = this.getPastAppointment(this.getMyAppointments(s));
 		myAppsFutur = this.getFutureAppointment(this.getMyAppointments(s));
-		System.out.println(myAppsPast.toString());
-		System.out.println(myAppsFutur.toString());
+		
 		
 		
 		pastObservableList = FXCollections.observableArrayList();

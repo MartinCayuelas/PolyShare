@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,6 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ui.Router;
 
 /**
  * 
@@ -59,28 +61,14 @@ public class SignUpController {
 
     /**
      * @return
+     * @throws IOException 
      */
     @FXML
-    private void welcome(ActionEvent event) {
+    private void welcome(ActionEvent event) throws IOException {
     	if(!firstNameField.getText().isEmpty() && !nameField.getText().isEmpty() && !emailField.getText().isEmpty() && !passwordField.getText().isEmpty() && !passwordConfirmField.getText().isEmpty() && !loginIDField.getText().isEmpty()){
     		if(passwordField.getText().equals(passwordConfirmField.getText())){
     			loginFacade.signUp(nameField.getText(),firstNameField.getText(),emailField.getText(),passwordField.getText(),loginIDField.getText());
-    			Node  source = (Node)  event.getSource(); 
-    			Stage stage  = (Stage) source.getScene().getWindow();
-				stage.close();
-				                     
-				Stage nextStage = new Stage();
-				nextStage.setTitle("Student Profil");
-				Pane myPane = null;
-				try {
-					myPane = FXMLLoader.load(getClass().getResource("/ui/connectionInscription/Login.fxml"));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				Scene scene = new Scene(myPane);
-				nextStage.setScene(scene);
-				nextStage.show();
+    			Router.getInstance().activate("Login");
 			} else {
 				errorLabel.setText("Erreur : Invalid password confirmation");
 			}
@@ -89,26 +77,17 @@ public class SignUpController {
     		passwordConfirmField.setText("");
     		errorLabel.setText("Error : Missing Field");
     	}
+    	
     }
     
     @FXML
-	private void backLogin(ActionEvent event) throws IOException {
-		Node source = (Node) event.getSource();
-		Stage stage = (Stage) source.getScene().getWindow();
-		stage.close();
-
-		Stage nextStage = new Stage();
-		nextStage.setTitle("Student Account");
-		Pane myPane = null;
-		myPane = FXMLLoader.load(getClass().getResource("/ui/connectionInscription/Login.fxml"));
-
-		Scene scene = new Scene(myPane);
-		nextStage.setScene(scene);
-		nextStage.show();
+	private void backLogin() {
+    	Router.getInstance().activate("Login");
 
 	}
 
-    public void initialize(URL arg0, ResourceBundle arg1) {
+    @FXML
+    public void initialize() {
     	// TODO Auto-generated method stub
 
     }

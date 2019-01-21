@@ -15,7 +15,7 @@ public class Appointment {
      * Default constructor
      */
 	public Appointment(int idAppointment, int idClass, Student teacher, Subject subject, ArrayList<Topic> topic,
-			MyDate dateAppointment, String message, MyDate meetingTime, String place) {
+			MyDate dateAppointment, String message, String meetingTime, String place) {
 		this.idAppointment = idAppointment;
 		this.idClass = idClass;
 		this.teacher = teacher;
@@ -112,7 +112,7 @@ public class Appointment {
     /**
      * 
      */
-    public MyDate meetingTime;
+    public String meetingTime;
     
     /**
      * 
@@ -150,11 +150,11 @@ public class Appointment {
 		this.idClass = idClass;
 	}
 
-	public MyDate getMeetingTime() {
+	public String getMeetingTime() {
 		return meetingTime;
 	}
 
-	public void setMeetingTime(MyDate meetingTime) {
+	public void setMeetingTime(String meetingTime) {
 		this.meetingTime = meetingTime;
 	}
 

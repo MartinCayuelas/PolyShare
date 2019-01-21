@@ -13,11 +13,12 @@ public class HelpRequestCell {
 	private Subject subject;
 	private MyDate dateRevisionSession;
 	private String place;
-	private MyDate meetingTime;
+	private String meetingTime;
+	private String message;
 
 
 	public HelpRequestCell(int idSingleSession, int idClass, Student teacher, Student student, Subject subject,
-			MyDate dateRevisionSession, String place, MyDate meetingTime) {
+			MyDate dateRevisionSession, String place, String meetingTime, String message) {
 		this.idSingleSession = idSingleSession;
 		this.idClass = idClass;
 		this.teacher = teacher;
@@ -26,6 +27,7 @@ public class HelpRequestCell {
 		this.dateRevisionSession = dateRevisionSession;
 		this.place = place;
 		this.meetingTime = meetingTime;
+		this.setMessage(message);
 	}
 
 
@@ -144,7 +146,7 @@ public class HelpRequestCell {
 	/**
 	 * @return the meetingTime
 	 */
-	public MyDate getMeetingTime() {
+	public String getMeetingTime() {
 		return meetingTime;
 	}
 
@@ -152,8 +154,24 @@ public class HelpRequestCell {
 	/**
 	 * @param meetingTime the meetingTime to set
 	 */
-	public void setMeetingTime(MyDate meetingTime) {
+	public void setMeetingTime(String meetingTime) {
 		this.meetingTime = meetingTime;
+	}
+
+
+	/**
+	 * @return the message
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+
+	/**
+	 * @param message the message to set
+	 */
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 	

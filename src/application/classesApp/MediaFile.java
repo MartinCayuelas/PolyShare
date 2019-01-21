@@ -6,11 +6,21 @@ import java.util.*;
 /**
  * <b>MediaFile</b> corresponds to documents shared between Students
  */
-/** @author julien
+/** @author roumagnac, cayuelas
  * 
  * 
  * */
 public class MediaFile {
+
+	
+    public String nameMediaFile;
+    
+    public String lienMF;
+   
+    public int nbLikesMediaFile;
+
+	public int idTopic;
+	public int idMedia ;
 
     /**
      * Default constructor
@@ -29,20 +39,15 @@ public class MediaFile {
 		this.lienMF = lien;
 	}
 
-	/**
-     * 
-     */
-    public String nameMediaFile;
-    
-    public String lienMF;
+	public MediaFile(int idMedia, String titre,int idTopic, String lien) {
+		// TODO Auto-generated constructor stub
+		this.idMedia = idMedia;
+		this.idTopic=idTopic;
+		this.lienMF = lien;
+		this.nameMediaFile=titre;
+	}
 
-    /**
-     * 
-     */
-    public int nbLikesMediaFile;
-
-	public int idTopic;
-
+	
 
     /**
      * Download a MediaFile
@@ -78,7 +83,7 @@ public class MediaFile {
      */
     public int getIdMediaFile() {
         // TODO implement here
-        return 0;
+        return this.idMedia;
     }
 
     /**

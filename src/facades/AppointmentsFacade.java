@@ -3,12 +3,10 @@ package facades;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import application.classesApp.Appointment;
-import application.classesApp.MyDate;
 import application.classesApp.RevisionSession;
 import application.classesApp.SingleSession;
 import application.classesApp.Student;
 import application.classesApp.Subject;
-import application.classesApp.Topic;
 import facades.exceptions.DisconnectedStudentException;
 import factory.AbstractFactory;
 import persistent.DAO.AppointmentDAO;
@@ -44,18 +42,14 @@ public class AppointmentsFacade {
      * and the connected student
      * @throws DisconnectedStudentException 
      */
-    public void addSingleSession(MyDate date, Subject subject, ArrayList<Topic> listTopic, String message, String place) throws DisconnectedStudentException {
+    public void addSingleSession(SingleSession singleSession) {
         // TODO implement here
-    	Student teacher = LoginFacade.getInstance().getConnectedStudent();
-    	SingleSession singleSession = new SingleSession(0, 0, teacher, null, subject, listTopic, date, message, null, place);
     	appointmentDAO.createSingleSession(singleSession);
     }
     
-    public void addHelpRequest(MyDate date, Subject subject, ArrayList<Topic> topic, String message, String place) throws DisconnectedStudentException {
+    public void addHelpRequest(SingleSession singleSession) {
         // TODO implement here
-    	Student student = LoginFacade.getInstance().getConnectedStudent();
-    	SingleSession singleSession = new SingleSession(0, 0, null, student, subject, topic, date, message, null, place);
-    	appointmentDAO.createSingleSession(singleSession);
+    	appointmentDAO.createHelpRequest(singleSession);
     }
     
     /**
@@ -76,12 +70,21 @@ public class AppointmentsFacade {
     }
 
     /**
-     * @param Student student
+     * @param SingleSession ss
      * @return 
      */
     public void updateSingleSession(SingleSession ss) {
         // TODO implement here
     	appointmentDAO.updateSingleSession(ss);
+    }
+    
+    /**
+     * @param SingleSession ss
+     * @return 
+     */
+    public void updateHelpRequest(SingleSession ss) {
+        // TODO implement here
+    	appointmentDAO.updateHelpRequest(ss);
     }
 
     /**
@@ -129,7 +132,7 @@ public class AppointmentsFacade {
      */
     public void updateRevisionSession(RevisionSession revisionSession, int idStudent) {
         // TODO implement here
-    	
+    	appointmentDAO.updateRevisionSession(revisionSession, idStudent);
     }
 
     /**
@@ -170,7 +173,11 @@ public class AppointmentsFacade {
 	}
 	
 	public SingleSession getSingleSessionById(int idSS) {
-		return (SingleSession) appointmentDAO.getAppointmentById(idSS);
+		return (SingleSession) appointmentDAO.getSingleSessionById(idSS);
+	}
+	
+	public SingleSession getHelpRequestById(int idSS) {
+		return (SingleSession) appointmentDAO.getHelpRequestById(idSS);
 	}
 	
 	public RevisionSession getRevisionSessionById(int idRS) {

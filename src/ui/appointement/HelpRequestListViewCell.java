@@ -3,7 +3,10 @@ package ui.appointement;
 import java.io.IOException;
 
 import application.classesApp.SingleSession;
+import application.classesApp.Student;
 import facades.AppointmentsFacade;
+import facades.LoginFacade;
+import facades.exceptions.DisconnectedStudentException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,6 +33,12 @@ public class HelpRequestListViewCell extends ListCell<HelpRequestCell> {
 	
 	@FXML 
 	private Label cellLabelDateAppointment;
+	
+	@FXML 
+	private Label cellLabelPlace;
+	
+	@FXML 
+	private Label cellLabelTimeAppointment;
 	
 	@FXML 
 	private Button buttonAccept;
@@ -67,14 +76,26 @@ public class HelpRequestListViewCell extends ListCell<HelpRequestCell> {
             
             this.cellLabelnameTeacher.setText(String.valueOf(hrc.getStudent().getNameStudent() + " " + hrc.getStudent().getFirstNameStudent()));
             this.cellLabelnameSubject.setText(String.valueOf(hrc.getSubject().getNameSubject()));
-            this.cellLabelExplication.setText(String.valueOf(hrc.getStudent().getNameStudent()));
+            this.cellLabelExplication.setText(String.valueOf(hrc.getMessage()));
             this.cellLabelDateAppointment.setText(String.valueOf(hrc.getDateRevisionSession().getShowingDate()));
+            this.cellLabelPlace.setText(String.valueOf(hrc.getPlace()));
+            this.cellLabelTimeAppointment.setText(String.valueOf(hrc.getMeetingTime()));
            
             this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
             	@Override
             	public void handle(ActionEvent event) {
-            		SingleSession ss = appointmentsFacade.getSingleSessionById(hrc.getIdSingleSession());
-            		controller.updateSingleSession(ss);
+            		SingleSession ss = appointmentsFacade.getHelpRequestById(hrc.getIdSingleSession());
+            		System.out.println(ss.getDateAppointment());
+            		try {
+						Student teacher = LoginFacade.getInstance().getConnectedStudent();
+						System.out.println(teacher.getFirstNameStudent());
+						System.out.println(ss.getDateAppointment());
+						ss.setTeacher(teacher);
+						controller.updateHelpRequest(ss);;
+					} catch (DisconnectedStudentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
             	}                            
             });
             

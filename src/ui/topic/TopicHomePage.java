@@ -1,5 +1,6 @@
 package ui.topic;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +11,21 @@ import facades.ForumFacade;
 import facades.SchoolClassFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import ui.Router;
+import ui.mediaFile.AddMediaFileController;
+import ui.mediaFile.MediaFileController;
+import ui.skill.AddUpdateSkill.updateSkillController;
 
 /**
  * @author ponthieu julienroumagnac
@@ -104,6 +114,53 @@ public class TopicHomePage {
     	ArrayList<MediaFile> listMediaFile = forumFac.getAllMd();
     	return listMediaFile;
     }
+    
+    @FXML
+	private void handleAddNewMedia(ActionEvent event) throws IOException {	
+
+    	Stage nextStage = new Stage();
+		nextStage.setTitle("AddNewDocument");
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource("/ui/mediaFile/AddMediaFile.fxml"));
+		Parent sceneMain = null;
+		try {
+			AddMediaFileController controllerU = new AddMediaFileController();
+			loader.setController(controllerU);
+			controllerU.init(topic);
+			sceneMain = loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(sceneMain);
+		nextStage.setScene(scene);
+		nextStage.show();
+
+	}
+    @FXML
+	private void getRessources(ActionEvent event) throws IOException {
+		
+
+    	Stage nextStage = new Stage();
+		nextStage.setTitle("MediaFiles");
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource("/ui/mediaFile/MediaFile.fxml"));
+		Parent sceneMain = null;
+		try {
+			MediaFileController controllerU = new MediaFileController();
+			loader.setController(controllerU);
+			controllerU.init(topic);
+			sceneMain = loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(sceneMain);
+		nextStage.setScene(scene);
+		nextStage.show();
+
+
+	}
     
 
 }

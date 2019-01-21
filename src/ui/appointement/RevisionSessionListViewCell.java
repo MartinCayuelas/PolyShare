@@ -37,6 +37,12 @@ public class RevisionSessionListViewCell extends ListCell<RevisionSessionCell> {
 	private Label cellLabelDateAppointment;
 	
 	@FXML 
+	private Label cellLabelPlace;
+	
+	@FXML 
+	private Label cellLabelTimeAppointment;
+	
+	@FXML 
 	private Button buttonJoin;
 	
 	@FXML
@@ -76,12 +82,14 @@ public class RevisionSessionListViewCell extends ListCell<RevisionSessionCell> {
             
             this.cellLabelnameTeacher.setText(String.valueOf(rsc.getTeacher().getNameStudent() + " " + rsc.getTeacher().getFirstNameStudent()));
             this.cellLabelnameSubject.setText(String.valueOf(rsc.getSubject().getNameSubject()));
-            this.cellLabelExplication.setText(String.valueOf(rsc.getTeacher().getNameStudent()));
+            this.cellLabelExplication.setText(String.valueOf(rsc.getMessage()));
             this.cellLabelDateAppointment.setText(String.valueOf(rsc.getDateRevisionSession().getShowingDate()));
             for(Student s : rsc.getStudents()) {
             	this.students.getItems().add(String.valueOf(s.getNameStudent() + " " + s.getFirstNameStudent()));
             	this.students.setPromptText(s.getNameStudent());
             }
+            this.cellLabelPlace.setText(String.valueOf(rsc.getPlace()));
+            this.cellLabelTimeAppointment.setText(String.valueOf(rsc.getMeetingTime()));
             
            
            this.buttonJoin.setOnAction(new EventHandler<ActionEvent>() {

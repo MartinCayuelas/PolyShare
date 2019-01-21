@@ -1,11 +1,8 @@
 package ui.skill;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-
 import application.classesApp.SchoolClass;
 import application.classesApp.Skill;
 import application.classesApp.Student;
@@ -74,14 +71,23 @@ public class SkillControlleur {
 
 	@FXML
 	private ListView<?> myListSkills;
+	
+	@FXML
+	public void yo() {
+		System.out.println("yo");
+	}
 
 	@FXML
-	private void handleAddNewSkill(ActionEvent event) throws IOException {
-
+	private void handleAddNewSkill() {
+		System.out.println("Sysout");
 		Stage nextStage = new Stage();
 		nextStage.setTitle("Student's Skill");
 		Pane myPane = null;
-		myPane = FXMLLoader.load(getClass().getResource("/ui/skill/AddUpdateSkill/addNewSkill.fxml"));
+		try {
+			myPane = FXMLLoader.load(getClass().getResource("/ui/skill/AddUpdateSkill/addNewSkill.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		Scene scene = new Scene(myPane);
 		nextStage.setScene(scene);

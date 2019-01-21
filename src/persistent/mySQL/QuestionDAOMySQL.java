@@ -51,7 +51,7 @@ public class QuestionDAOMySQL extends QuestionDAO {
 		List<Question> q = bdToObjects(rs);
 		for (Question question : q) {
 			
-			ResultSet rsLike =  BdConnection.selectRequest("select count(*) as nbLike from Rank where idQuestion = " + question.getIdQuestion());
+			ResultSet rsLike =  BdConnection.selectRequest("select count(*) from `Rank` where idQuestion = " + question.getIdQuestion());
 			
 			try {
 				if (rsLike.next()) {
@@ -115,16 +115,16 @@ public class QuestionDAOMySQL extends QuestionDAO {
 			sConnected = new Student(0);
 			
 			ResultSet rs = BdConnection.selectRequest(
-					"select count(*) from Rank where idQuestion = " + q.getId() + " and idStudent = " + sConnected.getId());
+					"select count(*) from `Rank` where idQuestion = " + q.getId() + " and idStudent = " + sConnected.getId());
 			
 			// if student already liked this answer, delete the like
 			if (rs.next()) {
 				
 				if (rs.getInt(1) >= 1 ) {
-					BdConnection.request("delete from Rank where idQuestion = " + q.getId() + " and idStudent = " + sConnected.getId());
+					BdConnection.request("delete from `Rank` where idQuestion = " + q.getId() + " and idStudent = " + sConnected.getId());
 					
 				} else {
-					BdConnection.request("insert into Rank values (" +  sConnected.getId() + ", " + q.getId() + ")");
+					BdConnection.request("insert into `Rank` values (" +  sConnected.getId() + ", " + q.getId() + ")");
 				}
 			}
 		} catch (SQLException e) {

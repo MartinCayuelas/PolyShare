@@ -2,7 +2,10 @@ package ui.appointement;
 
 import java.io.IOException;
 import application.classesApp.SingleSession;
+import application.classesApp.Student;
 import facades.AppointmentsFacade;
+import facades.LoginFacade;
+import facades.exceptions.DisconnectedStudentException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -73,7 +76,14 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
             	@Override
             	public void handle(ActionEvent event) {
             		SingleSession ss = appointmentsFacade.getSingleSessionById(ssc.getIdSingleSessionCell());
-            		controller.updateSingleSession(ss);
+            		try {
+						Student student = LoginFacade.getInstance().getConnectedStudent();
+						ss.setStudent(student);
+						controller.updateSingleSession(ss);
+					} catch (DisconnectedStudentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
             	}                            
             });
             

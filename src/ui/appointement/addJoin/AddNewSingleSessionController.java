@@ -1,9 +1,9 @@
 package ui.appointement.addJoin;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.List;
+
 import application.classesApp.MyDate;
 import application.classesApp.SchoolClass;
 import application.classesApp.SingleSession;
@@ -14,14 +14,14 @@ import facades.AppointmentsFacade;
 import facades.LoginFacade;
 import facades.SchoolClassFacade;
 import facades.exceptions.DisconnectedStudentException;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -30,10 +30,21 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import ui.Router;
 
-public class AddNewSingleSessionController implements Initializable {
+public class AddNewSingleSessionController {
+	
+	protected List<String> listSubjects = new ArrayList<>();
+	
+	protected List<Integer> listSubjectsId = new ArrayList<>();
+	
+	protected List<String> listTopics = new ArrayList<>();
+	
+	protected List<Integer> listTopicsId = new ArrayList<>();
+	
+	protected ListProperty<String> listPropertySubjects = new SimpleListProperty<>();
+	
+	protected ListProperty<String> listPropertyTopics = new SimpleListProperty<>();
 	
 	private AppointmentsFacade appointmentsFacade = new AppointmentsFacade();
 	
@@ -73,15 +84,22 @@ public class AddNewSingleSessionController implements Initializable {
 		
 	@FXML
 	private Label errorTextHelpProposal;
+
+	private Student sConnected;
+	
+	private int subjectSelectedId = -1;
+	
+	private int topicSelectedId = -1;
 		
 		
 	
 	/**
      * @return
 	 * @throws IOException 
+	 * @throws DisconnectedStudentException 
      */
     @FXML
-    private void addHelpProposal(ActionEvent event) throws IOException {
+    private void addHelpProposal(ActionEvent event) throws IOException, DisconnectedStudentException {
     	if(!choiceBoxSubject.getValue().toString().isEmpty() && !choiceBoxTopic.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeSingleSessionHour.getValue().toString().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty() && !timeSingleSessionMin.getValue().toString().isEmpty()){
     		Subject subject = schoolClassFacade.findSubjectByName(choiceBoxSubject.getValue().toString());
     		ArrayList<Topic> listTopic = schoolClassFacade.getTopics(subject.getId());
@@ -95,33 +113,24 @@ public class AddNewSingleSessionController implements Initializable {
     		listTopic2.add(topic);
     		String dateString = dateHelpProposal.getValue().toString();
     		MyDate date = new MyDate(dateString);
-    		Student teacher = new Student(1, "Ponthieu");
-    		//Student teacher = LoginFacade.getInstance().getConnectedStudent();
+    		//Student teacher = new Student(1, "Ponthieu");
+    		Student teacher = LoginFacade.getInstance().getConnectedStudent();
+    		SchoolClass sc = (SchoolClass)Router.getInstance().getParams()[0];
     		String timeHelpRequest = "0"+timeSingleSessionHour.getValue().toString() + ":0" + timeSingleSessionMin.getValue().toString() + ":00";
-    		System.out.println(timeHelpRequest);
-    		SingleSession helpProposal = new SingleSession(0, 1, teacher, null, subject, listTopic, date, messageHelpProposal.getText(), timeHelpRequest, placeHelpProposal.getText());
+    		SingleSession helpProposal = new SingleSession(0, sc.getIdSchoolClass(), teacher, null, subject, listTopic, date, messageHelpProposal.getText(), timeHelpRequest, placeHelpProposal.getText());
     		appointmentsFacade.addSingleSession(helpProposal);
 		} else {
 			errorTextHelpProposal.setText("Erreur : tous les champs ne sont pas remplis !");
 		}
     	
-    	Node source = (Node) event.getSource();
-		Stage stage = (Stage) source.getScene().getWindow();
-		stage.close();
-
-		Stage nextStage = new Stage();
-		nextStage.setTitle("Add Help Proposal");
-		Pane myPane = null;
-		myPane = FXMLLoader.load(getClass().getResource("/ui/appointement/Appointement.fxml"));
-
-		Scene scene = new Scene(myPane);
-		nextStage.setScene(scene);
-		nextStage.show();
+    	SchoolClass sc = (SchoolClass)Router.getInstance().getParams()[0];
+    	SchoolClass[] params  = {sc};
+    	Router.getInstance().activate("Appointements", params);
 		
 	}
     
     @FXML
-    private void addHelpRequest(ActionEvent event) throws IOException {
+    private void addHelpRequest(ActionEvent event) throws IOException, DisconnectedStudentException {
     	if(!choiceBoxSubject.getValue().toString().isEmpty() && !choiceBoxTopic.getValue().toString().isEmpty() && !messageHelpProposal.getText().isEmpty() && !placeHelpProposal.getText().isEmpty() && !timeSingleSessionHour.getValue().toString().isEmpty() && !dateHelpProposal.getValue().toString().isEmpty() && !timeSingleSessionMin.getValue().toString().isEmpty()){
     		Subject subject = schoolClassFacade.findSubjectByName(choiceBoxSubject.getValue().toString());
     		ArrayList<Topic> listTopic = schoolClassFacade.getTopics(subject.getId());
@@ -135,44 +144,27 @@ public class AddNewSingleSessionController implements Initializable {
     		listTopic2.add(topic);
     		String dateString = dateHelpProposal.getValue().toString();
     		MyDate date = new MyDate(dateString);
-    		Student student = new Student(1, "Ponthieu");
-    		//Student student = LoginFacade.getInstance().getConnectedStudent();
+    		//Student student = new Student(1, "Ponthieu");
+    		Student student = LoginFacade.getInstance().getConnectedStudent();
+    		SchoolClass sc = (SchoolClass)Router.getInstance().getParams()[0];
     		String timeHelpRequest = timeSingleSessionHour.getValue().toString() + ":" + timeSingleSessionMin.getValue().toString() + ":00";
-    		SingleSession helpRequest = new SingleSession(0, 1, null, student, subject, listTopic, date, messageHelpProposal.getText(), timeHelpRequest, placeHelpProposal.getText());
+    		SingleSession helpRequest = new SingleSession(0, sc.getIdSchoolClass(), null, student, subject, listTopic, date, messageHelpProposal.getText(), timeHelpRequest, placeHelpProposal.getText());
     		appointmentsFacade.addHelpRequest(helpRequest);
 		} else {
 			errorTextHelpProposal.setText("Erreur : tous les champs ne sont pas remplis !");
 		}
     	
-    	Node source = (Node) event.getSource();
-		Stage stage = (Stage) source.getScene().getWindow();
-		stage.close();
-
-		Stage nextStage = new Stage();
-		nextStage.setTitle("Add Help Proposal");
-		Pane myPane = null;
-		myPane = FXMLLoader.load(getClass().getResource("/ui/appointement/Appointement.fxml"));
-
-		Scene scene = new Scene(myPane);
-		nextStage.setScene(scene);
-		nextStage.show();
+    	SchoolClass sc = (SchoolClass)Router.getInstance().getParams()[0];
+    	SchoolClass[] params  = {sc};
+    	Router.getInstance().activate("Appointements", params);
 		
 	}
     
     @FXML
-    private void goBack(ActionEvent e) throws IOException {
-    	Node source = (Node) e.getSource();
-		Stage stage = (Stage) source.getScene().getWindow();
-		stage.close();
-
-		Stage nextStage = new Stage();
-		nextStage.setTitle("Appointments");
-		Pane myPane = null;
-		myPane = FXMLLoader.load(getClass().getResource("/ui/appointement/Appointement.fxml"));
-
-		Scene scene = new Scene(myPane);
-		nextStage.setScene(scene);
-		nextStage.show();
+    private void goBack() {
+    	SchoolClass sc = (SchoolClass)Router.getInstance().getParams()[0];
+    	SchoolClass[] params  = {sc};
+    	Router.getInstance().activate("Appointements", params);
     }
     
     @FXML
@@ -187,20 +179,29 @@ public class AddNewSingleSessionController implements Initializable {
 		this.choiceBoxTopic.setItems(TopicObservableList);
     }
     
+
+    
     private void initSpinner() {
     	timeSingleSessionHour.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(00, 24));
     	timeSingleSessionMin.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(00, 60));
 	}
     
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
+    @FXML
+    public void initialize() {
 		// TODO Auto-generated method stub
+    	
+    	try {
+			this.sConnected = LoginFacade.getInstance().getConnectedStudent();
+		} catch (DisconnectedStudentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     	
     	initSpinner();
     	
     	ArrayList<Subject> subjects = new ArrayList<>();
-    	//SchoolClass sc = (SchoolClass)Router.getInstance().getParams()[0];
-    	SchoolClass sc = new SchoolClass(1, "IG3");
+    	SchoolClass sc = (SchoolClass)Router.getInstance().getParams()[0];
+    	//SchoolClass sc = new SchoolClass(1, "IG3");
     	
     	subjects = schoolClassFacade.getSubjects(sc.getIdSchoolClass());
     	
@@ -216,8 +217,6 @@ public class AddNewSingleSessionController implements Initializable {
 			this.choiceBoxTopic.setItems(TopicObservableList);
 		}
 		this.choiceBoxSubject.setItems(SubjectObservableList);
-		
-	
 	}
 
 }

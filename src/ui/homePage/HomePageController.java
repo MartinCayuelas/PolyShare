@@ -3,6 +3,7 @@ package ui.homePage;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.classesApp.Appointment;
 import application.classesApp.SchoolClass;
 import facades.SchoolClassFacade;
 import facades.exceptions.DisconnectedStudentException;
@@ -78,6 +79,18 @@ public class HomePageController {
     		System.out.println(selected.getNameSchoolClass());
     		SchoolClass[] params  = {selected};
         	Router.getInstance().activate("SchoolClass", params);
+    	}
+    	
+    }
+    
+    @FXML 
+    public void goAppointment() {
+    	SchoolClass selected = this.myClassesLV.getSelectionModel().getSelectedItem();
+    	
+    	if (selected != null) {
+    		System.out.println(selected);
+    		SchoolClass[] params  = {selected};
+        	Router.getInstance().activate("Appointements", params);
     	}
     	
     }

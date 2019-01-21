@@ -3,7 +3,10 @@ package ui.appointement;
 import java.io.IOException;
 
 import application.classesApp.SingleSession;
+import application.classesApp.Student;
 import facades.AppointmentsFacade;
+import facades.LoginFacade;
+import facades.exceptions.DisconnectedStudentException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -73,8 +76,18 @@ public class HelpRequestListViewCell extends ListCell<HelpRequestCell> {
             this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
             	@Override
             	public void handle(ActionEvent event) {
-            		SingleSession ss = appointmentsFacade.getSingleSessionById(hrc.getIdSingleSession());
-            		controller.updateSingleSession(ss);
+            		SingleSession ss = appointmentsFacade.getHelpRequestById(hrc.getIdSingleSession());
+            		System.out.println(ss.getDateAppointment());
+            		try {
+						Student teacher = LoginFacade.getInstance().getConnectedStudent();
+						System.out.println(teacher.getFirstNameStudent());
+						System.out.println(ss.getDateAppointment());
+						ss.setTeacher(teacher);
+						controller.updateHelpRequest(ss);;
+					} catch (DisconnectedStudentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
             	}                            
             });
             

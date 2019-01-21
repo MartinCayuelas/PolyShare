@@ -88,13 +88,13 @@ public class RevisionSessionListViewCell extends ListCell<RevisionSessionCell> {
                @Override
                public void handle(ActionEvent event) {
             	   RevisionSession rs = appointmentsFacade.getRevisionSessionById(rsc.getIdRevisionSession());
-            	   //try {
-					//int idStudent = LoginFacade.getInstance().getConnectedStudent().getId();
-					controller.updateRevisionSession(rs, 6);
-				//} catch (DisconnectedStudentException e) {
+            	   try {
+					int idStudent = LoginFacade.getInstance().getConnectedStudent().getId();
+					controller.updateRevisionSession(rs, idStudent);
+				} catch (DisconnectedStudentException e) {
 					// TODO Auto-generated catch block
-				//	e.printStackTrace();
-				//}
+					e.printStackTrace();
+				}
                }                            
            });
             

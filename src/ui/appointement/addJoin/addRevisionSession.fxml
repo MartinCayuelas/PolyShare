@@ -50,7 +50,7 @@
                </font>
             </Label>
             <ChoiceBox fx:id="choiceBoxSubject" prefHeight="37.0" prefWidth="218.0" GridPane.columnIndex="1" />
-            <ChoiceBox fx:id="choiceBoxTopic" prefHeight="37.0" prefWidth="218.0" GridPane.columnIndex="3" />
+            <ChoiceBox fx:id="choiceBoxTopic" onMouseClicked="#chooseTopic" prefHeight="37.0" prefWidth="218.0" GridPane.columnIndex="3" />
          </children>
       </GridPane>
       <GridPane prefHeight="466.0" prefWidth="1000.0">

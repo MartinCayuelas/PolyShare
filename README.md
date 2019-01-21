@@ -14,18 +14,12 @@ To run the application, you must have Java 1.8 or higher with JavaFX also instal
 
 ### 1. Unzip the folder PolyShare.zip
 
-### 2. Compile the code with the following commands :
+### 2. Go to the root of the project :
   <code>
   cd PolyShare
   </code>
-  <code>
-  find -name "*.java" > sources.txt
-  </code>
-  <code>
-  javac @sources.txt
-  </code>
 
-### 3. Launch the app
+### 3. Compile and launch the app
 <code>
-  java PolyShare/src/application/Main
+  ./polyshare.sh
   </code>

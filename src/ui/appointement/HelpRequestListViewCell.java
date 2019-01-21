@@ -35,6 +35,12 @@ public class HelpRequestListViewCell extends ListCell<HelpRequestCell> {
 	private Label cellLabelDateAppointment;
 	
 	@FXML 
+	private Label cellLabelPlace;
+	
+	@FXML 
+	private Label cellLabelTimeAppointment;
+	
+	@FXML 
 	private Button buttonAccept;
 	
 	@FXML 
@@ -72,6 +78,8 @@ public class HelpRequestListViewCell extends ListCell<HelpRequestCell> {
             this.cellLabelnameSubject.setText(String.valueOf(hrc.getSubject().getNameSubject()));
             this.cellLabelExplication.setText(String.valueOf(hrc.getMessage()));
             this.cellLabelDateAppointment.setText(String.valueOf(hrc.getDateRevisionSession().getShowingDate()));
+            this.cellLabelPlace.setText(String.valueOf(hrc.getPlace()));
+            this.cellLabelTimeAppointment.setText(String.valueOf(hrc.getMeetingTime()));
            
             this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
             	@Override

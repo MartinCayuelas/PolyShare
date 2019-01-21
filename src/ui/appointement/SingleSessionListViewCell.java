@@ -34,6 +34,12 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
 	private Label cellLabelDateAppointment;
 	
 	@FXML 
+	private Label cellLabelPlace;
+	
+	@FXML 
+	private Label cellLabelTimeAppointment;
+	
+	@FXML 
 	private Button buttonAccept;
 	
 	@FXML 
@@ -71,6 +77,8 @@ public class SingleSessionListViewCell extends ListCell<SingleSessionCell> {
             this.cellLabelnameSubject.setText(String.valueOf(ssc.getSubjectCell().getNameSubject()));
             this.cellLabelExplication.setText(String.valueOf(ssc.getMessage()));
             this.cellLabelDateAppointment.setText(String.valueOf(ssc.getDateRevisionSessionCell().getShowingDate()));
+            this.cellLabelPlace.setText(String.valueOf(ssc.getPlaceCell()));
+            this.cellLabelTimeAppointment.setText(String.valueOf(ssc.getMeetingTimeCell()));
            
             this.buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
             	@Override

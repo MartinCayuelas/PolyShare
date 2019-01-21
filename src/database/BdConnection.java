@@ -10,9 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 /**
  * @author ponthieu
  * 
@@ -26,31 +23,23 @@ public class BdConnection {
 	// Méthode qui va nous retourner notre instance et la créer si elle n'existe pas
 	public static synchronized Connection getInstance(){
 	    if(connect == null){
-	    	try {
+	    
 	    		
-	    		JSONObject jsonObject;
+	    		
 	    			    			
-	    		FileReader fr = new FileReader("configDb.txt");
-	    		BufferedReader br = new BufferedReader(fr);
-	    		String sCurrentLine;
-	    		String txt = "";
-	    		while ((sCurrentLine = br.readLine()) != null) {
-	    			txt += sCurrentLine;
-	   			}
-	  			br.close();
-	   			jsonObject = new JSONObject(txt);
-    			String url = (String) jsonObject.get("url");
-	   			String user = (String) jsonObject.get("user");
-	   			String password = (String) jsonObject.get("password");
+	    		
 	    		    		
 	    		
 		    	Properties props = new Properties();
 				props.setProperty("ssl","true");
-				connect = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/polyshare?user=polyshare&password=polyshare");
+				try {
+					connect = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/polyshare?user=polyshare&password=polyshare");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		        //connect = DriverManager.getConnection(url, user, password);
-		    } catch (SQLException | IOException | JSONException e) {
-		    	e.printStackTrace();
-		    }
+		   
 		 }      
 		 return connect;
 	}

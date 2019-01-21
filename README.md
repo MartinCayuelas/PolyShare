@@ -1,6 +1,12 @@
 # PolyShare
-Projet OOSE - S7 - Polytech Montpellier
-Authoors : CAYUELAS Martin, DEBEIR Luca, GUILLAUD Nathan, PONTHIEU Théo, ROUMMAGNAC Julien
+OOSE Project - S7 - Polytech Montpellier
+
+Authors :
+* CAYUELAS Martin
+* DEBEIR Luca
+* GUILLAUD Nathan
+* PONTHIEU Théo
+* ROUMAGNAC Julien
 
 ## Instructions to launch the project
 

@@ -189,7 +189,8 @@ CREATE TABLE `RevisionSession` (
   `idSubject` int(11) NOT NULL,
   `idTeacher` int(11) NOT NULL,
   `place` varchar(30) NOT NULL,
-  `meetingTime` date NOT NULL
+  `meetingTime` date NOT NULL,
+  `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -203,10 +204,11 @@ CREATE TABLE `SingleSession` (
   `idClass` int(11) NOT NULL,
   `dateAppointement` date NOT NULL,
   `idSubject` int(11) NOT NULL,
-  `idStudent` int(11) NOT NULL,
-  `idTeacher` int(11) NOT NULL,
+  `idStudent` int(11),
+  `idTeacher` int(11),
   `place` text NOT NULL,
-  `meetingTime` date NOT NULL
+  `meetingTime` date NOT NULL,
+  `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
